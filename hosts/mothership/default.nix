@@ -1,11 +1,19 @@
 { pkgs, config, lib, ... }:
+
+with lib;
 {
   imports = [
     ../home.nix
     ./hardware-configuration.nix
   ];
 
-  users.users.bombadil.isNormalUser = true;
+  users.users.bombadil = {
+    extraGroups = [ "docker" "networkmanager" "wheel" ];
+    home = "/home/bombadil";
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    uid = 1000;
+  };
 
   networking.hostName = "mothership";
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
@@ -17,13 +25,22 @@
   networking.useDHCP = false;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  users.users.bombadil = {
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-  };
-
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  age = {
+    secrets = {
+      github.file = ./secrets/github.age;
+      github.owner = "bombadil";
+    };
+    sshKeyPaths = [
+      "/home/bombadil/.ssh/id_ed25519"
+    ];
+  };
+
+  environment.systemPackages = [
+    pkgs.agenix
+  ];
 
   fonts = {
     enableDefaultFonts = true;
