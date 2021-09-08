@@ -4,14 +4,7 @@ with lib;
 {
   nix = {
     package = pkgs.nixFlakes;
-/*
-    binaryCaches = [
-      "https://cache.nixos.org"
-    ];
-    binaryCachePublicKeys = [
-      # TODO: Get the url
-    ];
-*/
+
     extraOptions = ''
       auto-optimise-store = true
       experimental-features = nix-command flakes

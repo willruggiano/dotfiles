@@ -27,6 +27,7 @@
       git
       gitflow
       jq
+      keybase-gui
       paperkey
       pinentry-curses
       pre-commit

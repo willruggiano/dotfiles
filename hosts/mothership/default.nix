@@ -38,6 +38,11 @@
   };
 
   services = {
+    keybase.enable = true;
+    kbfs = {
+      enable = true;
+      mountPoint = "%h/.local/keybase";
+    };
     xserver = {
       enable = true;
       layout = "us";
