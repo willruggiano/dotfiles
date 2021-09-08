@@ -1,0 +1,2 @@
+-- TODO: someday I should look into writing my own statusline. I'eve never been completely
+-- statisfied with the plugins I've found.
