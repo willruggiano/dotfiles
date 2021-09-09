@@ -56,10 +56,14 @@ with lib;
 
   services = {
     keybase.enable = true;
+
     kbfs = {
       enable = true;
       mountPoint = "%h/.local/keybase";
     };
+
+    pcscd.enable = true;
+
     xserver = {
       enable = true;
       layout = "us";

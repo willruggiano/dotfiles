@@ -3,11 +3,11 @@
 {
   # TODO: Break out a few of these into their own files
   imports = [
-  #   ./git.nix
-     ./kitty.nix
-     ./neovim
-     ./x
-  #   ./zsh.nix
+    #   ./git.nix
+    ./kitty.nix
+    ./neovim
+    ./x
+    #   ./zsh.nix
   ];
 
   home = {
@@ -73,7 +73,7 @@
       default = {
         settings = {
           "general.smoothScroll" = false;
-	};
+        };
       };
     };
   };
@@ -152,6 +152,8 @@
       amend = "commit -a --amend --no-edit";
     };
   };
+
+  programs.gpg.enable = true;
 
   programs.i3status-rust = {
     enable = true;
@@ -375,16 +377,16 @@
       setopt extended_glob
       function encrypt() {
           local out="$1.$(date +%s).enc"
-          gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"
+          ${pkgs.gnupg}/bin/gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"
       }
 
       function decrypt() {
           local out=$(echo "$1" | rev | cut -c16- | rev)
-          gpg --decrypt --output $out "$1" && echo "$1 -> $out"
+          ${pkgs.gnupg}/bin/gpg --decrypt --output $out "$1" && echo "$1 -> $out"
       }
 
       function gpg-reset-card() {
-          gpg-connect-agent "scd serialno" "learn --force" /bye
+          ${pkgs.gnupg}/bin/gpg-connect-agent "scd serialno" "learn --force" /bye
       }
       function git-turtle() {
           local n=""
@@ -429,6 +431,16 @@
       lla = "${exa}/bin/exa -al";
       lt = "${exa}/bin/exa --tree";
       tree = "${exa}/bin/exa --tree";
+    };
+  };
+
+  services = {
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      defaultCacheTtl = 60;
+      maxCacheTtl = 120;
+      pinentryFlavor = "curses";
     };
   };
 }
