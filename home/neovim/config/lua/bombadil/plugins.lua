@@ -149,6 +149,10 @@ return require("packer").startup(function()
     end,
     rocks = "luafilesystem",
   }
+  local_use {
+    "annotate.nvim",
+    requires = "MunifTanjim/nui.nvim",
+  }
 
   -- Treesitter/syntax/highlighty things
   use {
