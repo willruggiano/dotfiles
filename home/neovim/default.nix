@@ -34,8 +34,12 @@
       sumneko-lua-language-server
       tree-sitter
       yapf
+
     ];
     extraConfig = ''lua require("bombadil.init")'';
+
+    # NOTE: Here we specify some plugins which require special handling, e.g. building shared libraries
+    plugins = with pkgs.vimPlugins; [ cpsm ];
   };
 
   xdg.configFile = {

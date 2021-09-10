@@ -235,7 +235,6 @@ return require("packer").startup(function()
       require "bombadil.config.wild"
     end,
     requires = { "romgrk/fzy-lua-native" },
-    rocks = "pcre2",
   }
   use "famiu/bufdelete.nvim"
 
