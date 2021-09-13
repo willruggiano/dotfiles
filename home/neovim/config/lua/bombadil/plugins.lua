@@ -112,6 +112,10 @@ return require("packer").startup(function()
     end,
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   }
+  use "mfussenegger/nvim-dap"
+  use "rcarriga/nvim-dap-ui"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "jbyuki/one-small-step-for-vimkind"
 
   -- Text editing + manipulation
   use "b3nj5m1n/kommentary"
@@ -201,16 +205,15 @@ return require("packer").startup(function()
 
   -- Visual stuff; sidebars, explorers, etc
   use {
-    "yamatsum/nvim-nonicons",
-    requires = "kyazdani42/nvim-web-devicons",
+    "kyazdani42/nvim-web-devicons",
     config = function()
       vim.g.override_nvim_web_devicons = true
       require "nvim-nonicons"
     end,
+    requires = "yamatsum/nvim-nonicons",
   }
   use "liuchengxu/vista.vim"
   use "simrat39/symbols-outline.nvim"
-  use "mildred/vim-bufmru"
   use { "folke/zen-mode.nvim", requires = "folke/twilight.nvim" }
   use {
     "folke/todo-comments.nvim",

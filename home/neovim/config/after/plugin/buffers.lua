@@ -1,5 +1,7 @@
-local keymap = require "astronauta.keymap"
+local wk = require "which-key"
 
 -- Better buffer naviation.
-keymap.map { "<tab>", "<cmd>BufMRUNext<cr>" }
-keymap.map { "<s-tab>", "<cmd>BufMRUPrev<cr>" }
+wk.register {
+  ["<tab>"] = { "<cmd>bnext<cr>", ":bnext" },
+  ["<s-tab>"] = { "<cmd>bprev<cr>", ":bprev" },
+}

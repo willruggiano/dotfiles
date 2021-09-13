@@ -1,6 +1,7 @@
 local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
 local nvim_status = require "lsp-status"
+local wk = require "which-key"
 
 local nnoremap = vim.keymap.nnoremap
 local telescope_mapper = require "bombadil.telescope.mappings"
@@ -23,17 +24,52 @@ local on_attach = function(client, bufnr)
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   -- Mappings.
-  nnoremap { "gd", vim.lsp.buf.definition, buffer = 0 }
-  nnoremap { "gD", vim.lsp.buf.declaration, buffer = 0 }
-  nnoremap { "gT", vim.lsp.buf.type_definition, buffer = 0 }
-  nnoremap { "gi", vim.lsp.buf.implementation, buffer = 0 }
-
-  nnoremap { "<space>dl", vim.lsp.diagnostic.show_line_diagnostics, buffer = 0 }
-  nnoremap { "<space>dn", vim.lsp.diagnostic.goto_next, buffer = 0 }
-  nnoremap { "<space>dp", vim.lsp.diagnostic.goto_prev, buffer = 0 }
-
-  nnoremap { "<space>rn", vim.lsp.buf.rename, buffer = 0 }
-  nnoremap { "K", vim.lsp.buf.hover, buffer = 0 }
+  wk.register({
+    d = {
+      name = "diagnostics",
+      l = {
+        vim.lsp.diagnostic.show_line_diagnostics,
+        "show-line",
+      },
+      n = {
+        vim.lsp.diagnostic.goto_next,
+        "goto-next",
+      },
+      p = {
+        vim.lsp.diagnostic.goto_prev,
+        "goto-prev",
+      },
+    },
+    g = {
+      name = "goto",
+      d = {
+        vim.lsp.buf.definition,
+        "definition",
+      },
+      i = {
+        vim.lsp.buf.implementation,
+        "implementation",
+      },
+      D = {
+        vim.lsp.buf.declaration,
+        "declaration",
+      },
+      T = {
+        vim.lsp.buf.type_definition,
+        "type-definition",
+      },
+    },
+    r = {
+      name = "refactor",
+      n = {
+        vim.lsp.buf.rename,
+        "rename",
+      },
+    },
+    K = { vim.lsp.buf.hover, "hover" },
+  }, {
+    buffer = bufnr,
+  })
 
   nnoremap {
     "<space>rr",

@@ -49,3 +49,54 @@ SetDapTarget = function(target)
 end
 
 vim.cmd "command! -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
+
+local has_dap, dap = pcall(require, "dap")
+if not has_dap then
+  return
+end
+
+dap.set_log_level "TRACE"
+
+dap.configurations.lua = {
+  {
+    type = "nlua",
+    request = "attach",
+    name = "Attach to running Neovim instance",
+    host = function()
+      return "127.0.0.1"
+    end,
+    port = function()
+      return 54231
+    end,
+  },
+}
+
+dap.adapters.nlua = function(callback, config)
+  callback { type = "server", host = config.host, port = config.port }
+end
+
+vim.g.dap_virtual_text = true
+
+require("dapui").setup {
+  sidebar = {
+    open_on_start = true,
+
+    -- You can change the order of elements in the sidebar
+    elements = {
+      -- Provide as ID strings or tables with "id" and "size" keys
+      {
+        id = "scopes",
+        size = 0.75, -- Can be float or integer > 1
+      },
+      { id = "watches", size = 00.25 },
+    },
+    width = 50,
+    position = "left", -- Can be "left" or "right"
+  },
+  tray = {
+    open_on_start = true,
+    elements = { "repl" },
+    height = 15,
+    position = "bottom", -- Can be "bottom" or "top"
+  },
+}

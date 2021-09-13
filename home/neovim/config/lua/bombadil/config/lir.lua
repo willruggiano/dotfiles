@@ -1,8 +1,8 @@
 local icons = require "nvim-nonicons"
 
-require("nvim-web-devicons").setup {
+require("nvim-web-devicons").set_icon {
   lir_folder_icon = {
-    icons = icons.get "file",
+    icon = require("nvim-nonicons").get "file-directory",
     color = "#7ebae4",
     name = "LirFolderNode",
   },
@@ -143,14 +143,19 @@ custom_actions.delete = function()
   for _, b in ipairs(vim.api.nvim_list_bufs()) do
     local bname = vim.fn.bufname(b)
     if bname:sub(-#fname) == fname then
-      if vim.api.nvim_buf_is_loaded(b) then
-        bdelete(b, true)
-      else
-        vim.api.nvim_buf_delete(b, { force = true })
-      end
+      require("bombadil.lib.buffers").delete_buffer(b)
     end
   end
   delete()
+end
+
+custom_actions.quit = function()
+  if vim.w.lir_file_quit_on_edit then
+    actions.quit()
+  else
+    -- Then the lir window is the last one
+    vim.cmd "q"
+  end
 end
 
 lir.setup {
@@ -169,7 +174,7 @@ lir.setup {
     S = custom_actions.clear_marks,
 
     ["-"] = custom_actions.up,
-    q = actions.quit,
+    q = custom_actions.quit,
 
     a = custom_actions.new,
     r = actions.rename,

@@ -1,6 +1,6 @@
 local icons = require "nvim-nonicons"
 
-vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if not result or vim.tbl_isempty(result) then
     print "[LSP] Could not find definition"
     return
