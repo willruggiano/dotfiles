@@ -50,10 +50,7 @@ end
 
 vim.cmd "command! -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
 
-local has_dap, dap = pcall(require, "dap")
-if not has_dap then
-  return
-end
+local dap = require "dap"
 
 dap.set_log_level "TRACE"
 
@@ -66,7 +63,9 @@ dap.configurations.lua = {
       return "127.0.0.1"
     end,
     port = function()
-      return 54231
+      local val = tonumber(vim.fn.input "Port: ")
+      assert(val, "Please provide a port number")
+      return val
     end,
   },
 }
