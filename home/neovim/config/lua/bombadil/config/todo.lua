@@ -18,12 +18,16 @@ require("todo-comments").setup {
       icon = icons.get "stopwatch",
     },
     NOTE = {
-      alt = { "N.B." },
+      -- HACK: No trailing "." for the alternate to make the highlighting visually consistent
+      alt = { "N.B" },
       icon = icons.get "comment",
     },
   },
+  highlight = {
+    pattern = [[.*<(KEYWORDS)[.:]{1}]],
+  },
   search = {
-    pattern = [[\b(KEYWORDS):?]],
+    pattern = [[\b(KEYWORDS)[.:]{1}]],
   },
   signs = true,
 }

@@ -80,10 +80,15 @@ return require("packer").startup(function()
   }
   use "neovim/nvim-lspconfig"
   use {
-    "hrsh7th/nvim-compe",
+    "hrsh7th/nvim-cmp",
     requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
     },
   }
   use {
@@ -105,8 +110,8 @@ return require("packer").startup(function()
     end,
   }
   use "folke/lua-dev.nvim"
-  use {
-    "ThePrimeagen/refactoring.nvim",
+  local_use {
+    "refactoring.nvim",
     config = function()
       require("refactoring").setup()
     end,

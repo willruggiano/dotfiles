@@ -90,6 +90,7 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
+opt.listchars = { space = "." }
 
 -- By default timeoutlen is 1000ms
 opt.timeoutlen = 500

@@ -28,3 +28,6 @@ vim.g.tokyonight_colors = {}
 
 require("tokyonight").colorscheme()
 require("colorizer").setup()
+
+vim.cmd [[highlight IndentBlanklineChar guifg=#565f89 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineSpaceChar guifg=#565f89 gui=nocombine]]
