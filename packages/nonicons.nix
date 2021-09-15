@@ -6,7 +6,7 @@ let
 in
 fetchurl {
   name = "${pname}-${version}";
-  url = "https://raw.githubusercontent.com/yamatsum/nonicons/master/dist/nonicons.ttf";
+  url = "https://raw.githubusercontent.com/yamatsum/${pname}/${version}/dist/nonicons.ttf";
   downloadToTemp = true;
   recursiveHash = true;
   postFetch = ''

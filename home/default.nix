@@ -10,8 +10,17 @@
     #   ./zsh.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   home = {
     packages = with pkgs; [
+      # Fonts
+      fira-code
+      fira-code-symbols
+      iosevka
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (pkgs.callPackage ../packages/nonicons.nix { })
+
       # Languages
       (python39.withPackages (
         ps: with ps; [ pip ]

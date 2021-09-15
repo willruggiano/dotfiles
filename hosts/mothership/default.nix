@@ -42,18 +42,6 @@ with lib;
     pkgs.agenix
   ];
 
-  fonts = {
-    enableDefaultFonts = true;
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      (pkgs.callPackage ./fonts.nix { })
-      fira-code
-      fira-code-symbols
-      iosevka
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ];
-  };
-
   services = {
     keybase.enable = true;
 
