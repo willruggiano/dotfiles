@@ -55,6 +55,7 @@
     ];
 
     sessionVariables = {
+      DOTFILES_DIR = "/etc/nixos";
       EDITOR = "nvim";
       MANPAGER = "${pkgs.neovim}/bin/nvim +Man!";
     };

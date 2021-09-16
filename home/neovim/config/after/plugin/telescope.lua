@@ -37,10 +37,6 @@ map_tele("<space>fh", "help_tags")
 map_tele("<space>vo", "vim_options")
 map_tele("<space>gp", "grep_prompt")
 
-map_tele("<space>en", "edit_neovim")
-map_tele("<space>ez", "edit_zsh")
-map_tele("<space>ed", "edit_dotfiles")
-
 -- Telescope Meta
 map_tele("<space>fB", "builtin")
 
@@ -49,5 +45,12 @@ nnoremap {
   "<space>fP",
   function()
     require("telescope").extensions.packer.plugins()
+  end,
+}
+
+nnoremap {
+  "<space>ed",
+  function()
+    require("telescope").extensions.dotfiles.dotfiles()
   end,
 }

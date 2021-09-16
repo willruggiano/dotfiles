@@ -125,10 +125,9 @@ require("telescope").setup {
   },
 }
 
-pcall(require("telescope").load_extension, "arecibo")
-pcall(require("telescope").load_extension, "cheat")
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "git_worktree")
+pcall(require("telescope").load_extension, "dotfiles")
 
 if vim.fn.executable "gh" == 1 then
   pcall(require("telescope").load_extension, "gh")

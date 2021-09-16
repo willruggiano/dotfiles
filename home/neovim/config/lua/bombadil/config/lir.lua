@@ -66,8 +66,13 @@ local fsize = function(bytes)
 end
 
 local username = function(uid)
-  -- TODO: Convert uid to username
-  return uid
+  local f = io.popen(string.format("id -un %s", uid), "r")
+  local s = f:read "*a"
+  f:close()
+  s = string.gsub(s, "^%s+", "")
+  s = string.gsub(s, "%s+$", "")
+  s = string.gsub(s, "[\n\r]+", " ")
+  return s
 end
 
 local strftime = function(dt)
