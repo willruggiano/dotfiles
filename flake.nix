@@ -63,5 +63,16 @@
           ];
         };
       };
+
+      devDesktop = home-manager.lib.homeManagerConfiguration {
+        system = "x86_64-linux";
+        stateVersion = "21.05";
+        homeDirectory = "/home/wruggian";
+        username = "wruggian";
+        configuration = {
+          imports = [ ./home ];
+          nixpkgs = nixpkgsConfig;
+        };
+      };
     };
 }
