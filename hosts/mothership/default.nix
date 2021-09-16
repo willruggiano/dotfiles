@@ -39,6 +39,7 @@ with lib;
   };
 
   environment.systemPackages = [
+    pkgs.age
     pkgs.agenix
   ];
 
