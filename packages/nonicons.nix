@@ -1,16 +1,23 @@
-{ lib, fetchurl, ... }:
+{ fetchurl, lib, ... }:
 
 let
-  pname = "nonicons";
   version = "master";
 in
-fetchurl {
-  name = "${pname}-${version}";
-  url = "https://raw.githubusercontent.com/yamatsum/${pname}/${version}/dist/nonicons.ttf";
+fetchurl
+{
+  name = "nonicons-${version}";
+  url = "https://raw.githubusercontent.com/yamatsum/nonicons/${version}/dist/nonicons.ttf";
   downloadToTemp = true;
   recursiveHash = true;
-  postFetch = ''
-    install -D $downloadedFile $out/share/fonts/truetype/${pname}.ttf
-  '';
   hash = "sha256-6c2nUGmPA4PCQRncwVtXpGS4qNz5c6sPi6nnBmRby64=";
+
+  postFetch = ''
+    mkdir -p $out/share/fonts
+    install -D $downloadedFile $out/share/fonts/truetype/nonicons.ttf
+  '';
+
+  meta = with lib; {
+    homepage = "https://github.com/yamatsum/nonicons";
+    description = "Nonicons are a set of SVG icons representing programming languages, designing & development tools.";
+  };
 }

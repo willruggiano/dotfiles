@@ -8,6 +8,12 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    fira-code-symbols
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    my.nonicons
+  ];
+
   programs.kitty = {
     enable = true;
     settings = {

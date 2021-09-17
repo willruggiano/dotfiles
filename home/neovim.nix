@@ -3,48 +3,33 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim;
+    package = pkgs.neovim-master;
+
     withNodeJs = true;
+
     withRuby = true;
+
     withPython3 = true;
     extraPython3Packages = (ps: with ps; [
-      isort
       pynvim
     ]);
-    extraPackages = with pkgs; [
-      binutils-unwrapped
-      cmake
-      clang-tools
-      cmake-format
-      cmake-language-server
-      delta
-      fd
-      gcc11
-      gcc11Stdenv
-      gnumake
-      ninja
-      nixpkgs-fmt
-      nodePackages.prettier
-      openssl
-      python-language-server
-      ripgrep
-      rnix-lsp
-      rustfmt
-      unstable.stylua
-      sumneko-lua-language-server
-      tree-sitter
-      yapf
 
-    ];
-    extraConfig = ''lua require("bombadil.init")'';
+    extraConfig = ''
+      lua require "bombadil"
+    '';
 
     # NOTE: Here we specify some plugins which require special handling, e.g. building shared libraries
     plugins = with pkgs.vimPlugins; [ cpsm ];
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+  };
+
   xdg.configFile = {
     nvim = {
-      source = ./config;
+      source = ../.config/nvim;
       recursive = true;
     };
 

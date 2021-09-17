@@ -4,4 +4,3 @@ endif
 augroup filetypedetect
     au! BufRead,BufNewFile *.ipp,*.tpp setfiletype cpp
 augroup END
-

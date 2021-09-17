@@ -12,7 +12,9 @@ local list_loaded_buffers = function()
   local bufs = vim.api.nvim_list_bufs()
   local loaded = {}
   for _, b in ipairs(bufs) do
-    if vim.api.nvim_buf_is_loaded(b) then
+    if string.find(vim.fn.bufname(b), "Wilder") then
+      -- Don't count wilder.nvim buffers
+    elseif vim.api.nvim_buf_is_loaded(b) then
       table.insert(loaded, b)
     end
   end
@@ -20,6 +22,10 @@ local list_loaded_buffers = function()
 end
 
 return {
+  -- TODO: Get rid of these names
   delete_buffer = delete_buffer,
   list_loaded_buffers = list_loaded_buffers,
+  -- Usage: require("bombadil.lib").buffer.function()
+  delete = delete_buffer,
+  loaded = list_loaded_buffers,
 }
