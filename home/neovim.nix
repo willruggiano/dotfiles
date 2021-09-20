@@ -6,13 +6,17 @@
     package = pkgs.neovim-master;
 
     withNodeJs = true;
-
     withRuby = true;
-
     withPython3 = true;
+
     extraPython3Packages = (ps: with ps; [
       pynvim
     ]);
+    extraPackages = with pkgs; [
+      gcc11
+      gcc11Stdenv
+      tree-sitter
+    ];
 
     extraConfig = ''
       lua require "bombadil"

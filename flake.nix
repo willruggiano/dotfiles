@@ -35,14 +35,16 @@
         (self: super: {
           my = import ./lib { inherit inputs pkgs; lib = self; };
         });
-    in
-    {
+
       overlay =
         final: prev: {
           my = self.packages."${system}";
           neovim-master = inputs.neovim.defaultPackage."${system}";
           rnix-lsp-master = inputs.rnix-lsp.defaultPackage."${system}";
         };
+    in
+    {
+      overlay = overlay;
 
       overlays = mapModules ./overlays import;
 
@@ -53,15 +55,17 @@
 
       devShell."${system}" = import ./shell.nix { inherit pkgs; };
 
-      /* devDesktop = home-manager.lib.homeManagerConfiguration {
-        system = "x86_64-linux";
+      devDesktop = inputs.home-manager.lib.homeManagerConfiguration {
+        system = system;
         stateVersion = "21.05";
         homeDirectory = "/home/wruggian";
         username = "wruggian";
         configuration = {
-        imports = [ ./home ];
-        nixpkgs = nixpkgsConfig;
+          imports = [ ./home ];
+          nixpkgs = {
+            overlays = [ overlay ];
+          };
         };
-        }; */
+      };
     };
 }

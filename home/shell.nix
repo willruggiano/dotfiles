@@ -38,6 +38,7 @@
     settings = {
       format = lib.concatStrings [
         "$hostname"
+        "$line_break"
         "$directory"
         "$git_branch"
         "$line_break"
@@ -245,6 +246,8 @@
               eval "$git_reset && $git_check && $git_pick"
           fi
       }
+
+      [ -e $HOME/.user.zshrc ] && source $HOME/.user.zshrc
     '';
 
     shellAliases = with pkgs; {

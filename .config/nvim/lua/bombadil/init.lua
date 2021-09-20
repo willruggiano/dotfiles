@@ -4,6 +4,8 @@ end
 
 -- Leader key -> ","
 vim.g.mapleader = ","
+vim.g.loaded_netrw = true
+vim.g.loaded_netrwPlugin = true
 
 -- Setup globals that I expect to always be available
 require "bombadil.globals"

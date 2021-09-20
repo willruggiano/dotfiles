@@ -24,7 +24,7 @@
     rnix-lsp-master
 
     # Python
-    python39Packages.isort
+    (python39.withPackages (ps: with ps; [ isort pipx ]))
     python-language-server
     yapf
   ];
