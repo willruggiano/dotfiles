@@ -229,9 +229,6 @@ return require("packer").startup(function()
   use {
     "tamago324/lir.nvim",
     config = function()
-      -- Disable netrw in favor of lir.nvim
-      vim.g.loaded_netrw = true
-      vim.g.loaded_netrwPlugin = true
       require "bombadil.config.lir"
     end,
     requires = { "nvim-lua/plenary.nvim", "yamatsum/nvim-nonicons" },

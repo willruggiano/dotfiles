@@ -12,5 +12,10 @@ if pcall(require, "plenary") then
   end
 end
 
--- User-specific global options
-vim.g.bombadil = {}
+-- Leader key -> ","
+vim.g.mapleader = ","
+
+-- Disable netrw
+vim.g.loaded_netrw = true
+vim.g.loaded_netrwPlugin = true
+
