@@ -41,6 +41,7 @@
         "$line_break"
         "$directory"
         "$git_branch"
+        "$nix_shell"
         "$line_break"
         "$character"
       ];
@@ -79,6 +80,11 @@
         truncation_symbol = "...";
         only_attached = false;
         always_show_remote = false;
+      };
+
+      nix_shell = {
+        disabled = false;
+        format = "using [nix/$name](bold blue)";
       };
 
       hostname = {
