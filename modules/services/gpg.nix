@@ -41,8 +41,7 @@ in
 
     (mkIf (cfg.enable && cfg.enablePass) {
       user.packages = with pkgs; [
-        pass.withExtensions
-        (exts: [ exts.pass-audit exts.pass-update ])
+        (pass.withExtensions(exts: [ exts.pass-update ]))
       ];
     })
   ];

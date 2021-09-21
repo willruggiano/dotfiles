@@ -25,10 +25,12 @@ with lib;
       agenix.enable = true;
       gpg = {
         enable = true;
-        passEnable = true;
+        enablePass = true;
       };
       ssh.enable = true;
     };
+
+    terminal.enable = true;
   };
 
   services.xserver.enable = true;
