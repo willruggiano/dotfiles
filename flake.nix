@@ -51,21 +51,24 @@
       nixosModules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
       nixosConfigurations = mapSystems ./nixos/configurations { };
 
+      homeManagerConfigurations = {
+        dev-dsk-wruggian-2b-68c3f3ef = inputs.home-manager.lib.homeManagerConfiguration
+          {
+            system = system;
+            stateVersion = "21.05";
+            homeDirectory = "/home/wruggian";
+            username = "wruggian";
+            configuration = {
+              imports = [ ./home ];
+              nixpkgs = {
+                overlays = [ overlay ];
+              };
+            };
+          };
+      };
+
       packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
 
       devShell."${system}" = import ./shell.nix { inherit pkgs; };
-
-      devDesktop = inputs.home-manager.lib.homeManagerConfiguration {
-        system = system;
-        stateVersion = "21.05";
-        homeDirectory = "/home/wruggian";
-        username = "wruggian";
-        configuration = {
-          imports = [ ./home ];
-          nixpkgs = {
-            overlays = [ overlay ];
-          };
-        };
-      };
     };
 }
