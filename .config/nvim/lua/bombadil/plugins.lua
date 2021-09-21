@@ -59,6 +59,7 @@ return require("packer").startup(function()
   }
 
   use "tpope/vim-fugitive"
+  use "ThePrimeagen/git-worktree.nvim"
 
   -- Lsp, build-test-debug, etc
   local_use {
@@ -300,9 +301,10 @@ return require("packer").startup(function()
   use "nvim-telescope/telescope-symbols.nvim"
   use {
     "nvim-telescope/telescope-frecency.nvim",
-    requires = { "tami5/sql.nvim", "nvim-telescope/telescope.nvim" },
+    requires = "tami5/sql.nvim",
   }
   use "nvim-telescope/telescope-vimspector.nvim"
+  use "nvim-telescope/telescope-project.nvim"
 
   -- Fzf
   use "junegunn/fzf"

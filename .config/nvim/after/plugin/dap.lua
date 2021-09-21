@@ -48,7 +48,24 @@ SetDapTarget = function(target)
   vim.g.dap_target = target
 end
 
-vim.cmd "command! -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
+FilterDebugTargets = function(arglead)
+  local configurations = vim.fn["vimspector#GetConfigurations"]()
+  local items = {}
+  for _, e in ipairs(configurations) do
+    if string.find(e, arglead) then
+      table.insert(items, e)
+    end
+  end
+  return items
+end
+
+vim.cmd [[
+  function! ListDebugTargets(A,L,P)
+    return call vimspector#GetConfiguration()
+  endfun
+]]
+
+vim.cmd "command! -complete=customlist,ListDebugTargets -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
 
 local dap = require "dap"
 
