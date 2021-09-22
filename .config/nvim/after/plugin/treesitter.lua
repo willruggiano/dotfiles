@@ -32,7 +32,7 @@ require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true,
     use_languagetree = false,
-    disable = { "json" },
+    disable = { "cmake", "json" },
   },
 
   refactor = {

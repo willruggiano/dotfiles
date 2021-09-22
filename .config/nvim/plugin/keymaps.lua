@@ -23,6 +23,9 @@ local ft_closers = {
   man = quit,
 }
 local bt_closers = {
+  quickfix = function()
+    vim.cmd "cclose"
+  end,
   terminal = quit,
 }
 local close = function()

@@ -84,7 +84,7 @@
 
       nix_shell = {
         disabled = false;
-        format = "using [nix/$name](bold blue)";
+        format = "using [nix-shell/$name](bold blue)";
       };
 
       hostname = {

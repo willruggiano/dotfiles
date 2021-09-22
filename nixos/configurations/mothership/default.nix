@@ -5,6 +5,7 @@ with lib;
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./security.nix
   ];
 
   time.timeZone = mkDefault "America/Denver";
