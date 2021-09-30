@@ -138,11 +138,22 @@ custom_actions.clear_marks = function()
   actions.reload()
 end
 
--- TODO: This could delete multiple buffers if there are multiple buffers open for the same
+custom_actions.trash = function()
+  local ctx = get_context()
+  local name = ctx:current_value()
+  if vim.fn.confirm("Delete?: " .. name, "&Yes\n&No", 1) ~= 1 then
+    return
+  end
+  if os.execute("trash " .. ctx.dir .. name) ~= 0 then
+    lir_utils.error "Delete file failed"
+  end
+
+  actions.reload()
+end
+
+-- BUG: This could delete multiple buffers if there are multiple buffers open for the same
 -- filename.
 custom_actions.delete = function()
-  local bdelete = require("bufdelete").bufdelete
-  local delete = actions.delete
   local ctx = get_context()
   local fname = ctx:current_value()
   for _, b in ipairs(vim.api.nvim_list_bufs()) do
@@ -151,7 +162,7 @@ custom_actions.delete = function()
       require("bombadil.lib.buffers").delete_buffer(b)
     end
   end
-  delete()
+  custom_actions.trash()
 end
 
 custom_actions.quit = function()
