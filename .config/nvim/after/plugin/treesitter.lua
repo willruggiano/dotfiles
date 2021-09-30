@@ -27,7 +27,7 @@ parser_configs.markdown = {
 require("nvim-treesitter.configs").setup {
   autopairs = { enable = true },
 
-  ensure_installed = "maintained",
+  -- ensure_installed = "maintained",
 
   highlight = {
     enable = true,

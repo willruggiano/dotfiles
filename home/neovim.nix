@@ -13,9 +13,7 @@
       pynvim
     ]);
     extraPackages = with pkgs; [
-      gcc11
-      gcc11Stdenv
-      tree-sitter
+      (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
     ];
 
     extraConfig = ''
@@ -43,5 +41,12 @@
         return "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"
       '';
     };
+  };
+
+  xdg.configFile = {
+    "nvim/parser/cpp.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-cpp}/parser";
+    "nvim/parser/lua.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-lua}/parser";
+    "nvim/parser/nix.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-nix}/parser";
+    "nvim/parser/python.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-python}/parser";
   };
 }

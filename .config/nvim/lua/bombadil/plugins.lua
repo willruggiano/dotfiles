@@ -167,7 +167,6 @@ return require("packer").startup(function()
   -- Treesitter/syntax/highlighty things
   use {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
     requires = {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",

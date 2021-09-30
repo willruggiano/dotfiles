@@ -13,6 +13,7 @@
     trash-cli
     unzip
     wget
+    xplr
     yq
   ];
 
@@ -104,6 +105,7 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
+    completionInit = "autoload -Uz compinit && compinit";
 
     plugins = with pkgs; [
       {
@@ -182,8 +184,9 @@
       }
     ];
 
-    initExtra = ''
+    initExtra = with pkgs; ''
       eval $(thefuck --alias)
+
       # Completion settings
       zstyle ':completion:*' verbose yes
       zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
@@ -210,6 +213,10 @@
       setopt auto_param_slash
       setopt auto_param_keys
       setopt extended_glob
+
+      # Gpg
+      export GPG_TTY=$(tty)
+
       function encrypt() {
           local out="$1.$(date +%s).enc"
           ${pkgs.gnupg}/bin/gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"

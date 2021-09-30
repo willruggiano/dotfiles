@@ -5,6 +5,7 @@
     ./development.nix
     ./fzf.nix
     ./git.nix
+    ./gpg.nix
     ./neovim.nix
     ./shell.nix
   ];
