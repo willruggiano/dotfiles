@@ -48,20 +48,9 @@ SetDapTarget = function(target)
   vim.g.dap_target = target
 end
 
-FilterDebugTargets = function(arglead)
-  local configurations = vim.fn["vimspector#GetConfigurations"]()
-  local items = {}
-  for _, e in ipairs(configurations) do
-    if string.find(e, arglead) then
-      table.insert(items, e)
-    end
-  end
-  return items
-end
-
 vim.cmd [[
   function! ListDebugTargets(A,L,P)
-    return call vimspector#GetConfiguration()
+    return vimspector#GetConfigurations()
   endfun
 ]]
 
