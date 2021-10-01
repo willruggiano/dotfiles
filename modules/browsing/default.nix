@@ -3,7 +3,9 @@
 with lib;
 with lib.my;
 
-let cfg = config.modules.browsing;
+let
+  cfg = config.modules.browsing;
+  addons = pkgs.nur.repos.rycee.firefox-addons;
 in
 {
   options.modules.browsing = {
@@ -12,8 +14,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    /* user.packages = with pkgs; [
       firefox
-    ];
+      addons.greasemonkey
+    ]; */
   };
 }

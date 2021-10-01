@@ -10,7 +10,6 @@
     gcc11
     gnumake
     ninja
-    llvmPackages.libcxx
 
     # Json
     nodePackages.prettier

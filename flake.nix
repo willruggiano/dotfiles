@@ -6,6 +6,7 @@
 
     nix.url = "github:nixos/nix/master";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    nur.url = "github:nix-community/nur";
 
     home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -42,13 +43,15 @@
           neovim-master = inputs.neovim.defaultPackage."${system}";
           rnix-lsp-master = inputs.rnix-lsp.defaultPackage."${system}";
         };
+
+      modules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
     in
     {
       overlay = overlay;
 
-      overlays = mapModules ./overlays import;
+      overlays = mapModules ./overlays import // { inherit (inputs.nur) overlay; };
 
-      nixosModules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
+      nixosModules = modules;
       nixosConfigurations = mapSystems ./nixos/configurations { };
 
       homeManagerConfigurations = {
@@ -59,10 +62,21 @@
             homeDirectory = "/home/wruggian";
             username = "wruggian";
             configuration = {
-              imports = [ ./home ];
+              imports = [
+                # We only need a subset of things
+                # TODO: If we could find a way for the home modules to see our custom options we'd be in business.
+                ./home/development.nix
+                ./home/fzf.nix
+                ./home/git.nix
+                ./home/neovim.nix
+                ./home/shell.nix
+              ];
               nixpkgs = {
                 overlays = [ overlay ];
               };
+            };
+            extraModules = modules // {
+              dotfiles.dir = "/home/wruggian/dotfiles";
             };
           };
       };
