@@ -43,15 +43,12 @@
           neovim-master = inputs.neovim.defaultPackage."${system}";
           rnix-lsp-master = inputs.rnix-lsp.defaultPackage."${system}";
         };
-
-      modules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
     in
     {
       overlay = overlay;
-
       overlays = mapModules ./overlays import // { inherit (inputs.nur) overlay; };
 
-      nixosModules = modules;
+      nixosModules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
       nixosConfigurations = mapSystems ./nixos/configurations { };
 
       homeManagerConfigurations = {
@@ -74,9 +71,6 @@
               nixpkgs = {
                 overlays = [ overlay ];
               };
-            };
-            extraModules = modules // {
-              dotfiles.dir = "/home/wruggian/dotfiles";
             };
           };
       };
