@@ -56,7 +56,7 @@ vim.cmd [[
 
 vim.cmd "command! -complete=customlist,ListDebugTargets -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
 
-local dap = require "dap"
+local dap, dapui = require "dap", require "dapui"
 
 dap.set_log_level "TRACE"
 
@@ -76,6 +76,38 @@ dap.configurations.lua = {
   },
 }
 
+dap.configurations.cpp = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+    args = {},
+
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    runInTerminal = false,
+  },
+}
+
+dap.adapters.lldb = {
+  type = "executable",
+  command = "lldb-vscode",
+  name = "lldb",
+}
+
 dap.adapters.nlua = function(callback, config)
   callback { type = "server", host = config.host, port = config.port }
 end
@@ -84,24 +116,30 @@ vim.g.dap_virtual_text = true
 
 require("dapui").setup {
   sidebar = {
-    open_on_start = true,
-
-    -- You can change the order of elements in the sidebar
     elements = {
-      -- Provide as ID strings or tables with "id" and "size" keys
-      {
-        id = "scopes",
-        size = 0.75, -- Can be float or integer > 1
-      },
+      { id = "scopes", size = 0.25 },
+      { id = "breakpoints", size = 0.25 },
+      { id = "stacks", size = 0.25 },
       { id = "watches", size = 00.25 },
     },
-    width = 50,
-    position = "left", -- Can be "left" or "right"
+    size = 50,
+    position = "left",
   },
   tray = {
-    open_on_start = true,
     elements = { "repl" },
-    height = 15,
-    position = "bottom", -- Can be "bottom" or "top"
+    size = 15,
+    position = "bottom",
   },
+  floating = {
+    max_height = nil,
+    max_width = nil,
+    mappings = {
+      close = { "q", "<Esc>" },
+    },
+  },
+  windows = { indent = 1 },
 }
+
+dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+dap.listeners.before.event_exited["dapui_config"] = dapui.close
