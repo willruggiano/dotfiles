@@ -5,9 +5,12 @@
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       browserpass
+      ff2mpv
       greasemonkey
       https-everywhere
+      metamask
       ublock-origin
+      vimium
     ];
     profiles = {
       default = {
@@ -23,4 +26,6 @@
     enable = true;
     browsers = [ "firefox" ];
   };
+
+  programs.mpv.enable = true;
 }
