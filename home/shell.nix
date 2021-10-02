@@ -201,8 +201,10 @@
       zstyle ':completion:*:manuals' separate-sections true
       zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
       zstyle ':prompt:pure:git:stash' show yes
+
       autoload colors
       colors
+
       setopt hist_ignore_dups
       setopt hist_find_no_dups
       setopt share_history
@@ -230,6 +232,7 @@
       function gpg-reset-card() {
           ${pkgs.gnupg}/bin/gpg-connect-agent "scd serialno" "learn --force" /bye
       }
+
       function git-turtle() {
           local n=""
           local branch=""
@@ -268,7 +271,6 @@
       batp = "${bat}/bin/bat --paging=auto";
       cat = "${bat}/bin/bat";
       grep = "${ripgrep}/bin/rg --color=auto";
-      hm = "home-manager";
       ls = "${exa}/bin/exa -F";
       la = "${exa}/bin/exa -a";
       ll = "${exa}/bin/exa -l";

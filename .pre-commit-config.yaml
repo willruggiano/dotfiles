@@ -19,3 +19,10 @@ repos:
         entry: stylua
         language: system
         types: [file, lua]
+  - repo: local
+    hooks:
+      - id: nixpkgs-fmt
+        name: nixpkgs-fmt
+        entry: nixpkgs-fmt
+        language: system
+        types: [file, nix]
