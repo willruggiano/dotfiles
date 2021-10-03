@@ -7,6 +7,7 @@
     fd
     file
     jq
+    qrcp
     ranger
     ripgrep
     thefuck
