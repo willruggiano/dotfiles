@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 
+let
+  colorscheme = "snazzy";
+in
 {
   home.packages = with pkgs; [
     awscli2
@@ -104,7 +107,11 @@
 
   programs.zsh = {
     enable = true;
+
+    dotDir = ".config/zsh";
+
     enableAutosuggestions = true;
+
     enableCompletion = true;
     completionInit = "autoload -Uz compinit && compinit";
 
@@ -156,15 +163,6 @@
         };
       }
       {
-        name = "material-colors";
-        src = fetchFromGitHub {
-          owner = "zpm-zsh";
-          repo = "material-colors";
-          rev = "47cbf2d955220cddc4d3e3845999f22ef270c90a";
-          sha256 = "1g2dwl9siihcc0ixidfbsw99ywv2xd3v68kq270j2g3l1j2z59zn";
-        };
-      }
-      {
         name = "clipboard";
         src = fetchFromGitHub {
           owner = "ohmyzsh";
@@ -186,85 +184,13 @@
     ];
 
     initExtra = with pkgs; ''
-      eval $(thefuck --alias)
+      for f in $HOME/.config/zsh/[0-9][0-9]-*.zsh; do
+        source "$f"
+      done
 
-      # Completion settings
-      zstyle ':completion:*' verbose yes
-      zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-      zstyle ':completion:*:default' menu select=2
-      zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
-      zstyle ':completion:*:warnings' format '%F{RED}No matches for:%F{YELLOW} %d'$DEFAULT
-      zstyle ':completion:*:options' description 'yes'
-      zstyle ':completion:*:descriptions' format '[%d]'
-      zstyle ':completion:*:git-checkout:*' sort false
-      zstyle ':completion:*' group-name ""
-      zstyle ':completion:*' list-separator '-->'
-      zstyle ':completion:*:manuals' separate-sections true
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-      zstyle ':prompt:pure:git:stash' show yes
+      export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate ${colorscheme})"
 
-      autoload colors
-      colors
-
-      setopt hist_ignore_dups
-      setopt hist_find_no_dups
-      setopt share_history
-      setopt noauto_cd
-      setopt auto_pushd
-      setopt pushd_ignore_dups
-      setopt pushd_to_home
-      setopt auto_param_slash
-      setopt auto_param_keys
-      setopt extended_glob
-
-      # Gpg
-      export GPG_TTY=$(tty)
-
-      function encrypt() {
-          local out="$1.$(date +%s).enc"
-          ${pkgs.gnupg}/bin/gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"
-      }
-
-      function decrypt() {
-          local out=$(echo "$1" | rev | cut -c16- | rev)
-          ${pkgs.gnupg}/bin/gpg --decrypt --output $out "$1" && echo "$1 -> $out"
-      }
-
-      function gpg-reset-card() {
-          ${pkgs.gnupg}/bin/gpg-connect-agent "scd serialno" "learn --force" /bye
-      }
-
-      function git-turtle() {
-          local n=""
-          local branch=""
-          local dryrun=false
-          for a in "$@"; do
-          case "$a" in
-              -n)
-                  shift; n="$1"; shift
-                  ;;
-              -b)
-                  shift; branch="$1"; shift
-                  ;;
-              --dryrun)
-                  shift; dryrun=true
-                  ;;
-          esac
-          done
-          [[ -z $n ]] || [[ -z $branch ]] && die '-n and -b|--branch are required'
-          local git_reset="git reset --keep HEAD~$n"
-          local git_check="git checkout -t -b $branch"
-          local git_pick="git cherry-pick ..HEAD@{2}"
-          if $dryrun; then
-              echo "+ $git_reset"
-              echo "+ $git_check"
-              echo "+ $git_pick"
-          else
-              eval "$git_reset && $git_check && $git_pick"
-          fi
-      }
-
-      [ -e $HOME/.user.zshrc ] && source $HOME/.user.zshrc
+      [ -e $HOME/.zshrc ] && source $HOME/.zshrc
     '';
 
     shellAliases = with pkgs; {
@@ -278,6 +204,13 @@
       lla = "${exa}/bin/exa -al";
       lt = "${exa}/bin/exa --tree";
       tree = "${exa}/bin/exa --tree";
+    };
+  };
+
+  xdg.configFile = {
+    "zsh" = {
+      source = ../.config/zsh;
+      recursive = true;
     };
   };
 

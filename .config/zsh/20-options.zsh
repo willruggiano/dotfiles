@@ -1,0 +1,10 @@
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+setopt share_history
+setopt noauto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_to_home
+setopt auto_param_slash
+setopt auto_param_keys
+setopt extended_glob

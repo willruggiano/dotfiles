@@ -11,6 +11,7 @@ local sorters = require "telescope.sorters"
 local Job = require "plenary.job"
 
 local dotfiles = function(opts)
+  assert(vim.env.DOTFILES, "$DOTFILES must be set")
   opts = opts or {}
   pickers.new(opts, {
     prompt_title = "~ dotfiles ~",
@@ -19,8 +20,7 @@ local dotfiles = function(opts)
         return {
           writer = Job:new {
             command = "rg",
-            args = { "--files" },
-            cwd = vim.env.DOTFILES_DIR,
+            args = { "--files", vim.env.DOTFILES },
           },
           command = "fzf",
           args = { "--filter", prompt },
