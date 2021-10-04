@@ -116,6 +116,11 @@ updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
   },
 }
 
+local has_coq, coq = pcall(require, "coq")
+if has_coq then
+  updated_capabilities = coq.lsp_ensure_capabilities({ capabilities = updated_capabilities }).capabilities
+end
+
 lspconfig.clangd.setup {
   cmd = {
     "clangd",

@@ -1,3 +1,5 @@
+pcall(require, "impatient")
+
 if require "bombadil.first_load"() then
   return
 end

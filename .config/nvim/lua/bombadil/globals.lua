@@ -19,3 +19,5 @@ vim.g.mapleader = ","
 vim.g.loaded_netrw = true
 vim.g.loaded_netrwPlugin = true
 
+-- Disable filetype plugin
+vim.g.did_load_filetypes = 1

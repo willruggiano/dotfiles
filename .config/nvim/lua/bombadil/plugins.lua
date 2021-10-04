@@ -57,11 +57,10 @@ return require("packer").startup(function()
       vim.g.git_messenger_no_default_mappings = 1
     end,
   }
-
   use "tpope/vim-fugitive"
   use "ThePrimeagen/git-worktree.nvim"
 
-  -- Lsp, build-test-debug, etc
+  -- Development
   local_use {
     "make.nvim",
     config = function()
@@ -81,7 +80,19 @@ return require("packer").startup(function()
   }
   use "neovim/nvim-lspconfig"
   use {
+    "ms-jpq/coq_nvim",
+    branch = "coq",
+    requires = {
+      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+      { "ms-jpq/coq.thirdparty", branch = "3p" },
+    },
+    setup = function()
+      require "bombadil.config.coq"
+    end,
+  }
+  use {
     "hrsh7th/nvim-cmp",
+    disable = true,
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -159,10 +170,6 @@ return require("packer").startup(function()
     end,
     rocks = "luafilesystem",
   }
-  local_use {
-    "annotate.nvim",
-    requires = "MunifTanjim/nui.nvim",
-  }
 
   -- Treesitter/syntax/highlighty things
   use {
@@ -217,9 +224,10 @@ return require("packer").startup(function()
     end,
     requires = "yamatsum/nvim-nonicons",
   }
-  use "liuchengxu/vista.vim"
-  use "simrat39/symbols-outline.nvim"
-  use { "folke/zen-mode.nvim", requires = "folke/twilight.nvim" }
+  use {
+    "folke/zen-mode.nvim",
+    requires = "folke/twilight.nvim",
+  }
   use {
     "folke/todo-comments.nvim",
     config = function()
@@ -243,12 +251,12 @@ return require("packer").startup(function()
     requires = { "romgrk/fzy-lua-native" },
   }
   use "famiu/bufdelete.nvim"
+  use "kazhala/close-buffers.nvim"
 
   -- Colors
   use "norcalli/nvim-colorizer.lua"
+  use "tjdevries/express_line.nvim"
   use "tjdevries/colorbuddy.nvim"
-  use "marko-cerovac/material.nvim"
-  use { "tjdevries/express_line.nvim" }
   use "folke/tokyonight.nvim"
 
   -- Terminal integration
@@ -289,6 +297,8 @@ return require("packer").startup(function()
     end,
     requires = "nvim-lua/popup.nvim",
   }
+  use "nathom/filetype.nvim"
+  use "lewis6991/impatient.nvim"
 
   -- Telescope, et al
   use "nvim-telescope/telescope.nvim"

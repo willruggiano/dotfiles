@@ -4,134 +4,65 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.shortmess:append "c"
 vim.opt.pumheight = 20
 
-local ok, cmp = pcall(require, "cmp")
-if not ok then
-  return
-end
+local use_cmp = false
+local use_coq = true
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-
-  mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-u>"] = cmp.mapping.scroll_docs(4),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<C-y>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
+local setup_cmp = function()
+  local cmp = require "cmp"
+  cmp.setup {
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end,
     },
 
-    -- TODO: Not sure I'm in love with this one.
-    ["<C-Space>"] = cmp.mapping.complete(),
-  },
+    mapping = {
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-u>"] = cmp.mapping.scroll_docs(4),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<C-y>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
 
-  sources = {
-    { name = "buffer" },
-    { name = "path" },
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  },
-}
+      -- TODO: Not sure I'm in love with this one.
+      ["<C-Space>"] = cmp.mapping.complete(),
+    },
 
-require("nvim-autopairs.completion.cmp").setup {
-  map_cr = true,
-  map_complete = true,
-  auto_select = false,
-}
---[[
-require("compe").setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = "enable",
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
+    sources = {
+      { name = "buffer" },
+      { name = "path" },
+      { name = "nvim_lua" },
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+    },
+  }
 
-  source = {
-    path = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    luasnip = true,
-    spell = true,
-  },
-}
-
-require("nvim-autopairs.completion.compe").setup {
-  map_cr = false,
-  map_complete = true,
-}
-
-local inoremap = vim.keymap.inoremap
-local snoremap = vim.keymap.snoremap
-local npairs = require "nvim-autopairs"
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
+  require("nvim-autopairs.completion.cmp").setup {
+    map_cr = true,
+    map_complete = true,
+    auto_select = false,
+  }
 end
 
-inoremap { "<c-space>", "compe#complete()", expr = true }
-inoremap { "<c-e>", 'compe#close("<c-e>")', expr = true }
-
-_G.completion_confirm = function()
-  if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      return vim.fn["compe#confirm"](npairs.esc "<CR>")
-    else
-      return npairs.esc "<CR>"
-    end
-  else
-    return npairs.autopairs_cr()
-  end
-end
-inoremap { "<cr>", "v:lua.completion_confirm()", expr = true }
-
-local check_back_space = function()
-  local col = vim.fn.col "." - 1
-  if col == 0 or vim.fn.getline("."):sub(col, col):match "%s" then
-    return true
-  else
-    return false
-  end
+local setup_coq = function()
+  require "coq_3p" {
+    {
+      src = "nvimlua",
+      short_name = "nLUA",
+    },
+    {
+      src = "repl",
+      sh = "zsh",
+      -- shell = { p = "perl", n = "node", ... },
+      max_lines = 99,
+      deadline = 500,
+    },
+  }
 end
 
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif require("luasnip").expand_or_jumpable() then
-    return t "<cmd>lua require'luasnip'.jump(1)<Cr>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn["compe#complete"]()
-  end
+if use_cmp then
+  setup_cmp()
+elseif use_coq then
+  setup_coq()
 end
-
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif require("luasnip").jumpable(-1) then
-    return t "<cmd>lua require'luasnip'.jump(-1)<CR>"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-inoremap { "<tab>", "v:lua.tab_complete()", expr = true }
-snoremap { "<tab>", "v:lua.tab_complete()", expr = true }
-inoremap { "<s-tab>", "v:lua.s_tab_complete()", expr = true }
-snoremap { "<s-tab>", "v:lua.s_tab_complete()", expr = true }
-]]
