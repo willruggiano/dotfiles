@@ -17,5 +17,4 @@ vim.cmd [[command! MakePersistent lua require("make").compile({ open_quickfix_on
 vim.cmd [[command! MakeClean lua require("make").clean()]]
 vim.cmd [[command! MakeStatus lua require("make").status()]]
 vim.cmd [[command! -nargs=1 SetBuildType lua require("make").set_build_type(<q-args>)]]
-vim.cmd [[command! -nargs=1 SetBuildTarget lua require("make").set_build_target(<q-args>)]]
 vim.cmd [[command! -nargs=1 -complete=custom,ListBuildTargets SetBuildTarget lua require("make").set_build_target(<q-args>)]]

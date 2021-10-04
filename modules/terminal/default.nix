@@ -7,8 +7,8 @@ let
   cfg = config.modules.terminal;
   defaultFont = {
     packages = with pkgs; [
-      pkgs.fira-code
-      pkgs.fira-code-symbols
+      fira-code
+      fira-code-symbols
     ];
     name = "FiraCode";
     size = 12;
