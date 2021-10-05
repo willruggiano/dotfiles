@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-master;
+    package = pkgs.neovim-unwrapped;
 
     withNodeJs = true;
     withRuby = true;

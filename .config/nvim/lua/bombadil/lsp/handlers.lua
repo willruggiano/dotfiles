@@ -49,9 +49,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 local signs = {
   Error = icons.get "circle-slash",
-  Warning = icons.get "alert",
   Hint = icons.get "light-bulb",
   Information = icons.get "info",
+  Warning = icons.get "alert",
 }
 
 for type, icon in pairs(signs) do
@@ -79,11 +79,9 @@ local compute_target_range_using_ts = function(location)
   local tree = parser:parse()[1]
   local range = location.targetRange or location.range
   range = { range.start.line, range.start.character, range["end"].line, range["end"].character }
-  -- TODO: [2021-09-14,wruggian]: This will give us the signature of the definition, which is not
-  -- what we need
+  -- TODO: This will give us the signature of the definition, which is not what we need
   local target = tree:root():named_descendant_for_range(unpack(range))
-  -- TODO: [2021-09-14,wruggian]: This doesn't quite work because it is language specific what is
-  -- the true "target" node
+  -- TODO: This doesn't quite work because it is language specific what is the true "target" node
   local parent = target:parent():parent():parent()
   local start_row, start_col, end_row, end_col = parent:range()
   if location.targetRange ~= nil then

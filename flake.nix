@@ -40,8 +40,7 @@
       overlay =
         final: prev: {
           my = self.packages."${system}";
-          neovim-master = inputs.neovim.defaultPackage."${system}";
-          rnix-lsp-master = inputs.rnix-lsp.defaultPackage."${system}";
+          rnix-lsp = inputs.rnix-lsp.defaultPackage."${system}";
         };
     in
     {
@@ -69,7 +68,9 @@
                 ./home/shell.nix
               ];
               nixpkgs = {
-                overlays = [ overlay ];
+                overlays = [
+                  overlay
+                ];
               };
             };
           };

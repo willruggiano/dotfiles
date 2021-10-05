@@ -20,7 +20,7 @@
 
     # Nix
     nixpkgs-fmt
-    rnix-lsp-master
+    rnix-lsp
 
     # Python
     (python39.withPackages (ps: with ps; [ isort pipx ]))

@@ -2,7 +2,7 @@ local icons = require "nvim-nonicons"
 
 require("nvim-web-devicons").set_icon {
   lir_folder_icon = {
-    icon = require("nvim-nonicons").get "file-directory",
+    icon = icons.get "file-directory",
     color = "#7ebae4",
     name = "LirFolderNode",
   },

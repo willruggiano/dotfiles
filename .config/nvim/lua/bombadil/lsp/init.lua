@@ -164,10 +164,6 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
     on_attach = on_attach,
     capabilities = updated_capabilities,
     root_dir = function(fname)
-      if string.find(vim.fn.fnamemodify(fname, ":p"), "dotfiles/nvim") then
-        return vim.fn.expand "~/dotfiles/nvim"
-      end
-
       return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
     end,
     globals = {
@@ -190,4 +186,4 @@ lspconfig.rnix.setup {
 }
 
 -- Map :Format to vim.lsp.buf.formatting()
-vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+vim.cmd [[command! Format execute 'lua vim.lsp.buf.formatting()']]

@@ -31,7 +31,8 @@ with lib;
       ssh.enable = true;
     };
 
-    terminal.enable = true;
+    terminal.kitty.enable = true;
+    terminal.st.enable = false;
   };
 
   services.xserver.enable = true;

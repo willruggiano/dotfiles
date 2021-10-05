@@ -1,0 +1,10 @@
+snippet systemd
+  systemd.user.services.${1} = {
+    description = "${2}";
+    wantedBy = [ "${3}" ];
+    partOf = [ "${4}" ];
+    serviceConfig = {
+      ExecStart = "${5}";
+      Restart = "${6:always}";
+    };
+  };${0}

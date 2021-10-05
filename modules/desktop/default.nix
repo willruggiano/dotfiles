@@ -58,6 +58,16 @@ in
       };
     };
 
+    systemd.user.services.xbanish = {
+      description = "banish the mouse cursor when typing";
+      wantedBy = [ "graphical-session.target" ];
+      partOf = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.xbanish}/bin/xbanish";
+        Restart = "always";
+      };
+    };
+
     home.configFile = {
       "i3/config".text = ''
         # i3 config file (v4)
