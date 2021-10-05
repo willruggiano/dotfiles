@@ -297,7 +297,12 @@ return require("packer").startup(function()
     end,
     requires = "nvim-lua/popup.nvim",
   }
-  use "nathom/filetype.nvim"
+  use {
+    "nathom/filetype.nvim",
+    config = function()
+      require "bombadil.config.filetype"
+    end,
+  }
   use "lewis6991/impatient.nvim"
 
   -- Telescope, et al
