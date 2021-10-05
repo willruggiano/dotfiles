@@ -47,6 +47,7 @@ in
         "$directory"
         "$git_branch"
         "$nix_shell"
+        "$python"
         "$line_break"
         "$character"
       ];
@@ -87,16 +88,19 @@ in
         always_show_remote = false;
       };
 
-      nix_shell = {
-        disabled = false;
-        format = "using [nix-shell/$name](bold blue)";
-      };
-
       hostname = {
         ssh_only = true;
         format = lib.concatStrings [
           "[$hostname](bold red)"
         ];
+      };
+
+      nix_shell = {
+        format = "using [nix-shell/$name](bold blue) ";
+      };
+
+      python = {
+        format = "using [python/$version (\($virtualenv\))](bold yellow) ";
       };
 
       line_break = {
