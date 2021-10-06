@@ -17,6 +17,7 @@
     ];
 
     extraConfig = ''
+      lua require("impatient").enable_profile()
       lua require "bombadil"
     '';
 

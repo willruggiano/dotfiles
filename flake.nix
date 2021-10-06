@@ -76,7 +76,7 @@
           };
       };
 
-      packages."${system}" = mapModules ./packages (p: pkgs.callPackage p { });
+      packages."${system}" = mapModulesRec ./packages (p: pkgs.callPackage p { });
 
       devShell."${system}" = import ./shell.nix { inherit pkgs; };
     };
