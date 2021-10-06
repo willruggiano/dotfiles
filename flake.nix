@@ -13,6 +13,8 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    mozilla.url = "github:mozilla/nixpkgs-mozilla";
+    mozilla.flake = false;
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     rnix-lsp.url = "github:nix-community/rnix-lsp/master";
@@ -30,7 +32,11 @@
         config.allowUnfree = true;
         overlays = extraOverlays ++ (lib.attrValues self.overlays);
       };
-      pkgs = mkPkgs nixpkgs [ self.overlay ];
+      pkgs = mkPkgs nixpkgs [
+        self.overlay
+        inputs.neovim.overlay
+        inputs.nur.overlay
+      ];
 
       lib = nixpkgs.lib.extend
         (self: super: {
@@ -45,7 +51,7 @@
     in
     {
       overlay = overlay;
-      overlays = mapModules ./overlays import // { inherit (inputs.nur) overlay; };
+      overlays = mapModules ./overlays import;
 
       nixosModules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
       nixosConfigurations = mapSystems ./nixos/configurations { };

@@ -15,7 +15,7 @@ with lib;
 
   modules = {
     browsing = {
-      enable = true;
+      enable = false;
     };
 
     hardware = {
