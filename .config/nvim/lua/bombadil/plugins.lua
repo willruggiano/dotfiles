@@ -66,13 +66,13 @@ return require("packer").startup(function()
     config = function()
       local cwd = vim.fn.getcwd()
       require("make").setup {
-        exe = "cmake",
-        source_dir = cwd,
-        binary_dir = cwd .. "/build/Debug",
-        build_type = "Debug",
-        build_parallelism = 16,
-        generator = "Ninja",
-        open_quickfix_on_error = true,
+        default = {
+          exe = "cmake",
+          source_dir = cwd,
+          build_parallelism = 8,
+          generator = "Ninja",
+          open_quickfix_on_error = true,
+        },
       }
     end,
     requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },

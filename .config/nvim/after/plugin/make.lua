@@ -1,7 +1,26 @@
 vim.cmd [[
   fun! ListBuildTargets(A,L,P)
-    let binary_dir = luaeval('require("make").config().binary_dir')
+    let binary_dir = luaeval('require("make").active().binary_dir')
     return system("cmake --build " . binary_dir . " --target help | grep -v / | cut -d: -f1")
+  endfun
+]]
+
+ListBuildProfiles = function(arglead)
+  local config = require("make").config()
+  local profiles = {}
+  for k, _ in pairs(config) do
+    if k ~= "default_profile" then
+      if #arglead == 0 or string.find(k, arglead) ~= nil then
+        table.insert(profiles, k)
+      end
+    end
+  end
+  return profiles
+end
+
+vim.cmd [[
+  fun! ListBuildProfiles(A,L,P)
+    return luaeval('ListBuildProfiles(_A)', a:A)
   endfun
 ]]
 
@@ -18,3 +37,5 @@ vim.cmd [[command! MakeClean lua require("make").clean()]]
 vim.cmd [[command! MakeStatus lua require("make").status()]]
 vim.cmd [[command! -nargs=1 SetBuildType lua require("make").set_build_type(<q-args>)]]
 vim.cmd [[command! -nargs=1 -complete=custom,ListBuildTargets SetBuildTarget lua require("make").set_build_target(<q-args>)]]
+vim.cmd [[command! -nargs=1 ShowBuildProfile lua require("make").show_profile(<f-args>)]]
+vim.cmd [[command! -nargs=1 -complete=customlist,ListBuildProfiles SwitchBuildProfile lua require("make").switch_profile({ profile = <f-args> })]]

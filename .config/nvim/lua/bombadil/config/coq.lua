@@ -31,14 +31,14 @@ vim.g.coq_settings = {
         { "", "NormalFloat" },
       },
       positions = {
-        east = 1,
-        north = 2,
+        north = 1,
+        east = 2,
         west = 3,
         south = 4,
       },
     },
   },
   keymap = {
-    jump_to_mark = "<c-n>",
+    jump_to_mark = "",
   },
 }

@@ -1,7 +1,17 @@
 snippet class
+alias cls
   class ${1}
   {
   public:
-    using type = ${1};
-    ${0}
+    using type = ${2};
+     ${0}
   };
+
+snippet pragma
+  #pragma $0
+
+snippet lambda
+  auto ${1} = [${2}](${3}) { ${0} };
+
+snippet inline
+  [${1}](${2}) { ${0} }

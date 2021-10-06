@@ -1,3 +1,5 @@
+local inoremap = vim.keymap.inoremap
+
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- Don't show the dumb matching stuff
@@ -59,6 +61,8 @@ local setup_coq = function()
       deadline = 500,
     },
   }
+
+  inoremap { "<c-h>", "<c-\\><c-n><cmd>lua COQ.Nav_mark()<cr>" }
 end
 
 if use_cmp then

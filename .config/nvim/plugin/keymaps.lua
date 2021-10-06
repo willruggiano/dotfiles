@@ -19,6 +19,7 @@ local bufdelete = function()
   return false
 end
 local ft_closers = {
+  harpoon = quit,
   help = quit,
   man = quit,
 }
