@@ -23,6 +23,7 @@
     rnix-lsp
 
     # Python
+    my.cppman
     (python39.withPackages (ps: with ps; [ isort pipx ]))
     python-language-server
     yapf

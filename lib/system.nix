@@ -23,6 +23,7 @@ in
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          # home-manager.users.bombadil = import "${path}/home"; # Maybe give this a try?
           home-manager.users.bombadil = import ../home;
         }
       ];
