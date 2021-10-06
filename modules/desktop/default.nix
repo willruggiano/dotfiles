@@ -274,7 +274,7 @@ in
         bindsym Mod1+o mode "$mode_launcher"
 
         mode "$mode_launcher" {
-          bindsym b exec --no-startup-id ${pkgs.firefox}/bin/firefox; mode "default"
+          bindsym b exec --no-startup-id ${pkgs.qutebrowser}/bin/qutebrowser; mode "default"
           bindsym l exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run; mode "default"
           bindsym p exec --no-startup-id ${pkgs.pass}/bin/passmenu; mode "default"
           bindsym t exec --no-startup-id ${pkgs.kitty}/bin/kitty; mode "default"

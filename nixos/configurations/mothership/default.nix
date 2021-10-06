@@ -15,7 +15,7 @@ with lib;
 
   modules = {
     browsing = {
-      enable = false;
+      qutebrowser.enable = true;
     };
 
     hardware = {
@@ -32,7 +32,6 @@ with lib;
     };
 
     terminal.kitty.enable = true;
-    terminal.st.enable = false;
   };
 
   services.xserver.enable = true;
