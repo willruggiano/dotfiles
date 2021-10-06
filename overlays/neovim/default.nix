@@ -1,12 +1,12 @@
 self: super:
 {
   neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
-    version = "0.5.1";
+    version = "0.5.x";
     src = super.pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "v${version}";
-      hash = "sha256-07PrR7KElLJhzS/4Z8lLiWuOehx4npyh4puSAJNqTyw=";
+      rev = "release-0.5";
+      hash = "sha256-GI3TRkD+YPpzkbQb5GfDiUXWDJjZjNgKkQYdxUPaF68=";
     };
   });
 }

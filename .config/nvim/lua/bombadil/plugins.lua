@@ -91,19 +91,6 @@ return require("packer").startup(function()
     end,
   }
   use {
-    "hrsh7th/nvim-cmp",
-    disable = true,
-    requires = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
-    },
-  }
-  use {
     "puremourning/vimspector",
     setup = function()
       vim.g.vimspector_enable_mappings = "HUMAN"
@@ -179,6 +166,12 @@ return require("packer").startup(function()
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/playground",
       "JoosepAlviste/nvim-ts-context-commentstring",
+      {
+        "tjdevries/tree-sitter-lua",
+        setup = function()
+          vim.g.ts_lua_skip_queries = true
+        end,
+      },
     },
   }
   use "hashivim/vim-terraform"
@@ -299,18 +292,13 @@ return require("packer").startup(function()
   }
   use {
     "nathom/filetype.nvim",
-    config = function()
-      require "bombadil.config.filetype"
-    end,
   }
-  use "lewis6991/impatient.nvim"
 
   -- Telescope, et al
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-fzf-writer.nvim"
   use "nvim-telescope/telescope-packer.nvim"
   use "nvim-telescope/telescope-fzy-native.nvim"
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use "nvim-telescope/telescope-github.nvim"
   use "nvim-telescope/telescope-symbols.nvim"
   use {
