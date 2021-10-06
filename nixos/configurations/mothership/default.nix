@@ -15,7 +15,10 @@ with lib;
 
   modules = {
     browsing = {
-      qutebrowser.enable = true;
+      qutebrowser = {
+        enable = true;
+        default = true;
+      };
     };
 
     hardware = {

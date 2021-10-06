@@ -28,11 +28,13 @@ c.editor.command = [
 ]
 
 # default start page/search engine
-c.url.default_page = 'https://google.com'
-c.url.start_pages = ['https://google.com']
+c.url.default_page = 'https://github.com'
+c.url.start_pages = ['https://github.com']
 c.url.searchengines.update({
+    'cpp': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
+    'duckduckgo': 'https://duckduckgo.com/?q={}',
     'github': 'https://github.com/{}',
     'google': 'https://google.com/search?q={}',
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
 })
-c.url.searchengines['DEFAULT'] = c.url.searchengines['google']
+c.url.searchengines['DEFAULT'] = c.url.searchengines['duckduckgo']
