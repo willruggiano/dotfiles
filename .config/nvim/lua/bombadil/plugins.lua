@@ -149,11 +149,7 @@ return require("packer").startup(function()
   use {
     "mhartington/formatter.nvim",
     config = function()
-      local formatters = require "bombadil.formatter"
-      require("formatter").setup {
-        logging = false,
-        filetype = formatters,
-      }
+      require "bombadil.config.formatter"
     end,
     rocks = "luafilesystem",
   }
@@ -166,12 +162,6 @@ return require("packer").startup(function()
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/playground",
       "JoosepAlviste/nvim-ts-context-commentstring",
-      {
-        "tjdevries/tree-sitter-lua",
-        setup = function()
-          vim.g.ts_lua_skip_queries = true
-        end,
-      },
     },
   }
   use "hashivim/vim-terraform"
@@ -290,9 +280,7 @@ return require("packer").startup(function()
     end,
     requires = "nvim-lua/popup.nvim",
   }
-  use {
-    "nathom/filetype.nvim",
-  }
+  use "nathom/filetype.nvim"
 
   -- Telescope, et al
   use "nvim-telescope/telescope.nvim"

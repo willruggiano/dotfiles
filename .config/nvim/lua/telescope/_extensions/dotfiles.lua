@@ -20,7 +20,7 @@ local dotfiles = function(opts)
         return {
           writer = Job:new {
             command = "rg",
-            args = { "--files", vim.env.DOTFILES },
+            args = { "--hidden", "--files", vim.env.DOTFILES },
           },
           command = "fzf",
           args = { "--filter", prompt },

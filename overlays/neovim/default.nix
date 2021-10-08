@@ -1,6 +1,6 @@
 self: super:
 {
-  neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
+  neovim-latest = super.neovim-unwrapped.overrideAttrs (oldAttrs: rec {
     version = "0.5.x";
     src = super.pkgs.fetchFromGitHub {
       owner = "neovim";
@@ -9,4 +9,5 @@ self: super:
       hash = "sha256-GI3TRkD+YPpzkbQb5GfDiUXWDJjZjNgKkQYdxUPaF68=";
     };
   });
+  neovim-master = self.neovim;
 }

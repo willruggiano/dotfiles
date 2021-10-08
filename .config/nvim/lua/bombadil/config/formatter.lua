@@ -43,18 +43,21 @@ local function nixfmt()
   return { exe = "nixpkgs-fmt", stdin = true }
 end
 
-return {
-  c = { clangformat },
-  cmake = { cmake_format },
-  cpp = { clangformat },
-  html = { prettier },
-  javascript = { prettier },
-  json = { prettier },
-  lua = { stylua },
-  markdown = { prettier },
-  nix = { nixfmt },
-  python = { isort, yapf },
-  rust = { rustfmt },
-  tex = { latexindent },
-  yaml = { prettier },
+require("formatter").setup {
+  logging = false,
+  filetype = {
+    c = { clangformat },
+    cmake = { cmake_format },
+    cpp = { clangformat },
+    html = { prettier },
+    javascript = { prettier },
+    json = { prettier },
+    lua = { stylua },
+    markdown = { prettier },
+    nix = { nixfmt },
+    python = { isort, yapf },
+    rust = { rustfmt },
+    tex = { latexindent },
+    yaml = { prettier },
+  },
 }

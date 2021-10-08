@@ -15,8 +15,17 @@ local lir = require "lir"
 local lir_utils = require "lir.utils"
 local lvim = require "lir.vim"
 local Path = require "plenary.path"
+local f = require "bombadil.lib.functional"
 
-local get_context = lvim.get_context
+local get_context = function(absolute)
+  local ctx = require("lir.vim").get_context()
+  local fname = ctx:current_value()
+  if absolute then
+    return ctx, ctx.dir .. fname
+  else
+    return ctx, fname
+  end
+end
 
 local custom_actions = {}
 
@@ -27,7 +36,7 @@ custom_actions.up = function()
 end
 
 custom_actions.new = function()
-  local ctx = get_context()
+  local ctx, _ = get_context()
 
   local name = vim.fn.input(ctx.dir)
   if name == "" then
@@ -53,7 +62,7 @@ custom_actions.new = function()
   actions.reload()
 
   vim.schedule(function()
-    local ln = lvim.get_context():indexof(name)
+    local ln = require("lir.vim").get_context():indexof(name)
     if ln then
       vim.cmd(tostring(ln))
     end
@@ -100,22 +109,19 @@ local fs_stat = function(path)
 end
 
 custom_actions.stat = function()
-  local ctx = get_context()
-  local path = ctx.dir .. ctx:current_value()
+  local _, path = get_context(true)
   local attrs = fs_stat(path)
   print(attrs.permissions .. " " .. attrs.size .. " " .. attrs.user .. " " .. attrs.mtime .. " " .. attrs.name)
 end
 
 custom_actions.yank_basename = function()
-  local ctx = get_context()
-  local path = ctx:current_value()
+  local _, path = get_context()
   vim.fn.setreg(vim.v.register, path)
   print(path)
 end
 
 custom_actions.yank_path = function()
-  local ctx = get_context()
-  local path = ctx.dir .. ctx:current_value()
+  local _, path = get_context(true)
   vim.fn.setreg(vim.v.register, path)
   print(path)
 end
@@ -131,16 +137,15 @@ custom_actions.toggle_mark_up = function()
 end
 
 custom_actions.clear_marks = function()
-  local ctx = get_context()
-  for _, f in ipairs(ctx:get_marked_items()) do
-    f.marked = false
+  local ctx, _ = get_context()
+  for _, i in ipairs(ctx:get_marked_items()) do
+    i.marked = false
   end
   actions.reload()
 end
 
 custom_actions.trash = function()
-  local ctx = get_context()
-  local name = ctx:current_value()
+  local ctx, name = get_context()
   if vim.fn.confirm("Delete?: " .. name, "&Yes\n&No", 1) ~= 1 then
     return
   end
@@ -154,11 +159,10 @@ end
 -- BUG: This could delete multiple buffers if there are multiple buffers open for the same
 -- filename.
 custom_actions.delete = function()
-  local ctx = get_context()
-  local fname = ctx:current_value()
+  local _, path = get_context()
   for _, b in ipairs(vim.api.nvim_list_bufs()) do
     local bname = vim.fn.bufname(b)
-    if bname:sub(-#fname) == fname then
+    if bname:sub(-#path) == fname then
       require("bombadil.lib.buffers").delete_buffer(b)
     end
   end
@@ -173,6 +177,62 @@ custom_actions.quit = function()
     vim.cmd "q"
   end
 end
+
+local git = function(command)
+  vim.cmd("!git " .. command)
+end
+
+custom_actions.git = {
+  add = function()
+    local ctx, path = get_context(true)
+    local marks = ctx:get_marked_items()
+    if #marks > 0 then
+      local paths = {}
+      f.each(
+        f.partial(table.insert, paths),
+        f.map(function(i)
+          return i.fullpath
+        end, ipairs(marks))
+      )
+      git("add " .. table.concat(paths, " "))
+    else
+      git("add " .. path or path)
+    end
+    actions.reload()
+  end,
+  diff = function()
+    local ctx, path = get_context(true)
+    local marks = ctx:get_marked_items()
+    if #marks > 0 then
+      local paths = {}
+      f.each(
+        f.partial(table.insert, paths),
+        f.map(function(i)
+          return i.fullpath
+        end, ipairs(marks))
+      )
+      vim.cmd("DiffviewOpen -- " .. table.concat(paths, " "))
+    else
+      vim.cmd("DiffviewOpen -- " .. path)
+    end
+  end,
+  restore = function()
+    local ctx, path = get_context(true)
+    local marks = ctx:get_marked_items()
+    if #marks > 0 then
+      local paths = {}
+      f.each(
+        f.partial(table.insert, paths),
+        f.map(function(i)
+          return i.fullpath
+        end, ipairs(marks))
+      )
+      git("restore --staged " .. table.concat(paths, " "))
+    else
+      git("restore --staged " .. path)
+    end
+  end,
+}
 
 lir.setup {
   show_hidden_files = true,
@@ -204,6 +264,10 @@ lir.setup {
 
     ["."] = actions.toggle_show_hidden,
     K = custom_actions.stat,
+
+    ga = custom_actions.git.add,
+    gd = custom_actions.git.diff,
+    gr = custom_actions.git.restore,
   },
 }
 

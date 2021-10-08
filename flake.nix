@@ -13,8 +13,6 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    mozilla.url = "github:mozilla/nixpkgs-mozilla";
-    mozilla.flake = false;
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     rnix-lsp.url = "github:nix-community/rnix-lsp/master";

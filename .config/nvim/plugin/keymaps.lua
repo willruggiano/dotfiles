@@ -46,9 +46,11 @@ end
 
 -- WhichKey doesn't seem to like these
 -- Opens line above or below the current line
--- TODO(2021-09-13,wruggian): These don't seem to take for some reason...
-inoremap { "<c-cr>", "<c-o>O" }
-inoremap { "<s-cr>", "<c-o>o" }
+-- TODO: These don't seem to take for some reason...
+-- inoremap { "<c-cr>", "<c-o>O" }
+-- inoremap { "<s-cr>", "<c-o>o" }
+inoremap { "<c-k>", "<c-o>O" }
+inoremap { "<c-j>", "<c-o>o" }
 
 -- Better pane navigation
 nnoremap { "<c-j>", "<c-w><c-j>" }
