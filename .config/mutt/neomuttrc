@@ -7,12 +7,12 @@ set smtp_pass = "`cat /run/secrets/wmruggiano@gmail.com`"
 
 set folder = "~/mail"
 set virtual_spoolfile = yes
-virtual-mailboxes "Inbox"   "notmuch://?query=tag:inbox"
-virtual-mailboxes "Updates" "notmuch://?query=tag:updates"
-virtual-mailboxes "Unread"  "notmuch://?query=tag:unread"
-virtual-mailboxes "Draft"   "notmuch://?query=tag:draft"
-virtual-mailboxes "Sent"    "notmuch://?query=tag:sent"
-# virtual-mailboxes "Spam"  "notmuch://?query=tag:spam"
+virtual-mailboxes "Inbox"       "notmuch://?query=tag:inbox"
+virtual-mailboxes "Updates"     "notmuch://?query=tag:updates"
+virtual-mailboxes "Flagged"     "notmuch://?query=tag:flagged"
+virtual-mailboxes "Important"   "notmuch://?query=tag:important"
+virtual-mailboxes "Draft"       "notmuch://?query=tag:draft"
+virtual-mailboxes "Sent"        "notmuch://?query=tag:sent"
 
 set postponed = "~/mail/drafts"
 set record = ""

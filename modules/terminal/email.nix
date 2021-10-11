@@ -29,18 +29,24 @@ in
     };
 
     home.file = {
-      "mail/.notmuch/hooks/pre-new".text = ''
-        #! /usr/bin/env nix-shell
-        #! nix-shell -i sh -p lieer
-        (cd ~/mail/wmruggiano@gmail.com; gmi sync)
-      '';
+      "mail/.notmuch/hooks/pre-new" = {
+        text = ''
+          #! /usr/bin/env nix-shell
+          #! nix-shell -i sh -p lieer
+          (cd ~/mail/wmruggiano@gmail.com; gmi sync)
+        '';
+        executable = true;
+      };
 
-      "mail/.notmuch/hooks/post-new".text = ''
-        #! /usr/bin/env nix-shell
-        #! nix-shell -i sh -p notmuch
-        notmuch tag -new -- tag:new and from:wmruggiano@gmail.com
-        notmuch tag +inbox +unread -new -- tag:new
-      '';
+      "mail/.notmuch/hooks/post-new" = {
+        text = ''
+          #! /usr/bin/env nix-shell
+          #! nix-shell -i sh -p notmuch
+          notmuch tag -new -- tag:new and from:wmruggiano@gmail.com
+          notmuch tag +inbox +unread -new -- tag:new
+        '';
+        executable = true;
+      };
     };
 
     environment.variables = {
