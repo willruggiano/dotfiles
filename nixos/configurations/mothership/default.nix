@@ -21,6 +21,12 @@ with lib;
       };
     };
 
+    desktop = {
+      discord.enable = true;
+      i3.enable = true;
+      libreoffice.enable = true;
+    };
+
     hardware = {
       audio.enable = true;
     };
@@ -37,6 +43,4 @@ with lib;
 
     terminal.kitty.enable = true;
   };
-
-  services.xserver.enable = true;
 }

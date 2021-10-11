@@ -2,10 +2,14 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop;
+let cfg = config.modules.desktop.i3;
 in
 {
-  config = mkIf config.services.xserver.enable {
+  options.modules.desktop.i3 = {
+    enable = mkEnableOption "Enable i3";
+  };
+
+  config = mkIf cfg.enable {
     user.packages = with pkgs; [
       xclip
     ];
@@ -19,6 +23,7 @@ in
 
     services = {
       xserver = {
+        enable = true;
         layout = "us";
         xkbOptions = "ctrl:nocaps";
         libinput = {
