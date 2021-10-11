@@ -27,6 +27,7 @@ with lib;
 
     services = {
       agenix.enable = true;
+      dropbox.enable = true;
       gpg = {
         enable = true;
         enablePass = true;
