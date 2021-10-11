@@ -2,7 +2,7 @@
 
 with builtins;
 with lib;
-with lib.my;
+
 let
   inherit (inputs) agenix;
   cfg = config.modules.services.agenix;
@@ -13,7 +13,7 @@ in
   imports = [ agenix.nixosModules.age ];
 
   options.modules.services.agenix = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Enable agenix";
   };
 
   config = mkIf cfg.enable {

@@ -2,9 +2,9 @@ set realname = "Will Ruggiano"
 set from = "wmruggiano@gmail.com"
 
 set imap_user = "wmruggiano@gmail.com"
-set imap_pass = "vutdhpoixeahbaow"
+set imap_pass  = "`cat /run/secrets/wmruggiano@gmail.com`"
 set smtp_url = "smtp://wmruggiano@smtp.gmail.com"
-set smtp_url = "vutdhpoixeahbaow"
+set smtp_url = "`cat /run/secrets/wmruggiano@gmail.com`"
 
 set folder = imaps://imap.gmail.com/
 set spoolfile = "+INBOX"
