@@ -25,6 +25,7 @@ with lib;
       discord.enable = true;
       i3.enable = true;
       libreoffice.enable = true;
+      mutt.enable = true;
     };
 
     hardware = {

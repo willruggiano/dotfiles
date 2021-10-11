@@ -1,0 +1,22 @@
+set realname = "Will Ruggiano"
+set from = "wmruggiano@gmail.com"
+
+set imap_user = "wmruggiano@gmail.com"
+set imap_pass = "vutdhpoixeahbaow"
+set smtp_url = "smtp://wmruggiano@smtp.gmail.com"
+set smtp_url = "vutdhpoixeahbaow"
+
+set folder = imaps://imap.gmail.com/
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail].Drafts"
+set mail_check = 60
+unset record
+unset trash
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+set header_cache= "~/.neomutt/hcache"
+
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
