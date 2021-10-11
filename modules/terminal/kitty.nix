@@ -1,27 +1,25 @@
 { options, config, lib, pkgs, ... }:
 
 with lib;
-with lib.my;
 
 let
   cfg = config.modules.terminal.kitty;
   defaultFont = {
     name = "JetBrains Mono";
+    package = pkgs.jetbrains-mono;
     size = 12;
   };
 in
 {
   options.modules.terminal.kitty = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Enable kitty";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      kitty
-    ];
+    user.packages = with pkgs; [ kitty ];
 
     fonts.fonts = with pkgs; [
-      jetbrains-mono
+      defaultFont.package
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
 

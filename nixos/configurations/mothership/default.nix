@@ -25,7 +25,6 @@ with lib;
       discord.enable = true;
       i3.enable = true;
       libreoffice.enable = true;
-      mutt.enable = true;
     };
 
     hardware = {
@@ -42,6 +41,9 @@ with lib;
       ssh.enable = true;
     };
 
-    terminal.kitty.enable = true;
+    terminal = {
+      kitty.enable = true;
+      email.enable = true;
+    };
   };
 }

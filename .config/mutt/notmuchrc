@@ -1,0 +1,16 @@
+[database]
+path=/home/bombadil/mail
+
+[user]
+name=Will Ruggiano
+primary_email=wmruggiano@gmail.com
+
+[new]
+tags=unread;inbox;
+ignore=/.*[.](json|lock|bak)$/
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true

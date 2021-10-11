@@ -1,22 +1,32 @@
 set realname = "Will Ruggiano"
 set from = "wmruggiano@gmail.com"
+set signature = "~/.config/neomutt/signature"
 
-set imap_user = "wmruggiano@gmail.com"
-set imap_pass  = "`cat /run/secrets/wmruggiano@gmail.com`"
-set smtp_url = "smtp://wmruggiano@smtp.gmail.com"
-set smtp_url = "`cat /run/secrets/wmruggiano@gmail.com`"
+set smtp_url = "smtp://wmruggiano@smtp.gmail.com:587"
+set smtp_pass = "`cat /run/secrets/wmruggiano@gmail.com`"
 
-set folder = imaps://imap.gmail.com/
-set spoolfile = "+INBOX"
-set postponed = "+[Gmail].Drafts"
-set mail_check = 60
-unset record
-unset trash
+set folder = "~/mail"
+set virtual_spoolfile = yes
+virtual-mailboxes "Inbox"   "notmuch://?query=tag:inbox"
+virtual-mailboxes "Updates" "notmuch://?query=tag:updates"
+virtual-mailboxes "Unread"  "notmuch://?query=tag:unread"
+virtual-mailboxes "Draft"   "notmuch://?query=tag:draft"
+virtual-mailboxes "Sent"    "notmuch://?query=tag:sent"
+# virtual-mailboxes "Spam"  "notmuch://?query=tag:spam"
+
+set postponed = "~/mail/drafts"
+set record = ""
 
 set sort = threads
 set sort_aux = reverse-last-date-received
-set header_cache= "~/.neomutt/hcache"
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
-set mail_check_stats
+set date_format = "%d/%m/%y %I:%M%p"
+
+set mailcap_path = "~/.config/neomutt/mailcap"
+auto_view text/html
+
+source ~/.config/neomutt/vim-keys.rc
