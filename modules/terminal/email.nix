@@ -18,9 +18,13 @@ in
 
     home.configFile = {
       "neomutt/mailcap".text = ''
-        text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html ; copiousoutput; nametemplate=%s.html
+        text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
       '';
       "neomutt/neomuttrc".source = ../../.config/mutt/neomuttrc;
+      "neomutt/urlscan".text = ''
+        macro index,pager \cb "<pipe-message> ${pkgs.urlscan}/bin/urlscan<Enter>" "call urlscan to extract URLs out of a message"
+        macro attach,compose \cb "<pipe-entry> ${pkgs.urlscan}/bin/urlscan<Enter>" "call urlscan to extract URLs out of a message"
+      '';
       "neomutt/signature".text = ''
         Will Ruggiano
       '';
@@ -34,6 +38,7 @@ in
           #! /usr/bin/env nix-shell
           #! nix-shell -i sh -p lieer
           (cd ~/mail/wmruggiano@gmail.com; gmi sync)
+          (cd ~/mail/will@ruggianofamily.com; gmi sync)
         '';
         executable = true;
       };
@@ -43,6 +48,7 @@ in
           #! /usr/bin/env nix-shell
           #! nix-shell -i sh -p notmuch
           notmuch tag -new -- tag:new and from:wmruggiano@gmail.com
+          notmuch tag -new -- tag:new and from:will@ruggianofamily.com
           notmuch tag +inbox +unread -new -- tag:new
         '';
         executable = true;

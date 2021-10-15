@@ -30,3 +30,4 @@ set mailcap_path = "~/.config/neomutt/mailcap"
 auto_view text/html
 
 source ~/.config/neomutt/vim-keys.rc
+source ~/.config/neomutt/urlscan
