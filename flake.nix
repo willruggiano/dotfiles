@@ -21,7 +21,7 @@
   outputs = { self, utils, nixpkgs, ... } @ inputs:
     let
       args = { lib = self.lib; };
-      lib' = import ./lib args;
+      lib' = import ./lib args inputs;
       nixosModules = { dotfiles = import ./.; } // (self.lib.mapModules ./modules/nixos import);
     in
     utils.lib.mkFlake (
@@ -30,7 +30,7 @@
 
         lib = nixpkgs.lib.extend
           (final: prev: {
-            inherit (lib') mapFilterAttrs mapModules mapModules' mapModulesRec mapModulesRec';
+            inherit (lib') makeHome mapFilterAttrs mapModules mapModules' mapModulesRec mapModulesRec';
           });
 
         supportedSystems = [ "x86_64-darwin" "x86_64-linux" ];
@@ -64,22 +64,9 @@
           };
         };
 
-        homes.dev-desktop = inputs.home-manager.lib.homeManagerConfiguration rec {
+        homes.dev-desktop = self.lib.makeHome ./hosts/dev-desktop {
           system = "x86_64-linux";
-          stateVersion = "21.05";
-          homeDirectory = "/home/wruggian";
           username = "wruggian";
-          configuration = {
-            imports = [
-              ./hosts/dev-desktop/home.nix
-            ];
-          };
-          pkgs = self.pkgs.${system}.nixpkgs;
-          extraSpecialArgs = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-          };
-          extraModules = self.lib.mapModulesRec' ./modules/home import;
         };
 
         overlay = import ./packages { inherit inputs; };
