@@ -64,6 +64,24 @@
           };
         };
 
+        homes.dev-desktop = inputs.home-manager.lib.homeManagerConfiguration rec {
+          system = "x86_64-linux";
+          stateVersion = "21.05";
+          homeDirectory = "/home/wruggian";
+          username = "wruggian";
+          configuration = {
+            imports = [
+              ./hosts/dev-desktop/home.nix
+            ];
+          };
+          pkgs = self.pkgs.${system}.nixpkgs;
+          extraSpecialArgs = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          };
+          extraModules = self.lib.mapModulesRec' ./modules/home import;
+        };
+
         overlay = import ./packages { inherit inputs; };
         overlays = utils.lib.exportOverlays { inherit (self) pkgs inputs; };
 
@@ -80,53 +98,8 @@
               '';
             };
           };
+
+        packages.x86_64-linux.dev-desktop = self.homes.dev-desktop.activationPackage;
       }
     );
-  # utils.lib.mkFlake {
-  #   inherit self inputs;
-
-  #   overlay = overlay;
-  #   overlays = mapModules ./overlays import;
-
-  #   outputsBuilder = channels: {
-  #     packages = utils.lib.exportPackages self.overlays channels;
-  #   };
-  # };
-  # {
-  #   overlay = overlay;
-  #   overlays = mapModules ./overlays import;
-
-  #   nixosModules = { dotfiles = import ./.; } // mapModulesRec ./modules import;
-  #   nixosConfigurations = mapSystems ./hosts { };
-
-  #   homeManagerConfigurations = {
-  #     dev-dsk-wruggian-2b-68c3f3ef = inputs.home-manager.lib.homeManagerConfiguration
-  #       {
-  #         system = system;
-  #         stateVersion = "21.05";
-  #         homeDirectory = "/home/wruggian";
-  #         username = "wruggian";
-  #         configuration = {
-  #           imports = [
-  #             # We only need a subset of things
-  #             # TODO: If we could find a way for the home modules to see our custom options we'd be in business.
-  #             ./home/development.nix
-  #             ./home/fzf.nix
-  #             ./home/git.nix
-  #             ./home/neovim.nix
-  #             ./home/shell.nix
-  #           ];
-  #           nixpkgs = {
-  #             overlays = [
-  #               overlay
-  #             ];
-  #           };
-  #         };
-  #       };
-  #   };
-
-  #   packages."${system}" = mapModulesRec ./packages (p: pkgs.callPackage p { });
-
-  #   devShell."${system}" = import ./shell.nix { inherit pkgs; };
-  # };
 }
