@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ... }:
-
 {
   fonts.fontconfig.enable = true;
 
@@ -37,6 +35,6 @@
 
   suites.development = {
     enable = true;
-    suites = [ "all" ];
+    suites = "all";
   };
 }

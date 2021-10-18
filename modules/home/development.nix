@@ -13,7 +13,7 @@ let
   ];
 
   mkSuite = name: packages:
-    mkIf ((elem name cfg.suites) || cfg.suites == "all") {
+    mkIf ((isList cfg.suites && elem name cfg.suites) || cfg.suites == "all") {
       home.packages = packages;
     };
 in
@@ -22,7 +22,7 @@ in
     suites.development = {
       enable = mkEnableOption "Enable selected development suites";
       suites = with types; mkOption {
-        type = listOf str;
+        type = oneOf [ str (listOf str) ];
         default = [ ];
         description = "Specify which development suites to enable";
         example = [ "cxx" "lua" "python" ];
@@ -32,10 +32,10 @@ in
 
   config = mkIf cfg.enable
     (mkMerge [
-      (mkSuite "cxx" [ cmake clang-tools cmake-format gcc11 gnumake ninja ])
-      (mkSuite "json" [ nodePackages.prettier ])
-      (mkSuite "lua" [ stylua sumneko-lua-language-server ])
-      (mkSuite "nix" [ nixpkgs-fmt rnix-lsp ])
-      (mkSuite "python" [ (python39.withPackages (ps: with ps; [ isort pipx ])) python-language-server yapf ])
+      (mkSuite "cxx" [ pkgs.cmake pkgs.clang-tools pkgs.cmake-format pkgs.gcc11 pkgs.gnumake pkgs.ninja ])
+      (mkSuite "json" [ pkgs.nodePackages.prettier ])
+      (mkSuite "lua" [ pkgs.stylua ])
+      (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ])
+      (mkSuite "python" [ (pkgs.python39.withPackages (ps: with ps; [ isort pipx ])) pkgs.yapf ])
     ]);
 }

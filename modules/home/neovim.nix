@@ -17,6 +17,11 @@ in
         pynvim
       ]);
       extraPackages = with pkgs; [
+        clang-tools
+        # cmake-language-server
+        python-language-server
+        rnix-lsp
+        sumneko-lua-language-server
         tree-sitter
         # (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
       ];
