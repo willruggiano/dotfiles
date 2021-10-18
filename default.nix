@@ -1,9 +1,8 @@
 { inputs, config, lib, pkgs, ... }:
 
 with lib;
-with lib.my;
 {
-  imports = mapModulesRec' (toString ./modules) import;
+  imports = mapModulesRec' ./modules/nixos import;
 
   # Common config for all nixos machines; and to ensure the flake operates
   # soundly
@@ -19,7 +18,6 @@ with lib.my;
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
     in
     {
-      package = pkgs.nixFlakes;
       extraOptions = "experimental-features = nix-command flakes";
       nixPath = nixPathInputs ++ [
         "nixpkgs-overlays=${config.dotfiles.dir}/overlays"

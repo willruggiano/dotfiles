@@ -93,29 +93,6 @@
         "type": "github"
       }
     },
-    "neovim": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "contrib",
-        "lastModified": 1631890037,
-        "narHash": "sha256-1VDBpNwgLQj6HD2vWA6SwePA4oGtaHna+6LDs8st180=",
-        "owner": "neovim",
-        "repo": "neovim",
-        "rev": "d56002f7b722facd97b0958e141c8ed2d01495f7",
-        "type": "github"
-      },
-      "original": {
-        "dir": "contrib",
-        "owner": "neovim",
-        "repo": "neovim",
-        "type": "github"
-      }
-    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -224,12 +201,12 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager",
-        "neovim": "neovim",
         "nix": "nix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "rnix-lsp": "rnix-lsp"
+        "rnix-lsp": "rnix-lsp",
+        "utils": "utils_2"
       }
     },
     "utils": {
@@ -244,6 +221,25 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_2": {
+      "inputs": {
+        "flake-utils": "flake-utils"
+      },
+      "locked": {
+        "lastModified": 1632420560,
+        "narHash": "sha256-8Tsa4Hp/CHCA6J8/E7EODhp75z5N1NBhFiOb3lBv/tI=",
+        "owner": "gytis-ivaskevicius",
+        "repo": "flake-utils-plus",
+        "rev": "4b1bcafcfcd78bd36ceabfe3872822ba5c7fcbe8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gytis-ivaskevicius",
+        "ref": "v1.3.0",
+        "repo": "flake-utils-plus",
         "type": "github"
       }
     }
