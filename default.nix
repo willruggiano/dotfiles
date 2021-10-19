@@ -18,6 +18,7 @@ with lib;
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
     in
     {
+      package = pkgs.nixUnstable;
       extraOptions = "experimental-features = nix-command flakes";
       nixPath = nixPathInputs ++ [
         "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
@@ -44,9 +45,9 @@ with lib;
     bind
     cached-nix-shell
     git
-    vim
-    wget
     gnumake
     unzip
+    vim
+    wget
   ];
 }

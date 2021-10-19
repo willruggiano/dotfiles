@@ -14,8 +14,6 @@
 
     agenix.url = github:ryantm/agenix;
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    rnix-lsp.url = github:nix-community/rnix-lsp/master;
-    rnix-lsp.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, utils, nixpkgs, ... } @ inputs:

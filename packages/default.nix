@@ -12,6 +12,5 @@ final: prev: {
       hash = "sha256-95Vfg8yp+ga6I+oqR+sE1+qOi4sR6NV1eLv9xYzwTeY=";
     };
   });
-  nix-patched = prev.callPackage ./nix { pkgs = prev; };
   nonicons = prev.callPackage ./nonicons { };
 }
