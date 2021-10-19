@@ -19,7 +19,7 @@ in
       extraPackages = with pkgs; [
         clang-tools
         # cmake-language-server
-        python-language-server
+        python39Packages.python-lsp-server
         rnix-lsp
         sumneko-lua-language-server
         tree-sitter
@@ -51,15 +51,6 @@ in
           return "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"
         '';
       };
-    };
-
-    xdg.configFile = {
-      # BUG: This one seems to break every once and awhile...
-      # "nvim/parser/cpp.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-cpp}/parser";
-      # "nvim/parser/java.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-java}/parser";
-      # "nvim/parser/lua.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-lua}/parser";
-      # "nvim/parser/nix.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-nix}/parser";
-      # "nvim/parser/python.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-python}/parser";
     };
   };
 }

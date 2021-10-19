@@ -37,6 +37,9 @@ in
           features = "side-by-side line-numbers decorations";
           whitespace-error-style = "22 reverse";
         };
+        include = {
+          path = "${config.home.homeDirectory}/.gitconfig";
+        };
         init = {
           defaultBranch = "main";
         };

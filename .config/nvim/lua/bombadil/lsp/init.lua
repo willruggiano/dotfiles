@@ -147,7 +147,7 @@ lspconfig.cmake.setup {
   capabilities = updated_capabilities,
 }
 
-lspconfig.pyright.setup {
+lspconfig.pylsp.setup {
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
