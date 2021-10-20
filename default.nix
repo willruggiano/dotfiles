@@ -2,7 +2,7 @@
 
 with lib;
 {
-  imports = mapModulesRec' ./modules/nixos import;
+  imports = reduceModules ./modules/nixos import;
 
   # Common config for all nixos machines; and to ensure the flake operates
   # soundly

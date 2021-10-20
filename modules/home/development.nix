@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.suites.development;
-  suites = [
+  suites = literalExpression [
     "cxx"
     "json"
     "lua"

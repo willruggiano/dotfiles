@@ -22,7 +22,8 @@ with lib;
 
   # Desktop
   programs.discord.enable = true;
-  programs.i3.enable = true;
+  # programs.i3.enable = true;
+  programs.sway.enable = true;
   programs.libreoffice.enable = true;
 
   # Terminal

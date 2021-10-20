@@ -28,7 +28,7 @@
 
         lib = nixpkgs.lib.extend
           (final: prev: {
-            inherit (lib') makeHome mapFilterAttrs mapModules mapModules' mapModulesRec mapModulesRec';
+            inherit (lib') makeHome mapFilterAttrs mapModules reduceModules mapModulesRec reduceModulesRec;
           });
 
         supportedSystems = [ "x86_64-darwin" "x86_64-linux" ];
@@ -46,7 +46,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = self.lib.mapModulesRec' ./modules/home import;
+            home-manager.sharedModules = self.lib.reduceModules ./modules/home import;
           }
         ];
 

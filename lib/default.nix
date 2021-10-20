@@ -3,7 +3,7 @@ lib: { ... } @ inputs:
   makeHome = import ./makeHome.nix { inherit inputs lib; };
   mapFilterAttrs = import ./mapFilterAttrs.nix lib;
   mapModules = import ./mapModules.nix lib;
-  mapModules' = import ./mapModulesPrime.nix lib;
+  reduceModules = import ./reduceModules.nix lib;
   mapModulesRec = import ./mapModulesRec.nix lib;
-  mapModulesRec' = import ./mapModulesRecPrime.nix lib;
+  reduceModulesRec = import ./reduceModulesRec.nix lib;
 }
