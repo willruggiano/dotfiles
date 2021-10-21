@@ -21,10 +21,10 @@ in
         # cmake-language-server
         python39Packages.python-lsp-server
         rnix-lsp
-        sumneko-lua-language-server
+        # sumneko-lua-language-server
         tree-sitter
         # (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
-      ];
+      ] ++ lib.optional (!pkgs.stdenv.isDarwin) pkgs.sumneko-lua-language-server;
 
       extraConfig = ''
         lua require "bombadil"
@@ -46,10 +46,17 @@ in
       };
 
       "nvim/lua/bombadil/lsp/sumneko.lua" = {
-        text = ''
-          -- NOTE: This command is a wrapper that includes the -E /path/to/main.lua
-          return "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"
-        '';
+        text =
+          let
+            sumneko = with pkgs;
+              if stdenv.isDarwin
+              then "~/src/lua-language-server/bin/macOS/lua-language-server ~/src/lua-language-server/bin/macOS/main.lua"
+              else "${sumneko-lua-language-server}/bin/lua-language-server";
+          in
+          ''
+            -- NOTE: This command is a wrapper that includes the -E /path/to/main.lua
+            return "${sumneko}"
+          '';
       };
     };
   };

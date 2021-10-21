@@ -66,6 +66,11 @@
           system = "x86_64-linux";
           username = "wruggian";
         };
+        homes."88e9fe563b0b" = self.lib.makeHome ./hosts/88e9fe563b0b rec {
+          system = "x86_64-darwin";
+          username = "wruggian";
+          homeDirectory = "/Users/${username}";
+        };
 
         overlay = import ./packages { inherit inputs; };
         overlays = utils.lib.exportOverlays { inherit (self) pkgs inputs; };
@@ -84,7 +89,10 @@
             };
           };
 
-        packages.x86_64-linux.dev-desktop = self.homes.dev-desktop.activationPackage;
+          packages = {
+            x86_64-darwin."88e9fe563b0b" = self.homes."88e9fe563b0b".activationPackage;
+            x86_64-linux.dev-desktop = self.homes.dev-desktop.activationPackage;
+          };
       }
     );
 }
