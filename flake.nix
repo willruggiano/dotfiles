@@ -14,6 +14,7 @@
 
     agenix.url = github:ryantm/agenix;
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    emanote.url = github:srid/emanote;
   };
 
   outputs = { self, utils, nixpkgs, ... } @ inputs:
@@ -35,6 +36,9 @@
         channelsConfig.allowUnfree = true;
 
         channels.nixpkgs.overlaysBuilder = channels: [
+          (final: prev: {
+            emanote = inputs.emanote.defaultPackage.${prev.system};
+          })
           self.overlay
           inputs.nur.overlay
           inputs.utils.overlay
@@ -42,7 +46,7 @@
 
         hostDefaults.modules = [
           ./. # default.nix
-          inputs.home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModule
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -89,10 +93,14 @@
             };
           };
 
-          packages = {
-            x86_64-darwin."88e9fe563b0b" = self.homes."88e9fe563b0b".activationPackage;
-            x86_64-linux.dev-desktop = self.homes.dev-desktop.activationPackage;
+        packages = {
+          x86_64-darwin = {
+            "88e9fe563b0b" = self.homes."88e9fe563b0b".activationPackage;
           };
+          x86_64-linux = {
+            dev-desktop = self.homes.dev-desktop.activationPackage;
+          };
+        };
       }
     );
 }
