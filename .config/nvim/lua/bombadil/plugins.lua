@@ -29,6 +29,10 @@ return require("packer").startup(function()
       require("which-key").setup {}
     end,
   }
+  use {
+    "RishabhRD/nvim-cheat.sh",
+    requires = "RishabhRD/popfix",
+  }
 
   -- Movement, selection, search, etc
   use "ggandor/lightspeed.nvim"
