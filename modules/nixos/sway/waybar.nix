@@ -19,7 +19,8 @@ builtins.toJSON {
   ];
   modules-right = [
     "network"
-    "backlight"
+    "cpu"
+    "memory"
     "pulseaudio"
     "battery"
     "tray"
@@ -50,19 +51,17 @@ builtins.toJSON {
   clock = {
     interval = 60;
     format = "{:%e %b %Y %H:%M}";
-    tooltip-format = "{:%e %B %Y %H:%M:%S}";
     locale = "en_US.UTF-8";
     timezone = "America/Denver";
   };
 
   cpu = {
     interval = 3;
-    format = "{usage}% ({load})";
+    format = "{usage}% ~{load}";
     states = {
       warning = 70;
       critical = 90;
     };
-    tooltip-format = "{usage}% ({load}, {avg_frequency}/{min_frequency}/{max_frequency}";
   };
 
   memory = {
@@ -78,7 +77,7 @@ builtins.toJSON {
     interval = 3;
     format-wifi = "{essid}";
     format-ethernet = "{ifname}: {ipaddr}/{cidr}";
-    format-disconnected = "Disconnected";
+    format-disconnected = "";
     tooltip-format = "{ifname}: {ipaddr} (signal: {signalStrength}%)";
   };
 

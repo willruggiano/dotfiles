@@ -27,7 +27,7 @@ in
   set $menu ${term} --title 'launcher' -e sh -c '$launcher'
   for_window [title="^launcher$"] floating enable, border pixel
 
-  set $mode_launcher Launch: [b]rowser [l]auncher [p]assmenu [t]erminal
+  set $mode_launcher launch [b]rowser [l]auncher [p]assmenu [t]erminal
   bindsym $mod+o mode "$mode_launcher"
 
   mode "$mode_launcher" {
