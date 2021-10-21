@@ -50,6 +50,7 @@ in
           notmuch tag -new -- tag:new and from:wmruggiano@gmail.com
           notmuch tag -new -- tag:new and from:will@ruggianofamily.com
           notmuch tag +inbox +unread -new -- tag:new
+          notmuch tag -inbox -new -unread -- tag:spam
         '';
         executable = true;
       };
