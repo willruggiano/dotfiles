@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 # TODO: It's a bummer that only ESR is supported for addons :(
-pkgs.wrapFirefox pkgs.firefox-esr-unwrapped {
+pkgs.wrapFirefox pkgs.firefox-unwrapped {
   nixExtensions = [
     (pkgs.fetchFirefoxAddon {
       name = "ublock";

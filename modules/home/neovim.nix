@@ -19,12 +19,14 @@ in
       extraPackages = with pkgs; [
         clang-tools
         # cmake-language-server
-        # python39Packages.python-lsp-server
         rnix-lsp
-        # sumneko-lua-language-server
         tree-sitter
         # (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
-      ] ++ lib.optional (!pkgs.stdenv.isDarwin) [ pkgs.sumneko-lua-language-server pkgs.python39Packages.python-lsp-server ];
+
+        # These don't work on macOS yet :(
+        (lib.optionals (!stdenv.isDarwin) python39Packages.python-lsp-server)
+        (lib.optionals (!stdenv.isDarwin) sumneko-lua-language-server)
+      ];
 
       extraConfig = ''
         lua require "bombadil"

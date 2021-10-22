@@ -94,9 +94,9 @@
           };
 
         packages = {
-          x86_64-darwin = {
-            "88e9fe563b0b" = self.homes."88e9fe563b0b".activationPackage;
-          };
+          # x86_64-darwin = {
+          #   "88e9fe563b0b" = self.homes."88e9fe563b0b".activationPackage;
+          # };
           x86_64-linux = {
             dev-desktop = self.homes.dev-desktop.activationPackage;
           };

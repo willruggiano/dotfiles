@@ -2,7 +2,12 @@
 
 with lib;
 
-let cfg = config.suites.extras;
+let
+  cfg = config.suites.extras;
+  mkExtra = name: packages:
+    mkIf cfg.${name}.enable {
+      home.packages = packages;
+    };
 in
 {
   options = {
@@ -11,7 +16,6 @@ in
       curl.enable = mkEnableOption "Enable curl";
       fd.enable = mkEnableOption "Enable fd";
       file.enable = mkEnableOption "Enable file";
-      jq.enable = mkEnableOption "Enable jq";
       qrcp.enable = mkEnableOption "Enable qrcp";
       ranger.enable = mkEnableOption "Enable ranger";
       ripgrep.enable = mkEnableOption "Enable ripgrep";
@@ -20,52 +24,22 @@ in
       unzip.enable = mkEnableOption "Enable unzip";
       wget.enable = mkEnableOption "Enable wget";
       xplr.enable = mkEnableOption "Enable xplr";
-      yq.enable = mkEnableOption "Enable yq";
     };
   };
 
   config = (mkMerge [
-    (mkIf cfg.awscli.enable {
-      home.packages = [ pkgs.awscli2 ];
-    })
-    (mkIf cfg.curl.enable {
-      home.packages = [ pkgs.curl ];
-    })
-    (mkIf cfg.fd.enable {
-      home.packages = [ pkgs.fd ];
-    })
-    (mkIf cfg.file.enable {
-      home.packages = [ pkgs.file ];
-    })
-    (mkIf cfg.jq.enable {
-      home.packages = [ pkgs.jq ];
-    })
-    (mkIf cfg.qrcp.enable {
-      home.packages = [ pkgs.qrcp ];
-    })
-    (mkIf cfg.ranger.enable {
-      home.packages = [ pkgs.ranger ];
-    })
-    (mkIf cfg.ripgrep.enable {
-      home.packages = [ pkgs.ripgrep ];
-    })
-    (mkIf cfg.thefuck.enable {
-      home.packages = [ pkgs.thefuck ];
-    })
-    (mkIf cfg.trash-cli.enable {
-      home.packages = [ pkgs.trash-cli ];
-    })
-    (mkIf cfg.unzip.enable {
-      home.packages = [ pkgs.unzip ];
-    })
-    (mkIf cfg.wget.enable {
-      home.packages = [ pkgs.wget ];
-    })
-    (mkIf cfg.xplr.enable {
-      home.packages = [ pkgs.xplr ];
-    })
-    (mkIf cfg.yq.enable {
-      home.packages = [ pkgs.yq ];
-    })
+    # TODO: Could probably generate this by inspecting the attributes of options.suites.extras
+    (mkExtra "awscli" [ pkgs.awscli2 ])
+    (mkExtra "curl" [ pkgs.curl ])
+    (mkExtra "fd" [ pkgs.fd ])
+    (mkExtra "file" [ pkgs.file ])
+    (mkExtra "qrcp" [ pkgs.qrcp ])
+    (mkExtra "ranger" [ pkgs.ranger ])
+    (mkExtra "ripgrep" [ pkgs.ripgrep ])
+    (mkExtra "thefuck" [ pkgs.thefuck ])
+    (mkExtra "trash-cli" [ pkgs.trash-cli ])
+    (mkExtra "unzip" [ pkgs.unzip ])
+    (mkExtra "wget" [ pkgs.wget ])
+    (mkExtra "xplr" [ pkgs.xplr ])
   ]);
 }

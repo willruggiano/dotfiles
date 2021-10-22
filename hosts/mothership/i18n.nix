@@ -3,6 +3,6 @@
 with lib;
 
 {
-  time.timeZone = mkDefault "America/Denver";
-  i18n.defaultLocale = mkDefault "en_US.UTF-8";
+  time.timeZone = "America/Denver";
+  i18n.defaultLocale = "en_US.UTF-8";
 }

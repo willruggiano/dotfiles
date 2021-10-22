@@ -318,4 +318,14 @@ return require("packer").startup(function()
       "vijaymarupudi/nvim-fzf",
     },
   }
+
+  -- Note taking?
+  local_use {
+    "emanote.nvim",
+    requires = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  }
 end)

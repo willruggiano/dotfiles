@@ -19,7 +19,6 @@
     curl.enable = true;
     fd.enable = true;
     file.enable = true;
-    jq.enable = true;
     qrcp.enable = true;
     ranger.enable = true;
     ripgrep.enable = true;
@@ -28,7 +27,6 @@
     unzip.enable = true;
     wget.enable = true;
     xplr.enable = true;
-    yq.enable = true;
   };
 
   suites.development = {
