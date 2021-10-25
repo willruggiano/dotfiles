@@ -25,7 +25,7 @@ in
         type = oneOf [ str (listOf str) ];
         default = [ ];
         description = "Specify which development suites to enable";
-        example = [ "cxx" "lua" "python" ];
+        example = literalExpression [ "cxx" "lua" "python" ];
       };
     };
   };

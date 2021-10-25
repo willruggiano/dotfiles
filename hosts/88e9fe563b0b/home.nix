@@ -3,7 +3,7 @@
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  # programs.emanote.enable = true;
+  programs.emanote.enable = true;
   programs.fzf.enable = true;
   programs.git = {
     enable = true;

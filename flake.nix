@@ -32,7 +32,7 @@
             inherit (lib') makeHome mapFilterAttrs mapModules reduceModules mapModulesRec reduceModulesRec;
           });
 
-        supportedSystems = [ "x86_64-darwin" "x86_64-linux" ];
+        supportedSystems = [ "x86_64-darwin" ];
         channelsConfig.allowUnfree = true;
 
         channels.nixpkgs.overlaysBuilder = channels: [

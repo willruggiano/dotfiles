@@ -89,6 +89,16 @@ in
             sha256 = "1w29ryc4l9pz60xbcwk0czxnhmjjh8xa6amh60whcapbsm174ssz";
           };
         }
+        {
+          name = "enhancd";
+          src = fetchFromGitHub {
+            owner = "b4b4r07";
+            repo = "enhancd";
+            rev = "aec0e0c1c0b1376e87da74b8940fda5657269948";
+            hash = "sha256-j50+2cOXhmJ8VmYj5oVQRJXP/iayrEk3VugVIadgwo4=";
+          };
+          file = "init.sh";
+        }
       ];
 
       initExtra = with pkgs; ''
@@ -113,6 +123,10 @@ in
         lt = "${exa}/bin/exa --tree";
         tree = "${exa}/bin/exa --tree";
       };
+    };
+
+    home.sessionVariables = {
+      ENHANCD_FILTER = "fzf";
     };
 
     xdg.configFile = {
