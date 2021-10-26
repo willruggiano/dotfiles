@@ -320,8 +320,9 @@ return require("packer").startup(function()
   }
 
   -- Note taking?
-  local_use {
-    "emanote.nvim",
+  use {
+    "oberblastmeister/neuron.nvim",
+    disable = true,
     requires = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
