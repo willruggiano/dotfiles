@@ -17,6 +17,8 @@
   programs.starship.enable = true;
   programs.zsh.enable = true;
 
+  services.kbfs.enable = true;
+
   suites.extras = {
     awscli.enable = true;
     curl.enable = true;

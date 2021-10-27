@@ -20,6 +20,7 @@ in
   set $down j
   set $up k
   set $right l
+
   # Your preferred terminal emulator
   set $term ${term}
   # Your preferred application launcher
@@ -80,6 +81,8 @@ in
   #
   # You can get the names of your inputs by running: swaymsg -t get_inputs
   # Read `man 5 sway-input` for more information about this section.
+
+  seat * hide_cursor 1000
 
   ### Key bindings
   #
