@@ -61,7 +61,6 @@ return require("packer").startup(function()
       vim.g.git_messenger_no_default_mappings = 1
     end,
   }
-  use "tpope/vim-fugitive"
   use "ThePrimeagen/git-worktree.nvim"
 
   -- Development
@@ -157,6 +156,7 @@ return require("packer").startup(function()
     end,
     rocks = "luafilesystem",
   }
+  use "monaqa/dial.nvim"
 
   -- Treesitter/syntax/highlighty things
   use {
@@ -192,7 +192,6 @@ return require("packer").startup(function()
       }
     end,
   }
-  use "zinit-zsh/zinit-vim-syntax"
   use {
     "kevinhwang91/nvim-bqf",
     config = function()
@@ -285,6 +284,11 @@ return require("packer").startup(function()
     requires = "nvim-lua/popup.nvim",
   }
   use "nathom/filetype.nvim"
+  use {
+    "Furkanzmc/firvish.nvim",
+    disable = true,
+    requires = "Furkanzmc/options.nvim",
+  }
 
   -- Telescope, et al
   use "nvim-telescope/telescope.nvim"
