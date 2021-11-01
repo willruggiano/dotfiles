@@ -292,11 +292,7 @@ return require("packer").startup(function()
     requires = "nvim-lua/popup.nvim",
   }
   use "nathom/filetype.nvim"
-  use {
-    "Furkanzmc/firvish.nvim",
-    disable = true,
-    requires = "Furkanzmc/options.nvim",
-  }
+  use "Furkanzmc/firvish.nvim"
 
   -- Telescope, et al
   use "nvim-telescope/telescope.nvim"
