@@ -62,6 +62,14 @@ return require("packer").startup(function()
     end,
   }
   use "ThePrimeagen/git-worktree.nvim"
+  use "tpope/vim-fugitive"
+  use {
+    "f-person/git-blame.nvim",
+    cmd = "GitBlameToggle",
+    setup = function()
+      vim.g.gitblame_enabled = false
+    end,
+  }
 
   -- Development
   local_use {
