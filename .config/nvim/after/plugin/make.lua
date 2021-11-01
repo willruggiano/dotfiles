@@ -1,3 +1,8 @@
+local ok, _ = pcall(require, "make")
+if not ok then
+  return
+end
+
 vim.cmd [[
   fun! ListBuildTargets(A,L,P)
     let binary_dir = luaeval('require("make").active().binary_dir')

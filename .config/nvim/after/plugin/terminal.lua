@@ -1,8 +1,17 @@
-local wk = require "which-key"
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+local ok, toggleterm = pcall(require, "toggleterm")
+if not ok then
+  return
+end
 
 wk.register {
   ["<space><space>"] = {
-    ":ToggleTerm direction=float<cr>",
+    function()
+      toggleterm.toggle_command("direction=float", 0)
+    end,
     "terminal",
   },
 }

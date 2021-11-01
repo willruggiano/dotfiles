@@ -1,3 +1,13 @@
+local ok, _ = pcall(require, "tokyonight")
+if not ok then
+  return
+end
+
+local ok, _ = pcall(require, "colorizer")
+if not ok then
+  return
+end
+
 vim.opt.termguicolors = true
 
 vim.g.material_style = "palenight"

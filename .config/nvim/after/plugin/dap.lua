@@ -1,6 +1,12 @@
-local wk = require "which-key"
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
 
 local ok, lsp = pcall(require, "lspconfig.util")
+if not ok then
+  return
+end
 
 for _, mode in ipairs { "n", "x" } do
   local mappings = {

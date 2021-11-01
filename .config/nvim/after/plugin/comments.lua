@@ -1,5 +1,12 @@
-local config = require "kommentary.config"
-local wk = require "which-key"
+local ok, config = pcall(require, "kommentary.config")
+if not ok then
+  return
+end
+
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
 
 config.use_extended_mappings()
 

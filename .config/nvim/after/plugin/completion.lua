@@ -1,3 +1,13 @@
+local ok, _ = pcall(require, "coq")
+if not ok then
+  return
+end
+
+local ok, _ = pcall(require, "coq_3p")
+if not ok then
+  return
+end
+
 local inoremap = vim.keymap.inoremap
 
 vim.opt.completeopt = { "menuone", "noselect" }

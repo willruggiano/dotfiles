@@ -1,4 +1,7 @@
-require "colorbuddy"
+local ok, _ = pcall(require, "colorbuddy")
+if not ok then
+  return
+end
 
 local c = require("colorbuddy.color").colors
 local Group = require("colorbuddy.group").Group
@@ -7,7 +10,12 @@ Group.new("GitSignsAdd", c.green)
 Group.new("GitSignsChange", c.yellow)
 Group.new("GitSignsDelete", c.red)
 
-require("gitsigns").setup {
+local ok, gitsigns = pcall(require, "gitsigns")
+if not ok then
+  return
+end
+
+gitsigns.setup {
   signs = {
     add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr" },
     change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr" },
@@ -25,7 +33,12 @@ require("gitsigns").setup {
   },
 }
 
-require("which-key").register {
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+
+wk.register {
   ["<space>h"] = {
     name = "git-hunk",
     n = { "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'", expr = true, "next" },
@@ -37,9 +50,16 @@ require("which-key").register {
   },
 }
 
-local neogit = require "neogit"
+local ok, neogit = pcall(require, "neogit")
+if not ok then
+  return
+end
+local ok, _ = pcall(require, "gitblame")
+if not ok then
+  return
+end
 
-require("which-key").register {
+wk.register {
   ["<leader>g"] = {
     name = "git",
     b = { "<cmd>GitBlameToggle<cr>", "blame" },

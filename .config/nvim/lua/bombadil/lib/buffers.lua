@@ -21,6 +21,14 @@ local list_loaded_buffers = function()
   return loaded
 end
 
+local list_visible_buffers = function()
+  local visible = {}
+  for _, w in ipairs(vim.api.nvim_list_wins()) do
+    table.insert(visible, vim.api.nvim_win_get_buf(w))
+  end
+  return visible
+end
+
 return {
   -- TODO: Get rid of these names
   delete_buffer = delete_buffer,
@@ -28,4 +36,5 @@ return {
   -- Usage: require("bombadil.lib").buffer.function()
   delete = delete_buffer,
   loaded = list_loaded_buffers,
+  visible = list_visible_buffers,
 }

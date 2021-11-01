@@ -1,11 +1,22 @@
-local refactoring = require "refactoring"
+local ok, refactoring = pcall(require, "refactoring")
+if not ok then
+  return
+end
+local ok, _ = pcall(require, "telescope")
+if not ok then
+  return
+end
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+
 local actions = require "telescope.actions"
 local config = require "telescope.config"
 local finders = require "telescope.finders"
 local pickers = require "telescope.pickers"
 local state = require "telescope.actions.state"
 local themes = require "telescope.themes"
-local wk = require "which-key"
 
 local function refactor(prompt_bufnr)
   local content = state.get_selected_entry(prompt_bufnr)

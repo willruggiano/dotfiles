@@ -1,31 +1,18 @@
-local wk = require "which-key"
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+local ok, annotate = pcall(require, "annotate")
+if not ok then
+  return
+end
 
 wk.register {
   ["<leader>a"] = {
     name = "annotate",
-    a = {
-      function()
-        require("annotate").add()
-      end,
-      "add",
-    },
-    c = {
-      function()
-        require("annotate").clear()
-      end,
-      "clear",
-    },
-    l = {
-      function()
-        require("annotate").list()
-      end,
-      "list",
-    },
-    r = {
-      function()
-        require("annotate").remove()
-      end,
-      "remove",
-    },
+    a = { annotate.add, "add" },
+    c = { annotate.clear, "clear" },
+    l = { annotate.list, "list" },
+    r = { annotate.remove, "remove" },
   },
 }

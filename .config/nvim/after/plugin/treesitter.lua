@@ -1,3 +1,8 @@
+local ok, _ = pcall(require, "nvim-treesitter")
+if not ok then
+  return
+end
+
 local swap_next, swap_prev = (function()
   local swap_objects = {
     p = "@parameter.inner",
@@ -142,7 +147,10 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-local wk = require "which-key"
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
 
 wk.register {
   ["<leader>t"] = {

@@ -16,6 +16,7 @@ local lir_utils = require "lir.utils"
 local lvim = require "lir.vim"
 local Path = require "plenary.path"
 local f = require "bombadil.lib.functional"
+local buffers = require "bombadil.lib.buffers"
 
 local get_context = function(absolute)
   local ctx = require("lir.vim").get_context()
@@ -67,6 +68,20 @@ custom_actions.new = function()
       vim.cmd(tostring(ln))
     end
   end)
+end
+
+custom_actions.edit_adjacent = function()
+  local _, path = get_context()
+  local curbuf = vim.api.nvim_win_get_buf(0)
+  for _, w in ipairs(vim.api.nvim_list_wins()) do
+    local b = vim.api.nvim_win_get_buf(w)
+    if curbuf ~= b then
+      vim.api.nvim_win_call(w, function()
+        vim.cmd("e " .. path)
+      end)
+      return
+    end
+  end
 end
 
 local fsize = function(bytes)
@@ -196,7 +211,7 @@ custom_actions.git = {
       )
       git("add " .. table.concat(paths, " "))
     else
-      git("add " .. path or path)
+      git("add " .. path)
     end
     actions.reload()
   end,
@@ -244,6 +259,7 @@ lir.setup {
     ["<cr>"] = actions.edit,
     ["<c-v>"] = actions.vsplit,
     ["<c-s>"] = actions.split,
+    o = custom_actions.edit_adjacent,
 
     ["<tab>"] = custom_actions.toggle_mark_down,
     ["<s-tab>"] = custom_actions.toggle_mark_up,
