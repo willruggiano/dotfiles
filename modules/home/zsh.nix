@@ -127,6 +127,7 @@ in
 
     home.sessionVariables = {
       ENHANCD_FILTER = "fzf";
+      ENHANCD_DISABLE_DOT = 1;
     };
 
     xdg.configFile = {
