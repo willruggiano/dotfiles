@@ -11,6 +11,7 @@ in
       git
       gitflow
       pre-commit
+      sublime-merge
       tig
     ];
 
@@ -46,11 +47,14 @@ in
         interactive = {
           diffFilter = "delta --color-only";
         };
-        merge.tool = "nvim";
+        merge.tool = "smerge";
         mergetool = {
           keepBackup = false;
           nvim = {
             cmd = "nvim -f -c \"Gdiffsplit!\" $MERGED";
+          };
+          smerge = {
+            cmd = "${pkgs.sublime-merge}/bin/smerge $MERGED";
           };
         };
         user = {
