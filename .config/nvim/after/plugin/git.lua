@@ -54,10 +54,6 @@ local ok, neogit = pcall(require, "neogit")
 if not ok then
   return
 end
-local ok, _ = pcall(require, "gitblame")
-if not ok then
-  return
-end
 
 wk.register {
   ["<leader>g"] = {
