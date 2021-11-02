@@ -85,7 +85,7 @@
             packages = utils.lib.exportPackages self.overlays channels;
             devShell = pkgs.stdenvNoCC.mkDerivation {
               name = "dotfiles";
-              buildInputs = with pkgs; [ fup-repl git nix-zsh-completions ];
+              buildInputs = with pkgs; [ fup-repl git nix-zsh-completions nodejs ];
               shellHook = ''
                 export FLAKE=$(pwd)
                 export PATH=$FLAKE/bin:$PATH
