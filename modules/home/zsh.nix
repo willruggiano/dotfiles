@@ -102,7 +102,7 @@ in
       ];
 
       initExtra = with pkgs; ''
-        for f in $HOME/.config/zsh/[0-9][0-9]-*.zsh; do
+        for f in $HOME/.config/zsh/extra/[0-9][0-9]-*.zsh; do
           source "$f"
         done
 
@@ -131,7 +131,7 @@ in
     };
 
     xdg.configFile = {
-      "zsh" = {
+      "zsh/extra" = {
         source = ../../.config/zsh;
         recursive = true;
       };
