@@ -1,5 +1,5 @@
 # vim: ft=nix
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 

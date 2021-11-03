@@ -9,7 +9,7 @@
     nixos-hardware.url = github:nixos/nixos-hardware;
     nur.url = github:nix-community/nur;
 
-    home-manager.url = github:nix-community/home-manager/release-21.05;
+    home-manager.url = github:nix-community/home-manager/master;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = github:ryantm/agenix;

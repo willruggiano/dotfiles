@@ -17,8 +17,11 @@ in
 
     programs.gh = {
       enable = true;
-      editor = "nvim";
-      gitProtocol = "ssh";
+      enableGitCredentialHelper = false;
+      settings = {
+        editor = "nvim";
+        git_protocol = "ssh";
+      };
     };
 
     programs.git = {

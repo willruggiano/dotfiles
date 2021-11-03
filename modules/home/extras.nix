@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -10,21 +10,19 @@ let
     };
 in
 {
-  options = {
-    suites.extras = {
-      awscli.enable = mkEnableOption "Enable awscli v2";
-      curl.enable = mkEnableOption "Enable curl";
-      fd.enable = mkEnableOption "Enable fd";
-      file.enable = mkEnableOption "Enable file";
-      qrcp.enable = mkEnableOption "Enable qrcp";
-      ranger.enable = mkEnableOption "Enable ranger";
-      ripgrep.enable = mkEnableOption "Enable ripgrep";
-      thefuck.enable = mkEnableOption "Enable thefuck";
-      trash-cli.enable = mkEnableOption "Enable trash-cli";
-      unzip.enable = mkEnableOption "Enable unzip";
-      wget.enable = mkEnableOption "Enable wget";
-      xplr.enable = mkEnableOption "Enable xplr";
-    };
+  options.suites.extras = {
+    awscli.enable = mkEnableOption "Enable awscli v2";
+    curl.enable = mkEnableOption "Enable curl";
+    fd.enable = mkEnableOption "Enable fd";
+    file.enable = mkEnableOption "Enable file";
+    qrcp.enable = mkEnableOption "Enable qrcp";
+    ranger.enable = mkEnableOption "Enable ranger";
+    ripgrep.enable = mkEnableOption "Enable ripgrep";
+    thefuck.enable = mkEnableOption "Enable thefuck";
+    trash-cli.enable = mkEnableOption "Enable trash-cli";
+    unzip.enable = mkEnableOption "Enable unzip";
+    wget.enable = mkEnableOption "Enable wget";
+    xplr.enable = mkEnableOption "Enable xplr";
   };
 
   config = (mkMerge [

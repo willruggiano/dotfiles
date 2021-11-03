@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -18,15 +18,13 @@ let
     };
 in
 {
-  options = {
-    suites.development = {
-      enable = mkEnableOption "Enable selected development suites";
-      suites = with types; mkOption {
-        type = oneOf [ str (listOf str) ];
-        default = [ ];
-        description = "Specify which development suites to enable";
-        example = literalExpression [ "cxx" "lua" "python" ];
-      };
+  options.suites.development = {
+    enable = mkEnableOption "Enable selected development suites";
+    suites = with types; mkOption {
+      type = oneOf [ str (listOf str) ];
+      default = [ ];
+      description = "Specify which development suites to enable";
+      example = literalExpression [ "cxx" "lua" "python" ];
     };
   };
 
