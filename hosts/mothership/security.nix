@@ -1,6 +1,7 @@
 { config, ... }:
 
 {
+  security.pam.yubico.enable = true;
   security.sudo.extraRules = [
     {
       users = [ config.user.name ];
