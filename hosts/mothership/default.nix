@@ -32,6 +32,7 @@ with lib;
   services.agenix.enable = true;
   services.dropbox.enable = true;
   services.email.enable = true;
+  services.mopidy.enable = true;
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
 }
