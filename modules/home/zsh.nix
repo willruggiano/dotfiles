@@ -15,6 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [ pkgs.thefuck ];
+
     programs.zsh = {
       dotDir = ".config/zsh";
 
@@ -102,6 +104,8 @@ in
       ];
 
       initExtra = with pkgs; ''
+        eval $(${thefuck}/bin/thefuck --alias)
+
         for f in $HOME/.config/zsh/extra/[0-9][0-9]-*.zsh; do
           source "$f"
         done
