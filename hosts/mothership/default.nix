@@ -6,6 +6,7 @@ with lib;
   imports = [
     ./drivers.nix
     ./hardware-configuration.nix
+    ./i18n.nix
     ./networking.nix
     ./security.nix
   ];
