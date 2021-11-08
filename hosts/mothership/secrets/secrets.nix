@@ -3,5 +3,6 @@ let
 in
 {
   "github.age".publicKeys = [ bombadil ];
+  "spotify.age".publicKeys = [ bombadil ];
   "wmruggiano@gmail.com.age".publicKeys = [ bombadil ];
 }

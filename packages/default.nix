@@ -13,4 +13,5 @@ final: prev: {
     };
   });
   nonicons = prev.callPackage ./nonicons { };
+  pass-extension-meta = prev.callPackage ./pass-meta { };
 }

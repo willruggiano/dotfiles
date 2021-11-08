@@ -20,6 +20,7 @@ in
     };
 
     systemd.user.services.dropbox = {
+      enable = true;
       description = "Dropbox";
       wantedBy = [ "graphical-session.target" ];
       environment = {

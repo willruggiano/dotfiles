@@ -6,7 +6,6 @@ in
 {
   config = mkIf cfg.enable {
     security.pam.yubico = {
-      debug = true;
       mode = "challenge-response";
     };
   };
