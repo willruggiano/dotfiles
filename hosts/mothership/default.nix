@@ -4,7 +4,6 @@ with lib;
 
 {
   imports = [
-    ./drivers.nix
     ./hardware-configuration.nix
     ./i18n.nix
     ./networking.nix
@@ -15,6 +14,10 @@ with lib;
   user.name = "bombadil";
   user.shell = pkgs.zsh;
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
+
+  # Hardware
+  hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
 
   # Web browsing
   programs.qutebrowser.enable = true;
