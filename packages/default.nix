@@ -9,7 +9,7 @@ final: prev: {
       owner = "neovim";
       repo = "neovim";
       rev = "release-0.5";
-      hash = "sha256-95Vfg8yp+ga6I+oqR+sE1+qOi4sR6NV1eLv9xYzwTeY=";
+      hash = "sha256-8UaMXPFXigjAlDMIf6gfJUvykv/zJc1GuqJsVmhUlj8=";
     };
   });
   nonicons = prev.callPackage ./nonicons { };
