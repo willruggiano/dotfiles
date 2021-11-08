@@ -5,10 +5,13 @@ let cfg = config.services.mopidy;
 in
 {
   config = mkIf cfg.enable {
-    user.packages = [ pkgs.mopidy ];
-
     services.mopidy = {
+      extraConfigFiles = [
+        "~/.config/mopidy/mopidy.conf"
+      ];
       extensionPackages = [
+        pkgs.mopidy-iris
+        pkgs.mopidy-local
         pkgs.mopidy-spotify
       ];
     };
