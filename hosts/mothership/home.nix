@@ -19,23 +19,10 @@
 
   services.kbfs.enable = true;
 
-  suites.extras = {
-    awscli.enable = true;
-    curl.enable = true;
-    fd.enable = true;
+  suites = {
+    aws.enable = true;
+    development.enable = true;
+    development.suites = "all";
     file.enable = true;
-    qrcp.enable = true;
-    ranger.enable = true;
-    ripgrep.enable = true;
-    thefuck.enable = true;
-    trash-cli.enable = true;
-    unzip.enable = true;
-    wget.enable = true;
-    xplr.enable = true;
-  };
-
-  suites.development = {
-    enable = true;
-    suites = "all";
   };
 }
