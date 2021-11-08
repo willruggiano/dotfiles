@@ -1,15 +1,15 @@
 function encrypt() {
     local out="$1.$(date +%s).enc"
-    ${pkgs.gnupg}/bin/gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"
+    gpg --encrypt --armor --output $out -r wmruggiano@gmail.com "$1" && echo "$1 -> $out"
 }
 
 function decrypt() {
     local out=$(echo "$1" | rev | cut -c16- | rev)
-    ${pkgs.gnupg}/bin/gpg --decrypt --output $out "$1" && echo "$1 -> $out"
+    gpg --decrypt --output $out "$1" && echo "$1 -> $out"
 }
 
 function gpg-reset-card() {
-    ${pkgs.gnupg}/bin/gpg-connect-agent "scd serialno" "learn --force" /bye
+    gpg-connect-agent "scd serialno" "learn --force" /bye
 }
 
 function git-turtle() {
