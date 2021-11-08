@@ -10,6 +10,7 @@ let
     "lua"
     "nix"
     "python"
+    "qt"
   ];
 
   mkSuite = name: packages:
@@ -35,5 +36,6 @@ in
       (mkSuite "lua" [ pkgs.stylua ])
       (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ])
       (mkSuite "python" [ (pkgs.python39.withPackages (ps: with ps; [ isort pipx ])) pkgs.yapf ])
+      (mkSuite "qt" [ pkgs.qtcreator ])
     ]);
 }
