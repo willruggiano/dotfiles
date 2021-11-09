@@ -102,16 +102,6 @@ require("telescope").setup {
   },
 
   extensions = {
-    fzy_native = {
-      override_generic_sorter = true,
-      override_file_sorter = true,
-    },
-
-    fzf_writer = {
-      use_highlighter = false,
-      minimum_grep_characters = 6,
-    },
-
     frecency = {
       show_scores = true,
       workspaces = {
@@ -121,6 +111,13 @@ require("telescope").setup {
         ["src"] = vim.fn.expand "~/src",
         ["work"] = vim.fn.expand "~/workspaces",
       },
+    },
+
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
     },
 
     project = {

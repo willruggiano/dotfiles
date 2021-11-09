@@ -41,7 +41,6 @@ map_tele("<space>gp", "grep_prompt")
 map_tele("<space>fB", "builtin")
 
 wk.register {
-
   ["<space>ed"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
@@ -64,13 +63,6 @@ wk.register {
       end,
       "list",
     },
-  },
-  -- Packer
-  ["<space>fP"] = {
-    function()
-      require("telescope").extensions.packer.plugins()
-    end,
-    "packer",
   },
   -- Projects
   ["<space>fp"] = {
