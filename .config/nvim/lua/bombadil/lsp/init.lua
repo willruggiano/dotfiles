@@ -4,7 +4,6 @@ local nvim_status = require "lsp-status"
 local wk = require "which-key"
 
 local nnoremap = vim.keymap.nnoremap
-local telescope_mapper = require "bombadil.telescope.mappings"
 
 _ = require("lspkind").init()
 
@@ -155,7 +154,7 @@ if has_null_ls then
   null_ls.config {
     sources = {
       -- Formatting
-      null_ls.builtins.formatting.clang_format,
+      -- null_ls.builtins.formatting.clang_format,  -- via clangd
       null_ls.builtins.formatting.cmake_format,
       null_ls.builtins.formatting.isort,
       null_ls.builtins.formatting.nixfmt,
