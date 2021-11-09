@@ -11,6 +11,7 @@ let
     "nix"
     "python"
     "qt"
+    "shell"
   ];
 
   mkSuite = name: packages:
@@ -31,11 +32,36 @@ in
 
   config = mkIf cfg.enable
     (mkMerge [
-      (mkSuite "cxx" [ pkgs.build2 pkgs.bpkg pkgs.bdep pkgs.cmake pkgs.clang-tools pkgs.cmake-format pkgs.gcc11 pkgs.gnumake pkgs.ninja ])
-      (mkSuite "json" [ pkgs.jq pkgs.nodePackages.prettier pkgs.yq ])
+      (mkSuite "cxx" [
+        pkgs.build2
+        pkgs.bpkg
+        pkgs.bdep
+        pkgs.clang-tools
+        pkgs.cmake
+        pkgs.cmake-format
+        pkgs.cppcheck
+        pkgs.gcc11
+        pkgs.gnumake
+        pkgs.ninja
+      ])
+      (mkSuite "json" [
+        pkgs.jq
+        pkgs.nodePackages.prettier
+        pkgs.yq
+      ])
       (mkSuite "lua" [ pkgs.stylua ])
-      (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ])
-      (mkSuite "python" [ (pkgs.python39.withPackages (ps: with ps; [ isort pipx ])) pkgs.yapf ])
+      (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.statix ])
+      (mkSuite "python" [
+        (pkgs.python39.withPackages (ps: with ps; [ isort pipx ]))
+        pkgs.yapf
+      ])
       (mkSuite "qt" [ pkgs.qtcreator ])
+      (mkSuite "shell" [ pkgs.shellcheck pkgs.shfmt ])
+      # Finally, some general tools which we always want:
+      {
+        home.packages = with pkgs; [
+          codespell
+        ];
+      }
     ]);
 }

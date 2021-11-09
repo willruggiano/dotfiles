@@ -131,6 +131,7 @@ return require("packer").startup(function()
   use "rcarriga/nvim-dap-ui"
   use "theHamsta/nvim-dap-virtual-text"
   use "jbyuki/one-small-step-for-vimkind"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- Text editing + manipulation
   use "b3nj5m1n/kommentary"
@@ -159,6 +160,7 @@ return require("packer").startup(function()
   use "windwp/nvim-autopairs"
   use {
     "mhartington/formatter.nvim",
+    disable = true,
     config = function()
       require "bombadil.config.formatter"
     end,
@@ -185,6 +187,7 @@ return require("packer").startup(function()
         buftype_exclude = {
           "quickfix",
           "help",
+          "nofile",
           "prompt",
           "terminal",
         },
