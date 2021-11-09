@@ -15,7 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.thefuck ];
+    home.packages = with pkgs; [ bc thefuck units ];
 
     programs.zsh = {
       dotDir = ".config/zsh";
