@@ -39,4 +39,7 @@ with lib;
   services.email.enable = true;
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  # Virtualization
+  virtualisation.docker.enable = true;
 }
