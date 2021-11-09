@@ -31,7 +31,7 @@ in
 
   config = mkIf cfg.enable
     (mkMerge [
-      (mkSuite "cxx" [ pkgs.build2 pkgs.cmake pkgs.clang-tools pkgs.cmake-format pkgs.gcc11 pkgs.gnumake pkgs.ninja ])
+      (mkSuite "cxx" [ pkgs.build2 pkgs.bpkg pkgs.bdep pkgs.cmake pkgs.clang-tools pkgs.cmake-format pkgs.gcc11 pkgs.gnumake pkgs.ninja ])
       (mkSuite "json" [ pkgs.jq pkgs.nodePackages.prettier pkgs.yq ])
       (mkSuite "lua" [ pkgs.stylua ])
       (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ])
