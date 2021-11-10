@@ -50,7 +50,11 @@ in
         pkgs.yq
       ])
       (mkSuite "lua" [ pkgs.stylua ])
-      (mkSuite "nix" [ pkgs.nixpkgs-fmt pkgs.statix ])
+      (mkSuite "nix" [
+        pkgs.cached-nix-shell
+        pkgs.nixpkgs-fmt
+        pkgs.statix
+      ])
       (mkSuite "python" [
         (pkgs.python39.withPackages (ps: with ps; [ isort pipx ]))
         pkgs.yapf

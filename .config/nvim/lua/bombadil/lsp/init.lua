@@ -157,7 +157,7 @@ if has_null_ls then
       -- null_ls.builtins.formatting.clang_format,  -- via clangd
       null_ls.builtins.formatting.cmake_format,
       null_ls.builtins.formatting.isort,
-      null_ls.builtins.formatting.nixfmt,
+      -- null_ls.builtins.formatting.nixfmt,  -- via rnix-lsp
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.shfmt,
@@ -168,9 +168,11 @@ if has_null_ls then
       null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.cppcheck,
       null_ls.builtins.diagnostics.shellcheck,
+      null_ls.builtins.diagnostics.statix,
       -- Code actions
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
+      null_ls.builtins.code_actions.statix,
       -- Hover
       null_ls.builtins.hover.dictionary,
       -- Completion

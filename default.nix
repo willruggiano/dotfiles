@@ -19,9 +19,10 @@ with lib;
     in
     {
       package = pkgs.nixUnstable;
-      extraOptions = "experimental-features = nix-command flakes";
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
       nixPath = nixPathInputs ++ [
-        "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
         "dotfiles=${config.dotfiles.dir}"
       ];
       binaryCaches = [
