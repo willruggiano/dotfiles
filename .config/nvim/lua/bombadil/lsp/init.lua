@@ -151,7 +151,9 @@ end
 
 local has_null_ls, null_ls = pcall(require, "null-ls")
 if has_null_ls then
+  local sources = require "bombadil.lsp.null-ls"
   null_ls.config {
+    debug = true,
     sources = {
       -- Formatting
       -- null_ls.builtins.formatting.clang_format,  -- via clangd
@@ -168,15 +170,18 @@ if has_null_ls then
       null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.cppcheck,
       null_ls.builtins.diagnostics.shellcheck,
-      null_ls.builtins.diagnostics.statix,
+      -- null_ls.builtins.diagnostics.statix,
+      sources.statix.diagnostics,
+
       -- Code actions
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
-      null_ls.builtins.code_actions.statix,
+      -- null_ls.builtins.code_actions.statix,
+      sources.statix.code_actions,
       -- Hover
       null_ls.builtins.hover.dictionary,
       -- Completion
-      null_ls.builtins.completion.spell,
+      -- null_ls.builtins.completion.spell,
     },
   }
 
