@@ -21,6 +21,11 @@ local list_loaded_buffers = function()
   return loaded
 end
 
+local is_nameless_buffer = function(bufnr)
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  return bufname == ""
+end
+
 local list_visible_buffers = function()
   local visible = {}
   for _, w in ipairs(vim.api.nvim_list_wins()) do
@@ -36,5 +41,6 @@ return {
   -- Usage: require("bombadil.lib").buffer.function()
   delete = delete_buffer,
   loaded = list_loaded_buffers,
+  nameless = is_nameless_buffer,
   visible = list_visible_buffers,
 }

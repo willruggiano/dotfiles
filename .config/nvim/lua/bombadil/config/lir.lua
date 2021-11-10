@@ -1,6 +1,13 @@
-local icons = require "nvim-nonicons"
+local ok, icons = pcall(require, "nvim-nonicons")
+if not ok then
+  return
+end
 
-require("nvim-web-devicons").set_icon {
+local ok, devicons = pcall(require, "nvim-web-devicons")
+if not ok then
+  return
+end
+devicons.set_icon {
   lir_folder_icon = {
     icon = icons.get "file-directory",
     color = "#7ebae4",
@@ -8,12 +15,15 @@ require("nvim-web-devicons").set_icon {
   },
 }
 
+local ok, lir = pcall(require, "lir")
+if not ok then
+  return
+end
+
 local actions = require "lir.actions"
 local clipboard_actions = require "lir.clipboard.actions"
 local mark_actions = require "lir.mark.actions"
-local lir = require "lir"
 local lir_utils = require "lir.utils"
-local lvim = require "lir.vim"
 local Path = require "plenary.path"
 local f = require "bombadil.lib.functional"
 local buffers = require "bombadil.lib.buffers"
@@ -32,7 +42,6 @@ local custom_actions = {}
 
 custom_actions.up = function()
   local up = actions.up
-  -- TODO: Handle initial ups, e.g. from dashboard or the initial buffer
   up()
 end
 
@@ -291,4 +300,19 @@ require("lir.git_status").setup {
   show_ignored = false,
 }
 
-vim.keymap.nnoremap { "-", ":e %:h<cr>" }
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+
+local explore = function()
+  if buffers.nameless(0) then
+    vim.cmd "e ."
+  else
+    vim.cmd "e %:h"
+  end
+end
+
+wk.register {
+  ["-"] = { explore, "explore" },
+}
