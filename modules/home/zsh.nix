@@ -17,6 +17,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ bc thefuck units ];
 
+    programs.nix-index.enable = true;
+
     programs.zsh = {
       dotDir = ".config/zsh";
 

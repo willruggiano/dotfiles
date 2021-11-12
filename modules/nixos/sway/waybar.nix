@@ -24,6 +24,7 @@ builtins.toJSON {
     "pulseaudio"
     "battery"
     "tray"
+    "idle_inhibitor"
     "clock"
   ];
 
@@ -62,6 +63,11 @@ builtins.toJSON {
       warning = 70;
       critical = 90;
     };
+  };
+
+  idle_inhibitor = {
+    format = "({status})";
+    tooltip = false;
   };
 
   memory = {
