@@ -2,7 +2,7 @@
 
 with lib;
 {
-  imports = reduceModules ./modules/nixos import;
+  imports = reduceModules ./modules/common import;
 
   # Common config for all nixos machines; and to ensure the flake operates
   # soundly
@@ -31,20 +31,16 @@ with lib;
       binaryCachePublicKeys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
+      buildCores = 0;
       registry = registryInputs // { dotfiles.flake = inputs.self; };
-      autoOptimiseStore = true;
       gc = {
         automatic = true;
-        dates = "weekly";
         options = "--delete-older-than 10d";
       };
     };
-  system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
-  system.stateVersion = "21.05";
 
   environment.systemPackages = with pkgs; [
     bind
-    cached-nix-shell
     git
     gnumake
     unzip

@@ -1,13 +1,6 @@
 { options, config, lib, home-manager, ... }:
 
 with lib;
-let
-  mkOpt = type: default:
-    mkOption { inherit type default; };
-
-  mkOpt' = type: default: description:
-    mkOption { inherit type default description; };
-in
 {
   options = with types; {
     user = mkOpt attrs { };
@@ -35,7 +28,7 @@ in
       apply = mapAttrs
         (n: v:
           if isList v
-          then concatMapStringsSep ":" (x: toString x) v
+          then concatMapStringsSep ":" toString v
           else (toString v));
       default = { };
       description = "";
@@ -45,28 +38,26 @@ in
   config = {
     user = {
       description = "The primary user account";
-      extraGroups = [ "wheel" ];
-      isNormalUser = true;
-      group = "users";
       uid = 1000;
     };
 
     home-manager = {
       useUserPackages = true;
 
-      users.${config.user.name} = {
+      users."${config.user.name}" = {
         home = {
           file = mkAliasDefinitions options.home.file;
-          stateVersion = config.system.stateVersion;
+          stateVersion = "21.05";
         };
         xdg = {
+          enable = true;
           configFile = mkAliasDefinitions options.home.configFile;
           dataFile = mkAliasDefinitions options.home.dataFile;
         };
       };
     };
 
-    users.users.${config.user.name} = mkAliasDefinitions options.user;
+    users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
     nix = let users = [ "root" config.user.name ]; in
       {

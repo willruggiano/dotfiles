@@ -232,7 +232,7 @@ local sumneko_cmd = require "bombadil.lsp.sumneko"
 
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   lspconfig = {
-    cmd = { sumneko_cmd },
+    cmd = sumneko_cmd,
     on_init = on_init,
     on_attach = on_attach,
     capabilities = updated_capabilities,

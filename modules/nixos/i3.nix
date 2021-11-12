@@ -14,7 +14,7 @@ in
     ];
 
     fonts = {
-      fontDir.enable = true;
+      enableFontDir = true;
       fonts = with pkgs; [
         font-awesome
       ];

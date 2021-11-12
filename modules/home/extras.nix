@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.suites;
   mkExtra = name: packages:
-    mkIf cfg.${name}.enable {
+    mkIf cfg."${name}".enable {
       home.packages = packages;
     };
 in
@@ -15,7 +15,7 @@ in
     file.enable = mkEnableOption "Enable file system/transfer tools";
   };
 
-  config = (mkMerge [
+  config = mkMerge [
     (mkExtra "aws" [ pkgs.awscli2 ])
     (mkExtra "file" [
       pkgs.curl
@@ -29,5 +29,5 @@ in
       pkgs.wget
       pkgs.xplr
     ])
-  ]);
+  ];
 }

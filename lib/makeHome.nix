@@ -14,7 +14,7 @@ inputs.home-manager.lib.homeManagerConfiguration ({
       (path + "/home.nix")
     ];
   };
-  pkgs = inputs.self.pkgs.${system}.nixpkgs;
+  pkgs = inputs.self.pkgs."${system}".nixpkgs;
   extraSpecialArgs = {
     useGlobalPkgs = true;
     useUserPackages = true;

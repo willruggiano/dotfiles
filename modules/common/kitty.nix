@@ -21,6 +21,7 @@ in
     fonts.fonts = with pkgs; [
       defaultFont.package
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nonicons
     ];
 
     home.configFile = {

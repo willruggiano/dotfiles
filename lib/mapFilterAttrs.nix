@@ -1,6 +1,6 @@
 { lib, ... }:
 
-pred: f: { ... } @ attrs:
+pred: f: attrs:
 let
   inherit (lib) filterAttrs mapAttrs';
 in

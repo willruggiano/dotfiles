@@ -4,7 +4,7 @@ with lib;
 
 let
   cfg = config.services.ssh;
-  sshPublicKey = config.sshPublicKey;
+  inherit (config) sshPublicKey;
 in
 {
   options.services.ssh = {

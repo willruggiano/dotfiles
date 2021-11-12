@@ -4,10 +4,9 @@ with lib;
 
 {
   config = {
+    fonts.enableFontDir = true;
     fonts.fonts = with pkgs; [
-      jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      nonicons
+      font-awesome
     ];
   };
 }

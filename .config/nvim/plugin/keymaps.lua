@@ -64,7 +64,7 @@ nnoremap { "<c-l>", "<c-w><c-l>" }
 nnoremap { "<up>", "<c-y>" }
 nnoremap { "<down>", "<c-e>" }
 
--- Tab nagivation
+-- Tab navigation
 nnoremap { "<right>", "gt" }
 nnoremap { "<left>", "gT" }
 
@@ -90,7 +90,7 @@ wk.register {
   },
 
   -- Silent save
-  ["<c-s>"] = { "<cmd>silent update<cr>", "save" },
+  ["<c-s>"] = { "<cmd>silent update!<cr>", "save" },
 
   -- Does anyone even use macros?
   q = { close, "close" },

@@ -9,7 +9,7 @@ fetchurl
   url = "https://raw.githubusercontent.com/yamatsum/nonicons/${version}/dist/nonicons.ttf";
   downloadToTemp = true;
   recursiveHash = true;
-  hash = "sha256-6c2nUGmPA4PCQRncwVtXpGS4qNz5c6sPi6nnBmRby64=";
+  hash = "sha256-EqTjrWd61QGZz1xMjKmkQmIiHT5tAOuwXxQAorNbkVI=";
 
   postFetch = ''
     mkdir -p $out/share/fonts

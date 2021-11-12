@@ -1,9 +1,12 @@
+{ pkgs, ... }:
 {
   fonts.fontconfig.enable = true;
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
   programs.emanote.enable = true;
+  programs.firefox.enable = true;
+  programs.firefox.package = pkgs.dummy;
   programs.fzf.enable = true;
   programs.git = {
     enable = true;
@@ -18,7 +21,14 @@
   suites = {
     aws.enable = true;
     development.enable = true;
-    development.suites = "all";
+    development.suites = [
+      "cxx"
+      "json"
+      "lua"
+      "nix"
+      "python"
+      "shell"
+    ];
     file.enable = true;
   };
 }

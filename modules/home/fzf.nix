@@ -7,7 +7,7 @@ in
 {
   config = mkIf cfg.enable {
     programs.fzf = {
-      defaultCommand = "${pkgs.ripgrep}/bin/rg --files --hidden --glob \"!.git\" --no-ignore ";
+      defaultCommand = ''${pkgs.ripgrep}/bin/rg --files --hidden --glob "!.git" --no-ignore'';
       defaultOptions = [
         "--no-mouse"
         "--height 50%"
