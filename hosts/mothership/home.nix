@@ -17,6 +17,7 @@
   programs.starship.enable = true;
   programs.zsh.enable = true;
 
+  services.dropbox.enable = true;
   services.kbfs.enable = true;
 
   suites = {
