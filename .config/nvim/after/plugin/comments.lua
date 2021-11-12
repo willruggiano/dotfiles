@@ -12,7 +12,7 @@ config.use_extended_mappings()
 
 --[[ This function will be called automatically by the mapping, the first
 argument will be the line that is being operated on. ]]
-function insert_comment_below(...)
+local insert_comment_below = function(...)
   local args = { ... }
   -- This includes the commentstring
   local configuration = config.get_config(0)
@@ -35,7 +35,7 @@ function insert_comment_below(...)
   vim.api.nvim_feedkeys("cl", "n", false)
 end
 
-function insert_comment_above(...)
+local insert_comment_above = function(...)
   local args = { ... }
   local configuration = config.get_config(0)
   local line_number = args[1]
@@ -48,8 +48,8 @@ function insert_comment_above(...)
   vim.api.nvim_feedkeys("cl", "n", false)
 end
 
-config.add_keymap("n", "kommentary_insert_below", config.context.line, {}, "insert_comment_below")
-config.add_keymap("n", "kommentary_insert_above", config.context.line, {}, "insert_comment_above")
+config.add_keymap("n", "kommentary_insert_below", config.context.line, { expr = true }, insert_comment_below)
+config.add_keymap("n", "kommentary_insert_above", config.context.line, { expr = true }, insert_comment_above)
 
 wk.register {
   ["<leader>c"] = {

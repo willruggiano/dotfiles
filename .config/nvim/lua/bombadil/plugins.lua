@@ -123,7 +123,7 @@ return require("packer").startup(function()
   local_use {
     "refactoring.nvim",
     config = function()
-      require("refactoring").setup()
+      require("refactoring").setup {}
     end,
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   }
@@ -132,6 +132,13 @@ return require("packer").startup(function()
   use "theHamsta/nvim-dap-virtual-text"
   use "jbyuki/one-small-step-for-vimkind"
   use "jose-elias-alvarez/null-ls.nvim"
+  local_use {
+    "nix.nvim",
+    config = function()
+      require("nix").setup {}
+    end,
+    requires = "rcarriga/nvim-notify",
+  }
 
   -- Text editing + manipulation
   use "b3nj5m1n/kommentary"
@@ -260,13 +267,13 @@ return require("packer").startup(function()
   use {
     "norcalli/nvim-terminal.lua",
     config = function()
-      require("terminal").setup()
+      require("terminal").setup {}
     end,
   }
   use {
     "akinsho/nvim-toggleterm.lua",
     config = function()
-      require("toggleterm").setup()
+      require("toggleterm").setup {}
     end,
   }
 
@@ -284,7 +291,7 @@ return require("packer").startup(function()
   use {
     "nacro90/numb.nvim",
     config = function()
-      require("numb").setup()
+      require("numb").setup {}
     end,
   }
   use {

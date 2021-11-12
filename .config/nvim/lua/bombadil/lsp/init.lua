@@ -151,7 +151,7 @@ end
 
 local has_null_ls, null_ls = pcall(require, "null-ls")
 if has_null_ls then
-  local sources = require "bombadil.lsp.null-ls"
+  local custom_sources = require "bombadil.lsp.null-ls"
   null_ls.config {
     debug = true,
     sources = {
@@ -168,21 +168,25 @@ if has_null_ls then
       null_ls.builtins.formatting.yapf,
       -- Diagnostics
       null_ls.builtins.diagnostics.codespell,
-      null_ls.builtins.diagnostics.cppcheck,
       null_ls.builtins.diagnostics.shellcheck,
       -- null_ls.builtins.diagnostics.statix,
-      sources.statix.diagnostics,
+      custom_sources.statix.diagnostics,
 
       -- Code actions
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
       -- null_ls.builtins.code_actions.statix,
-      sources.statix.code_actions,
+      custom_sources.statix.code_actions,
       -- Hover
       null_ls.builtins.hover.dictionary,
       -- Completion
       -- null_ls.builtins.completion.spell,
     },
+  }
+
+  null_ls.register {
+    null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "cpp" }, extra_args = { "--language", "cpp" } },
+    null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
   }
 
   lspconfig["null-ls"].setup {
