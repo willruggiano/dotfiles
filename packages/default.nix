@@ -4,12 +4,12 @@ final: prev: {
   cppman = prev.callPackage ./cppman { };
   firefox-extended = prev.callPackage ./firefox { };
   neovim-latest = prev.neovim-unwrapped.overrideAttrs (_: rec {
-    version = "0.5.x";
+    version = "master";
     src = prev.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "release-0.5";
-      hash = "sha256-8UaMXPFXigjAlDMIf6gfJUvykv/zJc1GuqJsVmhUlj8=";
+      rev = version;
+      hash = "sha256-WNnV0oJ1xTw2JzbEobXhUzkSMqlSmLEjLQCkY8AbcK8=";
     };
   });
   nonicons = prev.callPackage ./nonicons { };

@@ -131,7 +131,8 @@ return require("packer").startup(function()
   use "rcarriga/nvim-dap-ui"
   use "theHamsta/nvim-dap-virtual-text"
   use "jbyuki/one-small-step-for-vimkind"
-  use "jose-elias-alvarez/null-ls.nvim"
+  -- use "jose-elias-alvarez/null-ls.nvim"
+  local_use "null-ls.nvim"
   local_use {
     "nix.nvim",
     config = function()

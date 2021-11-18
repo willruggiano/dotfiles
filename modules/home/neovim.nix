@@ -13,9 +13,7 @@ in
       withRuby = true;
       withPython3 = true;
 
-      extraPython3Packages = (ps: with ps; [
-        pynvim
-      ]);
+      extraPython3Packages = ps: with ps; [ pynvim ];
       extraPackages = with pkgs; [
         clang-tools
         # cmake-language-server
