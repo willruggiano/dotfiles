@@ -31,6 +31,13 @@ end
 
 local _ = pcall(require, "nvim-nonicons")
 
+--[[ local project_dirs = {}
+for i, dir in ipairs { "~/.config", "~/dev", "~/dotfiles", "~/workspaces", "~/src" } do
+  if vim.fn.isdirectory(dir) then
+    table.insert(project_dirs, dir)
+  end
+end ]]
+
 require("telescope").setup {
   defaults = {
     prompt_prefix = "> ",
@@ -128,6 +135,12 @@ require("telescope").setup {
         "~/workspaces",
       },
     },
+
+    ["ui-select"] = {
+      require("telescope.themes").get_ivy {
+        winblend = 5,
+      },
+    },
   },
 }
 
@@ -135,13 +148,14 @@ pcall(require("telescope").load_extension, "dotfiles")
 pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "git_worktree")
 pcall(require("telescope").load_extension, "project")
-
-if vim.fn.executable "gh" == 1 then
-  pcall(require("telescope").load_extension, "gh")
-end
+pcall(require("telescope").load_extension, "ui-select")
 
 if pcall(require("telescope").load_extension, "frecency") then
   require "bombadil.telescope.frecency"
+end
+
+if vim.fn.executable "gh" == 1 then
+  pcall(require("telescope").load_extension, "gh")
 end
 
 local custom_actions = {}
@@ -275,18 +289,13 @@ end
 function M.git_files()
   local path = vim.fn.expand "%:h"
 
-  local width = 0.25
-  if string.find(path, "sourcegraph.*sourcegraph", 1, false) then
-    width = 0.5
-  end
-
   local opts = themes.get_ivy {
     winblend = 5,
 
     cwd = path,
 
     layout_config = {
-      width = width,
+      width = 0.25,
     },
   }
 

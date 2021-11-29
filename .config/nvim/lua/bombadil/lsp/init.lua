@@ -22,29 +22,20 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  local telescope_opts = require("telescope.themes").get_ivy {
-    winblend = 5,
-    layout_config = {
-      width = 0.25,
-    },
-    ignore_filename = true,
-  }
-
   -- Mappings.
   wk.register({
     ["<space>"] = {
       d = {
-        name = "diagnostics",
         l = {
-          vim.lsp.diagnostic.show_line_diagnostics,
+          vim.diagnostic.open_float,
           "show-line",
         },
         n = {
-          vim.lsp.diagnostic.goto_next,
+          vim.diagnostic.goto_next,
           "goto-next",
         },
         p = {
-          vim.lsp.diagnostic.goto_prev,
+          vim.diagnostic.goto_prev,
           "goto-prev",
         },
       },
@@ -59,9 +50,7 @@ local on_attach = function(client, bufnr)
           "implementation",
         },
         r = {
-          function()
-            require("telescope.builtin").lsp_references(telescope_opts)
-          end,
+          vim.lsp.buf.references,
           "references",
         },
         D = {
@@ -89,14 +78,12 @@ local on_attach = function(client, bufnr)
       w = {
         name = "symbols",
         d = {
-          function()
-            require("telescope.builtin").lsp_document_symbols(telescope_opts)
-          end,
+          vim.lsp.buf.document_symbol,
           "document",
         },
         w = {
           function()
-            require("telescope.builtin").lsp_dynamic_workspace_symbols(telescope_opts)
+            vim.lsp.buf.workspace_symbol ""
           end,
           "workspace",
         },
@@ -111,9 +98,16 @@ local on_attach = function(client, bufnr)
     buffer = bufnr,
   })
 
+  local cursor_opts = require("telescope.themes").get_cursor()
+
   wk.register({
     ["<leader>"] = {
-      ca = { vim.lsp.buf.code_action, "code-action" },
+      ca = {
+        function()
+          require("telescope.builtin").lsp_code_actions(cursor_opts)
+        end,
+        "code-action",
+      },
       f = { vim.lsp.buf.formatting, "format" },
     },
   }, {
@@ -121,7 +115,12 @@ local on_attach = function(client, bufnr)
   })
   wk.register({
     ["<leader>"] = {
-      ca = { vim.lsp.buf.range_code_action, "code-action" },
+      ca = {
+        function()
+          require("telescope.builtin").lsp_range_code_actions(cursor_opts)
+        end,
+        "code-action",
+      },
       f = { vim.lsp.buf.range_formatting, "format" },
     },
   }, {
