@@ -19,6 +19,9 @@ with lib;
   hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
 
+  # Gaming
+  programs.steam.enable = true;
+
   # Web browsing
   programs.qutebrowser.enable = true;
   programs.qutebrowser.default = true;

@@ -4,10 +4,11 @@ with lib;
 let
   cfg = config.programs.spotify;
   spotifyd = pkgs.spotifyd.override { withPulseAudio = true; };
+  # TODO: I wonder if we can directly reference agenix password files?
   spotifydConf = pkgs.writeText "spotifyd.conf" ''
     [global]
     username = "1211559862"
-    password_cmd = "cat /run/secrets/spotify"
+    password_cmd = "cat /run/agenix.d/4/spotify"
     backend = "pulseaudio"
   '';
 in
