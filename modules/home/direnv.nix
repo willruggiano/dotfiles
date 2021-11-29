@@ -7,6 +7,6 @@ in
 {
   config = mkIf cfg.enable {
     programs.direnv.nix-direnv.enable = true;
-    programs.direnv.nix-direnv.enableFlakes = true;
+    # programs.direnv.nix-direnv.enableFlakes = true;
   };
 }

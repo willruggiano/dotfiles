@@ -15,6 +15,7 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     emanote.url = "github:srid/emanote";
+    emanote.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, utils, nixpkgs, ... } @ inputs:
