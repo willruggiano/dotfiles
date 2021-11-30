@@ -36,7 +36,12 @@ return require("packer").startup(function()
 
   -- Movement, selection, search, etc
   use "ggandor/lightspeed.nvim"
-  use "kshenoy/vim-signature"
+  use {
+    "chentau/marks.nvim",
+    config = function()
+      require("marks").setup {}
+    end,
+  }
   use {
     "mg979/vim-visual-multi",
     branch = "master",
