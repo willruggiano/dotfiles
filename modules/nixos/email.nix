@@ -35,7 +35,7 @@ in
     home.file = {
       "mail/.notmuch/hooks/pre-new" = {
         text = ''
-          #! /usr/bin/env nix-shell
+          #! /usr/bin/env cached-nix-shell
           #! nix-shell -i sh -p lieer
           (cd ~/mail/wmruggiano@gmail.com; gmi sync)
           (cd ~/mail/will@ruggianofamily.com; gmi sync)
@@ -45,7 +45,7 @@ in
 
       "mail/.notmuch/hooks/post-new" = {
         text = ''
-          #! /usr/bin/env nix-shell
+          #! /usr/bin/env cached-nix-shell
           #! nix-shell -i sh -p notmuch
           notmuch tag -new -- tag:new and from:wmruggiano@gmail.com
           notmuch tag -new -- tag:new and from:will@ruggianofamily.com

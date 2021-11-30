@@ -2,7 +2,9 @@
 
 with lib;
 
-let cfg = config.programs.neovim;
+let
+  cfg = config.programs.neovim;
+  treesitterGrammars = with pkgs; tree-sitter.withPlugins (_: tree-sitter.allGrammars);
 in
 {
   config = mkIf cfg.enable {
@@ -16,10 +18,9 @@ in
       extraPython3Packages = ps: with ps; [ pynvim ];
       extraPackages = with pkgs; [
         clang-tools
-        # cmake-language-server
+        cmake-language-server
         rnix-lsp
         tree-sitter
-        # (tree-sitter.withPlugins (_: tree-sitter.allGrammars))
       ] ++ lib.optionals (!stdenv.isDarwin) [
         # These don't work on macOS yet :(
         python39Packages.python-lsp-server
@@ -70,6 +71,13 @@ in
           alias nvim="${pkgs.neovim-remote}/bin/nvr -cc quit"
         fi
       '';
+    };
+
+    xdg.dataFile = {
+      "nvim/site/parser" = {
+        source = treesitterGrammars;
+        recursive = true;
+      };
     };
   };
 }
