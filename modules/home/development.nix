@@ -18,11 +18,6 @@ let
     mkIf ((isList cfg.suites && elem name cfg.suites) || cfg.suites == "all") {
       home.packages = packages;
     };
-
-  cxx =
-    if pkgs.stdenv.isDarwin
-    then pkgs.clang_12
-    else pkgs.gcc11;
 in
 {
   options.suites.development = {
@@ -38,16 +33,16 @@ in
   config = mkIf cfg.enable
     (mkMerge [
       (mkSuite "cxx" [
-        cxx
-        pkgs.build2
-        pkgs.bpkg
-        pkgs.bdep
+        # NOTE: These should come from project-specific shell.nix/flake.nix files!
+        # pkgs.build2
+        # pkgs.bpkg
+        # pkgs.bdep
         pkgs.clang-tools
-        pkgs.cmake
+        # pkgs.cmake
         pkgs.cmake-format
         pkgs.cppcheck
-        pkgs.gnumake
-        pkgs.ninja
+        # pkgs.gnumake
+        # pkgs.ninja
       ])
       (mkSuite "json" [
         pkgs.jq
@@ -56,7 +51,7 @@ in
       ])
       (mkSuite "lua" [ pkgs.stylua ])
       (mkSuite "nix" [
-        # pkgs.cached-nix-shell
+        pkgs.cached-nix-shell
         pkgs.nixpkgs-fmt
         pkgs.statix
       ])
