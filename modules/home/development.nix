@@ -51,7 +51,7 @@ in
       ])
       (mkSuite "lua" [ pkgs.stylua ])
       (mkSuite "nix" [
-        pkgs.cached-nix-shell
+        # pkgs.cached-nix-shell
         pkgs.nixpkgs-fmt
         pkgs.statix
       ])

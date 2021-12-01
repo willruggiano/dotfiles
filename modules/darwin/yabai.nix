@@ -50,8 +50,9 @@ in
         # float settings windows
         yabai -m rule --add title='Settings$' manage=off grid=${centered}
 
-        # float specific applications
-        yabai -m rule --add title='^Amazon Chime$' manage=off grid=${centered}
+        # float communications applications
+        yabai -m rule --add app='^Amazon Chime$' manage=off grid=${centered}
+        yabai -m rule --add app='^Cisco AnyConnect Secure Mobility Client$' manage=off grid=${centered}
 
         # spacebar padding on top screen
         SPACEBAR_HEIGHT=$(${pkgs.spacebar}/bin/spacebar -m config height)
