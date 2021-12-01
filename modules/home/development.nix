@@ -37,7 +37,7 @@ in
         # pkgs.build2
         # pkgs.bpkg
         # pkgs.bdep
-        pkgs.clang-tools
+        # pkgs.clang-tools # This one could also come from the neovim environment.
         # pkgs.cmake
         pkgs.cmake-format
         pkgs.cppcheck

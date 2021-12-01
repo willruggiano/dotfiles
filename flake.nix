@@ -51,9 +51,6 @@
         (final: prev: nixpkgs.lib.optionalAttrs (!prev.isFakePkgs or false) {
           emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
-        (final: prev: {
-          inherit (channels.nixpkgs-stable) clang-tools;
-        })
       ];
 
       hostDefaults.modules = [
@@ -81,7 +78,7 @@
         };
       };
 
-      hosts."88e9fe563b0b" = rec {
+      hosts.dev-laptop = rec {
         system = "x86_64-darwin";
         modules = [
           {
@@ -122,9 +119,9 @@
         };
 
       packages = {
-        # x86_64-darwin = {
-        #   "88e9fe563b0b" = self.darwinConfigurations."88e9fe563b0b.ant.amazon.com".system;
-        # };
+        x86_64-darwin = {
+          dev-laptop = self.darwinConfigurations.dev-laptop.system;
+        };
         x86_64-linux = {
           dev-desktop = self.homes.dev-desktop.activationPackage;
         };

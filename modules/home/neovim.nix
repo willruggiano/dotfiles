@@ -17,7 +17,7 @@ in
 
       extraPython3Packages = ps: with ps; [ pynvim ];
       extraPackages = with pkgs; [
-        clang-tools
+        clang-tools-unbroken
         cmake-language-server
         rnix-lsp
         tree-sitter

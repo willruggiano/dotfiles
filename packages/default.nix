@@ -1,6 +1,18 @@
 { inputs }:
 
 final: prev: {
+  # TODO: Remove when libcxx-13.0.0 is no longer marked as broken.
+  clang-tools-unbroken =
+    let
+      inherit (inputs.self) lib;
+      inherit (prev) llvmPackages_12;
+      unwrapped = llvmPackages_12.clang-unwrapped;
+    in
+    prev.clang-tools.overrideAttrs (_: {
+      version = lib.getVersion unwrapped;
+      inherit (llvmPackages_12) clang;
+      inherit unwrapped;
+    });
   cppman = prev.callPackage ./cppman { };
   dummy = prev.runCommand "dummy-0.0.0" { } "mkdir $out";
   firefox-extended = prev.callPackage ./firefox { };
