@@ -68,9 +68,6 @@ nnoremap { "<down>", "<c-e>" }
 nnoremap { "<right>", "gt" }
 nnoremap { "<left>", "gT" }
 
--- Run the last command
-nnoremap { "<leader><leader>c", "<cmd><up>" }
-
 -- Make ESC leave terminal mode
 tnoremap { "<esc>", "<c-\\><c-n>" }
 

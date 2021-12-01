@@ -8,8 +8,8 @@ local swap_next, swap_prev = (function()
 
   local n, p = {}, {}
   for key, obj in pairs(swap_objects) do
-    n[string.format("<leader-s>%s", key)] = obj
-    p[string.format("<leader-s>%s", string.upper(key))] = obj
+    n[string.format("<leader><leader>s%s", key)] = obj
+    p[string.format("<leader><leader>s%s", string.upper(key))] = obj
   end
 
   return n, p
@@ -44,24 +44,15 @@ require("nvim-treesitter.configs").setup {
         smart_rename = "grr",
       },
     },
-
-    -- TODO: This seems broken...
-    navigation = {
-      enable = false,
-      keymaps = {
-        goto_definition = "gnd", -- mapping to go to definition of symbol under cursor
-        list_definitions = "gnD", -- mapping to list all definitions in current file
-      },
-    },
   },
 
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<leader-s>i", -- maps in normal mode to init the node/scope selection
-      node_incremental = "<leader-s>i", -- increment to the upper named parent
-      node_decremental = "<leader-s>d", -- decrement to the previous node
-      scope_incremental = "<leader-s>s", -- increment to the upper scope (as defined in locals.scm)
+      init_selection = "<leader><leader>s", -- maps in normal mode to init the node/scope selection
+      node_incremental = "u", -- increment to the upper named parent
+      node_decremental = "p", -- decrement to the previous node
+      scope_incremental = "s", -- increment to the upper scope (as defined in locals.scm)
     },
   },
 
@@ -139,19 +130,10 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+-- Highlights the current treesitter "unit"
+-- Can be toggled with ,thu
+require("treesitter-unit").enable_highlighting()
+
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
-
-wk.register {
-  ["<leader>t"] = {
-    name = "treesitter",
-    h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "captures" },
-    p = { "<cmd>TSPlaygroundToggle<cr>", "playground" },
-  },
-}
