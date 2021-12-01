@@ -1,16 +1,6 @@
-local ok, marks = pcall(require, "marks")
-if not ok then
-  return
-end
-
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
-
 local execute = vim.api.nvim_command
 
-wk.register {
+require("which-key").register {
   ["<leader>b"] = {
     name = "bookmarks",
     l = {

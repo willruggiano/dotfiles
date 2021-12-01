@@ -8,8 +8,5 @@ require "bombadil.globals"
 -- Force loading of astronauta first.
 vim.cmd [[runtime plugin/astronauta.vim]]
 
--- Configure the builtin LSP
-require "bombadil.lsp"
-
 -- Source local configuration via .nvimrc.lua
 require("bombadil.localrc").load()

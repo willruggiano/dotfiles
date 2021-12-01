@@ -1,7 +1,4 @@
-local ok, dial = pcall(require, "dial")
-if not ok then
-  return
-end
+local dial = require "dial"
 
 -- Toggle true/false
 dial.augends["custom#boolean"] = dial.common.enum_cyclic {
@@ -16,10 +13,7 @@ dial.augends["custom#git#rebase"] = dial.common.enum_cyclic {
 }
 table.insert(dial.config.searchlist.normal, "custom#git#rebase")
 
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
+local wk = require "which-key"
 
 wk.register {
   ["<C-a>"] = {

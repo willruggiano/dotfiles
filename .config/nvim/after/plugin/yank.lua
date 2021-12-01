@@ -9,5 +9,11 @@ vim.api.nvim_exec(
   false
 )
 
--- Y yank until the end of line
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
+local ok, wk = pcall(require, "which-key")
+if not ok then
+  return
+end
+
+wk.register {
+  Y = { "y$", "Yank to end-of-line" },
+}

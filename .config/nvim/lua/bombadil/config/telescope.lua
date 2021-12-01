@@ -1,6 +1,4 @@
 local map_tele = require "bombadil.telescope.mappings"
-local wk = require "which-key"
-
 local sorters = require "telescope.sorters"
 
 map_tele("<space>gw", "grep_string", {
@@ -40,31 +38,13 @@ map_tele("<space>gp", "grep_prompt")
 -- Telescope Meta
 map_tele("<space>fB", "builtin")
 
-wk.register {
+require("which-key").register {
   ["<space>ed"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
     end,
     "dotfiles",
   },
-  -- Git
-  ["<leader>gw"] = {
-    name = "worktree",
-    c = {
-      function()
-        -- TODO: I don't like having to manually specify the path to the worktree.
-        require("telescope").extensions.git_worktree.create_git_worktree()
-      end,
-      "create",
-    },
-    l = {
-      function()
-        require("telescope").extensions.git_worktree.git_worktrees()
-      end,
-      "list",
-    },
-  },
-  -- Projects
   ["<space>fp"] = {
     function()
       require("telescope").extensions.project.project {}

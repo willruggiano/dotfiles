@@ -1,45 +1,26 @@
-vim.g.coq_settings = {
-  auto_start = "shut-up",
-  clients = {
-    buffers = {
-      enabled = true,
-    },
-    lsp = {
-      enabled = true,
-    },
-    snippets = {
-      enabled = true,
-      user_path = vim.env.DOTFILES .. "/.config/nvim/coq-user-snippets",
-    },
-    tmux = {
-      enabled = false,
-    },
-    tree_sitter = {
-      enabled = false,
-    },
+local inoremap = vim.keymap.inoremap
+
+vim.opt.completeopt = { "menuone", "noselect" }
+
+-- Don't show the dumb matching stuff
+vim.opt.shortmess:append "c"
+vim.opt.pumheight = 20
+
+require "coq_3p" {
+  {
+    src = "nvimlua",
+    short_name = "nLUA",
+    conf_only = false,
   },
-  display = {
-    preview = {
-      border = {
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-        { "", "NormalFloat" },
-      },
-      positions = {
-        north = 1,
-        east = 2,
-        west = 3,
-        south = 4,
-      },
-    },
-  },
-  keymap = {
-    bigger_preview = "",
-    jump_to_mark = "",
+  {
+    src = "repl",
+    sh = "zsh",
+    -- shell = { p = "perl", n = "node", ... },
+    max_lines = 99,
+    deadline = 500,
   },
 }
+
+-- Explicitly disabled in vim.g.coq_settings and mapped here instead to avoid the normal mode
+-- mapping of the same key which conflicts with a custom mapping in keymaps.lua
+inoremap { "<c-h>", "<c-\\><c-n><cmd>lua COQ.Nav_mark()<cr>" }

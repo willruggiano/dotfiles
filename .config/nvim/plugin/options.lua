@@ -100,5 +100,8 @@ opt.exrc = true
 -- ... but disallow autocommands
 opt.secure = true
 
+-- use ripgrep instead of native vimgrep
+vim.opt.grepprg = "rg --vimgrep --smart-case --follow"
+
 -- I like help,man,K to open in a vertical split
 vim.o.keywordprg = ":vert help"

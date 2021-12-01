@@ -1,12 +1,6 @@
-local ok, icons = pcall(require, "nvim-nonicons")
-if not ok then
-  return
-end
+local icons = require "nvim-nonicons"
+local devicons = require "nvim-web-devicons"
 
-local ok, devicons = pcall(require, "nvim-web-devicons")
-if not ok then
-  return
-end
 devicons.set_icon {
   lir_folder_icon = {
     icon = icons.get "file-directory",
@@ -15,11 +9,7 @@ devicons.set_icon {
   },
 }
 
-local ok, lir = pcall(require, "lir")
-if not ok then
-  return
-end
-
+local lir = require "lir"
 local actions = require "lir.actions"
 local clipboard_actions = require "lir.clipboard.actions"
 local mark_actions = require "lir.mark.actions"
@@ -79,7 +69,7 @@ custom_actions.new = function()
   end)
 end
 
-custom_actions.edit_adjacent = function()
+custom_actions.edit = function()
   local _, path = get_context()
   local curbuf = vim.api.nvim_win_get_buf(0)
   for _, w in ipairs(vim.api.nvim_list_wins()) do
@@ -91,6 +81,7 @@ custom_actions.edit_adjacent = function()
       return
     end
   end
+  actions.edit()
 end
 
 local fsize = function(bytes)
@@ -266,9 +257,9 @@ lir.setup {
 
   mappings = {
     ["<cr>"] = actions.edit,
+    ["<s-cr>"] = custom_actions.edit,
     ["<c-v>"] = actions.vsplit,
     ["<c-s>"] = actions.split,
-    o = custom_actions.edit_adjacent,
 
     ["<tab>"] = custom_actions.toggle_mark_down,
     ["<s-tab>"] = custom_actions.toggle_mark_up,
@@ -300,11 +291,6 @@ require("lir.git_status").setup {
   show_ignored = false,
 }
 
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
-
 local explore = function()
   if buffers.nameless(0) then
     vim.cmd "e ."
@@ -313,6 +299,6 @@ local explore = function()
   end
 end
 
-wk.register {
+require("which-key").register {
   ["-"] = { explore, "explore" },
 }

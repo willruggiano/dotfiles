@@ -21,7 +21,6 @@ end
 local ft_closers = {
   ["firvish-job-list"] = quit,
   ["firvish-job-output"] = quit,
-  harpoon = quit,
   help = quit,
   man = quit,
 }

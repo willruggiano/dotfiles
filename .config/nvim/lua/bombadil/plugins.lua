@@ -35,7 +35,12 @@ local function init()
   }
   use {
     "RishabhRD/nvim-cheat.sh",
-    requires = "RishabhRD/popfix",
+    config = function()
+      require "bombadil.config.cheat"
+    end,
+    cmd = { "Cheat" },
+    keys = "?",
+    requires = { "RishabhRD/popfix", module = "popfix" },
   }
 
   -- Movement, selection, search, etc
@@ -43,7 +48,7 @@ local function init()
   use {
     "chentau/marks.nvim",
     config = function()
-      require("marks").setup {}
+      require "bombadil.config.marks"
     end,
   }
   use {
@@ -54,25 +59,37 @@ local function init()
   -- Git
   use {
     "TimUntersberger/neogit",
-    requires = "sindrets/diffview.nvim",
     config = function()
       require "bombadil.config.neogit"
     end,
+    keys = { "<leader>g" },
+    requires = "sindrets/diffview.nvim",
   }
-  use "lewis6991/gitsigns.nvim"
   use {
-    "rhysd/git-messenger.vim",
-    setup = function()
-      vim.g.git_messenger_no_default_mappings = 1
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require "bombadil.config.gitsigns"
     end,
   }
-  use "ThePrimeagen/git-worktree.nvim"
+  use {
+    "ThePrimeagen/git-worktree.nvim",
+    setup = function()
+      require "bombadil.config.git-worktree"
+    end,
+    keys = { "<leader>gw" },
+    requires = "nvim-telescope/telescope.nvim",
+  }
   use "tpope/vim-fugitive"
   use {
     "f-person/git-blame.nvim",
     cmd = "GitBlameToggle",
+    fn = { "GitBlameToggle" },
+    keys = { "<leader>gb" },
     setup = function()
       vim.g.gitblame_enabled = false
+    end,
+    config = function()
+      require "bombadil.config.gitblame"
     end,
   }
 
@@ -82,18 +99,37 @@ local function init()
     config = function()
       require "bombadil.config.make"
     end,
+    cond = function()
+      return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
+    end,
     requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     rocks = "luafilesystem",
   }
-  use "neovim/nvim-lspconfig"
+  use {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "bombadil.lsp"
+    end,
+    event = "BufEnter *",
+    module = { "lspconfig", "lspconfig.util" },
+    requires = {
+      { "wbthomason/lsp-status.nvim", module = "lsp-status" },
+      { "onsails/lspkind-nvim", module = "lspkind" },
+      "nvim-lua/lsp_extensions.nvim",
+    },
+  }
   use {
     "ms-jpq/coq_nvim",
     branch = "coq",
+    event = "InsertEnter *",
     requires = {
       { "ms-jpq/coq.artifacts", branch = "artifacts" },
       { "ms-jpq/coq.thirdparty", branch = "3p" },
     },
     setup = function()
+      require "bombadil.config.coq-setup"
+    end,
+    config = function()
       require "bombadil.config.coq"
     end,
   }
@@ -103,9 +139,6 @@ local function init()
       vim.g.vimspector_enable_mappings = "HUMAN"
     end,
   }
-  use "wbthomason/lsp-status.nvim"
-  use "onsails/lspkind-nvim"
-  use "nvim-lua/lsp_extensions.nvim"
   use {
     "folke/trouble.nvim",
     config = function()
@@ -125,11 +158,13 @@ local function init()
     config = function()
       require "bombadil.config.dap"
     end,
+    module = "dap",
     {
       "rcarriga/nvim-dap-ui",
       config = function()
         require "bombadil.config.dap-ui"
       end,
+      module = "dapui",
       requires = "mfussenegger/nvim-dap",
     },
     {
@@ -147,7 +182,7 @@ local function init()
     config = function()
       require "bombadil.config.nix"
     end,
-    requires = "rcarriga/nvim-notify",
+    requires = { "rcarriga/nvim-notify", "Furkanzmc/firvish.nvim" },
   }
 
   -- Text editing + manipulation
@@ -156,6 +191,8 @@ local function init()
     config = function()
       require "bombadil.config.comments"
     end,
+    keys = { "<leader>c" },
+    module = "kommentary",
   }
   use {
     "blackCauldron7/surround.nvim",
@@ -163,7 +200,12 @@ local function init()
       require "bombadil.config.surround"
     end,
   }
-  use "windwp/nvim-autopairs"
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require "bombadil.config.autopairs"
+    end,
+  }
   use {
     "mhartington/formatter.nvim",
     disable = true,
@@ -172,7 +214,13 @@ local function init()
     end,
     rocks = "luafilesystem",
   }
-  use "monaqa/dial.nvim"
+  use {
+    "monaqa/dial.nvim",
+    config = function()
+      require "bombadil.config.dial"
+    end,
+    event = "BufEnter *",
+  }
 
   -- Treesitter/syntax/highlighty things
   use {
@@ -200,6 +248,12 @@ local function init()
     "kevinhwang91/nvim-bqf",
     config = function()
       require "bombadil.config.bqf"
+    end,
+  }
+  use {
+    "https://gitlab.com/yorickpeterse/nvim-pqf",
+    config = function()
+      require "bombadil.config.pqf"
     end,
   }
   use "plasticboy/vim-markdown"
@@ -244,10 +298,23 @@ local function init()
   use "kazhala/close-buffers.nvim"
 
   -- Colors
-  use "norcalli/nvim-colorizer.lua"
-  use "tjdevries/express_line.nvim"
-  use "tjdevries/colorbuddy.nvim"
-  use "folke/tokyonight.nvim"
+  use {
+    "tjdevries/express_line.nvim",
+    config = function()
+      require "bombadil.config.expressline"
+    end,
+  }
+  use {
+    "tjdevries/colorbuddy.nvim",
+    module = "colorbuddy",
+  }
+  use {
+    "folke/tokyonight.nvim",
+    config = function()
+      require "bombadil.config.tokyonight"
+    end,
+    requires = "norcalli/nvim-colorizer.lua",
+  }
 
   -- Terminal integration
   use {
@@ -259,7 +326,7 @@ local function init()
   use {
     "akinsho/nvim-toggleterm.lua",
     config = function()
-      require("toggleterm").setup {}
+      require "bombadil.config.toggleterm"
     end,
   }
 
@@ -280,29 +347,34 @@ local function init()
       require "bombadil.config.numb"
     end,
   }
-  use {
-    "ThePrimeagen/harpoon",
-    config = function()
-      require "bombadil.config.harpoon"
-    end,
-    requires = "nvim-lua/popup.nvim",
-  }
   use "nathom/filetype.nvim"
   use "Furkanzmc/firvish.nvim"
 
   -- Telescope, et al
-  use "nvim-telescope/telescope.nvim"
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  use "nvim-telescope/telescope-github.nvim"
-  use "nvim-telescope/telescope-packer.nvim"
-  use "nvim-telescope/telescope-symbols.nvim"
   use {
-    "nvim-telescope/telescope-frecency.nvim",
-    requires = "tami5/sql.nvim",
+    {
+      "nvim-telescope/telescope.nvim",
+      config = function()
+        require "bombadil.config.telescope"
+      end,
+    },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      after = "telescope.nvim",
+      run = "make",
+    },
+    { "nvim-telescope/telescope-github.nvim", after = "telescope.nvim" },
+    { "nvim-telescope/telescope-packer.nvim", after = "telescope.nvim" },
+    { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      after = "telescope.nvim",
+      requires = "tami5/sql.nvim",
+    },
+    { "nvim-telescope/telescope-vimspector.nvim", after = "telescope.nvim" },
+    { "nvim-telescope/telescope-project.nvim", after = "telescope.nvim" },
+    { "nvim-telescope/telescope-ui-select.nvim", after = "telescope.nvim" },
   }
-  use "nvim-telescope/telescope-vimspector.nvim"
-  use "nvim-telescope/telescope-project.nvim"
-  use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Fzf
   use "junegunn/fzf"
@@ -311,6 +383,7 @@ local function init()
     config = function()
       require "bombadil.config.fzf"
     end,
+    module = "fzf-lua",
     requires = {
       "vijaymarupudi/nvim-fzf",
     },

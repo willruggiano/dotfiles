@@ -130,10 +130,51 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+local unit = require "treesitter-unit"
+
 -- Highlights the current treesitter "unit"
 -- Can be toggled with ,thu
-require("treesitter-unit").enable_highlighting()
+unit.enable_highlighting()
 
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+local wk = require "which-key"
+wk.register {
+  ["<leader>t"] = {
+    name = "toggle",
+    h = {
+      name = "highlight",
+      u = {
+        function()
+          unit.toggle_highlighting()
+        end,
+        "unit",
+      },
+    },
+    p = { ":TSPlaygroundToggle<cr>", "treesitter-playground" },
+  },
+}
+
+wk.register({
+  iu = {
+    [[:lua require("treesitter-unit").select()<cr>]],
+    "inner-unit",
+  },
+  au = {
+    [[:lua require("treesitter-unit").select(true)<cr>]],
+    "outer-unit",
+  },
+}, { mode = "x" })
+
+wk.register({
+  iu = {
+    [[:<c-u>lua require("treesitter-unit").select()<cr>]],
+    "inner-unit",
+  },
+  au = {
+    [[:<c-u>lua require("treesitter-unit").select(true)<cr>]],
+    "outer-unit",
+  },
+}, { mode = "o" })

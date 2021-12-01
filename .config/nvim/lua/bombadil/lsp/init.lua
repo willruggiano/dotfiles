@@ -22,9 +22,18 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
+  local cursor_opts = require("telescope.themes").get_cursor()
+
   -- Mappings.
   wk.register({
-    ["<space>"] = {
+    ["<leader>"] = {
+      ca = {
+        function()
+          require("telescope.builtin").lsp_code_actions(cursor_opts)
+        end,
+        "code-action",
+      },
+      f = { vim.lsp.buf.formatting, "format" },
       d = {
         l = {
           vim.diagnostic.open_float,
@@ -37,29 +46,6 @@ local on_attach = function(client, bufnr)
         p = {
           vim.diagnostic.goto_prev,
           "goto-prev",
-        },
-      },
-      g = {
-        name = "goto",
-        d = {
-          vim.lsp.buf.definition,
-          "definition",
-        },
-        i = {
-          vim.lsp.buf.implementation,
-          "implementation",
-        },
-        r = {
-          vim.lsp.buf.references,
-          "references",
-        },
-        D = {
-          vim.lsp.buf.declaration,
-          "declaration",
-        },
-        T = {
-          vim.lsp.buf.type_definition,
-          "type-definition",
         },
       },
       r = {
@@ -94,25 +80,33 @@ local on_attach = function(client, bufnr)
         "peek-definition",
       },
     },
-  }, {
-    buffer = bufnr,
-  })
-
-  local cursor_opts = require("telescope.themes").get_cursor()
-
-  wk.register({
-    ["<leader>"] = {
-      ca = {
-        function()
-          require("telescope.builtin").lsp_code_actions(cursor_opts)
-        end,
-        "code-action",
+    g = {
+      name = "goto",
+      d = {
+        vim.lsp.buf.definition,
+        "definition",
       },
-      f = { vim.lsp.buf.formatting, "format" },
+      i = {
+        vim.lsp.buf.implementation,
+        "implementation",
+      },
+      r = {
+        vim.lsp.buf.references,
+        "references",
+      },
+      D = {
+        vim.lsp.buf.declaration,
+        "declaration",
+      },
+      T = {
+        vim.lsp.buf.type_definition,
+        "type-definition",
+      },
     },
   }, {
     buffer = bufnr,
   })
+
   wk.register({
     ["<leader>"] = {
       ca = {
@@ -257,6 +251,3 @@ lspconfig.rnix.setup {
   on_attach = on_attach,
   capabilities = updated_capabilities,
 }
-
--- Map :Format to vim.lsp.buf.formatting()
-vim.cmd [[command! Format execute 'lua vim.lsp.buf.formatting()']]
