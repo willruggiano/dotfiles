@@ -30,7 +30,7 @@ local function init()
   use {
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup {}
+      require "bombadil.config.which-key"
     end,
   }
   use {
@@ -56,11 +56,7 @@ local function init()
     "TimUntersberger/neogit",
     requires = "sindrets/diffview.nvim",
     config = function()
-      require("neogit").setup {
-        integrations = {
-          diffview = true,
-        },
-      }
+      require "bombadil.config.neogit"
     end,
   }
   use "lewis6991/gitsigns.nvim"
@@ -84,16 +80,7 @@ local function init()
   local_use {
     "make.nvim",
     config = function()
-      local cwd = vim.fn.getcwd()
-      require("make").setup {
-        default = {
-          exe = "cmake",
-          source_dir = cwd,
-          build_parallelism = 8,
-          generator = "Ninja",
-          open_quickfix_on_error = true,
-        },
-      }
+      require "bombadil.config.make"
     end,
     requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     rocks = "luafilesystem",
@@ -122,56 +109,58 @@ local function init()
   use {
     "folke/trouble.nvim",
     config = function()
-      require("trouble").setup {
-        auto_preview = false,
-        auto_fold = true,
-      }
+      require "bombadil.config.trouble"
     end,
   }
   use "folke/lua-dev.nvim"
   local_use {
     "refactoring.nvim",
     config = function()
-      require("refactoring").setup {}
+      require "bombadil.config.refactoring"
     end,
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   }
-  use "mfussenegger/nvim-dap"
-  use "rcarriga/nvim-dap-ui"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "jbyuki/one-small-step-for-vimkind"
+  use {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require "bombadil.config.dap"
+    end,
+    {
+      "rcarriga/nvim-dap-ui",
+      config = function()
+        require "bombadil.config.dap-ui"
+      end,
+      requires = "mfussenegger/nvim-dap",
+    },
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      requires = "mfussenegger/nvim-dap",
+    },
+    {
+      "jbyuki/one-small-step-for-vimkind",
+      requires = "mfussenegger/nvim-dap",
+    },
+  }
   use "jose-elias-alvarez/null-ls.nvim"
-  -- local_use "null-ls.nvim"
   local_use {
     "nix.nvim",
     config = function()
-      require("nix").setup {}
+      require "bombadil.config.nix"
     end,
     requires = "rcarriga/nvim-notify",
   }
 
   -- Text editing + manipulation
-  use "b3nj5m1n/kommentary"
+  use {
+    "b3nj5m1n/kommentary",
+    config = function()
+      require "bombadil.config.comments"
+    end,
+  }
   use {
     "blackCauldron7/surround.nvim",
     config = function()
-      require("surround").setup {
-        mappings_style = "surround",
-        pairs = {
-          nestable = {
-            { "(", ")" },
-            { "[", "]" },
-            { "{", "}" },
-            { "<", ">" },
-          },
-          linear = {
-            { "'", "'" },
-            { "`", "`" },
-            { '"', '"' },
-            { "*", "*" },
-          },
-        },
-      }
+      require "bombadil.config.surround"
     end,
   }
   use "windwp/nvim-autopairs"
@@ -188,43 +177,29 @@ local function init()
   -- Treesitter/syntax/highlighty things
   use {
     "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require "bombadil.config.treesitter"
+    end,
     requires = {
+      "David-Kunz/treesitter-unit",
+      "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/playground",
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
   }
-  use "David-Kunz/treesitter-unit"
   use "hashivim/vim-terraform"
   use "kevinoid/vim-jsonc"
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup {
-        buftype_exclude = {
-          "quickfix",
-          "help",
-          "nofile",
-          "prompt",
-          "terminal",
-        },
-        filetype_exclude = {
-          "man",
-          "packer",
-          "NeogitStatus",
-          "NeogitCommitView",
-          "NeogitLogView",
-          "TelescopePrompt",
-          "vimcmake",
-        },
-      }
+      require "bombadil.config.indent-blankline"
     end,
   }
   use {
     "kevinhwang91/nvim-bqf",
     config = function()
-      require("bqf").enable()
+      require "bombadil.config.bqf"
     end,
   }
   use "plasticboy/vim-markdown"
@@ -302,7 +277,7 @@ local function init()
   use {
     "nacro90/numb.nvim",
     config = function()
-      require("numb").setup {}
+      require "bombadil.config.numb"
     end,
   }
   use {
@@ -334,14 +309,7 @@ local function init()
   use {
     "ibhagwan/fzf-lua",
     config = function()
-      require("fzf-lua").setup {
-        winopts = {
-          win_height = 0.3,
-          win_width = 1,
-          win_row = 1,
-          win_col = 0.5,
-        },
-      }
+      require "bombadil.config.fzf"
     end,
     requires = {
       "vijaymarupudi/nvim-fzf",

@@ -1,8 +1,3 @@
-local ok, _ = pcall(require, "nvim-treesitter")
-if not ok then
-  return
-end
-
 local swap_next, swap_prev = (function()
   local swap_objects = {
     p = "@parameter.inner",
@@ -13,8 +8,8 @@ local swap_next, swap_prev = (function()
 
   local n, p = {}, {}
   for key, obj in pairs(swap_objects) do
-    n[string.format("<space-s>%s", key)] = obj
-    p[string.format("<space-s>%s", string.upper(key))] = obj
+    n[string.format("<leader-s>%s", key)] = obj
+    p[string.format("<leader-s>%s", string.upper(key))] = obj
   end
 
   return n, p
@@ -63,10 +58,10 @@ require("nvim-treesitter.configs").setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<space-s>i", -- maps in normal mode to init the node/scope selection
-      node_incremental = "<space-s>i", -- increment to the upper named parent
-      node_decremental = "<space-s>d", -- decrement to the previous node
-      scope_incremental = "<space-s>s", -- increment to the upper scope (as defined in locals.scm)
+      init_selection = "<leader-s>i", -- maps in normal mode to init the node/scope selection
+      node_incremental = "<leader-s>i", -- increment to the upper named parent
+      node_decremental = "<leader-s>d", -- decrement to the previous node
+      scope_incremental = "<leader-s>s", -- increment to the upper scope (as defined in locals.scm)
     },
   },
 
