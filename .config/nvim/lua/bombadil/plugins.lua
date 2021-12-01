@@ -1,10 +1,13 @@
-vim.cmd [[packadd packer.nvim]]
+local packer = nil
 
-return require("packer").startup(function()
-  local packer = require "packer"
+local function init()
+  if packer == nil then
+    packer = require "packer"
+    packer.init { disable_commands = true }
+  end
+
   local use = packer.use
-
-  local local_use = function(opts)
+  local function local_use(opts)
     if type(opts) == "string" then
       local path = "~/dev/" .. opts
       opts = { path }
@@ -15,6 +18,7 @@ return require("packer").startup(function()
 
     use(opts)
   end
+  packer.reset()
 
   -- Packer
   use "wbthomason/packer.nvim"
@@ -362,4 +366,13 @@ return require("packer").startup(function()
       vim.fn["firenvim#install"](0)
     end,
   }
-end)
+end
+
+local plugins = setmetatable({}, {
+  __index = function(_, key)
+    init()
+    return packer[key]
+  end,
+})
+
+return plugins
