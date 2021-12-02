@@ -374,6 +374,13 @@ local function init()
     { "nvim-telescope/telescope-vimspector.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-project.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim", after = "telescope.nvim" },
+    {
+      "renerocksai/telekasten.nvim",
+      after = "telescope.nvim",
+      config = function()
+        require "bombadil.config.telekasten"
+      end,
+    },
   }
 
   -- Fzf
