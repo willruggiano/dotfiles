@@ -36,23 +36,18 @@ require("nvim-treesitter.configs").setup {
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
-
-    smart_rename = {
-      enable = false,
-      keymaps = {
-        -- mapping to rename reference under cursor
-        smart_rename = "grr",
-      },
-    },
+    smart_rename = { enable = false },
   },
 
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<leader><leader>s", -- maps in normal mode to init the node/scope selection
-      node_incremental = "u", -- increment to the upper named parent
-      node_decremental = "p", -- decrement to the previous node
-      scope_incremental = "s", -- increment to the upper scope (as defined in locals.scm)
+      -- NOTE: Disable the init_selection mapping and only map the inc/dec/scope maps.
+      -- We want to "init selection" through other means, e.g. unit/node selectors: vau, vaf, et al
+      init_selection = "<nop>",
+      node_incremental = "<c-u>", -- Increment to the upper named parent
+      node_decremental = "<c-p>", -- Decrement to the previous node
+      scope_incremental = "<c-s>", -- Increment to the upper scope (as defined in locals.scm)
     },
   },
 

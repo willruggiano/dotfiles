@@ -283,7 +283,7 @@ local function init()
     config = function()
       require "bombadil.config.lir"
     end,
-    requires = { "nvim-lua/plenary.nvim", "yamatsum/nvim-nonicons" },
+    requires = { "Furkanzmc/firvish.nvim", "nvim-lua/plenary.nvim", "yamatsum/nvim-nonicons" },
     rocks = { "inspect", "luafilesystem" },
   }
   use { "tamago324/lir-git-status.nvim", requires = "tamago324/lir.nvim" }

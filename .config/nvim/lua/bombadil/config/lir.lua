@@ -193,8 +193,20 @@ custom_actions.quit = function()
   end
 end
 
-local git = function(command)
-  vim.cmd("!git " .. command)
+local job_ctrl = require "firvish.job_control"
+local function git(...)
+  local cmd = { "git" }
+  vim.list_extend(cmd, { ... })
+  job_ctrl.start_job {
+    cmd = cmd,
+    filetype = "log",
+    title = "git",
+    listed = true,
+    notify = true,
+    output_qf = false,
+    is_background_job = true,
+    cwd = vim.fn.getcwd(),
+  }
 end
 
 custom_actions.git = {
@@ -209,9 +221,9 @@ custom_actions.git = {
           return i.fullpath
         end, ipairs(marks))
       )
-      git("add " .. table.concat(paths, " "))
+      git("add", unpack(paths))
     else
-      git("add " .. path)
+      git("add", path)
     end
     actions.reload()
   end,
@@ -242,9 +254,9 @@ custom_actions.git = {
           return i.fullpath
         end, ipairs(marks))
       )
-      git("restore --staged " .. table.concat(paths, " "))
+      git("restore", "--staged", unpack(paths))
     else
-      git("restore --staged " .. path)
+      git("restore", "--staged", path)
     end
   end,
 }
