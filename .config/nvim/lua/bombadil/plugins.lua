@@ -191,7 +191,7 @@ local function init()
     config = function()
       require "bombadil.config.comments"
     end,
-    keys = { "<leader>c" },
+    keys = { "gc", "<leader>c" },
     module = "kommentary",
   }
   use {
@@ -298,6 +298,9 @@ local function init()
   use "kazhala/close-buffers.nvim"
 
   -- Colors
+  use "rktjmp/lush.nvim"
+  local_use "colorscheme.nvim"
+  use "norcalli/nvim-colorizer.lua"
   use {
     "tjdevries/express_line.nvim",
     config = function()
@@ -310,6 +313,7 @@ local function init()
   }
   use {
     "folke/tokyonight.nvim",
+    disable = true,
     config = function()
       require "bombadil.config.tokyonight"
     end,
