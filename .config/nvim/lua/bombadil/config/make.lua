@@ -35,7 +35,7 @@ vim.cmd [[
 ]]
 
 -- TODO: It would be nice to have MakeGenerate force (re)generate if <bang> is given
-vim.cmd [[command! -bang MakeGenerate lua require("make").generate()]]
+vim.cmd [[command! -bang MakeGenerate lua require("make").generate({}, "<bang>" == "!")]]
 vim.cmd [[command! MakeToggle lua require("make").toggle()]]
 vim.cmd [[command! MakeInfo lua require("make").info()]]
 vim.cmd [[command! -nargs=1 MakeTarget lua require("make").compile({ build_target = <q-args> })]]
