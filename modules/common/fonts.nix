@@ -4,7 +4,7 @@ with lib;
 
 {
   config = {
-    fonts.enableFontDir = true;
+    fonts.fontDir.enable = true;
     fonts.fonts = with pkgs; [
       font-awesome
     ];
