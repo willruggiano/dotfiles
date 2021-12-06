@@ -176,7 +176,7 @@ in
           space_icon_color_tertiary = "0xfffff9b0";
           space_icon_strip = "1 2 3 4 5 6 7 8 9 10";
           clock_icon = "";
-          clock_format = "%m/%d/%y %R";
+          clock_format = ''"%m/%d/%y %R"'';
           dnd_icon = "";
           right_shell = on;
           right_shell_icon = "";
