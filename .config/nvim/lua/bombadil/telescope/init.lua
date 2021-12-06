@@ -13,6 +13,7 @@ end
 
 reloader()
 
+local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local state = require "telescope.state"
@@ -38,7 +39,7 @@ for i, dir in ipairs { "~/.config", "~/dev", "~/dotfiles", "~/workspaces", "~/sr
   end
 end ]]
 
-require("telescope").setup {
+telescope.setup {
   defaults = {
     prompt_prefix = "> ",
     selection_caret = "* ",
@@ -144,11 +145,11 @@ require("telescope").setup {
   },
 }
 
-pcall(require("telescope").load_extension, "dotfiles")
-pcall(require("telescope").load_extension, "fzf")
-pcall(require("telescope").load_extension, "git_worktree")
-pcall(require("telescope").load_extension, "project")
-pcall(require("telescope").load_extension, "ui-select")
+telescope.load_extension "dotfiles"
+telescope.load_extension "fzf"
+telescope.load_extension "git_worktree"
+telescope.load_extension "project"
+telescope.load_extension "ui-select"
 
 if pcall(require("telescope").load_extension, "frecency") then
   require "bombadil.telescope.frecency"

@@ -71,14 +71,6 @@ local function init()
       require "bombadil.config.gitsigns"
     end,
   }
-  use {
-    "ThePrimeagen/git-worktree.nvim",
-    setup = function()
-      require "bombadil.config.git-worktree"
-    end,
-    keys = { "<leader>gw" },
-    requires = "nvim-telescope/telescope.nvim",
-  }
   use "tpope/vim-fugitive"
   use {
     "f-person/git-blame.nvim",
@@ -100,7 +92,7 @@ local function init()
       require "bombadil.config.make"
     end,
     cond = function()
-      return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
+      return vim.fn.filereadable(vim.fn.expand "./makerc.lua") == 1
     end,
     requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     rocks = "luafilesystem",
@@ -191,7 +183,7 @@ local function init()
     config = function()
       require "bombadil.config.comments"
     end,
-    keys = { "gc", "<leader>c" },
+    event = "BufEnter *",
     module = "kommentary",
   }
   use {
@@ -383,6 +375,13 @@ local function init()
       after = "telescope.nvim",
       config = function()
         require "bombadil.config.telekasten"
+      end,
+    },
+    {
+      "ThePrimeagen/git-worktree.nvim",
+      after = "telescope.nvim",
+      config = function()
+        require "bombadil.config.git-worktree"
       end,
     },
   }

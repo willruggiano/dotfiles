@@ -1,3 +1,5 @@
+require("git-worktree").setup {}
+
 require("which-key").register {
   ["<leader>gw"] = {
     name = "worktree",

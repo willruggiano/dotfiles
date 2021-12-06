@@ -1,5 +1,7 @@
 local execute = vim.api.nvim_command
 
+require("marks").setup {}
+
 require("which-key").register {
   ["<leader>b"] = {
     name = "bookmarks",
