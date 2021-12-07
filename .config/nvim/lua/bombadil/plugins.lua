@@ -138,6 +138,7 @@ local function init()
     end,
   }
   use "folke/lua-dev.nvim"
+  use "bfredl/nvim-luadev"
   local_use {
     "refactoring.nvim",
     config = function()
