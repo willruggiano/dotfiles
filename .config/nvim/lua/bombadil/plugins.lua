@@ -290,6 +290,7 @@ local function init()
   -- Colors
   use "rktjmp/lush.nvim"
   local_use "colorscheme.nvim"
+  local_use "nortia.nvim"
   use "norcalli/nvim-colorizer.lua"
   use {
     "tjdevries/express_line.nvim",
