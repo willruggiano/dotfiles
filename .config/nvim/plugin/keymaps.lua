@@ -27,15 +27,14 @@ local ft_closers = {
 local bt_closers = {
   quickfix = function()
     vim.cmd "cclose"
+    return true
   end,
   terminal = quit,
 }
-local close = function()
+local close = function(bt, ft)
   if vim.fn.bufname "%" == "" then
     quit()
   end
-  local ft = vim.bo.filetype
-  local bt = vim.bo.buftype
   local fn = ft_closers[ft] or bt_closers[bt] or bufdelete
   if fn() then
     -- Success; nothing to do.
@@ -89,7 +88,12 @@ wk.register {
   ["<c-s>"] = { "<cmd>silent update!<cr>", "save" },
 
   -- Does anyone even use macros?
-  q = { close, "close" },
+  q = {
+    function()
+      close(vim.bo.buftype, vim.bo.filetype)
+    end,
+    "close",
+  },
   Q = { "<cmd>quitall<cr>", ":quitall" },
 }
 

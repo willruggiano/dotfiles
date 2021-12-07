@@ -74,11 +74,6 @@ local on_attach = function(client, bufnr)
           "workspace",
         },
       },
-      K = { vim.lsp.buf.hover, "hover" },
-      ["<C-K>"] = {
-        handlers.peek_definition,
-        "peek-definition",
-      },
     },
     g = {
       name = "goto",
@@ -102,6 +97,11 @@ local on_attach = function(client, bufnr)
         vim.lsp.buf.type_definition,
         "type-definition",
       },
+    },
+    K = { vim.lsp.buf.hover, "hover" },
+    ["<C-K>"] = {
+      handlers.peek_definition,
+      "peek-definition",
     },
   }, {
     buffer = bufnr,
