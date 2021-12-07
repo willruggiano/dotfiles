@@ -25,17 +25,17 @@ local ft_closers = {
   man = quit,
 }
 local bt_closers = {
-  quickfix = function()
-    vim.cmd "cclose"
-    return true
-  end,
   terminal = quit,
 }
-local close = function(bt, ft)
-  if vim.fn.bufname "%" == "" then
+local bname_closers = {
+  ["[nvim-lua]"] = quit, -- nvim-luadev
+}
+local close = function(bt, ft, bname)
+  if bname == "" then
     quit()
+    return
   end
-  local fn = ft_closers[ft] or bt_closers[bt] or bufdelete
+  local fn = ft_closers[ft] or bt_closers[bt] or bname_closers[bname] or bufdelete
   if fn() then
     -- Success; nothing to do.
   else
@@ -90,7 +90,7 @@ wk.register {
   -- Does anyone even use macros?
   q = {
     function()
-      close(vim.bo.buftype, vim.bo.filetype)
+      close(vim.bo.buftype, vim.bo.filetype, vim.fn.bufname "%")
     end,
     "close",
   },

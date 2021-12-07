@@ -38,3 +38,5 @@ vim.g.loaded_netrwPlugin = true
 vim.g.loaded_netrwSettings = true
 
 vim.g.no_gitrebase_maps = true
+
+vim.g.did_load_filetypes = true

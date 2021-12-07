@@ -141,9 +141,6 @@ local function init()
   use "bfredl/nvim-luadev"
   local_use {
     "refactoring.nvim",
-    config = function()
-      require "bombadil.config.refactoring"
-    end,
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   }
   use {
@@ -344,7 +341,12 @@ local function init()
       require "bombadil.config.numb"
     end,
   }
-  use "nathom/filetype.nvim"
+  use {
+    "nathom/filetype.nvim",
+    config = function()
+      require "bombadil.config.filetype"
+    end,
+  }
   use "Furkanzmc/firvish.nvim"
 
   -- Telescope, et al
