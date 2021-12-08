@@ -26,7 +26,7 @@ vim.g.tokyonight_dark_sidebar = true
 vim.g.tokyonight_dark_float = true
 vim.g.tokyonight_colors = {}
 
-require("tokyonight").colorscheme()
+-- require("tokyonight").colorscheme()
 require("colorizer").setup()
 
 vim.cmd [[highlight IndentBlanklineChar guifg=#565f89 gui=nocombine]]

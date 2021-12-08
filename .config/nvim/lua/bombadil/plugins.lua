@@ -288,9 +288,14 @@ local function init()
   use "kazhala/close-buffers.nvim"
 
   -- Colors
-  use "rktjmp/lush.nvim"
-  local_use "colorscheme.nvim"
-  local_use "nortia.nvim"
+  local_use {
+    "nortia.nvim",
+    config = function()
+      vim.opt.termguicolors = true
+      vim.cmd "colorscheme nortia"
+    end,
+    requires = "rktjmp/lush.nvim",
+  }
   use "norcalli/nvim-colorizer.lua"
   use {
     "tjdevries/express_line.nvim",
@@ -301,14 +306,6 @@ local function init()
   use {
     "tjdevries/colorbuddy.nvim",
     module = "colorbuddy",
-  }
-  use {
-    "folke/tokyonight.nvim",
-    disable = true,
-    config = function()
-      require "bombadil.config.tokyonight"
-    end,
-    requires = "norcalli/nvim-colorizer.lua",
   }
 
   -- Terminal integration
