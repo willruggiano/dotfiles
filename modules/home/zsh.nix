@@ -105,6 +105,9 @@ in
         }
       ];
 
+      initExtraBeforeCompInit = ''
+        fpath+=(/nix/var/nix/profiles/per-user/bombadil/home-manager/home-path/share/zsh/site-functions)
+      '';
       initExtra = with pkgs; ''
         eval $(${thefuck}/bin/thefuck --alias)
 
