@@ -7,6 +7,7 @@ in
   config = mkIf cfg.enable {
     programs.sway = {
       extraPackages = with pkgs; [
+        dmenu-wayland
         mako
         swayidle
         swaylock
