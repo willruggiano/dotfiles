@@ -9,7 +9,7 @@ config.bind('ql', 'set-cmd-text -s :quickmark-load')
 config.bind('qL', 'set-cmd-text -s :quickmark-load -t')
 config.bind('qa', 'quickmark-save')
 config.bind('qd', 'quickmark-del')
-config.unbind('b')  # as it will be the root of our bookmark hierarcy
+config.unbind('b')  # as it will be the root of our bookmark hierarchy
 config.bind('bl', 'set-cmd-text -s :bookmark-load')
 config.bind('bL', 'set-cmd-text -s :bookmark-load -t')
 config.bind('ba', 'bookmark-add')
@@ -33,7 +33,7 @@ c.url.start_pages = ['https://github.com']
 c.url.searchengines.update({
     'cpp': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
     'duckduckgo': 'https://duckduckgo.com/?q={}',
-    'github': 'https://github.com/{}',
+    'github': 'https://github.com/search?q={}',
     'google': 'https://google.com/search?q={}',
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
 })
