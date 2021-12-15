@@ -35,6 +35,10 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result)
   end
 end
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "single",
+})
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   severity_sort = true,
   signs = true,
