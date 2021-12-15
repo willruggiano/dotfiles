@@ -30,6 +30,7 @@ status.activate = function()
     indicator_hint = icons.get "light-bulb",
     indicator_ok = icons.get "check",
     spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+    status_symbol = "",
   }
 
   nvim_status.register_progress()

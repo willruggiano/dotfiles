@@ -92,7 +92,7 @@ local function init()
       require "bombadil.config.make"
     end,
     cond = function()
-      return vim.fn.filereadable(vim.fn.expand "./makerc.lua") == 1
+      return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
     end,
     requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
     rocks = "luafilesystem",
@@ -171,6 +171,12 @@ local function init()
     "nix.nvim",
     config = function()
       require "bombadil.config.nix"
+    end,
+    cond = function()
+      local has_flake = vim.fn.filereadable(vim.fn.expand "./flake.nix")
+      local has_default = vim.fn.filereadable(vim.fn.expand "./default.nix")
+      local has_shell = vim.fn.filereadable(vim.fn.expand "./shell.nix")
+      return has_flake or has_default or has_shell
     end,
     requires = { "rcarriga/nvim-notify", "Furkanzmc/firvish.nvim" },
   }
@@ -298,7 +304,15 @@ local function init()
   }
   use "norcalli/nvim-colorizer.lua"
   use {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require "bombadil.config.lualine"
+    end,
+    requires = "kyazdani42/nvim-web-devicons",
+  }
+  use {
     "tjdevries/express_line.nvim",
+    disable = true,
     config = function()
       require "bombadil.config.expressline"
     end,
