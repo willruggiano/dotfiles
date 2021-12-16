@@ -15,7 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ bc thefuck units ];
+    home.packages = with pkgs; [ atuin bc thefuck units ];
 
     programs.nix-index.enable = true;
 
@@ -29,6 +29,35 @@ in
 
       plugins = with pkgs; [
         {
+          name = "atuin";
+          src = fetchFromGitHub {
+            owner = "ellie";
+            repo = "atuin";
+            rev = "v0.7.1";
+            hash = "sha256-jjGP8YeHnEr0f9RONwA6wZT872C0jXTvSRdt9zAu6KE=";
+          };
+        }
+        {
+          name = "clipboard";
+          src = fetchFromGitHub {
+            owner = "ohmyzsh";
+            repo = "ohmyzsh";
+            rev = "7a4f4ad91e1f937b36a54703984b958abe9da4b8";
+            sha256 = "1p43x3sx54h4vgbaa4iz3j1yj4d0qcnxlcq9c2z4q6j7021gjbvi";
+          };
+          file = "lib/clipboard.zsh";
+        }
+        {
+          name = "enhancd";
+          src = fetchFromGitHub {
+            owner = "b4b4r07";
+            repo = "enhancd";
+            rev = "aec0e0c1c0b1376e87da74b8940fda5657269948";
+            hash = "sha256-j50+2cOXhmJ8VmYj5oVQRJXP/iayrEk3VugVIadgwo4=";
+          };
+          file = "init.sh";
+        }
+        {
           name = "fast-syntax-highlighting";
           src = fetchFromGitHub {
             owner = "zdharma";
@@ -38,22 +67,12 @@ in
           };
         }
         {
-          name = "magic-enter";
+          name = "forgit";
           src = fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "7a4f4ad91e1f937b36a54703984b958abe9da4b8";
-            sha256 = "1p43x3sx54h4vgbaa4iz3j1yj4d0qcnxlcq9c2z4q6j7021gjbvi";
-          };
-          file = "plugins/magic-enter/magic-enter.plugin.zsh";
-        }
-        {
-          name = "zsh-autopair";
-          src = fetchFromGitHub {
-            owner = "hlissner";
-            repo = "zsh-autopair";
-            rev = "9d003fc02dbaa6db06e6b12e8c271398478e0b5d";
-            sha256 = "0s4xj7yv75lpbcwl4s8rgsaa72b41vy6nhhc5ndl7lirb9nl61l7";
+            owner = "wfxr";
+            repo = "forgit";
+            rev = "9f3a4239205b638b8c535220bfec0b1fbca2d620";
+            sha256 = "1w29ryc4l9pz60xbcwk0czxnhmjjh8xa6amh60whcapbsm174ssz";
           };
         }
         {
@@ -75,33 +94,23 @@ in
           };
         }
         {
-          name = "clipboard";
+          name = "magic-enter";
           src = fetchFromGitHub {
             owner = "ohmyzsh";
             repo = "ohmyzsh";
             rev = "7a4f4ad91e1f937b36a54703984b958abe9da4b8";
             sha256 = "1p43x3sx54h4vgbaa4iz3j1yj4d0qcnxlcq9c2z4q6j7021gjbvi";
           };
-          file = "lib/clipboard.zsh";
+          file = "plugins/magic-enter/magic-enter.plugin.zsh";
         }
         {
-          name = "forgit";
+          name = "zsh-autopair";
           src = fetchFromGitHub {
-            owner = "wfxr";
-            repo = "forgit";
-            rev = "9f3a4239205b638b8c535220bfec0b1fbca2d620";
-            sha256 = "1w29ryc4l9pz60xbcwk0czxnhmjjh8xa6amh60whcapbsm174ssz";
+            owner = "hlissner";
+            repo = "zsh-autopair";
+            rev = "9d003fc02dbaa6db06e6b12e8c271398478e0b5d";
+            sha256 = "0s4xj7yv75lpbcwl4s8rgsaa72b41vy6nhhc5ndl7lirb9nl61l7";
           };
-        }
-        {
-          name = "enhancd";
-          src = fetchFromGitHub {
-            owner = "b4b4r07";
-            repo = "enhancd";
-            rev = "aec0e0c1c0b1376e87da74b8940fda5657269948";
-            hash = "sha256-j50+2cOXhmJ8VmYj5oVQRJXP/iayrEk3VugVIadgwo4=";
-          };
-          file = "init.sh";
         }
       ];
 
@@ -109,8 +118,6 @@ in
         fpath+=(/nix/var/nix/profiles/per-user/bombadil/home-manager/home-path/share/zsh/site-functions)
       '';
       initExtra = with pkgs; ''
-        eval $(${thefuck}/bin/thefuck --alias)
-
         for f in $HOME/.config/zsh/extra/[0-9][0-9]-*.zsh; do
           source "$f"
         done
