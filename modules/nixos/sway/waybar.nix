@@ -22,6 +22,7 @@ builtins.toJSON {
     "cpu"
     "memory"
     "pulseaudio"
+    "backlight"
     "battery"
     "tray"
     "idle_inhibitor"
