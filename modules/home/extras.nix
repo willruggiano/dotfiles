@@ -24,6 +24,7 @@ in
       pkgs.qrcp
       pkgs.ranger
       pkgs.ripgrep
+      pkgs.sad
       pkgs.trash-cli
       pkgs.unzip
       pkgs.wget
