@@ -16,6 +16,7 @@ in
         delta
         git
         gitflow
+        git-quickfix
         pre-commit
         tig
       ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
