@@ -2,6 +2,7 @@
 config.load_autoconfig()
 
 c.aliases = {
+    'autorefresh': 'spawn --userscript autorefresh',
     'nohl': 'search',
     'settings': 'open -t qute://settings',
 }

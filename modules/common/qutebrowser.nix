@@ -37,6 +37,38 @@ in
           source = ../../.config/qutebrowser;
           recursive = true;
         };
+        "qutebrowser/userscripts/autorefresh" = {
+          executable = true;
+          text = ''
+            #!${pkgs.python39}/bin/python
+
+            import os
+            import sys
+            import time
+            from pathlib import Path
+
+            QUTE_COUNT = int(os.getenv("QUTE_COUNT", 30))
+            QUTE_FIFO = os.environ["QUTE_FIFO"]
+            QUTE_TAB = os.environ["QUTE_TAB"]
+
+            command = f":run-with-count {QUTE_TAB} reload -f\n"
+
+            lock = Path(f"~/.local/share/qutebrowser/autorefresh/{QUTE_TAB}").expanduser()
+            with open(QUTE_FIFO, "w") as fifo:
+              if lock.exists():
+                # Then this call serves to "interrupt" a currently running userscript
+                os.remove(lock)
+                sys.exit(0)
+              else:
+                lock.parent.mkdir(parents=True, exist_ok=True)
+                lock.touch()
+
+              while lock.exists():
+                fifo.write(command)
+                fifo.flush()
+                time.sleep(QUTE_COUNT)
+          '';
+        };
       };
     }
     # (mkIf (!pkgs.stdenv.isDarwin) {

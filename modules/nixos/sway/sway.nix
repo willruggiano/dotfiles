@@ -2,7 +2,7 @@
 
 let
   swaymsg = "${pkgs.sway}/bin/swaymsg";
-  browser = "${pkgs.qutebrowser}/bin/qutebrowser";
+  browser = "qutebrowser";
   term = "${pkgs.kitty}/bin/kitty";
   xargs = "${pkgs.findutils}/bin/xargs";
 in
