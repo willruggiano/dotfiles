@@ -3,7 +3,6 @@
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  programs.emanote.enable = true;
   programs.firefox.enable = true;
   programs.fzf.enable = true;
   programs.git = {
@@ -18,6 +17,7 @@
   programs.zsh.enable = true;
 
   services.dropbox.enable = true;
+  services.emanote.enable = true;
   services.kbfs.enable = true;
 
   suites = {

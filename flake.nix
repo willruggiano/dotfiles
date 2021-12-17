@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/9651c19f895382702a6257c4da08d14a66488782";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
 
     nix.url = "github:nixos/nix/master";
     darwin.url = "github:LnL7/nix-darwin/master";
@@ -48,9 +48,12 @@
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
-        (final: prev: nixpkgs.lib.optionalAttrs (!prev.isFakePkgs or false) {
+        (final: prev: {
           emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
+        # (final: prev: nixpkgs.lib.optionalAttrs (!prev.isFakePkgs or false) {
+        #   emanote = inputs.emanote.defaultPackage."${prev.system}";
+        # })
       ];
 
       hostDefaults.modules = [
@@ -58,7 +61,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = lib'.reduceModules ./modules/home import;
+          home-manager.sharedModules = (lib'.reduceModules ./modules/home import) ++ [ inputs.emanote.homeManagerModule ];
         }
       ];
 
