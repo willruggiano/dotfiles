@@ -167,8 +167,9 @@ local function init()
     },
   }
   use "jose-elias-alvarez/null-ls.nvim"
-  local_use {
-    "nix.nvim",
+  -- local_use {
+  use {
+    "willruggiano/nix.nvim",
     config = function()
       require "bombadil.config.nix"
     end,
@@ -359,7 +360,10 @@ local function init()
       require "bombadil.config.filetype"
     end,
   }
-  use "Furkanzmc/firvish.nvim"
+  use {
+    "Furkanzmc/firvish.nvim",
+    requires = "Furkanzmc/options.nvim",
+  }
 
   -- Telescope, et al
   use {

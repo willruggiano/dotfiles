@@ -57,6 +57,7 @@ require("lualine").setup {
   tabline = {},
   extensions = {
     "quickfix",
+    "toggleterm",
     extensions.lir,
   },
 }

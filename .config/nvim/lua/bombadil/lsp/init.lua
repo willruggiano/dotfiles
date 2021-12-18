@@ -145,7 +145,7 @@ end
 local has_null_ls, null_ls = pcall(require, "null-ls")
 if has_null_ls then
   local custom_sources = require "bombadil.lsp.null-ls"
-  null_ls.config {
+  null_ls.setup {
     debug = true,
     sources = {
       -- Formatting
@@ -157,19 +157,18 @@ if has_null_ls then
       null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.shfmt,
       null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.terraform_fmt,
       null_ls.builtins.formatting.yapf,
       -- Diagnostics
       null_ls.builtins.diagnostics.codespell,
       null_ls.builtins.diagnostics.shellcheck,
-      -- null_ls.builtins.diagnostics.statix,
-      custom_sources.statix.diagnostics,
+      null_ls.builtins.diagnostics.statix,
+      -- custom_sources.statix.diagnostics,
 
       -- Code actions
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.code_actions.refactoring,
-      -- null_ls.builtins.code_actions.statix,
-      custom_sources.statix.code_actions,
+      null_ls.builtins.code_actions.statix,
+      -- custom_sources.statix.code_actions,
       -- Hover
       null_ls.builtins.hover.dictionary,
       -- Completion
