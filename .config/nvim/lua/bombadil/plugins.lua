@@ -70,6 +70,7 @@ local function init()
     config = function()
       require "bombadil.config.gitsigns"
     end,
+    wants = "which-key.nvim",
   }
   use "tpope/vim-fugitive"
   use {
@@ -129,12 +130,6 @@ local function init()
     "puremourning/vimspector",
     setup = function()
       vim.g.vimspector_enable_mappings = "HUMAN"
-    end,
-  }
-  use {
-    "folke/trouble.nvim",
-    config = function()
-      require "bombadil.config.trouble"
     end,
   }
   use "folke/lua-dev.nvim"
