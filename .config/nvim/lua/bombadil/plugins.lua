@@ -100,7 +100,7 @@ local function init()
   use {
     "neovim/nvim-lspconfig",
     config = function()
-      require "bombadil.lsp"
+      require "bombadil.config.lsp"
     end,
     event = "BufEnter *",
     module = { "lspconfig", "lspconfig.util" },

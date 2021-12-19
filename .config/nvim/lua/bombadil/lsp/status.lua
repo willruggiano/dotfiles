@@ -1,5 +1,5 @@
-local nvim_status = require "lsp-status"
 local icons = require "nvim-nonicons"
+local nvim_status = require "lsp-status"
 
 local status = {}
 
@@ -20,19 +20,25 @@ status.select_symbol = function(cursor_pos, symbol)
   end
 end
 
-status.activate = function()
-  nvim_status.config {
-    select_symbol = status.select_symbol,
+local sign_to_status = {
+  Error = "indicator_errors",
+  Hint = "indicator_hint",
+  Info = "indicator_info",
+  Warn = "indicator_warnings",
+}
 
-    indicator_errors = icons.get "circle-slash",
-    indicator_warnings = icons.get "alert",
-    indicator_info = icons.get "info",
-    indicator_hint = icons.get "light-bulb",
+status.activate = function()
+  local config = {
     indicator_ok = icons.get "check",
+    select_symbol = status.select_symbol,
     spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
     status_symbol = "",
   }
+  require("bombadil.lsp.signs").map(function(signs, key)
+    config[sign_to_status[key]] = signs[key]
+  end)
 
+  nvim_status.config(config)
   nvim_status.register_progress()
 end
 

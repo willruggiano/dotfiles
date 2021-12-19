@@ -1,68 +1,3 @@
-local icons = require "nvim-nonicons"
-
-local jump_to_location = function(location)
-  local uri = location.uri or location.targetUri
-  if uri == nil then
-    return
-  end
-  local bufnr = vim.uri_to_bufnr(uri)
-
-  if vim.api.nvim_buf_is_loaded(bufnr) then
-    local wins = vim.fn.win_findbuf(bufnr)
-    if wins then
-      vim.fn.win_gotoid(wins[1])
-    end
-  end
-
-  if vim.lsp.util.jump_to_location(location) then
-    vim.cmd "normal! zz"
-    return true
-  else
-    return false
-  end
-end
-
-vim.lsp.handlers["textDocument/definition"] = function(_, result)
-  if not result or vim.tbl_isempty(result) then
-    print "[LSP] Could not find definition"
-    return
-  end
-
-  if vim.tbl_islist(result) then
-    jump_to_location(result[1])
-  else
-    jump_to_location(result)
-  end
-end
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  severity_sort = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  virtual_text = {
-    severity_limit = "Error",
-    spacing = 4,
-    prefix = icons.get "dot-fill",
-  },
-})
-
-local signs = {
-  Error = icons.get "circle-slash",
-  Hint = icons.get "light-bulb",
-  Info = icons.get "info",
-  Warn = icons.get "alert",
-}
-
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
 local compute_target_range_using_ts = function(location)
   local uri = location.targetUri or location.uri
   if uri == nil then
@@ -132,9 +67,7 @@ local preview_location = function(location, method)
   return vim.lsp.util.preview_location(location, { border = "single" })
 end
 
-local M = {}
-
-M.peek_definition = function()
+return function()
   local params = vim.lsp.util.make_position_params()
   return vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, ctx)
     if vim.tbl_islist(result) then
@@ -144,5 +77,3 @@ M.peek_definition = function()
     end
   end)
 end
-
-return M
