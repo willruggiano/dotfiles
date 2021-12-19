@@ -362,8 +362,8 @@ local function init()
     end,
   }
   use {
-    "willruggiano/firvish.nvim",
-    -- "Furkanzmc/firvish.nvim",
+    -- "willruggiano/firvish.nvim",
+    "Furkanzmc/firvish.nvim",
     requires = "Furkanzmc/options.nvim",
   }
 
