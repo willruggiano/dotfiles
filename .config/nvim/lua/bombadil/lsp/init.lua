@@ -35,6 +35,14 @@ local on_attach = function(client, bufnr)
       },
       f = { vim.lsp.buf.formatting, "format" },
       d = {
+        name = "diagnostic",
+        d = {
+          function()
+            vim.fn.setqflist(vim.diagnostic.get(0))
+            vim.cmd "botright copen"
+          end,
+          "show-document",
+        },
         l = {
           vim.diagnostic.open_float,
           "show-line",
@@ -47,8 +55,16 @@ local on_attach = function(client, bufnr)
           vim.diagnostic.goto_prev,
           "goto-prev",
         },
+        w = {
+          function()
+            vim.diagnostic.setqflist { open = false }
+            vim.cmd "botright copen"
+          end,
+          "show-workspace",
+        },
       },
       r = {
+        name = "refactor",
         n = {
           vim.lsp.buf.rename,
           "rename",
