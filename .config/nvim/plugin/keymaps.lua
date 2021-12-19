@@ -18,24 +18,19 @@ local bufdelete = function()
   -- bufdelete on the last buffer does nothing
   return false
 end
-local ft_closers = {
+-- These are things we want to *always* close, as opposed to (maybe) bdelete'ing and cycling to the
+-- next buffer.
+local quitters = {
+  ["[nvim-lua]"] = quit, -- nvim-luadev
   ["firvish-job-list"] = quit,
   ["firvish-job-output"] = quit,
   help = quit,
   man = quit,
-}
-local bt_closers = {
+  quickfix = quit,
   terminal = quit,
 }
-local bname_closers = {
-  ["[nvim-lua]"] = quit, -- nvim-luadev
-}
 local close = function(bt, ft, bname)
-  if bname == "" then
-    quit()
-    return
-  end
-  local fn = ft_closers[ft] or bt_closers[bt] or bname_closers[bname] or bufdelete
+  local fn = quitters[ft] or quitters[bt] or quitters[bname] or bufdelete
   if fn() then
     -- Success; nothing to do.
   else
@@ -46,9 +41,6 @@ end
 
 -- WhichKey doesn't seem to like these
 -- Opens line above or below the current line
--- TODO: These don't seem to take for some reason...
--- inoremap { "<c-cr>", "<c-o>O" }
--- inoremap { "<s-cr>", "<c-o>o" }
 inoremap { "<c-k>", "<c-o>O" }
 inoremap { "<c-j>", "<c-o>o" }
 
@@ -95,6 +87,10 @@ wk.register {
     "close",
   },
   Q = { "<cmd>quitall<cr>", ":quitall" },
+  ["<leader>q"] = {
+    "<cmd>quit<cr>",
+    "quit",
+  },
 }
 
 wk.register({

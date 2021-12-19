@@ -430,14 +430,6 @@ local function init()
       "nvim-telescope/telescope.nvim",
     },
   }
-
-  -- Firefox?
-  use {
-    "glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
-  }
 end
 
 local plugins = setmetatable({}, {
