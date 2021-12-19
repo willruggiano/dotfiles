@@ -167,9 +167,10 @@ local function init()
     },
   }
   use "jose-elias-alvarez/null-ls.nvim"
-  -- local_use {
-  use {
-    "willruggiano/nix.nvim",
+  local_use {
+    "nix.nvim",
+    -- use {
+    -- "willruggiano/nix.nvim",
     config = function()
       require "bombadil.config.nix"
     end,
@@ -179,7 +180,7 @@ local function init()
       local has_shell = vim.fn.filereadable(vim.fn.expand "./shell.nix")
       return has_flake or has_default or has_shell
     end,
-    requires = { "rcarriga/nvim-notify", "Furkanzmc/firvish.nvim" },
+    wants = { "nvim-notify", "firvish.nvim" },
   }
 
   -- Text editing + manipulation
@@ -280,8 +281,8 @@ local function init()
     config = function()
       require "bombadil.config.lir"
     end,
-    requires = { "Furkanzmc/firvish.nvim", "nvim-lua/plenary.nvim", "yamatsum/nvim-nonicons" },
     rocks = { "inspect", "luafilesystem" },
+    wants = { "firvish.nvim", "plenary.nvim", "nvim-nonicons" },
   }
   use { "tamago324/lir-git-status.nvim", requires = "tamago324/lir.nvim" }
   use {
@@ -361,7 +362,8 @@ local function init()
     end,
   }
   use {
-    "Furkanzmc/firvish.nvim",
+    "willruggiano/firvish.nvim",
+    -- "Furkanzmc/firvish.nvim",
     requires = "Furkanzmc/options.nvim",
   }
 

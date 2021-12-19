@@ -30,11 +30,6 @@ end
 
 local custom_actions = {}
 
-custom_actions.up = function()
-  local up = actions.up
-  up()
-end
-
 custom_actions.new = function()
   local ctx, _ = get_context()
 
@@ -277,7 +272,7 @@ lir.setup {
     ["<s-tab>"] = custom_actions.toggle_mark_up,
     S = custom_actions.clear_marks,
 
-    ["-"] = custom_actions.up,
+    ["-"] = actions.up,
     q = custom_actions.quit,
 
     a = custom_actions.new,
@@ -303,8 +298,14 @@ require("lir.git_status").setup {
   show_ignored = false,
 }
 
+local special = {
+  ["firvish://buffers"] = true,
+  ["firvish://history"] = true,
+}
+
 local explore = function()
-  if buffers.nameless(0) then
+  local fname = vim.fn.expand "%"
+  if buffers.nameless(0) or special[fname] then
     vim.cmd "e ."
   else
     vim.cmd "e %:h"
