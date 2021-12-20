@@ -49,7 +49,10 @@ in
         pkgs.nodePackages.prettier
         pkgs.yq
       ])
-      (mkSuite "lua" [ pkgs.stylua ])
+      (mkSuite "lua" [
+        pkgs.luajitPackages.luacheck
+        pkgs.stylua
+      ])
       (mkSuite "nix" [
         # pkgs.cached-nix-shell
         pkgs.nixpkgs-fmt

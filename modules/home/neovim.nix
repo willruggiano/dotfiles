@@ -16,9 +16,10 @@ in
       withPython3 = true;
 
       extraPython3Packages = ps: with ps; [ pynvim ];
-      extraPackages = with pkgs; [
+      extraPackages = with pkgs; with luajitPackages; [
         clang-tools-unbroken
         cmake-language-server
+        luacheck
         rnix-lsp
         tree-sitter
       ] ++ lib.optionals (!stdenv.isDarwin) [

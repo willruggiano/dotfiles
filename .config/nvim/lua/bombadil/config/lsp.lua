@@ -193,7 +193,7 @@ end
 
 local has_null_ls, null_ls = pcall(require, "null-ls")
 if has_null_ls then
-  local custom_sources = require "bombadil.lsp.null-ls"
+  -- local custom_sources = require "bombadil.lsp.null-ls"
   null_ls.setup {
     debug = true,
     sources = {
@@ -209,6 +209,7 @@ if has_null_ls then
       null_ls.builtins.formatting.yapf,
       -- Diagnostics
       null_ls.builtins.diagnostics.codespell,
+      null_ls.builtins.diagnostics.luacheck,
       null_ls.builtins.diagnostics.shellcheck,
       null_ls.builtins.diagnostics.statix,
       -- custom_sources.statix.diagnostics,
