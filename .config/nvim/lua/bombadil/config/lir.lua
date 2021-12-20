@@ -256,6 +256,13 @@ custom_actions.git = {
   end,
 }
 
+custom_actions.toggle_devicons = function()
+  local config = require "lir.config"
+  local devicons = config.values.devicons_enable
+  config.values.devicons_enable = not devicons
+  actions.reload()
+end
+
 lir.setup {
   show_hidden_files = true,
   devicons_enable = true,
@@ -286,6 +293,7 @@ lir.setup {
     p = clipboard_actions.paste,
 
     ["."] = actions.toggle_show_hidden,
+    [","] = custom_actions.toggle_devicons,
     K = custom_actions.stat,
 
     ga = custom_actions.git.add,
