@@ -95,8 +95,9 @@ local function init()
     cond = function()
       return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
     end,
-    requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim", "rcarriga/nvim-notify" },
+    requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim" },
     rocks = "luafilesystem",
+    wants = { "nvim-notify" },
   }
   use {
     "neovim/nvim-lspconfig",
@@ -164,8 +165,7 @@ local function init()
   use "jose-elias-alvarez/null-ls.nvim"
   local_use {
     "nix.nvim",
-    -- use {
-    -- "willruggiano/nix.nvim",
+    after = "firvish.nvim",
     config = function()
       require "bombadil.config.nix"
     end,
@@ -273,11 +273,12 @@ local function init()
   }
   use {
     "tamago324/lir.nvim",
+    after = "firvish.nvim",
     config = function()
       require "bombadil.config.lir"
     end,
     rocks = { "inspect", "luafilesystem" },
-    wants = { "firvish.nvim", "plenary.nvim", "nvim-nonicons" },
+    wants = { "plenary.nvim", "nvim-nonicons" },
   }
   use { "tamago324/lir-git-status.nvim", requires = "tamago324/lir.nvim" }
   use {
@@ -289,6 +290,12 @@ local function init()
   }
   use "famiu/bufdelete.nvim"
   use "kazhala/close-buffers.nvim"
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require "bombadil.config.notify"
+    end,
+  }
 
   -- Colors
   local_use {
@@ -356,9 +363,14 @@ local function init()
       require "bombadil.config.filetype"
     end,
   }
-  use {
-    -- "willruggiano/firvish.nvim",
-    "Furkanzmc/firvish.nvim",
+  local_use {
+    "firvish.nvim",
+    -- use {
+    -- "Furkanzmc/firvish.nvim",
+    after = "nvim-notify",
+    config = function()
+      require "bombadil.config.firvish"
+    end,
     requires = "Furkanzmc/options.nvim",
   }
 

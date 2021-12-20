@@ -30,6 +30,6 @@ autocmd BufWritePre * lua vim.fn.mkdir(vim.fn.expand("%:p:h"), "p")
 
 " Firvish.nvim, for some reason these don't take using firvish's provided
 " ftdetect.nvim
-autocmd BufNewFile,BufRead firvish://buffers setlocal filetype=firvish-buffers
-autocmd BufNewFile,BufRead firvish://history setlocal filetype=firvish-history
-autocmd BufNewFile,BufRead firvish://menu setlocal filetype=firvish-menu
+" autocmd BufNewFile,BufRead firvish://buffers setlocal filetype=firvish-buffers
+" autocmd BufNewFile,BufRead firvish://history setlocal filetype=firvish-history
+" autocmd BufNewFile,BufRead firvish://menu setlocal filetype=firvish-menu

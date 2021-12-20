@@ -21,6 +21,7 @@ end
 -- These are things we want to *always* close, as opposed to (maybe) bdelete'ing and cycling to the
 -- next buffer.
 local quitters = {
+  ["[No Name]"] = quit,
   ["[nvim-lua]"] = quit, -- nvim-luadev
   ["firvish-job-list"] = quit,
   ["firvish-job-output"] = quit,
