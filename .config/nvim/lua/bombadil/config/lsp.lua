@@ -209,7 +209,7 @@ if has_null_ls then
       null_ls.builtins.formatting.yapf,
       -- Diagnostics
       null_ls.builtins.diagnostics.codespell,
-      null_ls.builtins.diagnostics.luacheck,
+      null_ls.builtins.diagnostics.luacheck.with { extra_args = { "--globals", "vim", "--no-max-line-length" } },
       null_ls.builtins.diagnostics.shellcheck,
       null_ls.builtins.diagnostics.statix,
       -- custom_sources.statix.diagnostics,

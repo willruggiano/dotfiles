@@ -50,7 +50,7 @@ custom_actions.new = function()
 
   local pathsep = Path.path.sep
   if name:sub(-#pathsep) == pathsep then
-    path:mkdir()
+    path:mkdir { parents = true }
   else
     path:touch { parents = true }
   end
@@ -85,9 +85,9 @@ local fsize = function(bytes)
 end
 
 local username = function(uid)
-  local f = io.popen(string.format("id -un %s", uid), "r")
-  local s = f:read "*a"
-  f:close()
+  local p = io.popen(string.format("id -un %s", uid), "r")
+  local s = p:read "*a"
+  p:close()
   s = string.gsub(s, "^%s+", "")
   s = string.gsub(s, "%s+$", "")
   s = string.gsub(s, "[\n\r]+", " ")
