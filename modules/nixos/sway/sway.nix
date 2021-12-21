@@ -1,8 +1,9 @@
 { pkgs }:
 
 let
-  swaymsg = "${pkgs.sway}/bin/swaymsg";
   browser = "qutebrowser";
+  dunstctl = "${pkgs.dunst}/bin/dunstctl";
+  swaymsg = "${pkgs.sway}/bin/swaymsg";
   term = "${pkgs.kitty}/bin/kitty";
   xargs = "${pkgs.findutils}/bin/xargs";
 in
@@ -33,7 +34,9 @@ in
 
   mode "$mode_launcher" {
     bindsym b exec ${browser}; mode "default"
+    bindsym c exec ${dunstctl} close-all; mode "default"
     bindsym l exec $menu; mode "default"
+    bindsym n exec ${dunstctl} history-pop; mode "default"
     bindsym p exec ${pkgs.pass}/bin/passmenu; mode "default"
     bindsym t exec $term; mode "default"
     bindsym $mod+o mode "default"

@@ -38,6 +38,7 @@ with lib;
 
   # Services
   services.agenix.enable = true;
+  services.dunst.enable = true;
   services.email.enable = true;
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
