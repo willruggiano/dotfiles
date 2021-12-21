@@ -14,15 +14,5 @@ require("filetype").setup {
     extensions = {
       tpp = "cpp",
     },
-    function_extensions = {
-      bash = function_extension("bash", "shell"),
-      cpp = function_extension "cpp",
-      lua = function_extension "lua",
-      md = function_extension "markdown",
-      nix = function_extension "nix",
-      sh = function_extension("sh", "shell"),
-      snip = function_extension "snip",
-      zsh = function_extension("zsh", "shell"),
-    },
   },
 }
