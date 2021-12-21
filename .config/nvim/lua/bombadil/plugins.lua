@@ -248,8 +248,6 @@ local function init()
       require "bombadil.config.pqf"
     end,
   }
-  use "plasticboy/vim-markdown"
-  use "LnL7/vim-nix"
 
   -- Visual stuff; sidebars, explorers, etc
   use {
@@ -311,14 +309,12 @@ local function init()
     config = function()
       require "bombadil.config.lualine"
     end,
-    requires = {
-      { "willruggiano/lsp-status.nvim", module = "lsp-status" },
-    },
     wants = { "lsp-status.nvim", "nvim-web-devicons" },
   }
-  local_use {
-    "lsp-status.nvim",
-    disable = true,
+  use {
+    "willruggiano/lsp-status.nvim",
+    --local_use {
+    --  "lsp-status.nvim",
     module = "lsp-status",
   }
   use {

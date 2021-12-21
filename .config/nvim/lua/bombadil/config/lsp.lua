@@ -77,7 +77,9 @@ local on_attach = function(client, bufnr)
           "show-document",
         },
         l = {
-          vim.diagnostic.open_float,
+          function()
+            vim.diagnostic.open_float(0, { border = "single" })
+          end,
           "show-line",
         },
         n = {
