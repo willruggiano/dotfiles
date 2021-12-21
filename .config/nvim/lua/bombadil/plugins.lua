@@ -107,7 +107,6 @@ local function init()
     event = "BufEnter *",
     module = { "lspconfig", "lspconfig.util" },
     requires = {
-      { "wbthomason/lsp-status.nvim", module = "lsp-status" },
       { "onsails/lspkind-nvim", module = "lspkind" },
       "nvim-lua/lsp_extensions.nvim",
     },
@@ -312,7 +311,15 @@ local function init()
     config = function()
       require "bombadil.config.lualine"
     end,
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = {
+      { "willruggiano/lsp-status.nvim", module = "lsp-status" },
+    },
+    wants = { "lsp-status.nvim", "nvim-web-devicons" },
+  }
+  local_use {
+    "lsp-status.nvim",
+    disable = true,
+    module = "lsp-status",
   }
   use {
     "tjdevries/express_line.nvim",

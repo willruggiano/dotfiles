@@ -8,7 +8,6 @@ in
     programs.sway = {
       extraPackages = with pkgs; [
         dmenu-wayland
-        mako
         swayidle
         swaylock
         wl-clipboard
