@@ -41,3 +41,11 @@ function git-turtle() {
         eval "$git_reset && $git_check && $git_pick"
     fi
 }
+
+function lg() {
+    if [[ $# -eq 0 ]]; then
+        lazygit
+    else
+        command git $@
+    fi
+}
