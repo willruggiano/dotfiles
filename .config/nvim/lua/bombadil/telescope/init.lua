@@ -16,10 +16,6 @@ reloader()
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
-local state = require "telescope.state"
-local themes = require "telescope.themes"
-
-local delete_buffer = require("bombadil.lib.buffers").delete_buffer
 
 local set_prompt_to_entry_value = function(prompt_bufnr)
   local entry = action_state.get_selected_entry()
@@ -120,11 +116,6 @@ telescope.setup {
   },
 
   extensions = {
-    frecency = {
-      show_scores = true,
-      workspaces = frecency_workspaces,
-    },
-
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -149,10 +140,6 @@ telescope.load_extension "fzf"
 telescope.load_extension "git_worktree"
 telescope.load_extension "project"
 telescope.load_extension "ui-select"
-
-if pcall(require("telescope").load_extension, "frecency") then
-  require "bombadil.telescope.frecency"
-end
 
 if vim.fn.executable "gh" == 1 then
   pcall(require("telescope").load_extension, "gh")

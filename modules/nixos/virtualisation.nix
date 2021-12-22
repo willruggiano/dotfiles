@@ -7,6 +7,7 @@ in
   config = mkMerge [
     (mkIf cfg.docker.enable {
       user.extraGroups = [ "docker" ];
+      user.packages = [ pkgs.lazydocker ];
     })
     (mkIf cfg.libvirtd.enable {
       user.extraGroups = [ "libvirtd" ];

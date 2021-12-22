@@ -391,13 +391,7 @@ local function init()
       run = "make",
     },
     { "nvim-telescope/telescope-github.nvim", after = "telescope.nvim" },
-    { "nvim-telescope/telescope-packer.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" },
-    {
-      "nvim-telescope/telescope-frecency.nvim",
-      after = "telescope.nvim",
-      requires = "tami5/sql.nvim",
-    },
     { "nvim-telescope/telescope-vimspector.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-project.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim", after = "telescope.nvim" },

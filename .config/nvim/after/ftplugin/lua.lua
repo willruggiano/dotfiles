@@ -11,6 +11,15 @@ if not ok then
   return
 end
 
+local ok, kommentary = pcall(require, "kommentary.config")
+if not ok then
+  return
+end
+
+kommentary.configure_language("lua", {
+  prefer_single_line_comments = true,
+})
+
 wk.register({
   ["<leader><leader>r"] = {
     name = "run",

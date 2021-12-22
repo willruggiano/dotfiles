@@ -17,6 +17,7 @@ in
         git
         gitflow
         git-quickfix
+        lazygit
         pre-commit
         tig
       ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
