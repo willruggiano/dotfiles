@@ -82,5 +82,14 @@ in
           amend = "commit -a --amend --no-edit";
         };
       };
+
+      xdg.configFile = {
+        "lazygit/config.yml".text = ''
+          keybinding:
+            universal:
+              quit: '<c-c>'
+              return: 'q'
+        '';
+      };
     };
 }
