@@ -51,6 +51,10 @@ nnoremap { "<c-k>", "<c-w><c-k>" }
 nnoremap { "<c-h>", "<c-w><c-h>" }
 nnoremap { "<c-l>", "<c-w><c-l>" }
 
+-- Better window resize
+nnoremap { "+", "<c-w>+" }
+nnoremap { "_", "<c-w>-" }
+
 -- Scrolling
 nnoremap { "<up>", "<c-y>" }
 nnoremap { "<down>", "<c-e>" }
