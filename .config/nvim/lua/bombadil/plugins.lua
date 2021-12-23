@@ -248,6 +248,10 @@ local function init()
       require "bombadil.config.pqf"
     end,
   }
+  use {
+    "tjdevries/tree-sitter-lua",
+    module = "docgen",
+  }
 
   -- Visual stuff; sidebars, explorers, etc
   use {

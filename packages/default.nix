@@ -22,6 +22,7 @@ final: prev: {
     ];
   });
   nonicons = prev.callPackage ./nonicons { };
+  nvidia-omniverse = prev.callPackage ./nvidia-omniverse { };
   pass-extension-meta = prev.callPackage ./pass-meta { };
   yabai = prev.yabai.overrideAttrs (_: rec {
     version = "3.3.10";

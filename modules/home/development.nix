@@ -4,11 +4,13 @@ with lib;
 
 let
   cfg = config.suites.development;
-  suites = literalExpression [
+  suite = types.enum [
+    "all"
     "cxx"
     "json"
     "lua"
     "nix"
+    "nvidia"
     "python"
     "qt"
     "shell"
@@ -23,7 +25,7 @@ in
   options.suites.development = {
     enable = mkEnableOption "Enable selected development suites";
     suites = with types; mkOption {
-      type = oneOf [ str (listOf str) ];
+      type = oneOf [ suite (listOf suite) ];
       default = [ ];
       description = "Specify which development suites to enable";
       example = literalExpression [ "cxx" "lua" "python" ];

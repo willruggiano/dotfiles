@@ -293,7 +293,7 @@ lir.setup {
     p = clipboard_actions.paste,
 
     ["."] = actions.toggle_show_hidden,
-    [","] = custom_actions.toggle_devicons,
+    ["`"] = custom_actions.toggle_devicons,
     K = custom_actions.stat,
 
     ga = custom_actions.git.add,
