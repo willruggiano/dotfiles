@@ -42,3 +42,6 @@ c.url.searchengines.update({
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
 })
 c.url.searchengines['DEFAULT'] = c.url.searchengines['duckduckgo']
+
+# security
+c.content.tls.certificate_errors = 'ask-block-thirdparty'

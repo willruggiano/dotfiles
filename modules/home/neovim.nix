@@ -24,7 +24,10 @@ in
         tree-sitter
       ] ++ lib.optionals (!stdenv.isDarwin) [
         # These don't work on macOS yet :(
-        python39Packages.python-lsp-server
+        (python39.withPackages (ps: with ps; [
+          python-lsp-server
+          pylsp-rope
+        ]))
         sumneko-lua-language-server
       ];
 

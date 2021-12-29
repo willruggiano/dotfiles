@@ -24,6 +24,20 @@ final: prev: {
   nonicons = prev.callPackage ./nonicons { };
   nvidia-omniverse = prev.callPackage ./nvidia-omniverse { };
   pass-extension-meta = prev.callPackage ./pass-meta { };
+  python39 = prev.python39.override {
+    packageOverrides = python-final: python-prev: {
+      pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix { };
+      rope = python-prev.rope.overrideAttrs (_: rec {
+        version = "0.22.0";
+        src = python-prev.fetchPypi {
+          pname = "rope";
+          inherit version;
+          hash = "sha256-sA+8Bkom/GLXIgV4on/WObL61XITZjzDlsE36S1z8Q8=";
+        };
+        patches = [ ];
+      });
+    };
+  };
   yabai = prev.yabai.overrideAttrs (_: rec {
     version = "3.3.10";
     src = prev.fetchFromGitHub {
