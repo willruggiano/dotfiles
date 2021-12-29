@@ -1,5 +1,10 @@
 local extensions = {}
 
+local ok, lir = pcall(require, "lir.vim")
+if not ok then
+  return
+end
+
 extensions.lir = {
   filetypes = { "lir" },
   sections = {
@@ -7,7 +12,7 @@ extensions.lir = {
     lualine_b = { "branch" },
     lualine_c = {
       function()
-        return "[lir]"
+        return lir.get_context().dir
       end,
     },
     lualine_x = { "encoding", "fileformat", "filetype" },
@@ -17,7 +22,7 @@ extensions.lir = {
   inactive_sections = {
     lualine_c = {
       function()
-        return "[lir]"
+        return lir.get_context().dir
       end,
     },
     lualine_x = { "location" },

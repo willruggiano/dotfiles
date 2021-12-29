@@ -279,7 +279,7 @@ local function init()
       require "bombadil.config.lir"
     end,
     rocks = { "inspect", "luafilesystem" },
-    wants = { "plenary.nvim", "nvim-nonicons" },
+    wants = { "firvish.nvim", "plenary.nvim", "nvim-nonicons" },
   }
   use { "tamago324/lir-git-status.nvim", requires = "tamago324/lir.nvim" }
   use {
@@ -310,10 +310,11 @@ local function init()
   use "norcalli/nvim-colorizer.lua"
   use {
     "nvim-lualine/lualine.nvim",
+    after = "lir.nvim",
     config = function()
       require "bombadil.config.lualine"
     end,
-    wants = { "lsp-status.nvim", "nvim-web-devicons" },
+    wants = { "lir.nvim", "lsp-status.nvim", "nvim-web-devicons" },
   }
   use {
     "willruggiano/lsp-status.nvim",
