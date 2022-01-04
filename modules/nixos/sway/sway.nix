@@ -72,7 +72,6 @@ in
   input "type:keyboard" {
     xkb_layout us
     xkb_numlock disabled
-    xkb_options ctrl:nocaps
   }
   #
   input "type:touchpad" {
