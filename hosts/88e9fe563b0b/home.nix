@@ -4,7 +4,7 @@
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  programs.emanote.enable = true;
+  # programs.emanote.enable = true;
   programs.firefox.enable = true;
   programs.firefox.package = pkgs.dummy;
   programs.fzf.enable = true;
