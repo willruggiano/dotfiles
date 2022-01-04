@@ -8,6 +8,7 @@
 
     nix.url = "github:nixos/nix/master";
     darwin.url = "github:LnL7/nix-darwin/master";
+    naersk.url = "github:nix-community/naersk";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
 
@@ -44,6 +45,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         self.overlay
+        inputs.naersk.overlay
         inputs.neovim.overlay
         inputs.nur.overlay
         inputs.spacebar.overlay
