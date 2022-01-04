@@ -6,7 +6,7 @@
   programs.direnv.enable = true;
   # programs.emanote.enable = true;
   programs.firefox.enable = true;
-  programs.firefox.package = pkgs.dummy;
+  programs.firefox.package = pkgs.dummy; # Installed via homebrew
   programs.fzf.enable = true;
   programs.git = {
     enable = true;

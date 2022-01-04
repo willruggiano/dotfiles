@@ -11,16 +11,12 @@ with lib;
   user.shell = pkgs.zsh;
 
   # Desktop
+  programs.firefox.enableViaHomebrew = true;
   programs.karabiner.enable = true;
   programs.keeping-you-awake.enable = true;
   # TODO: libcxx-13 is marked as broken
   # programs.slack.enable = true;
   services.yabai.enable = true;
-
-  # Homebrew
-  homebrew.utilities = {
-    firefox.enable = true;
-  };
 
   # Terminal
   programs.kitty.enable = true;
