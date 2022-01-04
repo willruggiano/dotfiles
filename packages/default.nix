@@ -16,6 +16,7 @@ final: prev: {
   cppman = prev.callPackage ./cppman { };
   dummy = prev.runCommand "dummy-0.0.0" { } "mkdir $out";
   firefox-extended = prev.callPackage ./firefox { };
+  keyd = prev.callPackage ./keyd { };
   qutebrowser = prev.qutebrowser.overrideAttrs (_: {
     patches = [
       ./qutebrowser/0001-feat-pass-QUTE_TAB-to-userscripts.patch
