@@ -1,4 +1,4 @@
-local inoremap = vim.keymap.inoremap
+local inoremap = require("bombadil.lib.keymap").inoremap
 
 vim.opt.completeopt = { "menuone", "noselect" }
 
@@ -23,4 +23,4 @@ require "coq_3p" {
 
 -- Explicitly disabled in vim.g.coq_settings and mapped here instead to avoid the normal mode
 -- mapping of the same key which conflicts with a custom mapping in keymaps.lua
-inoremap { "<c-h>", "<c-\\><c-n><cmd>lua COQ.Nav_mark()<cr>" }
+inoremap("<c-h>", "<c-\\><c-n><cmd>lua COQ.Nav_mark()<cr>")

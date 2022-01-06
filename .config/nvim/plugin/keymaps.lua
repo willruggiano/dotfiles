@@ -1,7 +1,9 @@
 local wk = require "which-key"
-local inoremap = vim.keymap.inoremap
-local nnoremap = vim.keymap.nnoremap
-local tnoremap = vim.keymap.tnoremap
+local keymap = require "bombadil.lib.keymap"
+
+local inoremap = keymap.inoremap
+local nnoremap = keymap.nnoremap
+local tnoremap = keymap.tnoremap
 
 local lib = require "bombadil.lib"
 
@@ -41,29 +43,29 @@ end
 
 -- WhichKey doesn't seem to like these
 -- Opens line above or below the current line
-inoremap { "<c-k>", "<c-o>O" }
-inoremap { "<c-j>", "<c-o>o" }
+inoremap("<c-k>", "<c-o>O")
+inoremap("<c-j>", "<c-o>o")
 
 -- Better pane navigation
-nnoremap { "<c-j>", "<c-w><c-j>" }
-nnoremap { "<c-k>", "<c-w><c-k>" }
-nnoremap { "<c-h>", "<c-w><c-h>" }
-nnoremap { "<c-l>", "<c-w><c-l>" }
+nnoremap("<c-j>", "<c-w><c-j>")
+nnoremap("<c-k>", "<c-w><c-k>")
+nnoremap("<c-h>", "<c-w><c-h>")
+nnoremap("<c-l>", "<c-w><c-l>")
 
 -- Better window resize
-nnoremap { "+", "<c-w>+" }
-nnoremap { "_", "<c-w>-" }
+nnoremap("+", "<c-w>+")
+nnoremap("_", "<c-w>-")
 
 -- Scrolling
-nnoremap { "<up>", "<c-y>" }
-nnoremap { "<down>", "<c-e>" }
+nnoremap("<up>", "<c-y>")
+nnoremap("<down>", "<c-e>")
 
 -- Tab navigation
-nnoremap { "<right>", "gt" }
-nnoremap { "<left>", "gT" }
+nnoremap("<right>", "gt")
+nnoremap("<left>", "gT")
 
 -- Make ESC leave terminal mode
-tnoremap { "<esc>", "<c-\\><c-n>" }
+tnoremap("<esc>", "<c-\\><c-n>")
 
 wk.register {
   -- Move lines

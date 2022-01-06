@@ -5,7 +5,7 @@ local lspconfig_util = require "lspconfig.util"
 local nvim_status = require "lsp-status"
 local wk = require "which-key"
 
-local nnoremap = vim.keymap.nnoremap
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
 lsp.kind.init()
 lsp.status.activate()
@@ -248,7 +248,7 @@ lspconfig.clangd.setup {
   on_init = on_init,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    nnoremap { "<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", buffer = 0 }
+    nnoremap("<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = 0 })
   end,
   init_options = {
     clangdFileStatus = true,

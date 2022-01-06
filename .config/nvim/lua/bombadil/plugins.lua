@@ -23,12 +23,10 @@ local function init()
   -- Packer
   use "wbthomason/packer.nvim"
 
-  -- Autoloading for lua
-  use "tjdevries/astronauta.nvim"
-
   -- For when I forget what I'm doing
   use {
-    "folke/which-key.nvim",
+    "zeertzjq/which-key.nvim",
+    branch = "patch-1",
     config = function()
       require "bombadil.config.which-key"
     end,
@@ -95,7 +93,7 @@ local function init()
     cond = function()
       return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
     end,
-    requires = { "akinsho/nvim-toggleterm.lua", "nvim-lua/plenary.nvim" },
+    requires = { "Furkanzmc/firvish.nvim", "nvim-lua/plenary.nvim" },
     rocks = "luafilesystem",
     wants = { "nvim-notify" },
   }
@@ -371,15 +369,14 @@ local function init()
       require "bombadil.config.filetype"
     end,
   }
-  local_use {
-    "firvish.nvim",
-    -- use {
-    -- "Furkanzmc/firvish.nvim",
-    after = "nvim-notify",
+  -- local_use {
+  --   "firvish.nvim",
+  use {
+    "Furkanzmc/firvish.nvim",
     config = function()
       require "bombadil.config.firvish"
     end,
-    requires = "Furkanzmc/options.nvim",
+    requires = { "Furkanzmc/options.nvim", "rcarriga/nvim-notify" },
   }
 
   -- Telescope, et al
