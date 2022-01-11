@@ -87,15 +87,16 @@ local function init()
   -- Development
   local_use {
     "make.nvim",
+    after = "firvish.nvim",
     config = function()
       require "bombadil.config.make"
     end,
     cond = function()
       return vim.fn.filereadable(vim.fn.expand "./makerc.lua")
     end,
-    requires = { "Furkanzmc/firvish.nvim", "nvim-lua/plenary.nvim" },
+    requires = { "nvim-lua/plenary.nvim" },
     rocks = "luafilesystem",
-    wants = { "nvim-notify" },
+    wants = { "firvish.nvim", "nvim-notify" },
   }
   use {
     "neovim/nvim-lspconfig",
@@ -369,10 +370,10 @@ local function init()
       require "bombadil.config.filetype"
     end,
   }
-  -- local_use {
-  --   "firvish.nvim",
-  use {
-    "Furkanzmc/firvish.nvim",
+  local_use {
+    "firvish.nvim",
+    -- use {
+    --   "Furkanzmc/firvish.nvim",
     config = function()
       require "bombadil.config.firvish"
     end,

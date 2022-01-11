@@ -1,5 +1,31 @@
 require("firvish").setup {
   keymaps = {
+    buffers = {
+      n = {
+        zf = {
+          function()
+            local ft = vim.fn.input "> "
+            require("firvish.buffers").filter_buffers(function(bufnr)
+              local bufname = vim.fn.bufname(bufnr)
+              return bufname:sub(-#ft) == ft
+            end)
+          end,
+        },
+        zm = {
+          function()
+            local pattern = vim.fn.input "> "
+            require("firvish.buffers").filter_buffers(function(bufnr)
+              local bufname = vim.fn.bufname(bufnr)
+              if bufname:match(pattern) then
+                return true
+              else
+                return false
+              end
+            end)
+          end,
+        },
+      },
+    },
     dir = {
       n = {
         ["<enter>"] = {

@@ -257,7 +257,8 @@ lspconfig.clangd.setup {
     usePlaceholders = true,
   },
   handlers = nvim_status.extensions.clangd.setup(),
-  capabilities = updated_capabilities,
+  -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+  capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
 }
 
 lspconfig.cmake.setup {
