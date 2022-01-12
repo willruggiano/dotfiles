@@ -115,7 +115,7 @@ in
       ];
 
       initExtraBeforeCompInit = ''
-        fpath+=(/nix/var/nix/profiles/per-user/bombadil/home-manager/home-path/share/zsh/site-functions)
+        fpath+=("${config.home.profileDirectory}"/share/zsh/site-functions "${config.home.profileDirectory}"/share/zsh/$ZSH_VERSION/functions "${config.home.profileDirectory}"/share/zsh/vendor-completions)
       '';
       initExtra = with pkgs; ''
         for f in $HOME/.config/zsh/extra/[0-9][0-9]-*.zsh; do
