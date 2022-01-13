@@ -119,9 +119,7 @@ local on_attach = function(client, bufnr)
           "document",
         },
         w = {
-          function()
-            vim.lsp.buf.workspace_symbol ""
-          end,
+          vim.lsp.buf.workspace_symbol,
           "workspace",
         },
       },
