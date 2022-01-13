@@ -11,6 +11,7 @@ vim.cmd [[
 vim.cmd "command! -complete=customlist,ListDebugTargets -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
 
 local dap = require "dap"
+local utils = require "dap.utils"
 
 dap.set_log_level "TRACE"
 
@@ -31,6 +32,13 @@ dap.configurations.lua = {
 }
 
 dap.configurations.cpp = {
+  {
+    name = "Attach",
+    type = "lldb",
+    request = "attach",
+    pid = utils.pick_process,
+    args = {},
+  },
   {
     name = "Launch",
     type = "lldb",
@@ -61,13 +69,11 @@ for _, mode in ipairs { "n", "x" } do
   local mappings = {
     ["<leader>"] = {
       d = {
-        name = "debug",
-        i = { "<Plug>VimspectorBalloonEval", "eval" },
+        s = {
+          dap.continue,
+          "start-debugger",
+        },
       },
-    },
-    ["<localleader>"] = {
-      ["<f11>"] = { "<Plug>VimspectorUpFrame", "++frame" },
-      ["<f12>"] = { "<Plug>VimspectorDownFrame", "--frame" },
     },
   }
   wk.register(mappings, { mode = mode })

@@ -142,23 +142,22 @@ local function init()
     config = function()
       require "bombadil.config.dap"
     end,
-    module = "dap",
-    {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-        require "bombadil.config.dap-ui"
-      end,
-      module = "dapui",
-      requires = "mfussenegger/nvim-dap",
-    },
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      requires = "mfussenegger/nvim-dap",
-    },
-    {
-      "jbyuki/one-small-step-for-vimkind",
-      requires = "mfussenegger/nvim-dap",
-    },
+    require = "folke/which-key.nvim",
+  }
+  use {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      require "bombadil.config.dap-ui"
+    end,
+    requires = "mfussenegger/nvim-dap",
+  }
+  use {
+    "theHamsta/nvim-dap-virtual-text",
+    requires = "mfussenegger/nvim-dap",
+  }
+  use {
+    "jbyuki/one-small-step-for-vimkind",
+    requires = "mfussenegger/nvim-dap",
   }
   use "jose-elias-alvarez/null-ls.nvim"
   local_use {
