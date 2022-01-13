@@ -1,17 +1,8 @@
-SetDapTarget = function(target)
-  vim.g.dap_target = target
-end
-
-vim.cmd [[
-  function! ListDebugTargets(A,L,P)
-    return vimspector#GetConfigurations()
-  endfun
-]]
-
-vim.cmd "command! -complete=customlist,ListDebugTargets -nargs=1 SetDebugTarget lua SetDapTarget(<f-args>)"
-
 local dap = require "dap"
+local json = require "rapidjson"
 local utils = require "dap.utils"
+
+local launch_json = vim.fn.expand ".vscode/launch.json"
 
 dap.set_log_level "TRACE"
 
@@ -34,14 +25,14 @@ dap.configurations.lua = {
 dap.configurations.cpp = {
   {
     name = "Attach",
-    type = "lldb",
+    type = "cppdbg",
     request = "attach",
     pid = utils.pick_process,
     args = {},
   },
   {
     name = "Launch",
-    type = "lldb",
+    type = "cppdbg",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -53,7 +44,7 @@ dap.configurations.cpp = {
   },
 }
 
-dap.adapters.lldb = {
+dap.adapters.cppdbg = {
   type = "executable",
   command = "lldb-vscode",
   name = "lldb",
@@ -70,7 +61,17 @@ for _, mode in ipairs { "n", "x" } do
     ["<leader>"] = {
       d = {
         s = {
-          dap.continue,
+          function()
+            if vim.fn.filereadable(launch_json) then
+              local config = json.load(launch_json)
+              for _, c in ipairs(config.configurations) do
+                if c.type == "cppdbg" then
+                  table.insert(dap.configurations.cpp, c)
+                end
+              end
+            end
+            dap.continue()
+          end,
           "start-debugger",
         },
       },
@@ -81,25 +82,12 @@ end
 
 local lsp = require "lspconfig.util"
 
-local dap_config_file = ".vimspector.json"
-local find_dap_config = function()
-  if ok then
-    local fname = vim.fn.expand "%:p"
-    local root = lsp.find_git_ancestor(fname) or lsp.path.dirname(fname)
-    if root then
-      return root .. "/" .. dap_config_file
-    end
-  end
-  return vim.fn.cwd() .. "/" .. dap_config_file
-end
-
 wk.register {
   ["<leader>d"] = {
     e = {
       function()
-        local config = find_dap_config()
-        if vim.fn.exists(config) then
-          vim.cmd(string.format("edit %s", config))
+        if vim.fn.exists(launch_json) then
+          vim.cmd(string.format("edit %s", launch_json))
         end
       end,
       "edit-config",

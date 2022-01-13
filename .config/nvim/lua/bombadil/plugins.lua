@@ -25,8 +25,7 @@ local function init()
 
   -- For when I forget what I'm doing
   use {
-    "zeertzjq/which-key.nvim",
-    branch = "patch-1",
+    "folke/which-key.nvim",
     config = function()
       require "bombadil.config.which-key"
     end,
@@ -137,6 +136,7 @@ local function init()
       require "bombadil.config.dap"
     end,
     require = "folke/which-key.nvim",
+    rocks = "rapidjson",
   }
   use {
     "rcarriga/nvim-dap-ui",
@@ -369,7 +369,6 @@ local function init()
     },
     { "nvim-telescope/telescope-github.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" },
-    { "nvim-telescope/telescope-vimspector.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-project.nvim", after = "telescope.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim", after = "telescope.nvim" },
     {
