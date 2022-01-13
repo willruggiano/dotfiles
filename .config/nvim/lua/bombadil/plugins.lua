@@ -125,12 +125,6 @@ local function init()
       require "bombadil.config.coq"
     end,
   }
-  use {
-    "puremourning/vimspector",
-    setup = function()
-      vim.g.vimspector_enable_mappings = "HUMAN"
-    end,
-  }
   use "folke/lua-dev.nvim"
   use "bfredl/nvim-luadev"
   local_use {
@@ -195,14 +189,6 @@ local function init()
     config = function()
       require "bombadil.config.autopairs"
     end,
-  }
-  use {
-    "mhartington/formatter.nvim",
-    disable = true,
-    config = function()
-      require "bombadil.config.formatter"
-    end,
-    rocks = "luafilesystem",
   }
   use {
     "monaqa/dial.nvim",
@@ -316,16 +302,7 @@ local function init()
   }
   use {
     "willruggiano/lsp-status.nvim",
-    --local_use {
-    --  "lsp-status.nvim",
     module = "lsp-status",
-  }
-  use {
-    "tjdevries/express_line.nvim",
-    disable = true,
-    config = function()
-      require "bombadil.config.expressline"
-    end,
   }
   use {
     "tjdevries/colorbuddy.nvim",
@@ -371,8 +348,6 @@ local function init()
   }
   local_use {
     "firvish.nvim",
-    -- use {
-    --   "Furkanzmc/firvish.nvim",
     config = function()
       require "bombadil.config.firvish"
     end,
