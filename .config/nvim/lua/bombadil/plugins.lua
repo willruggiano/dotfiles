@@ -3,7 +3,7 @@ local packer = nil
 local function init()
   if packer == nil then
     packer = require "packer"
-    packer.init {}
+    packer.init { disable_commands = true }
   end
 
   local use = packer.use
@@ -21,12 +21,7 @@ local function init()
   packer.reset()
 
   -- Packer
-  use {
-    "wbthomason/packer.nvim",
-    config = function()
-      require("packer").make_commands()
-    end,
-  }
+  use "wbthomason/packer.nvim"
 
   -- For when I forget what I'm doing
   use {
@@ -137,7 +132,6 @@ local function init()
   }
   use {
     "mfussenegger/nvim-dap",
-    disable = true,
     config = function()
       require "bombadil.config.dap"
     end,
