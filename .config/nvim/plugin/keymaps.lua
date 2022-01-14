@@ -68,6 +68,16 @@ nnoremap("<left>", "gT")
 tnoremap("<esc>", "<c-\\><c-n>")
 
 wk.register {
+  -- Jumplist as quickfix list
+  ["<space><cr>"] = {
+    function()
+      local jumplist = vim.fn.getjumplist()[1]
+      vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = jumplist })
+      vim.cmd "botright copen"
+    end,
+    "jumplist",
+  },
+
   -- Move lines
   ["<M-j>"] = {
     function()

@@ -4,6 +4,7 @@ local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
 local nvim_status = require "lsp-status"
 local wk = require "which-key"
+local telescope_themes = require "bombadil.telescope.themes"
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
@@ -55,14 +56,12 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  local cursor_opts = require("telescope.themes").get_cursor()
-
   -- Mappings.
   wk.register({
     ["<leader>"] = {
       ca = {
         function()
-          require("telescope.builtin").lsp_code_actions(cursor_opts)
+          require("telescope.builtin").lsp_code_actions(telescope_themes.cursor)
         end,
         "code-action",
       },

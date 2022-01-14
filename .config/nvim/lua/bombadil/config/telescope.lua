@@ -1,3 +1,5 @@
+local themes = require "bombadil.telescope.themes"
+
 require("which-key").register {
   ["<space>d"] = {
     function()
