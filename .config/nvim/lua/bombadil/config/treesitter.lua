@@ -129,7 +129,7 @@ local unit = require "treesitter-unit"
 
 -- Highlights the current treesitter "unit"
 -- Can be toggled with ,thu
-unit.enable_highlighting()
+-- unit.enable_highlighting()
 
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"

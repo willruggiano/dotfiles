@@ -52,6 +52,14 @@ local function init()
     "mg979/vim-visual-multi",
     branch = "master",
   }
+  use {
+    "abecodes/tabout.nvim",
+    config = function()
+      require "bombadil.config.tabout"
+    end,
+    wants = "nvim-treesitter",
+    after = "coq_nvim",
+  }
 
   -- Git
   use {
@@ -153,7 +161,10 @@ local function init()
     "jbyuki/one-small-step-for-vimkind",
     requires = "mfussenegger/nvim-dap",
   }
-  use "jose-elias-alvarez/null-ls.nvim"
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    after = "nvim-lspconfig",
+  }
   local_use {
     "nix.nvim",
     after = "firvish.nvim",

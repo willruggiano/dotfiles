@@ -39,6 +39,7 @@ vim.g.coq_settings = {
     },
   },
   keymap = {
+    recommended = false,
     bigger_preview = "",
     jump_to_mark = "",
   },
