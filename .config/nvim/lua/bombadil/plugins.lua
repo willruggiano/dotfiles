@@ -134,8 +134,10 @@ local function init()
   }
   use "folke/lua-dev.nvim"
   use "bfredl/nvim-luadev"
-  local_use {
-    "refactoring.nvim",
+  -- local_use {
+  --   "refactoring.nvim",
+  use {
+    "ThePrimeagen/refactoring.nvim",
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   }
   use {
