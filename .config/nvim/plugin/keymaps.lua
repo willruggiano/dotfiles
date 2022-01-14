@@ -41,6 +41,13 @@ local close = function(bt, ft, bname)
   end
 end
 
+-- Add large jumps to the jump list
+for _, d in ipairs { "j", "k" } do
+  nnoremap(d, function()
+    lib.jump(d)
+  end)
+end
+
 -- WhichKey doesn't seem to like these
 -- Opens line above or below the current line
 inoremap("<c-k>", "<c-o>O")
