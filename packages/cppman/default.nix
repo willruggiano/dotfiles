@@ -7,9 +7,11 @@ python.buildPythonApplication rec {
   pname = "cppman";
   version = "0.5.3";
 
-  src = python.fetchPypi {
-    inherit pname version;
-    hash = "sha256-J7jO5+mQVXcNglH5ady5xJcjQvkiUONBv54QuWeKkUA=";
+  src = pkgs.fetchFromGitHub {
+    owner = "aitjcize";
+    repo = "cppman";
+    rev = "4d13afba02d8822d798b0769178e481edadfbcca";
+    hash = "sha256-qRmfKtGyU/nBl5Lwr7KdaAdjJt06GClcblrBb9mQbgg=";
   };
 
   doCheck = false;

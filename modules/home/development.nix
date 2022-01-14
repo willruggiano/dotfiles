@@ -16,8 +16,10 @@ let
     "shell"
   ];
 
+  suiteEnabled = name: (isList cfg.suites && elem name cfg.suites) || cfg.suites == "all";
+
   mkSuite = name: packages:
-    mkIf ((isList cfg.suites && elem name cfg.suites) || cfg.suites == "all") {
+    mkIf (suiteEnabled name) {
       home.packages = packages;
     };
 in
@@ -42,10 +44,18 @@ in
         # pkgs.clang-tools # This one could also come from the neovim environment.
         # pkgs.cmake
         pkgs.cmake-format
-        pkgs.cppcheck
+        pkgs.cppman
         # pkgs.gnumake
         # pkgs.ninja
       ])
+      (mkIf (suiteEnabled "cpp") {
+        xdg.configFile."cppman/cppman.cfg".text = ''
+          [Settings]
+          source = cppreference.com
+          updatemanpath = True
+          pager = nvim
+        '';
+      })
       (mkSuite "json" [
         pkgs.jq
         pkgs.nodePackages.prettier

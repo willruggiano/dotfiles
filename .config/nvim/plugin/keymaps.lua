@@ -67,11 +67,24 @@ nnoremap("<left>", "gT")
 -- Make ESC leave terminal mode
 tnoremap("<esc>", "<c-\\><c-n>")
 
+-- Remap some of the single char yanks so they use the _ register
+nnoremap("cj", [["_cj]])
+nnoremap("ck", [["_ck]])
+nnoremap("ch", [["_ch]])
+nnoremap("cl", [["_cl]])
+nnoremap("x", [["_x]])
+
 wk.register {
   -- Jumplist as quickfix list
   ["<space><cr>"] = {
     function()
       local jumplist = vim.fn.getjumplist()[1]
+      local sorted_jumplist = {}
+      for i = #jumplist, 1, -1 do
+        if vim.api.nvim_buf_is_valid(jumplist[i].bufnr) then
+          table.insert(sorted_jumplist, jumplist[i])
+        end
+      end
       vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = jumplist })
       vim.cmd "botright copen"
     end,
