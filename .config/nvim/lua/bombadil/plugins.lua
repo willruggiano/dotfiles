@@ -24,8 +24,8 @@ local function init()
   use "wbthomason/packer.nvim"
 
   -- For when I forget what I'm doing
-  use {
-    "folke/which-key.nvim",
+  local_use {
+    "which-key.nvim",
     config = function()
       require "bombadil.config.which-key"
     end,
@@ -145,7 +145,6 @@ local function init()
     config = function()
       require "bombadil.config.dap"
     end,
-    require = "folke/which-key.nvim",
     rocks = "rapidjson",
   }
   use {
