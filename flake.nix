@@ -83,6 +83,22 @@
         };
       };
 
+      hosts.orthanc = rec {
+        system = "aarch64-linux";
+        modules = [
+          {
+            imports = lib'.reduceModules ./modules/nixos import;
+          }
+          ./hosts/orthanc
+          inputs.home-manager.nixosModule
+          { home-manager.users.saruman = import ./hosts/orthanc/home.nix; }
+        ];
+        specialArgs = {
+          inherit (self) lib;
+          inherit inputs system;
+        };
+      };
+
       hosts.dev-laptop = rec {
         system = "x86_64-darwin";
         modules = [
