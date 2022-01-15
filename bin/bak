@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+
+local behavior="backup"
+local file=""
+
+while (( $# )); do
+    case $1 in
+        -r)
+            behavior="restore"
+            ;;
+        *)
+            file=$1
+            ;;
+    esac
+    shift
+done
+
+if [[ -z $file ]]; then
+    echo "must supply a target file or directory"
+    exit 1
+fi
+
+local abs=$(readlink -f $file)
+
+case $behavior in
+    backup)
+        mv $file $abs.bak && echo "$file -> $abs.bak"
+        ;;
+    restore)
+        mv $abs ${abs:r} && echo "$abs -> ${abs:r}"
+        ;;
+esac
