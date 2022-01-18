@@ -2,9 +2,7 @@
 
 with lib;
 
-let
-  cfg = config.programs.neovim;
-  treesitterGrammars = with pkgs; tree-sitter.withPlugins (_: tree-sitter.allGrammars);
+let cfg = config.programs.neovim;
 in
 {
   config = mkIf cfg.enable {
@@ -36,7 +34,7 @@ in
       '';
 
       # NOTE: Here we specify some plugins which require special handling, e.g. building shared libraries
-      plugins = with pkgs.vimPlugins; [ cpsm ];
+      plugins = with pkgs; with vimPlugins; [ cpsm ];
     };
 
     home.sessionVariables = {
@@ -94,10 +92,10 @@ in
             local exe = "${sumneko-lua-language-server}/bin/lua-language-server"
             return { exe }
           '';
-      "nvim/site/parser" = {
-        source = treesitterGrammars;
-        recursive = true;
-      };
+      # "nvim/site/parser" = {
+      #   source = with pkgs; (tree-sitter.withPlugins (_: tree-sitter.allGrammars));
+      #   recursive = true;
+      # };
     };
   };
 }

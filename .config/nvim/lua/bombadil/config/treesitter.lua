@@ -19,7 +19,7 @@ require("nvim-treesitter.configs").setup {
   autopairs = { enable = true },
 
   -- NOTE: Installed by Nix.
-  -- ensure_installed = { "cpp", "lua", "nix", "python" },
+  ensure_installed = "maintained",
 
   highlight = {
     enable = true,

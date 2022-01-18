@@ -58,7 +58,6 @@ local function init()
     config = function()
       require "bombadil.config.tabout"
     end,
-    wants = "nvim-treesitter",
     after = "coq_nvim",
   }
 
@@ -139,7 +138,7 @@ local function init()
   --   "refactoring.nvim",
   use {
     "ThePrimeagen/refactoring.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+    requires = { "nvim-lua/plenary.nvim" },
   }
   use {
     "mfussenegger/nvim-dap",
@@ -217,14 +216,12 @@ local function init()
     config = function()
       require "bombadil.config.treesitter"
     end,
-    requires = {
-      "David-Kunz/treesitter-unit",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/playground",
-    },
   }
+  use "David-Kunz/treesitter-unit"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "nvim-treesitter/nvim-treesitter-refactor"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "nvim-treesitter/playground"
   use "hashivim/vim-terraform"
   use "kevinoid/vim-jsonc"
   use {
