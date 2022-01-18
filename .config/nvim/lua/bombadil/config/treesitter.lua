@@ -18,7 +18,6 @@ end)()
 require("nvim-treesitter.configs").setup {
   autopairs = { enable = true },
 
-  -- NOTE: Installed by Nix.
   ensure_installed = "maintained",
 
   highlight = {
