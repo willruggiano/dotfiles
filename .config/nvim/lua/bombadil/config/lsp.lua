@@ -195,6 +195,9 @@ if has_null_ls then
   -- local custom_sources = require "bombadil.lsp.null-ls"
   null_ls.setup {
     debug = true,
+
+    on_attach = on_attach,
+
     sources = {
       -- Formatting
       -- null_ls.builtins.formatting.clang_format, -- via clangd
@@ -228,10 +231,6 @@ if has_null_ls then
   null_ls.register {
     null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "cpp" }, extra_args = { "--language", "cpp" } },
     null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
-  }
-
-  lspconfig["null-ls"].setup {
-    on_attach = on_attach,
   }
 end
 
