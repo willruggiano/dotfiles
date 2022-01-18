@@ -216,6 +216,7 @@ local function init()
     config = function()
       require "bombadil.config.treesitter"
     end,
+    run = ":TSUpdate",
   }
   use "David-Kunz/treesitter-unit"
   use "JoosepAlviste/nvim-ts-context-commentstring"
