@@ -24,8 +24,9 @@ local function init()
   use "wbthomason/packer.nvim"
 
   -- For when I forget what I'm doing
-  local_use {
-    "which-key.nvim",
+  use {
+    "willruggiano/which-key.nvim",
+    branch = "patch-1",
     config = function()
       require "bombadil.config.which-key"
     end,
