@@ -107,6 +107,7 @@ local function init()
   }
   use {
     "neovim/nvim-lspconfig",
+    after = { "coq_nvim", "null-ls.nvim" },
     config = function()
       require "bombadil.config.lsp"
     end,
@@ -162,10 +163,7 @@ local function init()
     "jbyuki/one-small-step-for-vimkind",
     requires = "mfussenegger/nvim-dap",
   }
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lspconfig",
-  }
+  use "jose-elias-alvarez/null-ls.nvim"
   local_use {
     "nix.nvim",
     after = "firvish.nvim",

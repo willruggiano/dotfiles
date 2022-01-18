@@ -159,7 +159,7 @@ local on_attach = function(client, bufnr)
     ["<leader>"] = {
       ca = {
         function()
-          require("telescope.builtin").lsp_range_code_actions(cursor_opts)
+          require("telescope.builtin").lsp_range_code_actions(telescope_themes.cursor)
         end,
         "code-action",
       },
