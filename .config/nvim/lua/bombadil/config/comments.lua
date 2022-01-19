@@ -2,8 +2,7 @@ local config = require "kommentary.config"
 
 config.use_extended_mappings()
 
---[[ This function will be called automatically by the mapping, the first
-argument will be the line that is being operated on. ]]
+-- This function will be called automatically by the mapping, the first argument will be the line that is being operated on.
 local insert_comment_below = function(...)
   local args = { ... }
   -- This includes the commentstring

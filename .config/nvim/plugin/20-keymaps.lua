@@ -30,6 +30,7 @@ local quitters = {
   man = quit,
   quickfix = quit,
   terminal = quit,
+  tsplayground = quit,
 }
 local close = function(bt, ft, bname)
   local fn = quitters[ft] or quitters[bt] or quitters[bname] or bufdelete

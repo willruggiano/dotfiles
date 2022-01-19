@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+local scriptpath=${0:A:h}
+
+pushd "$(dirname $scriptpath)/modules/common/neovim/plugins" >/dev/null
+
+niv "$@"
+
+popd

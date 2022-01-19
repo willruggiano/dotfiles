@@ -20,4 +20,9 @@ python.buildPythonApplication rec {
     beautifulsoup4
     html5lib
   ];
+
+  postInstall = ''
+    mkdir -p $out/after/ftplugin
+    cp cppman/lib/cppman.vim $out/after/ftplugin/
+  '';
 }

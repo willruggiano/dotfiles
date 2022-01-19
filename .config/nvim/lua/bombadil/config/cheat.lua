@@ -1,3 +1,8 @@
 require("which-key").register {
-  ["?"] = { "<cmd>Cheat<cr>", "cheat" },
+  ["?"] = {
+    function()
+      require("nvim-cheat"):new_cheat(false)
+    end,
+    "cheat",
+  },
 }

@@ -131,7 +131,7 @@
           packages = utils.lib.exportPackages self.overlays channels;
           devShell = pkgs.stdenv.mkDerivation {
             name = "dotfiles";
-            buildInputs = with pkgs; [ cmake fup-repl git nix-zsh-completions nodejs ];
+            buildInputs = with pkgs; [ cmake fup-repl git niv nix-zsh-completions nodejs ];
             shellHook = ''
               export FLAKE=$(pwd)
               export PATH=$FLAKE/bin:$PATH

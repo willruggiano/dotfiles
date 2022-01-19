@@ -35,6 +35,7 @@ with lib;
 
   # Terminal
   programs.kitty.enable = true;
+  programs.neovim.enable = true;
 
   # Services
   services.agenix.enable = true;

@@ -2,7 +2,8 @@
 
 with lib;
 
-let cfg = config.programs.neovim;
+let
+  cfg = config.programs.neovim;
 in
 {
   config = mkIf cfg.enable {

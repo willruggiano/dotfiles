@@ -43,4 +43,5 @@ vim.g.coq_settings = {
     bigger_preview = "",
     jump_to_mark = "",
   },
+  xdg = true,
 }
