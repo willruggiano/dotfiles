@@ -11,6 +11,7 @@ with lib;
   user.shell = pkgs.zsh;
 
   # Desktop
+  programs.code.enable = true;
   programs.firefox.enableViaHomebrew = true;
   programs.karabiner.enable = true;
   programs.keeping-you-awake.enable = true;

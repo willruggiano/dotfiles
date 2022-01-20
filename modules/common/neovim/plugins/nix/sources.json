@@ -443,6 +443,12 @@
         "rev": "e20908963d9b0114e5da1eacbc516e4b09cf5803",
         "type": "git"
     },
+    "vimspector": {
+        "branch": "master",
+        "repo": "git@github.com:puremourning/vimspector",
+        "rev": "3ebb4be89735771d43d2c5109f2a46df8ebe10c5",
+        "type": "git"
+    },
     "which-key.nvim": {
         "branch": "main",
         "repo": "git@github.com:folke/which-key.nvim",

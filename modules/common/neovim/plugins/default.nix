@@ -422,6 +422,14 @@ rec {
     package = plugins.playground;
   };
 
+  vimspector = {
+    package = plugins.vimspector;
+    setup = ''
+      vim.g.vimspector_base_dir = vim.fn.stdpath("data") .. "/" .. "vimspector"
+      vim.g.vimspector_enable_mappings = "HUMAN"
+    '';
+  };
+
   # When are we going to get a lua version of this? Or, even better!, builtin support?
   visual-multi = {
     package = plugins.vim-visual-multi;
