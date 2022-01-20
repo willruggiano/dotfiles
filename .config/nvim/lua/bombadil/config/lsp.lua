@@ -261,6 +261,7 @@ lspconfig.clangd.setup {
 }
 
 lspconfig.cmake.setup {
+  cmd = lsp_cmds.cmake,
   on_init = on_init,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
