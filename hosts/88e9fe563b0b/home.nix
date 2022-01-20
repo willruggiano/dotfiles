@@ -14,7 +14,7 @@
     userEmail = "wruggian@amazon.com";
   };
   programs.htop.enable = true;
-  programs.neovim.enable = true;
+  # programs.neovim.enable = true;
   programs.starship.enable = true;
   programs.zsh.enable = true;
 

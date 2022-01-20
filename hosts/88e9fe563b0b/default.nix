@@ -20,6 +20,7 @@ with lib;
 
   # Terminal
   programs.kitty.enable = true;
+  programs.neovim.enable = true;
 
   # Web browsing
   programs.qutebrowser.enable = true;
