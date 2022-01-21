@@ -41,6 +41,7 @@ with lib;
   services.agenix.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;
+  services.expressvpn.enable = true;
   services.interception-tools.enable = true;
   # services.keyd.enable = true;
   services.pcscd.enable = true;

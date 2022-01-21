@@ -25,6 +25,7 @@ in
       pkgs.ranger
       pkgs.ripgrep
       pkgs.sad
+      pkgs.speedtest-cli
       pkgs.trash-cli
       pkgs.unzip
       pkgs.wget
