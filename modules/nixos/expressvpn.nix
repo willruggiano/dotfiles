@@ -14,5 +14,13 @@ in
         config = "config ${config.age.secrets.expressvpn-dallas.path}";
       };
     };
+
+    systemd.services.expressvpn-reconnect = {
+      description = "Restart OpenVPN after suspend";
+      wantedBy = [ "sleep.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
+      };
+    };
   };
 }
