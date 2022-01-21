@@ -41,23 +41,28 @@ in
         right_padding = 0;
         window_gap = 0;
       };
-      extraConfig = ''
-        # float system preferences
-        yabai -m rule --add app='^System Information$' manage=off grid=${centered}
-        yabai -m rule --add app='^System Preferences$' manage=off grid=${centered}
-        yabai -m rule --add title='Preferences$' manage=off grid=${centered}
-
-        # float settings windows
-        yabai -m rule --add title='Settings$' manage=off grid=${centered}
-
-        # float communications applications
-        yabai -m rule --add app='^Amazon Chime$' manage=off grid=${centered}
-        yabai -m rule --add app='^Cisco AnyConnect Secure Mobility Client$' manage=off grid=${centered}
-
-        # spacebar padding on top screen
-        SPACEBAR_HEIGHT=$(${pkgs.spacebar}/bin/spacebar -m config height)
-        yabai -m config external_bar all:0:$SPACEBAR_HEIGHT
-      '';
+      extraConfig =
+        let
+          float = what:
+            "yabai -m rule --add ${what} manage=off grid=${centered}";
+        in
+        concatStringsSep "\n" [
+          "# float system prefrences"
+          (float "app='^System Information$'")
+          (float "app='^System Preferences$'")
+          (float "title='Preferences$'")
+          "# float settings windows"
+          (float "title='Settings$'")
+          "# float comms apps"
+          (float "app='^Amazon Chime$'")
+          (float "app='^Cisco AnyConnect Secure Mobility Client$'")
+          (float "app='^Messages$'")
+          "# float other apps"
+          (float "app='^Dictionary$'")
+          "# spacebar padding"
+          "SPACEBAR_HEIGHT=$(${pkgs.spacebar}/bin/spacebar -m config height)"
+          "yabai -m config external_bar all:0:$SPACEBAR_HEIGHT"
+        ];
     };
 
     services.skhd = {
