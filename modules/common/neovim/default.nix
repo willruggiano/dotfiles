@@ -139,6 +139,6 @@ in
     };
 
     environment.variables.EDITOR = "nvim";
-    environment.variables.PAGER = "nvim +Man!";
+    environment.variables.MANPAGER = "nvim +Man!";
   };
 }
