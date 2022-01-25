@@ -158,7 +158,7 @@
     "make.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/make.nvim",
-        "rev": "13587266948d5c62857b235b1c19b1b2c28bb3b0",
+        "rev": "a936b7b6cbc47720c70b0aa8741356547ff23a25",
         "type": "git"
     },
     "marks.nvim": {
