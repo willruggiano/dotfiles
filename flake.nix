@@ -111,7 +111,7 @@
         ];
         specialArgs = {
           inherit (self) lib;
-          inherit inputs system darwinModules;
+          inherit inputs system;
         };
         builder = inputs.darwin.lib.darwinSystem;
         output = "darwinConfigurations";
