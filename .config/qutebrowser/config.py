@@ -40,6 +40,7 @@ c.url.searchengines.update({
     'github': 'https://github.com/search?q={}',
     'google': 'https://google.com/search?q={}',
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
+    'pypi': 'https://pypi.org/project/{}',
 })
 c.url.searchengines['DEFAULT'] = c.url.searchengines['duckduckgo']
 
