@@ -59,6 +59,14 @@ local on_attach = function(_, bufnr)
 
   -- Mappings.
   wk.register({
+    ["]d"] = {
+      vim.diagnostic.goto_next,
+      "Next diagnostic",
+    },
+    ["[d"] = {
+      vim.diagnostic.goto_prev,
+      "Previous diagnostic",
+    },
     ["<leader>"] = {
       ca = {
         function()
@@ -81,14 +89,6 @@ local on_attach = function(_, bufnr)
             vim.diagnostic.open_float(0, { border = "single" })
           end,
           "show-line",
-        },
-        n = {
-          vim.diagnostic.goto_next,
-          "goto-next",
-        },
-        p = {
-          vim.diagnostic.goto_prev,
-          "goto-prev",
         },
         w = {
           function()
