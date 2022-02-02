@@ -211,7 +211,7 @@ if has_null_ls then
       null_ls.builtins.formatting.stylua,
       -- null_ls.builtins.formatting.yapf, -- via pylsp
       -- Diagnostics
-      null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "log" } },
+      null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
       null_ls.builtins.diagnostics.luacheck.with {
         command = lsp_cmds.luacheck[0],
         extra_args = { "--globals", "vim", "--no-max-line-length" },
