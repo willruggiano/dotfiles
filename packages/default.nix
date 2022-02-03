@@ -14,6 +14,7 @@ final: prev: {
       inherit unwrapped;
     });
   cppman = prev.callPackage ./cppman { };
+  docsets = prev.callPackage ./docsets { };
   dummy = prev.runCommand "dummy-0.0.0" { } "mkdir $out";
   firefox-extended = prev.callPackage ./firefox { };
   keyd = prev.callPackage ./keyd { };

@@ -34,6 +34,7 @@ with lib;
   programs.sway.enable = true;
 
   # Terminal
+  programs.docsets.enable = true;
   programs.kitty.enable = true;
   programs.neovim.enable = true;
 
