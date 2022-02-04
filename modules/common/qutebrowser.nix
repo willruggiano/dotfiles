@@ -21,6 +21,13 @@ in
     {
       user.packages = with pkgs; [
         qutebrowser
+        (writeShellApplication {
+          name = "qutebrowser-private";
+          runtimeInputs = [ qutebrowser ];
+          text = ''
+            qutebrowser -T -s content.private_browsing true
+          '';
+        })
         (makeDesktopItem {
           name = "qutebrowser-private";
           desktopName = "Qutebrowser (Private)";

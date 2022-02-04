@@ -26,19 +26,17 @@ in
   set $term ${term}
   # Your preferred application launcher
   set $launcher ${pkgs.dmenu}/bin/dmenu_path | ${pkgs.fzf}/bin/fzf | ${xargs} ${swaymsg} exec
-  set $menu ${term} --title 'launcher' -e sh -c '$launcher'
-  for_window [title="^launcher$"] floating enable, border pixel
+  set $menu $term --title 'launcher' -e sh -c '$launcher'
+  for_window [title="^launcher$"] floating enable, border pixel, resize set 80ppt 20ppt
 
-  set $mode_launcher launch [b]rowser [l]auncher [p]assmenu [t]erminal
+  set $mode_launcher launch [b]rowser [p]ass
   bindsym $mod+o mode "$mode_launcher"
 
   mode "$mode_launcher" {
     bindsym b exec ${browser}; mode "default"
     bindsym c exec ${dunstctl} close-all; mode "default"
-    bindsym l exec $menu; mode "default"
     bindsym n exec ${dunstctl} history-pop; mode "default"
     bindsym p exec ${pkgs.pass}/bin/passmenu; mode "default"
-    bindsym t exec $term; mode "default"
     bindsym $mod+o mode "default"
   }
 
@@ -107,7 +105,7 @@ in
   floating_modifier $mod normal
 
   # Reload the configuration file
-  bindsym $mod+Shift+c reload
+  bindsym $mod+Shift+r reload
 
   # Exit sway (logs you out of your Wayland session)
   bindsym $mod+Shift+e exec ${pkgs.sway}/bin/swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' "${swaymsg} exit"
