@@ -293,6 +293,12 @@
         "rev": "983c46d55cb796fd623d43e3510bce7b21d0d1a6",
         "type": "git"
     },
+    "nvim-treesitter-endwise": {
+        "branch": "master",
+        "repo": "git@github.com:RRethy/nvim-treesitter-endwise",
+        "rev": "92504a94e3e3d1f62309393bd80f2417781ac989",
+        "type": "git"
+    },
     "nvim-treesitter-refactor": {
         "branch": "master",
         "repo": "git@github.com:nvim-treesitter/nvim-treesitter-refactor",

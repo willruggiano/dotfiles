@@ -410,6 +410,10 @@ rec {
     package = plugins.nvim-ts-context-commentstring;
   };
 
+  treesitter-endwise = {
+    package = plugins.nvim-treesitter-endwise;
+  };
+
   treesitter-refactor = {
     package = plugins.nvim-treesitter-refactor;
   };
