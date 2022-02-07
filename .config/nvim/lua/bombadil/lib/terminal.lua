@@ -23,6 +23,29 @@ local close_term_if_open = function()
   target:close()
 end
 
+local Terminal = terminal.Terminal
+
+local function run_command(interactive, prog, ...)
+  local cmd = { prog }
+  local args = { ... }
+  if #args > 0 then
+    for _, a in ipairs(args) do
+      cmd[#cmd + 1] = a
+    end
+  end
+  local term = Terminal:new {
+    cmd = table.concat(cmd, " "),
+    direction = "horizontal",
+    border = "single",
+    hidden = true,
+    close_on_exit = true,
+  }
+  if interactive then
+    term:open()
+  end
+end
+
 return {
   close = close_term_if_open,
+  run_command = run_command,
 }
