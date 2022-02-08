@@ -85,6 +85,8 @@ in
 
       xdg.configFile = {
         "lazygit/config.yml".text = ''
+          git:
+            autoFetch: false
           keybinding:
             universal:
               quit: '<c-c>'
