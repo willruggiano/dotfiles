@@ -1,4 +1,4 @@
-vim.bo.shiftwidth = 2
+require("bombadil.lib.options").shiftwidth(2)
 vim.bo.textwidth = 100
 
 local ok, _ = pcall(require, "luadev")

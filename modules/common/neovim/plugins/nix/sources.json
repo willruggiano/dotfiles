@@ -8,7 +8,7 @@
     "clang-format.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/clang-format.nvim",
-        "rev": "f660e51fbf3d114ee1fafc3ccecab6033d74addb",
+        "rev": "f51a3f51ddd55d55bfe04cef0c46198b70a06015",
         "type": "git"
     },
     "clangd_extensions.nvim": {
