@@ -238,26 +238,49 @@ if has_null_ls then
   }
 end
 
-lspconfig.clangd.setup {
-  cmd = vim.list_extend(lsp_cmds.clangd, {
-    "--background-index",
-    "--header-insertion=iwyu",
-    "--suggest-missing-includes",
-  }),
-  on_init = on_init,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    nnoremap("<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = 0 })
-  end,
-  init_options = {
-    clangdFileStatus = true,
-    completeUnimported = true,
-    semanticHighlighting = true,
-    usePlaceholders = true,
+require("clangd_extensions").setup {
+  server = {
+    cmd = vim.list_extend(lsp_cmds.clangd, {
+      "--background-index",
+      "--header-insertion=iwyu",
+      "--suggest-missing-includes",
+    }),
+    on_init = function(client)
+      on_init(client)
+      require("clang-format").setup {}
+    end,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      nnoremap("<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = 0 })
+      require("clang-format").on_attach(client, bufnr)
+    end,
+    init_options = {
+      clangdFileStatus = true,
+      completeUnimported = true,
+      semanticHighlighting = true,
+      usePlaceholders = true,
+    },
+    handlers = nvim_status.extensions.clangd.setup(),
+    -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+    capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
   },
-  handlers = nvim_status.extensions.clangd.setup(),
-  -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-  capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
+  extensions = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      only_current_line = false,
+      only_current_line_autocmd = "CursorHold",
+      show_parameter_hints = true,
+      show_variable_name = false,
+      parameter_hints_prefix = "<- ",
+      other_hints_prefix = "=> ",
+      max_len_align = false,
+      max_len_align_padding = 1,
+      right_align = false,
+      right_align_padding = 7,
+      highlight = "Comment",
+    },
+  },
 }
 
 lspconfig.cmake.setup {

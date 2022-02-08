@@ -35,6 +35,15 @@ rec {
     package = plugins."bufdelete.nvim";
   };
 
+  clang-format = {
+    package = plugins."clang-format.nvim";
+    rocks = [ lyaml ];
+  };
+
+  clangd-extensions = {
+    package = plugins."clangd_extensions.nvim";
+  };
+
   colorizer = {
     package = plugins."nvim-colorizer.lua";
   };

@@ -15,7 +15,8 @@ in
         mkPlugin = pname: p:
           buildVimPluginFrom2Nix ({ inherit pname; version = "master"; src = p.package; } // (p.override or { }));
 
-        plugins' = mapAttrs (pname: p: { start = [ (mkPlugin pname p) ]; }) plugins;
+        # TODO: Find a better way to deal with rocks which have lua modules
+        plugins' = mapAttrs (pname: p: { start = [ (mkPlugin pname p) ] ++ (p.rocks or [ ]); }) plugins;
         rocks = flatten (mapAttrsToList (pname: p: p.rocks or [ ]) plugins);
       in
       {
