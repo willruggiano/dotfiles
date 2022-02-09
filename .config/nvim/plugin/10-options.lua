@@ -1,24 +1,14 @@
 local opt = vim.opt
 
--- The pyenv virtualenv which has pynvim installed
--- vim.g.python3_host_prog = vim.fn.expand "~/.pyenv/versions/neovim/bin/python"
-
--- Set our font
--- opt.guifont = "JetBrainsMono-Regular:h11"
-
 -- Ignore compiled files
-opt.wildignore = "__pycache__"
-opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
+-- TODO: It'd be nice if we could use .gitignore for this?
+opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
 
-opt.wildmode = { "longest", "list", "full" }
+opt.wildmode = { "longest", "full" }
+opt.wildoptions = "pum"
 
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17
-
-opt.wildmode = opt.wildmode - "list"
-opt.wildmode = opt.wildmode + { "longest", "full" }
-
-opt.wildoptions = "pum"
 
 opt.showmode = false
 opt.showcmd = true
@@ -65,11 +55,6 @@ opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
 opt.mouse = "n"
 
--- Helpful related items:
---   1. :center, :left, :right
---   2. gw{motion} - Put cursor back after formatting motion.
---
--- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
   - "a" -- Auto formatting is BAD.
   - "t" -- Don't auto format my code. I got linters for that.
@@ -101,7 +86,7 @@ opt.exrc = true
 opt.secure = true
 
 -- use ripgrep instead of native vimgrep
-vim.opt.grepprg = "rg --vimgrep --smart-case --follow"
+opt.grepprg = "rg --vimgrep --smart-case --follow"
 
 -- I like help,man,K to open in a vertical split
 vim.o.keywordprg = ":vert help"

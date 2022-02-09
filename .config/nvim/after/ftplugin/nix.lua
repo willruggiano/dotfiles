@@ -1,4 +1,6 @@
-require("bombadil.lib.options").shiftwidth(2)
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.tabstop = 2
 
 local ok, kommentary = pcall(require, "kommentary.config")
 if not ok then
