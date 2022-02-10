@@ -53,14 +53,17 @@ in
             import sys
             import time
             from pathlib import Path
+            from urllib.parse import urlparse
 
             QUTE_COUNT = int(os.getenv("QUTE_COUNT", 30))
             QUTE_FIFO = os.environ["QUTE_FIFO"]
             QUTE_TAB = os.environ["QUTE_TAB"]
+            QUTE_URL = os.environ["QUTE_URL"]
 
             command = f":run-with-count {QUTE_TAB} reload -f\n"
 
-            lock = Path(f"~/.local/share/qutebrowser/autorefresh/{QUTE_TAB}").expanduser()
+            domain = urlparse(f"{QUTE_URL}").netloc
+            lock = Path(f"~/.cache/qutebrowser/autorefresh/{domain}").expanduser()
             with open(QUTE_FIFO, "w") as fifo:
               if lock.exists():
                 # Then this call serves to "interrupt" a currently running userscript
