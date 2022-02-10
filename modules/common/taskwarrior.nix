@@ -12,12 +12,10 @@ in
     user.packages = with pkgs; [ taskwarrior taskwarrior-tui ];
 
     home.configFile = {
-      "taskwarrior/taskrc".text = ''
+      "task/taskrc".text = ''
         # Generate by Nix
-        data.location=~/.local/share/taskwarrior
+        data.location=$XDG_DATA_HOME/task
       '';
     };
-
-    environment.variables.TASKRC = "~/.config/taskwarrior/taskrc";
   };
 }
