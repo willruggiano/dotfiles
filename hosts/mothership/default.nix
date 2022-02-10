@@ -37,6 +37,7 @@ with lib;
   programs.docsets.enable = true;
   programs.kitty.enable = true;
   programs.neovim.enable = true;
+  programs.taskwarrior.enable = true;
 
   # Services
   services.agenix.enable = true;
