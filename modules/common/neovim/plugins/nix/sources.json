@@ -11,12 +11,6 @@
         "rev": "f51a3f51ddd55d55bfe04cef0c46198b70a06015",
         "type": "git"
     },
-    "clangd_extensions.nvim": {
-        "branch": "main",
-        "repo": "git@github.com:p00f/clangd_extensions.nvim",
-        "rev": "ac40f95ae97b25704d742ca4cc9c87e5caab3205",
-        "type": "git"
-    },
     "close-buffers.nvim": {
         "branch": "master",
         "repo": "git@github.com:kazhala/close-buffers.nvim",

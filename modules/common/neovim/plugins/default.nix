@@ -40,10 +40,6 @@ rec {
     rocks = [ lyaml ];
   };
 
-  clangd-extensions = {
-    package = plugins."clangd_extensions.nvim";
-  };
-
   colorizer = {
     package = plugins."nvim-colorizer.lua";
   };
