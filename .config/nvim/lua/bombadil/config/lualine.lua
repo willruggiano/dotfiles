@@ -43,10 +43,10 @@ require("lualine").setup {
     lualine_b = { "branch" },
     lualine_c = { "filename" },
     lualine_x = {
-      function()
-        return require("lsp-status").status()
-      end,
-      "filetype",
+      -- function()
+      --   return require("lsp-status").status()
+      -- end,
+      -- "filetype",
     },
     lualine_y = { "progress" },
     lualine_z = { "location" },
@@ -64,5 +64,16 @@ require("lualine").setup {
     "quickfix",
     "toggleterm",
     extensions.lir,
+  },
+}
+
+require("fidget").setup {
+  text = {
+    spinner = "dots",
+  },
+  sources = {
+    ["null-ls"] = {
+      ignore = true,
+    },
   },
 }

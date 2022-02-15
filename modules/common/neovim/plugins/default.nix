@@ -126,6 +126,10 @@ rec {
     package = plugins.vim-eunuch;
   };
 
+  fidget = {
+    package = plugins."fidget.nvim";
+  };
+
   filetype = {
     package = plugins."filetype.nvim";
     config = ''

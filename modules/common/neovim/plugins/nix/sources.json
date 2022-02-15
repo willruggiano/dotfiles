@@ -53,6 +53,12 @@
         "rev": "eef47458679a922ef101c1e4c07fb7b36d701385",
         "type": "git"
     },
+    "fidget.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:j-hui/fidget.nvim",
+        "rev": "9bbd02c210f685d0a2a54e3becdd930c8e6200ce",
+        "type": "git"
+    },
     "filetype.nvim": {
         "branch": "main",
         "repo": "git@github.com:nathom/filetype.nvim",
