@@ -14,7 +14,7 @@ M.jump_to_location = function(location)
     end
   end
 
-  if vim.lsp.util.jump_to_location(location) then
+  if vim.lsp.util.jump_to_location(location, "utf-8") then
     vim.cmd "normal! zz"
     return true
   else
