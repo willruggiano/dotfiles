@@ -1,18 +1,18 @@
 local wk = require "which-key"
+local buffers = require "bombadil.lib.buffers"
+local jump = require "bombadil.lib.jump"
 local keymap = require "bombadil.lib.keymap"
 
 local inoremap = keymap.inoremap
 local nnoremap = keymap.nnoremap
 local tnoremap = keymap.tnoremap
 
-local lib = require "bombadil.lib"
-
 local quit = function()
   vim.cmd "q"
   return true
 end
 local bufdelete = function()
-  local bufs = lib.buffer.loaded()
+  local bufs = buffers.loaded()
   if #bufs > 1 then
     require("bufdelete").bufdelete(0, true)
     return true
@@ -45,7 +45,7 @@ end
 -- Add large jumps to the jump list
 for _, d in ipairs { "j", "k" } do
   nnoremap(d, function()
-    lib.jump(d)
+    jump(d)
   end)
 end
 

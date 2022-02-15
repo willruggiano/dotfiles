@@ -35,10 +35,6 @@ local list_visible_buffers = function()
 end
 
 return {
-  -- TODO: Get rid of these names
-  delete_buffer = delete_buffer,
-  list_loaded_buffers = list_loaded_buffers,
-  -- Usage: require("bombadil.lib").buffer.function()
   delete = delete_buffer,
   loaded = list_loaded_buffers,
   nameless = is_nameless_buffer,
