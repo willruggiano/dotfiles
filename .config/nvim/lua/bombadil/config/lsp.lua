@@ -2,7 +2,6 @@ local icons = require "nvim-nonicons"
 local lsp = require "bombadil.lsp"
 local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
-local nvim_status = require "lsp-status"
 local wk = require "which-key"
 local telescope_themes = require "bombadil.telescope.themes"
 
@@ -10,7 +9,6 @@ local lsp_cmds = require "bombadil.generated.lsp"
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
 lsp.kind.init()
-lsp.status.activate()
 
 vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if not result or vim.tbl_isempty(result) then
@@ -176,7 +174,6 @@ local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 updated_capabilities.textDocument.codeLens = {
   dynamicRegistration = false,
 }
-updated_capabilities = vim.tbl_deep_extend("keep", updated_capabilities, nvim_status.capabilities)
 updated_capabilities.textDocument.completion.completionItem.snippetSupport = true
 updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -259,7 +256,6 @@ lspconfig.clangd.setup {
     semanticHighlighting = true,
     usePlaceholders = true,
   },
-  handlers = nvim_status.extensions.clangd.setup(),
   -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
   capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
 }

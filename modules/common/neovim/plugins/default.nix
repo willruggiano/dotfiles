@@ -208,10 +208,6 @@ rec {
     package = plugins."lsp_extensions.nvim";
   };
 
-  lsp-status = {
-    package = plugins."lsp-status.nvim";
-  };
-
   lualine = {
     package = plugins."lualine.nvim";
     config = ''

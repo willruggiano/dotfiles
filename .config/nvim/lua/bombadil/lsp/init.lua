@@ -32,6 +32,4 @@ M.peek_definition = require "bombadil.lsp.peek"
 
 M.signs = require "bombadil.lsp.signs"
 
-M.status = require "bombadil.lsp.status"
-
 return M

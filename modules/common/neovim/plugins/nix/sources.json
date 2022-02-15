@@ -131,12 +131,6 @@
         "rev": "ca02a1031a2393ec6bf8967657daf06e4d402523",
         "type": "git"
     },
-    "lsp-status.nvim": {
-        "branch": "master",
-        "repo": "git@github.com:willruggiano/lsp-status.nvim",
-        "rev": "9a4ce1e38d1a69a0c898ff1186a9ea3d1987a821",
-        "type": "git"
-    },
     "lsp_extensions.nvim": {
         "branch": "master",
         "repo": "git@github.com:nvim-lua/lsp_extensions.nvim",
