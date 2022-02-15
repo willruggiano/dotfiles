@@ -173,6 +173,12 @@
         "rev": "4b0aad42e72a653ca1afe31d2942f8aa5ab633e1",
         "type": "git"
     },
+    "neogen": {
+        "branch": "main",
+        "repo": "git@github.com:danymat/neogen",
+        "rev": "218e0a63fd28fe3fcd34477e198193f26e0863ce",
+        "type": "git"
+    },
     "neogit": {
         "branch": "master",
         "repo": "git@github.com:timuntersberger/neogit",

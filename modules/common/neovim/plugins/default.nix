@@ -242,6 +242,13 @@ rec {
     '';
   };
 
+  neogen = {
+    package = plugins.neogen;
+    config = ''
+      require "bombadil.config.neogen"
+    '';
+  };
+
   neogit = {
     package = plugins.neogit;
     config = ''
