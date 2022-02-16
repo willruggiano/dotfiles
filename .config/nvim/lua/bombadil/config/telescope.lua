@@ -1,11 +1,15 @@
-local themes = require "bombadil.telescope.themes"
-
 require("which-key").register {
   ["<space>d"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
     end,
     "dotfiles",
+  },
+  ["<space>e"] = {
+    function()
+      require("telescope.builtin").git_files()
+    end,
+    "git-files",
   },
   ["<space>p"] = {
     function()
@@ -19,7 +23,7 @@ require("which-key").register {
       function()
         require("telescope").extensions.gh.gist()
       end,
-      "gist",
+      "gists",
     },
     i = {
       function()
@@ -31,7 +35,7 @@ require("which-key").register {
       function()
         require("telescope").extensions.gh.pull_request()
       end,
-      "pull-request",
+      "pull-requests",
     },
     w = {
       function()

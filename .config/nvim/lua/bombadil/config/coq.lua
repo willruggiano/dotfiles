@@ -1,3 +1,7 @@
+if pcall(require, "cmp") then
+  return
+end
+
 local inoremap = require("bombadil.lib.keymap").inoremap
 
 vim.opt.completeopt = { "menuone", "noselect" }

@@ -1,3 +1,7 @@
+if pcall(require, "cmp") then
+  return
+end
+
 vim.cmd [[
   call wilder#setup({'modes': [':', '/', '?']})
 ]]

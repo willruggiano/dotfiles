@@ -1,4 +1,10 @@
 {
+    "LuaSnip": {
+        "branch": "master",
+        "repo": "git@github.com:L3MON4D3/LuaSnip",
+        "rev": "c1d07078dce0c9631e89a299e4b4a93334650a7b",
+        "type": "git"
+    },
     "bufdelete.nvim": {
         "branch": "master",
         "repo": "git@github.com:famiu/bufdelete.nvim",
@@ -15,6 +21,72 @@
         "branch": "master",
         "repo": "git@github.com:kazhala/close-buffers.nvim",
         "rev": "3acbcad1211572342632a6c0151f839e7dead27f",
+        "type": "git"
+    },
+    "cmp-buffer": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-buffer",
+        "rev": "f83773e2f433a923997c5faad7ea689ec24d1785",
+        "type": "git"
+    },
+    "cmp-cmdline": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-cmdline",
+        "rev": "f4beb74e8e036f9532bedbcac0b93c7a55a0f8b0",
+        "type": "git"
+    },
+    "cmp-fuzzy-path": {
+        "branch": "master",
+        "repo": "git@github.com:tzachar/cmp-fuzzy-path",
+        "rev": "206d799d0d7480bd44b6055ebbe7801e364a09a4",
+        "type": "git"
+    },
+    "cmp-git": {
+        "branch": "main",
+        "repo": "git@github.com:petertriho/cmp-git",
+        "rev": "4b2e57b3c76769ebcb1b61ac2be81cc20575a15c",
+        "type": "git"
+    },
+    "cmp-nvim-lsp": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-nvim-lsp",
+        "rev": "ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba",
+        "type": "git"
+    },
+    "cmp-nvim-lsp-document-symbol": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-nvim-lsp-document-symbol",
+        "rev": "29d12e55cf49ee07b829114ad39b161cad2544ab",
+        "type": "git"
+    },
+    "cmp-nvim-lsp-signature-help": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-nvim-lsp-signature-help",
+        "rev": "414619286928901600cf5b5ccb2f62666f82d3bd",
+        "type": "git"
+    },
+    "cmp-nvim-lua": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-nvim-lua",
+        "rev": "d276254e7198ab7d00f117e88e223b4bd8c02d21",
+        "type": "git"
+    },
+    "cmp-path": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/cmp-path",
+        "rev": "466b6b8270f7ba89abd59f402c73f63c7331ff6e",
+        "type": "git"
+    },
+    "cmp-under-comparator": {
+        "branch": "master",
+        "repo": "git@github.com:lukas-reineke/cmp-under-comparator",
+        "rev": "6857f10272c3cfe930cece2afa2406e1385bfef8",
+        "type": "git"
+    },
+    "cmp_luasnip": {
+        "branch": "master",
+        "repo": "git@github.com:saadparwaiz1/cmp_luasnip",
+        "rev": "d6f837f4e8fe48eeae288e638691b91b97d1737f",
         "type": "git"
     },
     "coq.artifacts": {
@@ -75,6 +147,12 @@
         "branch": "master",
         "repo": "git@github.com:antoinemadec/fixcursorhold.nvim",
         "rev": "0e4e22d21975da60b0fd2d302285b3b603f9f71e",
+        "type": "git"
+    },
+    "fuzzy.nvim": {
+        "branch": "master",
+        "repo": "git@github.com:tzachar/fuzzy.nvim",
+        "rev": "fa4d69ecfa4d5ee7703a8461f8896565e409ff92",
         "type": "git"
     },
     "fzy-lua-native": {
@@ -219,6 +297,12 @@
         "branch": "master",
         "repo": "git@github.com:rishabhrd/nvim-cheat.sh",
         "rev": "eb6acbacd39cf7c1966cb58d6586351db14607da",
+        "type": "git"
+    },
+    "nvim-cmp": {
+        "branch": "main",
+        "repo": "git@github.com:hrsh7th/nvim-cmp",
+        "rev": "13d64460cba64950aff41e230cc801225bd9a3e2",
         "type": "git"
     },
     "nvim-colorizer.lua": {
