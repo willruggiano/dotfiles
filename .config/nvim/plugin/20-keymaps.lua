@@ -74,6 +74,9 @@ nnoremap("<left>", "gT")
 
 -- Make ESC leave terminal mode
 tnoremap("<esc>", "<c-\\><c-n>")
+tnoremap("<esc><esc>", function()
+  require("bombadil.lib.terminal").close()
+end)
 
 -- Remap some of the single char yanks so they use the _ register
 nnoremap("cj", [["_cj]])
