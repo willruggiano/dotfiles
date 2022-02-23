@@ -80,8 +80,6 @@ for _, mode in ipairs { "n", "x" } do
   wk.register(mappings, { mode = mode })
 end
 
-local lsp = require "lspconfig.util"
-
 wk.register {
   ["<leader>d"] = {
     e = {
