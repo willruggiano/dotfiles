@@ -77,6 +77,12 @@
         "rev": "466b6b8270f7ba89abd59f402c73f63c7331ff6e",
         "type": "git"
     },
+    "cmp-snippy": {
+        "branch": "master",
+        "repo": "git@github.com:dcampos/cmp-snippy",
+        "rev": "9af1635fe40385ffa3dabf322039cb5ae1fd7d35",
+        "type": "git"
+    },
     "cmp-under-comparator": {
         "branch": "master",
         "repo": "git@github.com:lukas-reineke/cmp-under-comparator",
@@ -371,6 +377,12 @@
         "rev": "d053a333c1eb8d7cabb023b6ba52e3f211211209",
         "type": "git"
     },
+    "nvim-snippy": {
+        "branch": "master",
+        "repo": "git@github.com:dcampos/nvim-snippy",
+        "rev": "81239281a758c42b8255be53a424359985013752",
+        "type": "git"
+    },
     "nvim-terminal.lua": {
         "branch": "master",
         "repo": "git@github.com:norcalli/nvim-terminal.lua",
@@ -537,6 +549,12 @@
         "branch": "master",
         "repo": "git@github.com:tpope/vim-repeat",
         "rev": "24afe922e6a05891756ecf331f39a1f6743d3d5a",
+        "type": "git"
+    },
+    "vim-snippets": {
+        "branch": "master",
+        "repo": "git@github.com:honza/vim-snippets",
+        "rev": "851c39c38f48c47f9aa937f83cda314ab1c8dd44",
         "type": "git"
     },
     "vim-visual-multi": {

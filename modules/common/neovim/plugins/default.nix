@@ -83,12 +83,12 @@ rec {
     package = plugins.cmp-path;
   };
 
-  cmp-under-comparator = {
-    package = plugins.cmp-under-comparator;
+  cmp-snippy = {
+    package = plugins.cmp-snippy;
   };
 
-  cmp-luasnip = {
-    package = plugins.cmp_luasnip;
+  cmp-under-comparator = {
+    package = plugins.cmp-under-comparator;
   };
 
   colorizer = {
@@ -274,10 +274,6 @@ rec {
     package = plugins.nvim-luaref;
   };
 
-  luasnip = {
-    package = plugins.LuaSnip;
-  };
-
   lua-dev = {
     package = plugins."lua-dev.nvim";
   };
@@ -354,6 +350,10 @@ rec {
 
   nvim-luadev = {
     package = plugins.nvim-luadev;
+  };
+
+  nvim-snippy = {
+    package = plugins.nvim-snippy;
   };
 
   one-small-step-for-vimkind = {
@@ -495,6 +495,10 @@ rec {
 
   treesitter-playground = {
     package = plugins.playground;
+  };
+
+  vim-snippets = {
+    package = plugins.vim-snippets;
   };
 
   vimspector = {

@@ -1,5 +1,5 @@
 local cmp = require "cmp"
-local luasnip = require "luasnip"
+local snippy = require "snippy"
 local neogen = require "neogen"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
@@ -7,7 +7,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      snippy.expand_snippet(args.body)
     end,
   },
   mapping = {
@@ -46,8 +46,8 @@ cmp.setup {
       i = cmp.mapping.complete(),
     },
     ["<C-n>"] = function(_)
-      if luasnip.jumpable(1) then
-        luasnip.jump(1)
+      if snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
       elseif neogen.jumpable() then
         neogen.jump_next()
       else
@@ -55,8 +55,8 @@ cmp.setup {
       end
     end,
     ["<C-p>"] = function(_)
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      if snippy.can_jump(-1) then
+        snippy.previous()
       elseif neogen.jumpable(true) then
         neogen.jump_prev()
       else
@@ -68,7 +68,7 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip" },
+    { name = "snippy" },
     -- { name = "cmp_shell" },
     { name = "buffer", group_index = 2 },
   },

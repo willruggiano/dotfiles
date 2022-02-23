@@ -1,0 +1,6 @@
+snippet ok
+        local ok, $1 = pcall(require, "$2")
+        if not ok then
+          return
+        end
+        $0
