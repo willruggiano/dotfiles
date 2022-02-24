@@ -65,16 +65,19 @@ cmp.setup {
     end,
   },
   sources = {
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
-    { name = "snippy" },
-    -- { name = "cmp_shell" },
-    { name = "buffer", group_index = 2 },
+    { name = "shell" },
+    { name = "nvim_lua", group_index = 2 },
+    { name = "nvim_lsp", group_index = 2 },
+    { name = "nvim_lsp_signature_help", group_index = 2 },
+    { name = "snippy", group_index = 2 },
+    { name = "buffer", group_index = 3 },
   },
   sorting = {
     priority_weight = 2,
     comparators = {
+      function(...)
+        return require("cmp_buffer"):compare_locality(...)
+      end,
       require "cmp_fuzzy_path.compare",
       cmp.config.compare.offset,
       cmp.config.compare.exact,
@@ -119,3 +122,4 @@ cmp.setup.filetype("gitcommit", {
 })
 
 require("cmp_git").setup()
+require("cmp_shell").setup()
