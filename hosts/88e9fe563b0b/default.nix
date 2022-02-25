@@ -12,7 +12,11 @@ with lib;
 
   # Desktop
   programs.code.enable = true;
-  programs.firefox.enableViaHomebrew = true;
+  programs.firefox.enable = true;
+  programs.qutebrowser = {
+    enable = true;
+    default = true;
+  };
   programs.karabiner.enable = true;
   programs.keeping-you-awake.enable = true;
   # TODO: libcxx-13 is marked as broken
@@ -23,9 +27,4 @@ with lib;
   programs.kitty.enable = true;
   programs.neovim.enable = true;
   programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
-
-  # Web browsing
-  programs.qutebrowser.enable = true;
-  programs.qutebrowser.default = true;
-  # programs.firefox.enable = false; # via home.nix
 }

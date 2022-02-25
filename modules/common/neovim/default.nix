@@ -75,7 +75,7 @@ in
           in
           concatStringsSep "\n" pluginConfigs;
 
-        "zsh/extra/31-nvim-aliases.zsh".text = ''
+        "zsh/extra/99-neovim.zsh".text = ''
           if (( ''${+NVIM_LISTEN_ADDRESS} )); then
             alias open="${pkgs.neovim-remote}/bin/nvr -cc quit"
             alias split="${pkgs.neovim-remote}/bin/nvr -cc quit -o"
