@@ -1,0 +1,37 @@
+[note]
+# Template used to generate a note's content.
+# If not an absolute path, it is relative to .zk/templates/
+template = "default.md"
+
+
+[format.markdown]
+link-format = "wiki"
+hashtags = true
+colon-tags = true
+multiword-tags = true
+
+
+[lsp]
+[lsp.diagnostics]
+dead-link = "error"
+
+[lsp.completion]
+# Customize the completion pop-up of your LSP client.
+
+# Show the note title in the completion pop-up, or fallback on its path if empty.
+#note-label = ""
+# Filter out the completion pop-up using the note title or its path.
+#note-filter-text = " "
+# Show the note filename without extension as detail.
+#note-detail = ""
+
+
+[filter]
+
+recent = "--sort created- --created-after 'last two weeks'"
+
+
+[alias]
+ls = "zk list $@"
+last = "zk edit --limit 1 --sort modified- $@"
+recent = "zk edit --sort created- --created-after 'last two weeks' --interactive"

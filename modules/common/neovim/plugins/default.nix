@@ -505,4 +505,11 @@ rec {
       require "bombadil.config.wilder"
     '';
   };
+
+  zk = {
+    package = plugins.zk-nvim;
+    config = ''
+      require "bombadil.config.zk"
+    '';
+  };
 }

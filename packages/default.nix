@@ -49,4 +49,13 @@ final: prev: {
       hash = "sha256-8O6//T894C32Pba3F2Z84Z6VWeCXlwml3xsXoIZGqL0=";
     };
   });
+  zk = prev.zk.overrideAttrs (_: rec {
+    version = "0.9.0";
+    src = prev.fetchFromGitHub {
+      owner = "mickael-menu";
+      repo = "zk";
+      rev = "v${version}";
+      hash = "sha256-AXKIi70evf581lMwfbfxm8hFCzsnhKRQgnIEZQFS75A=";
+    };
+  });
 }
