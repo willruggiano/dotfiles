@@ -455,12 +455,6 @@
         "rev": "6ff556b1b2274c8ba3eaedbf62339789e79baca8",
         "type": "git"
     },
-    "telekasten.nvim": {
-        "branch": "main",
-        "repo": "git@github.com:renerocksai/telekasten.nvim",
-        "rev": "b8767dd9e3e28c357ae90c7fffc5d5653c4d8931",
-        "type": "git"
-    },
     "telescope-fzf-native.nvim": {
         "branch": "main",
         "repo": "git@github.com:nvim-telescope/telescope-fzf-native.nvim",

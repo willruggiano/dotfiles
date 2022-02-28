@@ -409,13 +409,6 @@ rec {
     package = plugins."telescope-ui-select.nvim";
   };
 
-  telescope-telekasten = {
-    package = plugins."telekasten.nvim";
-    config = ''
-      require "bombadil.config.telekasten";
-    '';
-  };
-
   telescope-worktree = {
     package = plugins."git-worktree.nvim";
     config = ''
