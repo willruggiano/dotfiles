@@ -290,13 +290,9 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
       return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
     end,
     globals = {
-      -- Colorbuddy
-      "Color",
-      "c",
-      "Group",
-      "g",
-      "s",
       -- Custom (see bombadil.globals)
+      "P",
+      "R",
       "RELOAD",
     },
   },
