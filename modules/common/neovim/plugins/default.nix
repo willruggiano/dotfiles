@@ -67,10 +67,6 @@ rec {
     package = plugins.cmp-nvim-lsp;
   };
 
-  cmp-nvim-lsp-document-symbol = {
-    package = plugins.cmp-nvim-lsp-document-symbol;
-  };
-
   cmp-nvim-lsp-signature-help = {
     package = plugins.cmp-nvim-lsp-signature-help;
   };
@@ -94,24 +90,6 @@ rec {
   colorizer = {
     package = plugins."nvim-colorizer.lua";
   };
-
-  # coq = {
-  #   package = plugins.coq_nvim;
-  #   setup = ''
-  #     require "bombadil.config.coq-setup"
-  #   '';
-  #   config = ''
-  #     require "bombadil.config.coq"
-  #   '';
-  # };
-
-  # coq-artifacts = {
-  #   package = plugins."coq.artifacts";
-  # };
-
-  # coq-3p = {
-  #   package = plugins."coq.thirdparty";
-  # };
 
   cppman = {
     package = pkgs.cppman;

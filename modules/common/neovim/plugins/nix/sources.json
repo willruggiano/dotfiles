@@ -53,12 +53,6 @@
         "rev": "ebdfc204afb87f15ce3d3d3f5df0b8181443b5ba",
         "type": "git"
     },
-    "cmp-nvim-lsp-document-symbol": {
-        "branch": "main",
-        "repo": "git@github.com:hrsh7th/cmp-nvim-lsp-document-symbol",
-        "rev": "29d12e55cf49ee07b829114ad39b161cad2544ab",
-        "type": "git"
-    },
     "cmp-nvim-lsp-signature-help": {
         "branch": "main",
         "repo": "git@github.com:hrsh7th/cmp-nvim-lsp-signature-help",
@@ -93,24 +87,6 @@
         "branch": "master",
         "repo": "git@github.com:saadparwaiz1/cmp_luasnip",
         "rev": "d6f837f4e8fe48eeae288e638691b91b97d1737f",
-        "type": "git"
-    },
-    "coq.artifacts": {
-        "branch": "artifacts",
-        "repo": "git@github.com:ms-jpq/coq.artifacts",
-        "rev": "6a2b9ba9d0b8789b5a6c718da6f91171a6156053",
-        "type": "git"
-    },
-    "coq.thirdparty": {
-        "branch": "3p",
-        "repo": "git@github.com:ms-jpq/coq.thirdparty",
-        "rev": "50c4e537049f77578a27c21e165e8ff044103b77",
-        "type": "git"
-    },
-    "coq_nvim": {
-        "branch": "coq",
-        "repo": "git@github.com:ms-jpq/coq_nvim",
-        "rev": "5c25353862d4db355e8c484dec82e93139d85794",
         "type": "git"
     },
     "cpsm": {

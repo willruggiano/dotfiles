@@ -4,6 +4,9 @@ local neogen = require "neogen"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
+require("cmp_git").setup()
+require("cmp_shell").setup()
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -64,14 +67,17 @@ cmp.setup {
       end
     end,
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "shell" },
-    { name = "nvim_lua", group_index = 2 },
-    { name = "nvim_lsp", group_index = 2 },
-    { name = "nvim_lsp_signature_help", group_index = 2 },
-    { name = "snippy", group_index = 2 },
-    { name = "buffer", group_index = 3 },
-  },
+  }, {
+    { name = "fuzzy_path" },
+    { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lua" },
+    { name = "snippy" },
+  }, {
+    { name = "buffer" },
+  }),
   sorting = {
     priority_weight = 2,
     comparators = {
@@ -97,29 +103,9 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline(":", {
-  sources = {
-    { name = "fuzzy_path", options = { fd_cmd = { "fd", "-d", "20", "-p", "-H" } } },
-    { name = "cmdline", group_index = 2 },
-    -- { name = "path" },
-    { name = "buffer", group_index = 3 },
-  },
-})
-
-cmp.setup.cmdline("/", {
-  sources = {
-    { name = "cmdline" },
-    { name = "nvim_lsp_document_symbol" },
-    { name = "buffer", group_index = 2 },
-  },
-})
-
 cmp.setup.filetype("gitcommit", {
   sources = {
     { name = "cmp_git" },
     { name = "buffer", group_index = 2 },
   },
 })
-
-require("cmp_git").setup()
-require("cmp_shell").setup()
