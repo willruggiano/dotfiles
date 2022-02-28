@@ -1,10 +1,4 @@
 {
-    "LuaSnip": {
-        "branch": "master",
-        "repo": "git@github.com:L3MON4D3/LuaSnip",
-        "rev": "c1d07078dce0c9631e89a299e4b4a93334650a7b",
-        "type": "git"
-    },
     "bufdelete.nvim": {
         "branch": "master",
         "repo": "git@github.com:famiu/bufdelete.nvim",
@@ -445,8 +439,8 @@
     },
     "surround.nvim": {
         "branch": "master",
-        "repo": "git@github.com:blackcauldron7/surround.nvim",
-        "rev": "4ddbef573eba3a8f31ac8da72d495efca33caac0",
+        "repo": "git@github.com:ur4ltz/surround.nvim",
+        "rev": "633068182cf894480341b992445f0f0d2883721d",
         "type": "git"
     },
     "tabout.nvim": {
