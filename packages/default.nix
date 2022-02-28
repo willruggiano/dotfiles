@@ -28,6 +28,15 @@ final: prev: {
   pass-extension-meta = prev.callPackage ./pass-meta { };
   python39 = prev.python39.override {
     packageOverrides = python-final: python-prev: {
+      python-lsp-server = python-prev.python-lsp-server.overrideAttrs (self: rec {
+        version = "1.3.3";
+        src = prev.fetchFromGitHub {
+          owner = "python-lsp";
+          repo = self.pname;
+          rev = "v${version}";
+          hash = "sha256-F8f9NAjPWkm01D/KwFH0oA6nQ3EF4ZVCCckZTL4A35Y=";
+        };
+      });
       pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix { };
       rope = python-prev.rope.overrideAttrs (_: rec {
         version = "0.22.0";

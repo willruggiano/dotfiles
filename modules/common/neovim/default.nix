@@ -116,14 +116,13 @@ in
           ''local cmake = { "${cppEnv}/bin/cmake-language-server" }''
           ''local luacheck = { "${luaEnv}/bin/luacheck" }''
           ''local rnix = { "${nixEnv}/bin/rnix-lsp" }''
+          ''local pylsp = { "${pythonEnv}/bin/pylsp" }''
         ] ++ optional stdenv.isDarwin ''
-          local pylsp = {}
           local sumneko = {
             vim.fn.expand "~/src/lua-language-server/bin/macOS/lua-language-server",
             vim.fn.expand "~/src/lua-language-server/bin/macOS/main.lua"
           }
         '' ++ optional stdenv.isLinux ''
-          local pylsp = { "${pythonEnv}/bin/pylsp" }
           local sumneko = { "${luaEnv}/bin/lua-language-server" }
         '' ++ [
           ''

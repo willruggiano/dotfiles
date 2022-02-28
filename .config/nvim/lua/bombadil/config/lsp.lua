@@ -272,6 +272,7 @@ lspconfig.cmake.setup {
 }
 
 lspconfig.pylsp.setup {
+  cmd = lsp_cmds.pylsp,
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
