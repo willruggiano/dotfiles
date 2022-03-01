@@ -1,9 +1,6 @@
 local extensions = {}
 
-local ok, lir = pcall(require, "lir.vim")
-if not ok then
-  return
-end
+local lir = require "lir.vim"
 
 extensions.lir = {
   filetypes = { "lir" },
@@ -42,12 +39,7 @@ require("lualine").setup {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
     lualine_c = { "filename" },
-    lualine_x = {
-      -- function()
-      --   return require("lsp-status").status()
-      -- end,
-      -- "filetype",
-    },
+    lualine_x = { "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
   },
