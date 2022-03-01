@@ -1,14 +1,3 @@
-local should_reload = true
-local reloader = function()
-  if should_reload then
-    RELOAD "plenary"
-    RELOAD "popup"
-    RELOAD "telescope"
-  end
-end
-
-reloader()
-
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
@@ -104,7 +93,7 @@ telescope.setup {
       },
     },
 
-    borderchars = { "-", "│", "-", "│", "+", "+", "+", "+" },
+    -- borderchars = { "-", "│", "-", "│", "+", "+", "+", "+" },
 
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
