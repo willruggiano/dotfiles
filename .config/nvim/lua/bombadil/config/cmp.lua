@@ -70,7 +70,7 @@ cmp.setup {
   sources = cmp.config.sources({
     { name = "shell" },
   }, {
-    { name = "fuzzy_path" },
+    -- { name = "fuzzy_path" }, FIXME: So fucking slow.
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lua" },
