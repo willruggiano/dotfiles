@@ -122,7 +122,7 @@
         username = "wruggian";
       };
 
-      overlay = import ./packages { inherit inputs; };
+      overlay = import ./packages;
       overlays = utils.lib.exportOverlays { inherit (self) pkgs inputs; };
 
       outputsBuilder = channels:

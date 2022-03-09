@@ -1,10 +1,9 @@
-{ inputs }:
-
 final: prev: {
+  circle = prev.callPackage ./circle { };
   # TODO: Remove when libcxx-13.0.0 is no longer marked as broken.
   clang-tools-unbroken =
     let
-      inherit (inputs.self) lib;
+      inherit (final) lib;
       inherit (prev) llvmPackages_12;
       unwrapped = llvmPackages_12.clang-unwrapped;
     in
