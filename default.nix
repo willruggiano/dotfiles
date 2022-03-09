@@ -4,12 +4,9 @@ with lib;
 {
   imports = reduceModules ./modules/common import;
 
-  # Common config for all nixos machines; and to ensure the flake operates
-  # soundly
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.bin;
 
-  # Configure nix and nixpkgs
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
   nix =
     let
@@ -23,7 +20,8 @@ with lib;
         experimental-features = nix-command flakes
       '';
       nixPath = nixPathInputs ++ [
-        "dotfiles=${config.dotfiles.dir}"
+        "dotfiles=${config.dotfiles.dir}" # TODO: I'm not sure this is necessary?
+        # "nixpkgs-overlays=${config.dotfiles.dir}" FIXME: Infinite recursion
       ];
       binaryCaches = [
         "https://nix-community.cachix.org"
