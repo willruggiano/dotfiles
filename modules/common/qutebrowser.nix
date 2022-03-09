@@ -33,7 +33,7 @@ in
 
             QUTE_COUNT = int(os.getenv("QUTE_COUNT", 30))
             QUTE_FIFO = os.environ["QUTE_FIFO"]
-            QUTE_TAB = os.environ["QUTE_TAB"]
+            QUTE_TAB = os.environ["QUTE_TAB_INDEX"]
             QUTE_URL = os.environ["QUTE_URL"]
 
             command = f":run-with-count {QUTE_TAB} reload -f\n"

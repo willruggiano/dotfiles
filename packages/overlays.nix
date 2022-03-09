@@ -19,7 +19,7 @@ final: prev: {
   keyd = prev.callPackage ./keyd { };
   qutebrowser = prev.qutebrowser.overrideAttrs (_: {
     patches = [
-      ./qutebrowser/0001-feat-pass-QUTE_TAB-to-userscripts.patch
+      ./qutebrowser/7014.diff
     ];
   });
   nonicons = prev.callPackage ./nonicons { };
