@@ -92,7 +92,7 @@
     "dial.nvim": {
         "branch": "master",
         "repo": "git@github.com:monaqa/dial.nvim",
-        "rev": "3390a2b304c7c8d22f15797aaca34b6bb3b39c73",
+        "rev": "f1f68d3ab39597107f6582cc17f698c0ff0c6945",
         "type": "git"
     },
     "diffview.nvim": {

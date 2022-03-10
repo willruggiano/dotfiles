@@ -18,6 +18,7 @@ with lib;
       package = pkgs.nixUnstable;
       extraOptions = ''
         experimental-features = nix-command flakes
+        extra-sandbox-paths = /nix/var/cache/ccache
       '';
       nixPath = nixPathInputs ++ [
         "dotfiles=${config.dotfiles.dir}" # TODO: I'm not sure this is necessary?
