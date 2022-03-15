@@ -35,6 +35,13 @@ rec {
     package = plugins."bufdelete.nvim";
   };
 
+  bufferline = {
+    package = plugins."bufferline.nvim";
+    config = ''
+      require "bombadil.config.bufferline"
+    '';
+  };
+
   clang-format = {
     package = plugins."clang-format.nvim";
     rocks = [ lyaml ];
@@ -363,6 +370,13 @@ rec {
 
   repeat = {
     package = plugins.vim-repeat;
+  };
+
+  scope = {
+    package = plugins."scope.nvim";
+    config = ''
+      require "bombadil.config.scope";
+    '';
   };
 
   surround = {

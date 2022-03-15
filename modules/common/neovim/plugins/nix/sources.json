@@ -5,6 +5,12 @@
         "rev": "1c59b784c53afaf7b9ca63186da99e5d46e3e429",
         "type": "git"
     },
+    "bufferline.nvim": {
+        "branch": "master",
+        "repo": "git@github.com:akinsho/bufferline.nvim",
+        "rev": "f63be9a3a3429a726af14c9085d547281bdf38cc",
+        "type": "git"
+    },
     "clang-format.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/clang-format.nvim",
@@ -435,6 +441,12 @@
         "branch": "master",
         "repo": "git@github.com:theprimeagen/refactoring.nvim",
         "rev": "585c28e8570944c9b1e9745758ac67fb8e47cc2e",
+        "type": "git"
+    },
+    "scope.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:tiagovla/scope.nvim",
+        "rev": "28a7036645e7e94b1c637558b72614b1cb78bb37",
         "type": "git"
     },
     "surround.nvim": {

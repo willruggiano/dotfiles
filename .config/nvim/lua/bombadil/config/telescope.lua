@@ -1,6 +1,7 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
+local themes = require "bombadil.telescope.themes"
 
 local set_prompt_to_entry_value = function(prompt_bufnr)
   local entry = action_state.get_selected_entry()
@@ -113,9 +114,7 @@ telescope.setup {
     },
 
     ["ui-select"] = {
-      require("telescope.themes").get_ivy {
-        winblend = 5,
-      },
+      themes.ivy,
     },
   },
 }
@@ -131,6 +130,12 @@ if vim.fn.executable "gh" == 1 then
 end
 
 require("which-key").register {
+  ["<space>b"] = {
+    function()
+      require("telescope.builtin").buffers(themes.ivy)
+    end,
+    "buffers",
+  },
   ["<space>d"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
