@@ -42,10 +42,7 @@ end
 config.add_keymap("n", "kommentary_insert_below", config.context.line, { expr = true }, insert_comment_below)
 config.add_keymap("n", "kommentary_insert_above", config.context.line, { expr = true }, insert_comment_above)
 
-require("which-key").register {
-  ["<leader>c"] = {
-    name = "comment",
-    k = { "<Plug>kommentary_insert_above", "above" },
-    j = { "<Plug>kommentary_insert_below", "below" },
-  },
-}
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+
+nnoremap("<leader>ck", "<Plug>kommentary_insert_above", { desc = "Insert comment above" })
+nnoremap("<leader>cj", "<Plug>kommentary_insert_below", { desc = "Insert comment below" })

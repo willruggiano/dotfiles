@@ -38,7 +38,7 @@ rec {
   bufferline = {
     package = plugins."bufferline.nvim";
     config = ''
-      require "bombadil.config.bufferline"
+      require("bombadil.config.bufferline").setup()
     '';
   };
 
@@ -310,8 +310,7 @@ rec {
   nortia = {
     package = plugins."nortia.nvim";
     config = ''
-      vim.opt.termguicolors = true
-      vim.cmd "colorscheme nortia"
+      require "bombadil.config.nortia"
     '';
   };
 
