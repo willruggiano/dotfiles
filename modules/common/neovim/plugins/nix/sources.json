@@ -212,7 +212,7 @@
     "lualine.nvim": {
         "branch": "master",
         "repo": "git@github.com:nvim-lualine/lualine.nvim",
-        "rev": "70691ae350fdbe1f15758e3b8e2973742a7967a9",
+        "rev": "181b14348f513e6f9eb3bdd2252e13630094fdd3",
         "type": "git"
     },
     "lush.nvim": {
