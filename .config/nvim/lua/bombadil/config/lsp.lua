@@ -235,29 +235,31 @@ if has_null_ls then
   }
 end
 
-lspconfig.clangd.setup {
-  cmd = vim.list_extend(lsp_cmds.clangd, {
-    "--background-index",
-    "--header-insertion=iwyu",
-    "--suggest-missing-includes",
-  }),
-  on_init = function(client)
-    on_init(client)
-    require("clang-format").setup {}
-  end,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    nnoremap("<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = 0 })
-    require("clang-format").on_attach(client, bufnr)
-  end,
-  init_options = {
-    clangdFileStatus = true,
-    completeUnimported = true,
-    semanticHighlighting = true,
-    usePlaceholders = true,
+require("clangd_extensions").setup {
+  server = {
+    cmd = vim.list_extend(lsp_cmds.clangd, {
+      "--background-index",
+      "--header-insertion=iwyu",
+      "--suggest-missing-includes",
+    }),
+    on_init = function(client)
+      on_init(client)
+      require("clang-format").setup {}
+    end,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      nnoremap("<leader>a", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = 0 })
+      require("clang-format").on_attach(client, bufnr)
+    end,
+    init_options = {
+      clangdFileStatus = true,
+      completeUnimported = true,
+      semanticHighlighting = true,
+      usePlaceholders = true,
+    },
+    -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+    capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
   },
-  -- HACK: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-  capabilities = vim.tbl_deep_extend("force", updated_capabilities, { offsetEncoding = { "utf-16" } }),
 }
 
 lspconfig.cmake.setup {

@@ -87,7 +87,7 @@ cmp.setup {
       require "cmp_fuzzy_path.compare",
       cmp.config.compare.offset,
       cmp.config.compare.exact,
-      cmp.config.compare.score,
+      require "clangd_extensions.cmp_scores",
       require("cmp-under-comparator").under,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,

@@ -47,6 +47,10 @@ rec {
     rocks = [ lyaml ];
   };
 
+  clangd-extensions = {
+    package = plugins."clangd_extensions.nvim";
+  };
+
   cmp = {
     package = plugins.nvim-cmp;
     config = ''
