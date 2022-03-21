@@ -20,7 +20,7 @@ let
     };
     "Python 3" = {
       url = "http://sanfrancisco.kapeli.com/feeds/Python_3.tgz";
-      hash = "sha256-+KlBRV15NAbm6WpYGOQqASV9UHCatGxfEn2CbnOv2s0=";
+      hash = "sha256-++PwGO5/28nnUAbzO70IcLZEHsoEFIRm2xm1Lz+R/fk=";
     };
     Qt = {
       url = "http://sanfrancisco.kapeli.com/feeds/Qt_5.tgz";

@@ -24,13 +24,15 @@ with lib;
         "dotfiles=${config.dotfiles.dir}" # TODO: I'm not sure this is necessary?
         # "nixpkgs-overlays=${config.dotfiles.dir}" FIXME: Infinite recursion
       ];
-      binaryCaches = [
-        "https://nix-community.cachix.org"
-      ];
-      binaryCachePublicKeys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      buildCores = 0;
+      settings = {
+        cores = 0;
+        substituters = [
+          "https://nix-community.cachix.org"
+        ];
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
+      };
       registry = registryInputs // { dotfiles.flake = inputs.self; };
       gc = {
         automatic = true;

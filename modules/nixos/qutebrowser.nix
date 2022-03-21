@@ -24,14 +24,6 @@ in
             qutebrowser -T -s content.private_browsing true
           '';
         })
-        (makeDesktopItem {
-          name = "qutebrowser-private";
-          desktopName = "Qutebrowser (Private)";
-          genericName = "Open a private Qutebrowser window";
-          icon = "qutebrowser";
-          exec = ''${qutebrowser}/bin/qutebrowser -T -s content.private_browsing true'';
-          categories = "Network";
-        })
       ];
 
     # Install language dictionaries for spellcheck backends

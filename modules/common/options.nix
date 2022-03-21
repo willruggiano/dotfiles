@@ -59,10 +59,10 @@ with lib;
 
     users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
-    nix = let users = [ "root" config.user.name ]; in
+    nix.settings = let users = [ "root" config.user.name ]; in
       {
-        trustedUsers = users;
-        allowedUsers = users;
+        allowed-users = users;
+        trusted-users = users;
       };
 
     env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
