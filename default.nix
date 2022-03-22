@@ -15,9 +15,7 @@ with lib;
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
     in
     {
-      package = pkgs.nixUnstable;
       extraOptions = ''
-        experimental-features = nix-command flakes
         extra-sandbox-paths = /nix/var/cache/ccache
       '';
       nixPath = nixPathInputs ++ [

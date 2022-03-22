@@ -3,12 +3,12 @@ final: prev: {
   clang-tools-unbroken =
     let
       inherit (prev) lib;
-      inherit (prev) llvmPackages_14;
-      unwrapped = llvmPackages_14.clang-unwrapped;
+      inherit (prev) llvmPackages_13;
+      unwrapped = llvmPackages_13.clang-unwrapped;
     in
     prev.clang-tools.overrideAttrs (_: {
       version = lib.getVersion unwrapped;
-      inherit (llvmPackages_14) clang;
+      inherit (llvmPackages_13) clang;
       inherit unwrapped;
     });
   cppman = prev.callPackage ./cppman { };
