@@ -9,7 +9,6 @@
     nix.url = "github:nixos/nix/master";
     darwin.url = "github:LnL7/nix-darwin/master";
     naersk.url = "github:nix-community/naersk";
-
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
 
@@ -18,8 +17,7 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    emanote.url = "github:srid/emanote";
-    emanote.inputs.nixpkgs.follows = "nixpkgs";
+    # emanote.url = "github:srid/emanote";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
@@ -57,9 +55,9 @@
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
-        (final: prev: {
-          emanote = inputs.emanote.defaultPackage."${prev.system}";
-        })
+        # (final: prev: {
+        #   emanote = inputs.emanote.defaultPackage."${prev.system}";
+        # })
       ];
 
       hostDefaults.modules = [
@@ -67,7 +65,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = (lib'.reduceModules ./modules/home import) ++ [inputs.emanote.homeManagerModule];
+          home-manager.sharedModules = (lib'.reduceModules ./modules/home import); # ++ [ inputs.emanote.homeManagerModule ];
         }
       ];
 

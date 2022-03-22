@@ -13,6 +13,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/man/man3
-    cp cppreference.com/*.gz $out/share/man/man3
+    find ./cppreference.com -name "*.gz" -type f -exec cp {} $out/share/man/man3 \;
   '';
 }

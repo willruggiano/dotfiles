@@ -64,12 +64,11 @@ with lib; {
 
     users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
-    nix.settings = let
-      users = ["root" config.user.name];
-    in {
-      allowed-users = users;
-      trusted-users = users;
-    };
+    # nix.settings = let users = [ "root" config.user.name ]; in
+    #   {
+    #     allowed-users = users;
+    #     trusted-users = users;
+    #   };
 
     env.PATH = ["$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH"];
 

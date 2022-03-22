@@ -13,7 +13,6 @@
   };
   programs.htop.enable = true;
   programs.starship.enable = true;
-  programs.zk.enable = true;
   programs.zsh.enable = true;
 
   suites = {

@@ -31,4 +31,5 @@ with lib; {
   programs.kitty.enable = true;
   programs.neovim.enable = true;
   programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
+  programs.zk.enable = true;
 }
