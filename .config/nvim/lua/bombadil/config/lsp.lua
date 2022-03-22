@@ -2,11 +2,9 @@ local icons = require "nvim-nonicons"
 local lsp = require "bombadil.lsp"
 local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
-local wk = require "which-key"
 local telescope_themes = require "bombadil.telescope.themes"
 
 local lsp_cmds = require "bombadil.generated.lsp"
-local nnoremap = require("bombadil.lib.keymap").nnoremap
 
 lsp.kind.init()
 
@@ -49,125 +47,122 @@ local on_init = function(client)
   client.config.flags.allow_incremental_sync = true
 end
 
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+local vnoremap = require("bombadil.lib.keymap").vnoremap
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  -- Mappings.
-  wk.register({
+  local mappings = {
     ["]d"] = {
       vim.diagnostic.goto_next,
-      "Next diagnostic",
+      { buffer = bufnr, desc = "Next diagnostic" },
     },
     ["[d"] = {
       vim.diagnostic.goto_prev,
-      "Previous diagnostic",
+      { buffer = bufnr, desc = "Previous diagnostic" },
     },
-    ["<leader>"] = {
-      ca = {
-        function()
-          require("telescope.builtin").lsp_code_actions(telescope_themes.cursor)
-        end,
-        "code-action",
-      },
-      f = { vim.lsp.buf.formatting, "format" },
-      d = {
-        name = "diagnostic",
-        d = {
-          function()
-            vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)))
-            vim.cmd "botright copen"
-          end,
-          "show-document",
-        },
-        l = {
-          function()
-            vim.diagnostic.open_float(0, { border = "single" })
-          end,
-          "show-line",
-        },
-        w = {
-          function()
-            vim.diagnostic.setqflist { open = false }
-            vim.cmd "botright copen"
-          end,
-          "show-workspace",
-        },
-      },
-      r = {
-        name = "refactor",
-        n = {
-          vim.lsp.buf.rename,
-          "rename",
-        },
-        r = {
-          function()
-            vim.lsp.stop_client(vim.lsp.get_active_clients())
-            vim.cmd "e"
-          end,
-          "restart-clients",
-        },
-      },
-      w = {
-        name = "symbols",
-        d = {
-          vim.lsp.buf.document_symbol,
-          "document",
-        },
-        w = {
-          vim.lsp.buf.workspace_symbol,
-          "workspace",
-        },
-      },
-      K = {
-        lsp.peek_definition,
-        "peek-definition",
-      },
+    ["<leader>ca"] = {
+      function()
+        require("telescope.builtin").lsp_code_actions(telescope_themes.cursor)
+      end,
+      { buffer = bufnr, desc = "Code actions" },
     },
-    g = {
-      name = "goto",
-      d = {
-        vim.lsp.buf.definition,
-        "definition",
-      },
-      i = {
-        vim.lsp.buf.implementation,
-        "implementation",
-      },
-      r = {
-        vim.lsp.buf.references,
-        "references",
-      },
-      D = {
-        vim.lsp.buf.declaration,
-        "declaration",
-      },
-      T = {
-        vim.lsp.buf.type_definition,
-        "type-definition",
-      },
+    ["<leader>f"] = {
+      vim.lsp.buf.formatting,
+      { buffer = bufnr, desc = "Format" },
     },
-    K = { vim.lsp.buf.hover, "hover" },
-  }, {
-    buffer = bufnr,
-  })
+    ["<leader>dd"] = {
+      function()
+        vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)))
+        vim.cmd "botright copen"
+      end,
+      { buffer = bufnr, desc = "Document diagnostics" },
+    },
+    ["<leader>dl"] = {
+      function()
+        vim.diagnostic.open_float(0, { border = "single" })
+      end,
+      { buffer = bufnr, desc = "Line diagnostics" },
+    },
+    ["<leader>dw"] = {
+      function()
+        vim.diagnostic.setqflist { open = false }
+        vim.cmd "botright copen"
+      end,
+      { buffer = bufnr, desc = "Workspace diagnostics" },
+    },
+    ["<leader>rn"] = {
+      vim.lsp.buf.rename,
+      { buffer = bufnr, desc = "Rename" },
+    },
+    ["<leader>rr"] = {
+      function()
+        vim.lsp.stop_client(vim.lsp.get_active_clients())
+        vim.cmd "e"
+      end,
+      { buffer = bufnr, desc = "Restart lsp clients" },
+    },
+    ["<leader>wd"] = {
+      vim.lsp.buf.document_symbol,
+      { buffer = bufnr, desc = "Document symbols" },
+    },
+    ["<leader>ww"] = {
+      vim.lsp.buf.workspace_symbol,
+      { buffer = bufnr, desc = "Workspace symbols" },
+    },
+    ["<leader>K"] = {
+      lsp.peek_definition,
+      { buffer = bufnr, desc = "Peek definition" },
+    },
+    gd = {
+      vim.lsp.buf.definition,
+      { buffer = bufnr, desc = "Definition" },
+    },
+    gi = {
+      vim.lsp.buf.implementation,
+      { buffer = bufnr, desc = "Implementation" },
+    },
+    gr = {
+      vim.lsp.buf.references,
+      { buffer = bufnr, desc = "References" },
+    },
+    gD = {
+      vim.lsp.buf.declaration,
+      { buffer = bufnr, desc = "Declaration" },
+    },
+    gT = {
+      vim.lsp.buf.type_definition,
+      { buffer = bufnr, desc = "Type definition" },
+    },
+    K = {
+      vim.lsp.buf.hover,
+      { buffer = bufnr, desc = "Hover" },
+    },
+  }
+  for key, opts in pairs(mappings) do
+    nnoremap(key, opts[1], opts[2])
+  end
 
-  wk.register({
-    ["<leader>"] = {
-      ca = {
-        function()
-          require("telescope.builtin").lsp_range_code_actions(telescope_themes.cursor)
-        end,
-        "code-action",
-      },
-      f = { vim.lsp.buf.range_formatting, "format" },
+  local range_mappings = {
+    ["<leader>ca"] = {
+      function()
+        require("telescope.builtin").lsp_range_code_actions(telescope_themes.cursor)
+      end,
+      { buffer = bufnr, desc = "Code actions" },
     },
-  }, {
-    buffer = bufnr,
-    mode = "v",
-  })
+    ["<leader>f"] = {
+      vim.lsp.buf.range_formatting,
+      { buffer = bufnr, desc = "Format" },
+    },
+  }
+
+  for key, opts in pairs(range_mappings) do
+    vnoremap(key, opts[1], opts[2])
+  end
 end
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()

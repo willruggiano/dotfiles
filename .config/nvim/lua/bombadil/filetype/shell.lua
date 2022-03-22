@@ -1,14 +1,6 @@
 local shellexec = require "bombadil.lib.shellexec"
 
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
-wk.register({
-  ["E"] = {
-    name = "execute",
-    ["."] = { shellexec.line, "line" },
-    f = { shellexec.file, "file" },
-  },
-}, { buffer = 0 })
+nnoremap("E.", shellexec.line, { buffer = 0, desc = "Execute line" })
+nnoremap("Ef", shellexec.file, { buffer = 0, desc = "Execute file" })

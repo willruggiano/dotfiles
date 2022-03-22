@@ -129,56 +129,58 @@ if vim.fn.executable "gh" == 1 then
   telescope.load_extension "gh"
 end
 
-require("which-key").register {
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+local mappings = {
   ["<space>b"] = {
     function()
       require("telescope.builtin").buffers(themes.ivy)
     end,
-    "buffers",
+    { desc = "Buffers" },
   },
   ["<space>d"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
     end,
-    "dotfiles",
+    { desc = "Dotfiles" },
   },
   ["<space>e"] = {
     function()
       require("telescope.builtin").git_files()
     end,
-    "git-files",
+    { desc = "Git files" },
   },
   ["<space>p"] = {
     function()
       require("telescope").extensions.project.project {}
     end,
-    "projects",
+    { desc = "Projects" },
   },
-  ["<leader>gh"] = {
-    name = "hub",
-    g = {
-      function()
-        require("telescope").extensions.gh.gist()
-      end,
-      "gists",
-    },
-    i = {
-      function()
-        require("telescope").extensions.gh.issues()
-      end,
-      "issues",
-    },
-    p = {
-      function()
-        require("telescope").extensions.gh.pull_request()
-      end,
-      "pull-requests",
-    },
-    w = {
-      function()
-        require("telescope").extensions.gh.run()
-      end,
-      "workflows",
-    },
+  ["<leader>ghg"] = {
+    function()
+      require("telescope").extensions.gh.gist()
+    end,
+    { desc = "GitHub gists" },
+  },
+  ["<leader>ghi"] = {
+    function()
+      require("telescope").extensions.gh.issues()
+    end,
+    { desc = "GitHub issues" },
+  },
+  ["<leader>ghp"] = {
+    function()
+      require("telescope").extensions.gh.pull_request()
+    end,
+    { desc = "GitHub pull requests" },
+  },
+  ["<leader>ghw"] = {
+    function()
+      require("telescope").extensions.gh.run()
+    end,
+    { desc = "GitHub workflows" },
   },
 }
+
+for key, opts in pairs(mappings) do
+  nnoremap(key, opts[1], opts[2])
+end

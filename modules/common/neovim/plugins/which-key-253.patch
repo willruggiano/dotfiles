@@ -1,0 +1,94 @@
+From ae8a25366f4685c358903bcf818bf91cdb87b6fe Mon Sep 17 00:00:00 2001
+From: wongxy <xiyao.wong@foxmail.com>
+Date: Sun, 20 Feb 2022 13:12:02 +0800
+Subject: [PATCH 1/2] feat: prefer `desc` to `cmd` as the fallback label
+
+---
+ lua/which-key/keys.lua  | 5 +++--
+ lua/which-key/types.lua | 2 ++
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/lua/which-key/keys.lua b/lua/which-key/keys.lua
+index f03c6cc..3c7ffd1 100644
+--- a/lua/which-key/keys.lua
++++ b/lua/which-key/keys.lua
+@@ -128,7 +128,7 @@ function M.get_mappings(mode, prefix, buf)
+         value.label = value.label:gsub("^%+", "")
+         value.label = Config.options.icons.group .. value.label
+       elseif not value.label then
+-        value.label = value.cmd or ""
++        value.label = value.desc or value.cmd or ""
+         for _, v in ipairs(Config.options.hidden) do
+           value.label = value.label:gsub(v, "")
+         end
+@@ -521,7 +521,7 @@ end
+ ---@param mode string
+ ---@param buf number
+ function M.update_keymaps(mode, buf)
+-  ---@type Keymap
++  ---@type Keymap[]
+   local keymaps = buf and vim.api.nvim_buf_get_keymap(buf, mode) or vim.api.nvim_get_keymap(mode)
+   local tree = M.get_tree(mode, buf).tree
+ 
+@@ -557,6 +557,7 @@ function M.update_keymaps(mode, buf)
+         id = Util.t(keymap.lhs),
+         prefix = keymap.lhs,
+         cmd = keymap.rhs,
++        desc = keymap.desc,
+         keys = Util.parse_keys(keymap.lhs),
+       }
+       -- don't include Plug keymaps
+diff --git a/lua/which-key/types.lua b/lua/which-key/types.lua
+index d925ed3..5849480 100644
+--- a/lua/which-key/types.lua
++++ b/lua/which-key/types.lua
+@@ -13,6 +13,7 @@
+ ---@field sid number
+ ---@field silent number
+ ---@field id string terminal codes for lhs
++---@field desc string
+ local Keymap
+ 
+ ---@class KeyCodes
+@@ -32,6 +33,7 @@ local MappingOptions
+ ---@field buf number
+ ---@field group boolean
+ ---@field label string
++---@field desc string
+ ---@field prefix string
+ ---@field cmd string
+ ---@field opts MappingOptions
+
+From 7748df58d521687777c28fe088429871d67cd48a Mon Sep 17 00:00:00 2001
+From: wongxy <xiyao.wong@foxmail.com>
+Date: Sun, 20 Feb 2022 13:48:57 +0800
+Subject: [PATCH 2/2] docs: add tips about label to readme
+
+---
+ README.md | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/README.md b/README.md
+index 8b72ac2..a606eea 100644
+--- a/README.md
++++ b/README.md
+@@ -157,7 +157,7 @@ Default options for `opts`
+   mode = "n", -- NORMAL mode
+   -- prefix: use "<leader>f" for example for mapping everything related to finding files
+   -- the prefix is prepended to every mapping part of `mappings`
+-  prefix = "", 
++  prefix = "",
+   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+   silent = true, -- use `silent` when creating keymaps
+   noremap = true, -- use `noremap` when creating keymaps
+@@ -234,6 +234,10 @@ wk.register({
+ 
+ </details>
+ 
++**Tips:** The default label is `keymap.desc` or `keymap.rhs` or `""`,
++ `:h nvim_set_keymap()` to get more details about `desc` and `rhs`.
++
++
+ ### 🚙 Operators, Motions and Text Objects
+ 
+ **WhichKey** provides help to work with operators, motions and text objects.

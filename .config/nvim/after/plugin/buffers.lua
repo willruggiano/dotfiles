@@ -1,10 +1,4 @@
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
--- Better buffer naviation.
-wk.register {
-  ["<tab>"] = { "<cmd>bnext<cr>", ":bnext" },
-  ["<s-tab>"] = { "<cmd>bprev<cr>", ":bprev" },
-}
+nnoremap("<tab>", "<cmd>:bnext<cr>", { desc = ":bnext" })
+nnoremap("<s-tab>", "<cmd>:bprev<cr>", { desc = ":bprev" })

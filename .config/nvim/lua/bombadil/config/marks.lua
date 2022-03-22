@@ -2,29 +2,16 @@ local execute = vim.api.nvim_command
 
 require("marks").setup {}
 
-require("which-key").register {
-  ["<leader>b"] = {
-    name = "bookmarks",
-    l = {
-      function()
-        execute "BookmarksListAll"
-      end,
-      "list",
-    },
-  },
-  ["<leader>m"] = {
-    name = "marks",
-    b = {
-      function()
-        execute "MarksListBuf"
-      end,
-      "list-buffer",
-    },
-    l = {
-      function()
-        execute "MarksListAll"
-      end,
-      "list",
-    },
-  },
-}
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+
+nnoremap("<leader>bl", function()
+  execute "BookmarksListAll"
+end, { desc = "Bookmarks" })
+
+nnoremap("<leader>mb", function()
+  execute "MarksListBuf"
+end, { desc = "Buffer marks" })
+
+nnoremap("<leader>ml", function()
+  execute "MarksListAll"
+end, { desc = "Marks" })

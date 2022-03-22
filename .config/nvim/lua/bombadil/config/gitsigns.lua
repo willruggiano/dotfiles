@@ -14,86 +14,63 @@ gitsigns.setup {
   keymaps = {},
 }
 
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
+local noremap = require("bombadil.lib.keymap").noremap
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
-wk.register({
+local nmappings = {
   ["]c"] = {
-    "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'",
-    "Next hunk",
+    [[&diff ? "]c" : "<cmd>Gitsigns next_hunk<cr>"]],
+    { desc = "Next hunk", expr = true },
   },
   ["[c"] = {
-    "&diff ? ']c' : '<cmd>Gitsigns prev_hunk<CR>'",
-    "Previous hunk",
+    [[&diff ? "[c" : "<cmd>Gitsigns prev_hunk<cr>"]],
+    { desc = "Previous hunk", expr = true },
   },
-}, { expr = true })
-
-wk.register {
-  ["<leader>h"] = {
-    name = "hunk",
-    s = {
-      "<cmd>Gitsigns stage_hunk<cr>",
-      "stage",
-    },
-    u = {
-      "<cmd>Gitsigns undo_stage_hunk<cr>",
-      "unstage",
-    },
-    r = {
-      "<cmd>Gitsigns reset_hunk<cr>",
-      "reset",
-    },
-    R = {
-      "<cmd>Gitsigns reset_buffer<cr>",
-      "reset-buffer",
-    },
-    p = {
-      "<cmd>Gitsigns preview_hunk<cr>",
-      "preview",
-    },
-    b = {
-      function()
-        gitsigns.blame_line { full = true }
-      end,
-      "blame",
-    },
-    S = {
-      "<cmd>Gitsigns stage_buffer<cr>",
-      "stage",
-    },
-    U = {
-      "<cmd>Gitsigns reset_buffer_index<cr>",
-      "reset-buffer-index",
-    },
+  ["<leader>hb"] = {
+    function()
+      gitsigns.blame_line { full = true }
+    end,
+    { desc = "Blame line" },
+  },
+  ["<leader>hR"] = {
+    "<cmd>Gitsigns reset_buffer<cr>",
+    { desc = "Reset buffer" },
+  },
+  ["<leader>hp"] = {
+    "<cmd>Gitsigns preview_hunk<cr>",
+    { desc = "Preview hunk" },
+  },
+  ["<leader>hS"] = {
+    "<cmd>Gitsigns stage_buffer<cr>",
+    { desc = "Stage buffer" },
+  },
+  ["<leader>hu"] = {
+    "<cmd>Gitsigns undo_stage_hunk<cr>",
+    { desc = "Unstage hunk" },
+  },
+  ["<leader>hU"] = {
+    "<cmd>Gitsigns reset_buffer_index<cr>",
+    { desc = "Reset buffer index" },
   },
 }
 
-wk.register({
-  ["<leader>h"] = {
-    name = "hunk",
-    s = {
-      ":Gitsigns stage_hunk<cr>",
-      "stage",
-    },
-    r = {
-      ":Gitsigns reset_hunk<cr>",
-      "reset",
-    },
-  },
-}, { mode = "v" })
+for key, opts in pairs(nmappings) do
+  nnoremap(key, opts[1], opts[2])
+end
 
-wk.register({
-  ["ih"] = {
-    ":<c-u>Gitsigns select_hunk<cr>",
-    "hunk",
+local nvmappings = {
+  ["<leader>hs"] = {
+    "<cmd>Gitsigns stage_hunk<cr>",
+    { desc = "Stage hunk" },
   },
-}, { mode = "o" })
+  ["<leader>hr"] = {
+    "<cmd>Gitsigns reset_hunk<cr>",
+    { desc = "Reset hunk" },
+  },
+}
 
-wk.register({
-  ["ih"] = {
-    ":<c-u>Gitsigns select_hunk<cr>",
-    "hunk",
-  },
-}, { mode = "x" })
+for key, opts in pairs(nvmappings) do
+  noremap({ "n", "v" }, key, opts[1], opts[2])
+end
+
+noremap({ "o", "x" }, "ih", ":<c-u>Gitsigns select_hunk<cr>", { desc = "hunk" })

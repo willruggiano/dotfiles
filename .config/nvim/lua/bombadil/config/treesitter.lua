@@ -138,41 +138,11 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-local wk = require "which-key"
-wk.register {
-  ["<leader>t"] = {
-    name = "toggle",
-    h = {
-      name = "highlight",
-      u = {
-        function()
-          unit.toggle_highlighting()
-        end,
-        "unit",
-      },
-    },
-    p = { ":TSPlaygroundToggle<cr>", "treesitter-playground" },
-  },
-}
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+local noremap = require("bombadil.lib.keymap").noremap
 
-wk.register({
-  iu = {
-    [[:lua require("treesitter-unit").select()<cr>]],
-    "inner-unit",
-  },
-  au = {
-    [[:lua require("treesitter-unit").select(true)<cr>]],
-    "outer-unit",
-  },
-}, { mode = "x" })
+nnoremap("<leader>thu", unit.toggle_highlighting, { desc = "Toggle unit highlighting" })
+nnoremap("<leader>tp", "<cmd>TSPlaygroundToggle<cr>", { desc = "Toggle treesitter playground" })
 
-wk.register({
-  iu = {
-    [[:<c-u>lua require("treesitter-unit").select()<cr>]],
-    "inner-unit",
-  },
-  au = {
-    [[:<c-u>lua require("treesitter-unit").select(true)<cr>]],
-    "outer-unit",
-  },
-}, { mode = "o" })
+noremap({ "o", "x" }, "iu", [[:lua require("treesitter-unit").select()<cr>]], { desc = "inner unit" })
+noremap({ "o", "x" }, "au", [[:lua require("treesitter-unit").select(true)<cr>]], { desc = "outer unit" })

@@ -1,4 +1,3 @@
-local wk = require "which-key"
 local buffers = require "bombadil.lib.buffers"
 local jump = require "bombadil.lib.jump"
 local keymap = require "bombadil.lib.keymap"
@@ -6,6 +5,7 @@ local keymap = require "bombadil.lib.keymap"
 local inoremap = keymap.inoremap
 local nnoremap = keymap.nnoremap
 local tnoremap = keymap.tnoremap
+local vnoremap = keymap.vnoremap
 
 local quit = function()
   vim.cmd "q"
@@ -85,68 +85,45 @@ nnoremap("ch", [["_ch]])
 nnoremap("cl", [["_cl]])
 nnoremap("x", [["_x]])
 
-wk.register {
-  -- Jumplist as quickfix list
-  ["<space><cr>"] = {
-    function()
-      local jumplist = vim.fn.getjumplist()[1]
-      local sorted_jumplist = {}
-      for i = #jumplist, 1, -1 do
-        if vim.api.nvim_buf_is_valid(jumplist[i].bufnr) then
-          table.insert(sorted_jumplist, jumplist[i])
-        end
-      end
-      vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = jumplist })
-      vim.cmd "botright copen"
-    end,
-    "jumplist",
-  },
+-- Jumplist as quickfix list
+nnoremap("<space><cr>", function()
+  local jumplist = vim.fn.getjumplist()[1]
+  local sorted_jumplist = {}
+  for i = #jumplist, 1, -1 do
+    if vim.api.nvim_buf_is_valid(jumplist[i].bufnr) then
+      table.insert(sorted_jumplist, jumplist[i])
+    end
+  end
+  vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = jumplist })
+  vim.cmd "botright copen"
+end, { desc = "Jumplist" })
 
-  -- Move lines
-  ["<M-j>"] = {
-    function()
-      vim.cmd [[m .+1<CR>==]]
-    end,
-    "Move line down",
-  },
-  ["<M-k>"] = {
-    function()
-      vim.cmd [[m .-2<CR>==]]
-    end,
-    "Move line up",
-  },
+-- Move lines
+nnoremap("<M-j>", function()
+  vim.cmd [[m .+1<CR>==]]
+end, { desc = "Move line down" })
 
-  -- Silent save
-  ["<c-s>"] = { "<cmd>silent update!<cr>", "save" },
+nnoremap("<M-k>", function()
+  vim.cmd [[m .-2<CR>==]]
+end, { desc = "Move line up" })
 
-  -- Does anyone even use macros?
-  q = {
-    function()
-      close(vim.bo.buftype, vim.bo.filetype, vim.fn.bufname "%")
-    end,
-    "close",
-  },
-  Q = { "<cmd>quitall<cr>", ":quitall" },
-  ["<leader>q"] = {
-    "<cmd>quit<cr>",
-    "quit",
-  },
-}
+-- Silent save
+nnoremap("<c-s>", "<cmd>silent update!<cr>", { desc = "save" })
 
-wk.register({
-  -- Move lines
-  ["<M-j>"] = {
-    function()
-      vim.cmd [[m '>+1<CR>gv=gv]]
-    end,
-    "Move line down",
-  },
-  ["<M-k>"] = {
-    function()
-      vim.cmd [[m '<-2<CR>gv=gv]]
-    end,
-    "Move line up",
-  },
-}, {
-  mode = "v",
-})
+-- Does anyone even use macros?
+nnoremap("q", function()
+  close(vim.bo.buftype, vim.bo.filetype, vim.fn.bufname "%")
+end, { desc = "close" })
+
+nnoremap("Q", "<cmd>quitall<cr>", { desc = ":quitall" })
+
+nnoremap("<leader>q", "<cmd>quit<cr>", { desc = ":quit" })
+
+-- Move lines
+vnoremap("<M-j>", function()
+  vim.cmd [[m '>+1<CR>gv=gv]]
+end, { desc = "Move line down" })
+
+vnoremap("<M-k>", function()
+  vim.cmd [[m '<-2<CR>gv=gv]]
+end, { desc = "Move line up" })

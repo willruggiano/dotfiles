@@ -10,15 +10,15 @@ local nnoremap = require("bombadil.lib.keymap").nnoremap
 
 nnoremap("<space>z", function()
   zk.edit({}, { title = "Notes" })
-end)
+end, { desc = "Notes" })
 
-nnoremap("<leader>zi", zk.index)
+nnoremap("<leader>zi", zk.index, { desc = "Index notebook " })
 
 nnoremap("<leader>zn", function()
   zk.new { title = vim.fn.input "Title: " }
-end)
+end, { desc = "New note" })
 
 nnoremap("<leader>zf", function()
   local query = vim.fn.input "Query: "
   zk.edit({ sort = { "modified" }, match = query }, { title = string.format([[Notes matching "%s"]], query) })
-end)
+end, { desc = "Query notes" })

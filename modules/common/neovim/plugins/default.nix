@@ -507,6 +507,9 @@ rec {
     config = ''
       require "bombadil.config.which-key"
     '';
+    override = {
+      patches = [ ./which-key-253.patch ];
+    };
   };
 
   wilder = {

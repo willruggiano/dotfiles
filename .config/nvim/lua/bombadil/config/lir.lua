@@ -320,6 +320,4 @@ local explore = function()
   end
 end
 
-require("which-key").register {
-  ["-"] = { explore, "explore" },
-}
+require("bombadil.lib.keymap").nnoremap("-", explore, { desc = "Explore" })

@@ -1,18 +1,8 @@
-local ok, toggleterm = pcall(require, "toggleterm.terminal")
-if not ok then
-  return
-end
-
 if vim.fn.executable "lazygit" ~= 1 then
   return
 end
 
-local ok, wk = pcall(require, "which-key")
-if not ok then
-  return
-end
-
-local Terminal = toggleterm.Terminal
+local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new {
   cmd = "lazygit",
   direction = "float",
@@ -20,11 +10,7 @@ local lazygit = Terminal:new {
   hidden = true,
 }
 
-wk.register {
-  ["<space>g"] = {
-    function()
-      lazygit:toggle()
-    end,
-    "lazygit",
-  },
-}
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+nnoremap("<space>g", function()
+  lazygit:toggle()
+end, { desc = "Lazygit" })

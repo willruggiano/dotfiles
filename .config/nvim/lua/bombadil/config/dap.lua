@@ -54,41 +54,32 @@ dap.adapters.nlua = function(callback, config)
   callback { type = "server", host = config.host, port = config.port }
 end
 
-local wk = require "which-key"
+local noremap = require("bombadil.lib.keymap").noremap
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
-for _, mode in ipairs { "n", "x" } do
-  local mappings = {
-    ["<leader>"] = {
-      d = {
-        s = {
-          function()
-            if vim.fn.filereadable(launch_json) then
-              local config = json.load(launch_json)
-              for _, c in ipairs(config.configurations) do
-                if c.type == "cppdbg" then
-                  table.insert(dap.configurations.cpp, c)
-                end
-              end
-            end
-            dap.continue()
-          end,
-          "start-debugger",
-        },
-      },
-    },
-  }
-  wk.register(mappings, { mode = mode })
-end
-
-wk.register {
-  ["<leader>d"] = {
-    e = {
-      function()
-        if vim.fn.exists(launch_json) then
-          vim.cmd(string.format("edit %s", launch_json))
+local mappings = {
+  ["<leader>ds"] = {
+    function()
+      if vim.fn.filereadable(launch_json) then
+        local config = json.load(launch_json)
+        for _, c in ipairs(config.configurations) do
+          if c.type == "cppdbg" then
+            table.insert(dap.configurations.cpp, c)
+          end
         end
-      end,
-      "edit-config",
-    },
+      end
+      dap.continue()
+    end,
+    { desc = "Start debugger" },
   },
 }
+
+for key, opts in pairs(mappings) do
+  noremap({ "n", "x" }, key, opts[1], opts[2])
+end
+
+nnoremap("<leader>de", function()
+  if vim.fn.exists(launch_json) then
+    vim.cmd(string.format("edit %s", launch_json))
+  end
+end, { desc = "Edit debugger config" })

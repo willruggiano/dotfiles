@@ -45,14 +45,9 @@ require("firvish").setup {
   },
 }
 
-require("which-key").register {
-  ["<space>j"] = {
-    function()
-      require("firvish.job_control").show_jobs_list()
-    end,
-    "jobs",
-  },
-}
+require("bombadil.lib.keymap").nnoremap("<space>j", function()
+  require("firvish.job_control").show_jobs_list()
+end, { desc = "Jobs" })
 
 -- We have to manually do this since filetype.vim doesn't get sourced (because we use the
 -- filetype.nvim plugin)

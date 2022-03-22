@@ -6,15 +6,10 @@ neogit.setup {
   },
 }
 
-require("which-key").register {
-  ["<leader>g"] = {
-    name = "git",
-    s = { neogit.open, "status" },
-    c = {
-      function()
-        neogit.open { "commit" }
-      end,
-      "commit",
-    },
-  },
-}
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+
+nnoremap("<leader>gc", function()
+  neogit.open { "commit" }
+end, { desc = "Commit" })
+
+nnoremap("<leader>gs", neogit.open, { desc = "Status" })
