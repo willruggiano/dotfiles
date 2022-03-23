@@ -1,6 +1,5 @@
 [note]
-# Template used to generate a note's content.
-# If not an absolute path, it is relative to .zk/templates/
+filename = "{{date now '%Y-%m-%d'}}-{{slug title}}"
 template = "default.md"
 
 
@@ -27,7 +26,6 @@ dead-link = "error"
 
 
 [filter]
-
 recent = "--sort created- --created-after 'last two weeks'"
 
 

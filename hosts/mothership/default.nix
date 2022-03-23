@@ -38,6 +38,7 @@ with lib;
   programs.kitty.enable = true;
   programs.neovim.enable = true;
   programs.taskwarrior.enable = true;
+  programs.zk.enable = true;
 
   # Services
   services.agenix.enable = true;

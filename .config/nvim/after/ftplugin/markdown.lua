@@ -8,8 +8,8 @@ local zk = require "zk"
 
 nnoremap("<leader>zb", function()
   zk.edit({ linkTo = { vim.api.nvim_buf_get_name(0) } }, { title = "Backlinks" })
-end)
+end, { desc = "Backlinks" })
 
 nnoremap("<leader>zl", function()
   zk.edit({ linkedBy = { vim.api.nvim_buf_get_name(0) } }, { title = "Links" })
-end)
+end, { desc = "Links" })
