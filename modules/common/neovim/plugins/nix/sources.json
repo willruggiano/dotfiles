@@ -179,6 +179,12 @@
         "rev": "91c8819ea264b77d63b96b16ed0cf90c4b97f87a",
         "type": "git"
     },
+    "leap.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:ggandor/leap.nvim",
+        "rev": "c345ccac43b9a787eeb87d8df9230be7c23cb312",
+        "type": "git"
+    },
     "lightspeed.nvim": {
         "branch": "main",
         "repo": "git@github.com:ggandor/lightspeed.nvim",
@@ -465,6 +471,12 @@
         "branch": "master",
         "repo": "git@github.com:abecodes/tabout.nvim",
         "rev": "6ff556b1b2274c8ba3eaedbf62339789e79baca8",
+        "type": "git"
+    },
+    "telescope-arecibo.nvim": {
+        "branch": "master",
+        "repo": "git@github.com:nvim-telescope/telescope-arecibo.nvim",
+        "rev": "b706322027e44894c30f1d0a9bd79b35eb3e451a",
         "type": "git"
     },
     "telescope-fzf-native.nvim": {

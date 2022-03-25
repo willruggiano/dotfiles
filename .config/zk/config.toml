@@ -14,16 +14,6 @@ multiword-tags = true
 [lsp.diagnostics]
 dead-link = "error"
 
-[lsp.completion]
-# Customize the completion pop-up of your LSP client.
-
-# Show the note title in the completion pop-up, or fallback on its path if empty.
-#note-label = ""
-# Filter out the completion pop-up using the note title or its path.
-#note-filter-text = " "
-# Show the note filename without extension as detail.
-#note-detail = ""
-
 
 [filter]
 recent = "--sort created- --created-after 'last two weeks'"

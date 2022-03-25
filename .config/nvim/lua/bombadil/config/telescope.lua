@@ -102,6 +102,11 @@ telescope.setup {
   },
 
   extensions = {
+    arecibo = {
+      selected_engine = "duckduckgo",
+      url_open_command = vim.env.BROWSER,
+    },
+
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -119,6 +124,7 @@ telescope.setup {
   },
 }
 
+telescope.load_extension "arecibo"
 telescope.load_extension "dotfiles"
 telescope.load_extension "fzf"
 telescope.load_extension "git_worktree"
@@ -154,6 +160,12 @@ local mappings = {
       require("telescope").extensions.project.project {}
     end,
     { desc = "Projects" },
+  },
+  ["<space>w"] = {
+    function()
+      require("telescope").extensions.arecibo.websearch(vim.tbl_deep_extend("force", themes.ivy, { previewer = false }))
+    end,
+    { desc = "Websearch" },
   },
   ["<leader>ghg"] = {
     function()

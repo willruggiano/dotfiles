@@ -4,7 +4,6 @@
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  # programs.emanote.enable = true;
   programs.firefox.enable = true;
   programs.firefox.package = pkgs.dummy; # Installed via homebrew
   programs.fzf.enable = true;
@@ -14,8 +13,8 @@
     userEmail = "wruggian@amazon.com";
   };
   programs.htop.enable = true;
-  # programs.neovim.enable = true;
   programs.starship.enable = true;
+  programs.zk.enable = true;
   programs.zsh.enable = true;
 
   suites = {

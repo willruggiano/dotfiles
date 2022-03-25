@@ -16,11 +16,13 @@ final: prev: {
   dummy = prev.runCommand "dummy-0.0.0" { } "mkdir $out";
   firefox-extended = prev.callPackage ./firefox { };
   keyd = prev.callPackage ./keyd { };
-  qutebrowser = prev.qutebrowser.overrideAttrs (_: {
-    patches = [
-      ./qutebrowser/7014.diff
-    ];
-  });
+  luajitPackages = prev.luajitPackages.override {
+    overrides = lua-final: lua-prev: {
+      lua-http-parser = lua-prev.callPackage ./luajitPackages/http-parser.nix { };
+      lua-openssl = lua-prev.callPackage ./luajitPackages/openssl.nix { };
+      luarocks-fetch-gitrec = lua-prev.callPackage ./luajitPackages/luarocks-fetch-gitrec.nix { };
+    };
+  };
   nonicons = prev.callPackage ./nonicons { };
   nvidia-omniverse = prev.callPackage ./nvidia-omniverse { };
   pass-extension-meta = prev.callPackage ./pass-meta { };
@@ -47,6 +49,11 @@ final: prev: {
       });
     };
   };
+  qutebrowser = prev.qutebrowser.overrideAttrs (_: {
+    patches = [
+      ./qutebrowser/7014.diff
+    ];
+  });
   yabai = prev.yabai.overrideAttrs (_: rec {
     version = "3.3.10";
     src = prev.fetchFromGitHub {

@@ -403,6 +403,11 @@ rec {
     '';
   };
 
+  telescope-arecibo = {
+    package = plugins."telescope-arecibo.nvim";
+    rocks = [ lua-openssl lua-http-parser ];
+  };
+
   telescope-fzf = {
     package = plugins."telescope-fzf-native.nvim";
     override = {

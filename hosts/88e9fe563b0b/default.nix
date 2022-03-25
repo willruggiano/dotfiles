@@ -21,6 +21,7 @@ with lib;
   programs.keeping-you-awake.enable = true;
   # TODO: libcxx-13 is marked as broken
   # programs.slack.enable = true;
+  programs.tigervnc.enable = true;
   services.yabai.enable = true;
 
   # Terminal

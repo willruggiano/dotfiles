@@ -277,7 +277,6 @@ lir.setup {
 
     ["<tab>"] = custom_actions.toggle_mark_down,
     ["<s-tab>"] = custom_actions.toggle_mark_up,
-    S = custom_actions.clear_marks,
 
     ["-"] = actions.up,
     q = custom_actions.quit,
