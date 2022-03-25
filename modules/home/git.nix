@@ -59,11 +59,17 @@ in
           interactive = {
             diffFilter = "${pkgs.delta}/bin/delta --color-only";
           };
-          merge.tool = "smerge";
+          merge = {
+            conflictStyle = "zdiff3";
+            tool = "smerge";
+          };
           mergetool = {
             keepBackup = false;
+            fugitive = {
+              cmd = ''nvim -f -c "Gvdiffsplit!" $MERGED'';
+            };
             nvim = {
-              cmd = ''nvim -f -c "Gdiffsplit!" $MERGED'';
+              cmd = ''nvim -d $LOCAL $MERGED $REMOTE'';
             };
             smerge = {
               cmd = "${smerge}";

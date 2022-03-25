@@ -158,6 +158,14 @@ rec {
     '';
   };
 
+  diff-therapy = {
+    # package = plugins."diff-therapy.nvim";
+    package = pkgs.dummy;
+    config = ''
+      require "bombadil.config.diff-therapy";
+    '';
+  };
+
   diffview = {
     package = plugins."diffview.nvim";
   };
@@ -219,10 +227,6 @@ rec {
     config = ''
       require "bombadil.config.comments"
     '';
-  };
-
-  lightspeed = {
-    package = plugins."lightspeed.nvim";
   };
 
   lir = {
