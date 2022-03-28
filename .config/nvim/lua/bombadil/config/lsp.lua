@@ -185,7 +185,7 @@ end
 
 local has_null_ls, null_ls = pcall(require, "null-ls")
 if has_null_ls then
-  -- local custom_sources = require "bombadil.lsp.null-ls"
+  local custom_sources = require "bombadil.lsp.null-ls"
   null_ls.setup {
     debug = true,
 
@@ -219,6 +219,7 @@ if has_null_ls then
       -- custom_sources.statix.code_actions,
       -- Hover
       null_ls.builtins.hover.dictionary,
+      -- custom_sources.man.hover,
       -- Completion
       -- null_ls.builtins.completion.spell,
     },

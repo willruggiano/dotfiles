@@ -39,7 +39,6 @@ in
       (mkSuite "cxx" [
         pkgs.cmake-format
         pkgs.cppman
-        pkgs.stdman
       ])
       (mkIf (suiteEnabled "cpp") {
         xdg.configFile."cppman/cppman.cfg".text = ''
