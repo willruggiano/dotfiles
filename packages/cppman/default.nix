@@ -1,28 +1,16 @@
-{ pkgs, ... }:
+{ stdenv, fetchzip }:
 
-let
-  python = pkgs.python39.pkgs;
-in
-python.buildPythonApplication rec {
-  pname = "cppman";
-  version = "0.5.3";
+stdenv.mkDerivation rec {
+  name = "cppman";
 
-  src = pkgs.fetchFromGitHub {
-    owner = "aitjcize";
-    repo = "cppman";
-    rev = "4d13afba02d8822d798b0769178e481edadfbcca";
-    hash = "sha256-qRmfKtGyU/nBl5Lwr7KdaAdjJt06GClcblrBb9mQbgg=";
-  };
+  src = ./.;
 
-  doCheck = false;
+  buildPhase = ''
+    tar -xf ./cppreference.com.tar.gz
+  '';
 
-  propagatedBuildInputs = with python; [
-    beautifulsoup4
-    html5lib
-  ];
-
-  postInstall = ''
-    mkdir -p $out/after/ftplugin
-    cp cppman/lib/cppman.vim $out/after/ftplugin/
+  installPhase = ''
+    mkdir -p $out/share/man/man3
+    cp cppreference.com/*.gz $out/share/man/man3
   '';
 }

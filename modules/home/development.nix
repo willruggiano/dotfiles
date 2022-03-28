@@ -37,16 +37,9 @@ in
   config = mkIf cfg.enable
     (mkMerge [
       (mkSuite "cxx" [
-        # NOTE: These should come from project-specific shell.nix/flake.nix files!
-        # pkgs.build2
-        # pkgs.bpkg
-        # pkgs.bdep
-        # pkgs.clang-tools # This one could also come from the neovim environment.
-        # pkgs.cmake
         pkgs.cmake-format
         pkgs.cppman
-        # pkgs.gnumake
-        # pkgs.ninja
+        pkgs.stdman
       ])
       (mkIf (suiteEnabled "cpp") {
         xdg.configFile."cppman/cppman.cfg".text = ''
