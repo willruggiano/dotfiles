@@ -229,6 +229,13 @@ rec {
     '';
   };
 
+  leap = {
+    package = plugins."leap.nvim";
+    config = ''
+      require "bombadil.config.leap"
+    '';
+  };
+
   lir = {
     package = plugins."lir.nvim";
     config = ''
