@@ -21,6 +21,7 @@
     emanote.inputs.nixpkgs.follows = "nixpkgs";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar/v1.3.0";
   };
 
@@ -53,9 +54,6 @@
         (final: prev: {
           emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
-        # (final: prev: nixpkgs.lib.optionalAttrs (!prev.isFakePkgs or false) {
-        #   emanote = inputs.emanote.defaultPackage."${prev.system}";
-        # })
       ];
 
       hostDefaults.modules = [
@@ -128,14 +126,68 @@
       outputsBuilder = channels:
         let pkgs = channels.nixpkgs; in
         {
+          checks = {
+            pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
+              src = ./.;
+              hooks =
+                let
+                  pre-commit-hooks = "${pkgs.python3Packages.pre-commit-hooks}/bin";
+                in
+                {
+                  check-executables-have-shebangs = {
+                    entry = "${pre-commit-hooks}/check-executables-have-shebangs";
+                    types = [ "text" "executable" ];
+                  };
+                  check-json = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/check-json";
+                    types = [ "json" ];
+                  };
+                  check-merge-conflict = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/check-merge-conflict";
+                    types = [ "text" ];
+                  };
+                  check-toml = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/check-toml";
+                    types = [ "toml" ];
+                  };
+                  check-yaml = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/check-yaml";
+                    types = [ "yaml" ];
+                  };
+                  end-of-file-fixer = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/end-of-file-fixer";
+                    types = [ "text" ];
+                  };
+                  nixpkgs-fmt.enable = true;
+                  stylua = {
+                    enable = true;
+                    entry = "${pkgs.stylua}/bin/stylua";
+                    types = [ "file" "lua" ];
+                  };
+                  trailing-whitespace = {
+                    enable = true;
+                    entry = "${pre-commit-hooks}/trailing-whitespace-fixer";
+                    types = [ "text" ];
+                  };
+                };
+            };
+          };
           packages = utils.lib.exportPackages self.overlays channels;
           devShell = pkgs.stdenv.mkDerivation {
             name = "dotfiles";
             buildInputs = with pkgs; [ cmake fup-repl git niv nix-zsh-completions nodejs ];
-            shellHook = ''
-              export FLAKE=$(pwd)
-              export PATH=$FLAKE/bin:$PATH
-            '';
+            shellHook = self.lib.concatStringsSep "\n" [
+              self.checks."${pkgs.system}".pre-commit.shellHook
+              ''
+                export FLAKE=$(pwd)
+                export PATH=$FLAKE/bin:$PATH
+              ''
+            ];
           };
         };
 
