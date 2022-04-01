@@ -8,13 +8,18 @@ local delete_buffer = function(bufnr)
   end
 end
 
+local function is_listed(bufnr)
+  local buflisted = vim.api.nvim_buf_get_option(bufnr, "buflisted")
+  return buflisted == true
+end
+
 local list_loaded_buffers = function()
   local bufs = vim.api.nvim_list_bufs()
   local loaded = {}
   for _, b in ipairs(bufs) do
     if string.find(vim.fn.bufname(b), "Wilder") then
       -- Don't count wilder.nvim buffers
-    elseif vim.api.nvim_buf_is_loaded(b) then
+    elseif is_listed(b) then
       table.insert(loaded, b)
     end
   end
