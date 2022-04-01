@@ -24,6 +24,12 @@ require("nvim-treesitter.configs").setup {
     enable = true,
     use_languagetree = false,
     disable = { "cmake", "json" },
+    custom_captures = {
+      -- C++ alias declarations; `using <name> = <type>;`
+      ["alias.name"] = "Variable",
+      ["alias.type"] = "Type",
+      ["function.return"] = "Type",
+    },
   },
 
   query_linter = {

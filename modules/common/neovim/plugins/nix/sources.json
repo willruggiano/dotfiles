@@ -266,7 +266,7 @@
     "nortia.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/nortia.nvim",
-        "rev": "a582916c3751d3d6d79fa4ab750e7336397fd072",
+        "rev": "34f02e045096ace3e707e14974f6371be130262d",
         "type": "git"
     },
     "null-ls.nvim": {
