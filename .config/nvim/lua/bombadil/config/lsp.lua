@@ -106,6 +106,10 @@ local on_attach = function(_, bufnr)
       end,
       { buffer = bufnr, desc = "Restart lsp clients" },
     },
+    ["<leader>th"] = {
+      require("clangd_extensions.inlay_hints").toggle_inlay_hints,
+      { buffer = bufnr, desc = "Toggle inlay hints" },
+    },
     ["<leader>wd"] = {
       vim.lsp.buf.document_symbol,
       { buffer = bufnr, desc = "Document symbols" },

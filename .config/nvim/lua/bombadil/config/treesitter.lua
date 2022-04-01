@@ -141,7 +141,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local noremap = require("bombadil.lib.keymap").noremap
 
-nnoremap("<leader>thu", unit.toggle_highlighting, { desc = "Toggle unit highlighting" })
+nnoremap("<leader>tu", unit.toggle_highlighting, { desc = "Toggle unit highlighting" })
 nnoremap("<leader>tp", "<cmd>TSPlaygroundToggle<cr>", { desc = "Toggle treesitter playground" })
 
 noremap({ "o", "x" }, "iu", [[:lua require("treesitter-unit").select()<cr>]], { desc = "inner unit" })
