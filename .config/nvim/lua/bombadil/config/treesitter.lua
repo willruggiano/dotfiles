@@ -28,7 +28,8 @@ require("nvim-treesitter.configs").setup {
       -- C++ alias declarations; `using <name> = <type>;`
       ["alias.name"] = "Variable",
       ["alias.type"] = "Type",
-      ["function.return"] = "Type",
+      ["function.return"] = "Keyword",
+      ["function.parameter_type"] = "Keyword",
     },
   },
 
