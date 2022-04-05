@@ -1,5 +1,9 @@
-{ buildLuarocksPackage, fetchFromGitHub, lua, luarocks-fetch-gitrec }:
-
+{
+  buildLuarocksPackage,
+  fetchFromGitHub,
+  lua,
+  luarocks-fetch-gitrec,
+}:
 buildLuarocksPackage rec {
   pname = "lua-http-parser";
   version = "2.7-1";
@@ -12,5 +16,5 @@ buildLuarocksPackage rec {
     fetchSubmodules = true;
   };
 
-  propagatedBuildInputs = [ lua luarocks-fetch-gitrec ];
+  propagatedBuildInputs = [lua luarocks-fetch-gitrec];
 }

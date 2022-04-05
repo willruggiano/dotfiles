@@ -1,7 +1,5 @@
-{ lib, ... }:
-
-with lib;
-{
+{lib, ...}:
+with lib; {
   options.programs.neovim = {
     enable = mkEnableOption "Enable neovim";
   };

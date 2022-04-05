@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.programs.i3;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.i3;
+in {
   options.programs.i3 = {
     enable = mkEnableOption "Enable i3";
   };
@@ -64,8 +67,8 @@ in
 
     systemd.user.services.xbanish = {
       description = "banish the mouse cursor when typing";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      partOf = ["graphical-session.target"];
       serviceConfig = {
         ExecStart = "${pkgs.xbanish}/bin/xbanish";
         Restart = "always";

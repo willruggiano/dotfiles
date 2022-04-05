@@ -1,6 +1,10 @@
-{ config, lib, packages, modulesPath, ... }:
-
 {
+  config,
+  lib,
+  packages,
+  modulesPath,
+  ...
+}: {
   boot.loader.grub.enable = true;
   boot.loader.generic-extlinux-compatible.enable = true;
 
@@ -13,5 +17,5 @@
     };
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [{device = "/dev/disk/by-label/swap";}];
 }

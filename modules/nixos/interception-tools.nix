@@ -1,12 +1,15 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-let cfg = config.services.interception-tools;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.services.interception-tools;
+in {
   config = mkIf cfg.enable {
     services.interception-tools = {
-      plugins = [ pkgs.interception-tools-plugins.caps2esc ];
+      plugins = [pkgs.interception-tools-plugins.caps2esc];
       udevmonConfig = ''
         - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
           DEVICE:

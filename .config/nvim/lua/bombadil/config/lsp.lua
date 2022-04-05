@@ -200,7 +200,7 @@ if has_null_ls then
       -- null_ls.builtins.formatting.clang_format, -- via clangd
       null_ls.builtins.formatting.cmake_format,
       -- null_ls.builtins.formatting.isort, -- via pylsp
-      -- null_ls.builtins.formatting.nixfmt, -- via rnix-lsp
+      custom_sources.alejandra.formatting,
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.shfmt,
@@ -209,7 +209,7 @@ if has_null_ls then
       -- Diagnostics
       null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
       null_ls.builtins.diagnostics.luacheck.with {
-        command = lsp_cmds.luacheck[0],
+        command = lsp_cmds.luacheck,
         extra_args = { "--globals", "vim", "--no-max-line-length" },
       },
       null_ls.builtins.diagnostics.shellcheck,
@@ -305,7 +305,17 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
 
 lspconfig.rnix.setup {
   cmd = lsp_cmds.rnix,
-  on_init = on_init,
+  on_init = function(client)
+    on_init(client)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end,
   on_attach = on_attach,
-  capabilities = updated_capabilities,
+  capabilities = vim.tbl_deep_extend("force", updated_capabilities, {
+    textDocument = {
+      -- I use alejandra instead of nixpkgs-fmt
+      formatting = false,
+      rangeFormatting = false,
+    },
+  }),
 }

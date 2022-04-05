@@ -1,28 +1,32 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.git;
   smerge =
     if pkgs.stdenv.isDarwin
     then "smerge" # Will be installed via homebrew
     else "${pkgs.sublime-merge}/bin/smerge $MERGED";
-in
-{
-  config = mkIf cfg.enable
+in {
+  config =
+    mkIf cfg.enable
     {
-      home.packages = with pkgs; [
-        delta
-        git
-        gitflow
-        git-quickfix
-        lazygit
-        pre-commit
-        tig
-      ] ++ lib.optionals (!pkgs.stdenv.isDarwin) [
-        sublime-merge
-      ];
+      home.packages = with pkgs;
+        [
+          delta
+          git
+          gitflow
+          git-quickfix
+          lazygit
+          pre-commit
+          tig
+        ]
+        ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+          sublime-merge
+        ];
 
       programs.gh = {
         enable = true;

@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.programs.sway;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.sway;
+in {
   config = mkIf cfg.enable {
     programs.sway = {
       extraPackages = with pkgs; [
@@ -23,13 +26,13 @@ in
     programs.waybar.enable = true;
 
     programs.light.enable = true;
-    user.extraGroups = [ "video" ];
+    user.extraGroups = ["video"];
 
     hardware.opengl.enable = true;
     hardware.opengl.driSupport = true;
 
-    home.configFile."sway/config".text = import ./sway.nix { inherit pkgs; };
-    home.configFile."waybar/config".text = import ./waybar.nix { inherit pkgs; };
+    home.configFile."sway/config".text = import ./sway.nix {inherit pkgs;};
+    home.configFile."waybar/config".text = import ./waybar.nix {inherit pkgs;};
     home.configFile = {
       waybar = {
         source = ../../../.config/waybar;

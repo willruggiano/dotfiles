@@ -1,5 +1,11 @@
-{ stdenv, fetchzip, autoPatchelfHook, elfutils, libuuid, zlib }:
-
+{
+  stdenv,
+  fetchzip,
+  autoPatchelfHook,
+  elfutils,
+  libuuid,
+  zlib,
+}:
 stdenv.mkDerivation {
   pname = "circle";
   version = "161";
@@ -10,9 +16,9 @@ stdenv.mkDerivation {
     stripRoot = false;
   };
 
-  nativeBuildInputs = [ autoPatchelfHook ];
-  buildInputs = [ elfutils libuuid zlib ];
-  propagatedBuildInputs = [ stdenv.cc.cc.lib ];
+  nativeBuildInputs = [autoPatchelfHook];
+  buildInputs = [elfutils libuuid zlib];
+  propagatedBuildInputs = [stdenv.cc.cc.lib];
 
   installPhase = ''
     install -m755 -D circle $out/bin/circle

@@ -1,8 +1,10 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -48,7 +50,7 @@ with lib;
   services.interception-tools.enable = true;
   # services.keyd.enable = true;
   services.pcscd.enable = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [pkgs.yubikey-personalization];
 
   # Virtualization
   virtualisation.docker.enable = true;

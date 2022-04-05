@@ -1,28 +1,30 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.spotify;
-  spotifyd = pkgs.spotifyd.override { withPulseAudio = true; };
+  spotifyd = pkgs.spotifyd.override {withPulseAudio = true;};
   spotifydConf = pkgs.writeText "spotifyd.conf" ''
     [global]
     username = "1211559862"
     password_cmd = "cat ${config.age.secrets.spotify.path}"
     backend = "pulseaudio"
   '';
-in
-{
+in {
   options.programs.spotify = {
     enable = mkEnableOption "Enable spotify";
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ pkgs.spotify-tui pkgs.sysz ];
+    user.packages = [pkgs.spotify-tui pkgs.sysz];
 
     systemd.user.services.spotifyd = {
       enable = true;
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" "sound.target" ];
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target" "sound.target"];
       description = "spotifyd, a Spotify playing daemon";
       environment.SHELL = "/bin/sh";
       serviceConfig = {

@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.services.email;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.email;
+in {
   options.services.email = {
     enable = mkEnableOption "Enable terminal email (neomutt)";
   };

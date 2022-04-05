@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.services.mopidy;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.mopidy;
+in {
   config = mkIf cfg.enable {
     services.mopidy = {
       extraConfigFiles = [

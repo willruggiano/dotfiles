@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.programs.qutebrowser;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.qutebrowser;
+in {
   options.programs.qutebrowser = with types; {
     default = mkEnableOption "Make qutebrowser the default browser";
   };

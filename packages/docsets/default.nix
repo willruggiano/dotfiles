@@ -1,6 +1,8 @@
-{ lib, stdenv, fetchurl }:
-
-let
+{
+  lib,
+  stdenv,
+  fetchurl,
+}: let
   docsets = {
     C = {
       url = "http://sanfrancisco.kapeli.com/feeds/C.tgz";
@@ -28,22 +30,22 @@ let
     };
   };
 in
-stdenv.mkDerivation {
-  name = "docsets";
+  stdenv.mkDerivation {
+    name = "docsets";
 
-  srcs = lib.mapAttrsToList (lang: attrs: fetchurl { inherit (attrs) url hash; }) docsets;
-  sourceRoot = ".";
+    srcs = lib.mapAttrsToList (lang: attrs: fetchurl {inherit (attrs) url hash;}) docsets;
+    sourceRoot = ".";
 
-  installPhase = lib.concatStringsSep "\n" [
-    "mkdir -p $out/share/docsets"
-    (lib.concatMapStringsSep
-      "\n"
-      (lang: ''cp -r "${lang}.docset" $out/share/docsets/'')
-      (builtins.attrNames docsets))
-  ];
+    installPhase = lib.concatStringsSep "\n" [
+      "mkdir -p $out/share/docsets"
+      (lib.concatMapStringsSep
+        "\n"
+        (lang: ''cp -r "${lang}.docset" $out/share/docsets/'')
+        (builtins.attrNames docsets))
+    ];
 
-  dontPatch = true;
-  dontConfigure = true;
-  dontBuild = true;
-  dontFixup = true;
-}
+    dontPatch = true;
+    dontConfigure = true;
+    dontBuild = true;
+    dontFixup = true;
+  }

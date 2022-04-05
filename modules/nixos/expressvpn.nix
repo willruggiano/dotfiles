@@ -1,9 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.services.expressvpn;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.expressvpn;
+in {
   options.services.expressvpn = {
     enable = mkEnableOption "ExpressVPN";
   };
@@ -17,7 +20,7 @@ in
 
     systemd.services.expressvpn-reconnect = {
       description = "Restart OpenVPN after suspend";
-      wantedBy = [ "sleep.target" ];
+      wantedBy = ["sleep.target"];
       serviceConfig = {
         ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
       };

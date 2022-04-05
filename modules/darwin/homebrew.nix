@@ -1,11 +1,12 @@
-{ config, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   brewBinPrefix = "/usr/local/bin";
   cfg = config.homebrew.utilities;
-in
-{
+in {
   config = {
     environment.shellInit = ''
       eval "$(${brewBinPrefix}/brew shellenv)"

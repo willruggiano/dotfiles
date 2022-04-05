@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.programs.password-store;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.password-store;
+in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       cryptsetup
@@ -23,7 +25,7 @@ in
     };
 
     programs.password-store = {
-      package = pkgs.pass.withExtensions (exts: [ pkgs.pass-extension-meta exts.pass-update ]);
+      package = pkgs.pass.withExtensions (exts: [pkgs.pass-extension-meta exts.pass-update]);
       settings = {
         PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
       };

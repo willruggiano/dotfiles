@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.programs.fzf;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.fzf;
+in {
   config = mkIf cfg.enable {
     programs.fzf = {
       defaultCommand = ''${pkgs.ripgrep}/bin/rg --files --hidden --glob "!.git" --no-ignore'';
@@ -19,7 +21,7 @@ in
         "--bind='f3:execute(bat --style=numbers {} || less -f {}),ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
       ];
       changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
-      changeDirWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat {}'" ];
+      changeDirWidgetOptions = ["--preview '${pkgs.bat}/bin/bat {}'"];
       fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
       fileWidgetOptions = [
         "--select-1"

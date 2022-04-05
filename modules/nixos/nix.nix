@@ -1,7 +1,11 @@
-{ inputs, config, lib, pkgs, ... }:
-
-with lib;
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; {
   config = {
     nix = {
       settings.auto-optimise-store = mkDefault true;
@@ -9,7 +13,7 @@ with lib;
     };
 
     user = {
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
       isNormalUser = true;
       group = "users";
     };

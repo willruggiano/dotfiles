@@ -1,11 +1,7 @@
 pkgs:
-
-with pkgs.luajitPackages;
-
-let
-  plugins = import ./nix/sources.nix { };
-in
-rec {
+with pkgs.luajitPackages; let
+  plugins = import ./nix/sources.nix {};
+in rec {
   autopairs = {
     package = plugins.nvim-autopairs;
     config = ''
@@ -44,7 +40,7 @@ rec {
 
   clang-format = {
     package = plugins."clang-format.nvim";
-    rocks = [ lyaml ];
+    rocks = [lyaml];
   };
 
   clangd-extensions = {
@@ -109,8 +105,8 @@ rec {
   cpsm = {
     package = plugins.cpsm;
     override = {
-      nativeBuildInputs = [ pkgs.cmake ];
-      buildInputs = with pkgs; [ boost ncurses python310 ];
+      nativeBuildInputs = [pkgs.cmake];
+      buildInputs = with pkgs; [boost ncurses python310];
       buildPhase = ''
         cmake -S . -B build -DPY3:BOOL=ON
         cmake --build build --target install
@@ -127,7 +123,7 @@ rec {
     config = ''
       require "bombadil.config.dap";
     '';
-    rocks = [ rapidjson ];
+    rocks = [rapidjson];
   };
 
   dap-ui = {
@@ -241,7 +237,7 @@ rec {
     config = ''
       require "bombadil.config.lir";
     '';
-    rocks = [ luafilesystem ];
+    rocks = [luafilesystem];
   };
 
   lir-git-status = {
@@ -287,7 +283,7 @@ rec {
     config = ''
       require "bombadil.config.make"
     '';
-    rocks = [ luafilesystem ];
+    rocks = [luafilesystem];
   };
 
   marks = {
@@ -416,7 +412,7 @@ rec {
 
   telescope-arecibo = {
     package = plugins."telescope-arecibo.nvim";
-    rocks = [ lua-openssl lua-http-parser ];
+    rocks = [lua-openssl lua-http-parser];
   };
 
   telescope-fzf = {
@@ -524,7 +520,7 @@ rec {
       require "bombadil.config.which-key"
     '';
     override = {
-      patches = [ ./which-key-253.patch ];
+      patches = [./which-key-253.patch];
     };
   };
 

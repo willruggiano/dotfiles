@@ -1,9 +1,13 @@
-{ options, config, lib, home-manager, ... }:
-
-with lib;
 {
+  options,
+  config,
+  lib,
+  home-manager,
+  ...
+}:
+with lib; {
   options = with types; {
-    user = mkOpt attrs { };
+    user = mkOpt attrs {};
     sshPublicKey = mkOption {
       type = str;
       description = "The primary user's ssh public key";
@@ -18,19 +22,20 @@ with lib;
     };
 
     home = {
-      file = mkOpt' attrs { } "Files to place directly in $HOME";
-      configFile = mkOpt' attrs { } "Files to place in $XDG_CONFIG_HOME";
-      dataFile = mkOpt' attrs { } "Files to place in $XDG_DATA_HOME";
+      file = mkOpt' attrs {} "Files to place directly in $HOME";
+      configFile = mkOpt' attrs {} "Files to place in $XDG_CONFIG_HOME";
+      dataFile = mkOpt' attrs {} "Files to place in $XDG_DATA_HOME";
     };
 
     env = mkOption {
-      type = attrsOf (oneOf [ str path (listOf (either str path)) ]);
-      apply = mapAttrs
+      type = attrsOf (oneOf [str path (listOf (either str path))]);
+      apply =
+        mapAttrs
         (n: v:
           if isList v
           then concatMapStringsSep ":" toString v
           else (toString v));
-      default = { };
+      default = {};
       description = "";
     };
   };
@@ -59,16 +64,17 @@ with lib;
 
     users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
-    nix.settings = let users = [ "root" config.user.name ]; in
-      {
-        allowed-users = users;
-        trusted-users = users;
-      };
+    nix.settings = let
+      users = ["root" config.user.name];
+    in {
+      allowed-users = users;
+      trusted-users = users;
+    };
 
-    env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
+    env.PATH = ["$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH"];
 
     environment.extraInit =
       concatStringsSep "\n"
-        (mapAttrsToList (n: v: "export ${n}=\"${v}\"") config.env);
+      (mapAttrsToList (n: v: "export ${n}=\"${v}\"") config.env);
   };
 }

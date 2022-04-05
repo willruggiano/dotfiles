@@ -1,22 +1,24 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let
-  cfg = config.services.keyd;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.keyd;
+in {
   options.services.keyd = {
     enable = mkEnableOption "Enable keyd";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.keyd ];
+    environment.systemPackages = [pkgs.keyd];
 
     systemd.services.keyd = {
       enable = true;
-      requires = [ "local-fs.target" ];
-      after = [ "local-fs.target" ];
-      wantedBy = [ "sysinit.target" ];
+      requires = ["local-fs.target"];
+      after = ["local-fs.target"];
+      wantedBy = ["sysinit.target"];
       description = "keyd remapping daemon";
       serviceConfig = {
         ExecStart = "${pkgs.keyd}/bin/keyd";

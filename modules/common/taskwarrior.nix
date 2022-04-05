@@ -1,15 +1,18 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-let cfg = config.programs.taskwarrior;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.taskwarrior;
+in {
   options.programs.taskwarrior = {
     enable = mkEnableOption "taskwarrior";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ taskwarrior taskwarrior-tui ];
+    user.packages = with pkgs; [taskwarrior taskwarrior-tui];
 
     home.configFile = {
       "task/taskrc".text = ''

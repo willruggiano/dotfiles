@@ -1,5 +1,7 @@
-{ stdenv, fetchzip }:
-
+{
+  stdenv,
+  fetchzip,
+}:
 stdenv.mkDerivation rec {
   name = "cppman";
 

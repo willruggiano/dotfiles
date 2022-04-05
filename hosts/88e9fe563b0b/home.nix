@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   fonts.fontconfig.enable = true;
 
   programs.bat.enable = true;

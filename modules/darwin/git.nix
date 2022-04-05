@@ -1,7 +1,9 @@
-{ config, lib, ... }:
-
 {
+  config,
+  lib,
+  ...
+}: {
   config = {
-    homebrew.casks = [ "sublime-merge" ];
+    homebrew.casks = ["sublime-merge"];
   };
 }

@@ -1,12 +1,12 @@
-{ config, lib, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.services.ssh;
   inherit (config) sshPublicKey;
-in
-{
+in {
   options.services.ssh = {
     enable = mkEnableOption "Enable ssh";
   };
@@ -18,6 +18,6 @@ in
       passwordAuthentication = false;
     };
 
-    user.openssh.authorizedKeys.keys = [ sshPublicKey ];
+    user.openssh.authorizedKeys.keys = [sshPublicKey];
   };
 }

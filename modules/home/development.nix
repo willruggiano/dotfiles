@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.suites.development;
   suite = types.enum [
     "all"
@@ -22,19 +24,20 @@ let
     mkIf (suiteEnabled name) {
       home.packages = packages;
     };
-in
-{
+in {
   options.suites.development = {
     enable = mkEnableOption "Enable selected development suites";
-    suites = with types; mkOption {
-      type = oneOf [ suite (listOf suite) ];
-      default = [ ];
-      description = "Specify which development suites to enable";
-      example = literalExpression [ "cxx" "lua" "python" ];
-    };
+    suites = with types;
+      mkOption {
+        type = oneOf [suite (listOf suite)];
+        default = [];
+        description = "Specify which development suites to enable";
+        example = literalExpression ["cxx" "lua" "python"];
+      };
   };
 
-  config = mkIf cfg.enable
+  config =
+    mkIf cfg.enable
     (mkMerge [
       (mkSuite "cxx" [
         pkgs.cmake-format
@@ -58,16 +61,16 @@ in
         pkgs.stylua
       ])
       (mkSuite "nix" [
-        # pkgs.cached-nix-shell
-        pkgs.nixpkgs-fmt
+        pkgs.alejandra
+        pkgs.cached-nix-shell
         pkgs.statix
       ])
       (mkSuite "python" [
-        (pkgs.python39.withPackages (ps: with ps; [ isort pipx ]))
+        (pkgs.python39.withPackages (ps: with ps; [isort pipx]))
         pkgs.yapf
       ])
-      (mkSuite "qt" [ pkgs.qtcreator ])
-      (mkSuite "shell" [ pkgs.shellcheck pkgs.shfmt ])
+      (mkSuite "qt" [pkgs.qtcreator])
+      (mkSuite "shell" [pkgs.shellcheck pkgs.shfmt])
       # Finally, some general tools which we always want:
       {
         home.packages = with pkgs; [

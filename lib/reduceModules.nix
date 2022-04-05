@@ -1,8 +1,5 @@
-{ lib, ... }:
-
-dir: fn:
-let
+{lib, ...}: dir: fn: let
   inherit (builtins) attrValues;
   inherit (lib) mapModules;
 in
-attrValues (mapModules dir fn)
+  attrValues (mapModules dir fn)

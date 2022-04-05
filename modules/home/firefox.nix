@@ -1,12 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.firefox;
   inherit (pkgs.nur.repos.rycee) firefox-addons;
-in
-{
+in {
   config = mkIf cfg.enable (mkMerge [
     {
       programs.firefox = {
@@ -29,13 +30,13 @@ in
       };
     }
     (mkIf config.programs.mpv.enable {
-      programs.firefox.extensions = [ firefox-addons.ff2mpv ];
+      programs.firefox.extensions = [firefox-addons.ff2mpv];
     })
     (mkIf config.programs.password-store.enable {
-      programs.firefox.extensions = [ firefox-addons.browserpass ];
+      programs.firefox.extensions = [firefox-addons.browserpass];
       programs.browserpass = {
         enable = true;
-        browsers = [ "firefox" ];
+        browsers = ["firefox"];
       };
     })
   ]);

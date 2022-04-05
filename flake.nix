@@ -9,6 +9,7 @@
     nix.url = "github:nixos/nix/master";
     darwin.url = "github:LnL7/nix-darwin/master";
     naersk.url = "github:nix-community/naersk";
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
 
@@ -25,23 +26,28 @@
     spacebar.url = "github:cmacrae/spacebar/v1.3.0";
   };
 
-  outputs = { self, utils, nixpkgs, ... } @ inputs:
-    let
-      args = { inherit (self) lib; };
-      lib' = import ./lib args inputs;
-      commonModules = { dotfiles = import ./.; } // (lib'.mapModules ./modules/common import);
-      darwinModules = commonModules // (lib'.mapModules ./modules/darwin import);
-      nixosModules = commonModules // (lib'.mapModules ./modules/nixos import);
-    in
+  outputs = {
+    self,
+    utils,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    args = {inherit (self) lib;};
+    lib' = import ./lib args inputs;
+    commonModules = {dotfiles = import ./.;} // (lib'.mapModules ./modules/common import);
+    darwinModules = commonModules // (lib'.mapModules ./modules/darwin import);
+    nixosModules = commonModules // (lib'.mapModules ./modules/nixos import);
+  in
     utils.lib.mkFlake {
       inherit self inputs nixosModules;
 
-      lib = nixpkgs.lib.extend
+      lib =
+        nixpkgs.lib.extend
         (final: prev: {
           inherit (lib') makeHome mapFilterAttrs mapModules reduceModules mapModulesRec reduceModulesRec mkOpt mkOpt';
         });
 
-      supportedSystems = [ "x86_64-darwin" "x86_64-linux" ];
+      supportedSystems = ["x86_64-darwin" "x86_64-linux"];
       channelsConfig.allowUnfree = true;
 
       channels.nixpkgs.overlaysBuilder = channels: [
@@ -61,7 +67,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = (lib'.reduceModules ./modules/home import) ++ [ inputs.emanote.homeManagerModule ];
+          home-manager.sharedModules = (lib'.reduceModules ./modules/home import) ++ [inputs.emanote.homeManagerModule];
         }
       ];
 
@@ -73,7 +79,9 @@
           }
           ./hosts/mothership
           inputs.home-manager.nixosModule
-          { home-manager.users.bombadil = import ./hosts/mothership/home.nix; }
+          {
+            home-manager.users.bombadil = import ./hosts/mothership/home.nix;
+          }
         ];
         specialArgs = {
           inherit (self) lib;
@@ -89,7 +97,9 @@
           }
           ./hosts/orthanc
           inputs.home-manager.nixosModule
-          { home-manager.users.saruman = import ./hosts/orthanc/home.nix; }
+          {
+            home-manager.users.saruman = import ./hosts/orthanc/home.nix;
+          }
         ];
         specialArgs = {
           inherit (self) lib;
@@ -105,7 +115,9 @@
           }
           ./hosts/88e9fe563b0b
           inputs.home-manager.darwinModule
-          { home-manager.users.wruggian = import ./hosts/88e9fe563b0b/home.nix; }
+          {
+            home-manager.users.wruggian = import ./hosts/88e9fe563b0b/home.nix;
+          }
         ];
         specialArgs = {
           inherit (self) lib;
@@ -121,75 +133,77 @@
       };
 
       overlay = import ./packages/overlays.nix;
-      overlays = utils.lib.exportOverlays { inherit (self) pkgs inputs; };
+      overlays = utils.lib.exportOverlays {inherit (self) pkgs inputs;};
 
-      outputsBuilder = channels:
-        let pkgs = channels.nixpkgs; in
-        {
-          checks = {
-            pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
-              src = ./.;
-              hooks =
-                let
-                  pre-commit-hooks = "${pkgs.python3Packages.pre-commit-hooks}/bin";
-                in
-                {
-                  check-executables-have-shebangs = {
-                    entry = "${pre-commit-hooks}/check-executables-have-shebangs";
-                    types = [ "text" "executable" ];
-                  };
-                  check-json = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/check-json";
-                    types = [ "json" ];
-                  };
-                  check-merge-conflict = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/check-merge-conflict";
-                    types = [ "text" ];
-                  };
-                  check-toml = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/check-toml";
-                    types = [ "toml" ];
-                  };
-                  check-yaml = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/check-yaml";
-                    types = [ "yaml" ];
-                  };
-                  end-of-file-fixer = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/end-of-file-fixer";
-                    types = [ "text" ];
-                  };
-                  nixpkgs-fmt.enable = true;
-                  stylua = {
-                    enable = true;
-                    entry = "${pkgs.stylua}/bin/stylua";
-                    types = [ "file" "lua" ];
-                  };
-                  trailing-whitespace = {
-                    enable = true;
-                    entry = "${pre-commit-hooks}/trailing-whitespace-fixer";
-                    types = [ "text" ];
-                  };
-                };
+      outputsBuilder = channels: let
+        pkgs = channels.nixpkgs;
+      in {
+        checks = {
+          pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
+            src = ./.;
+            hooks = let
+              pre-commit-hooks = "${pkgs.python3Packages.pre-commit-hooks}/bin";
+            in {
+              check-executables-have-shebangs = {
+                entry = "${pre-commit-hooks}/check-executables-have-shebangs";
+                types = ["text" "executable"];
+              };
+              check-json = {
+                enable = true;
+                entry = "${pre-commit-hooks}/check-json";
+                types = ["json"];
+              };
+              check-merge-conflict = {
+                enable = true;
+                entry = "${pre-commit-hooks}/check-merge-conflict";
+                types = ["text"];
+              };
+              check-toml = {
+                enable = true;
+                entry = "${pre-commit-hooks}/check-toml";
+                types = ["toml"];
+              };
+              check-yaml = {
+                enable = true;
+                entry = "${pre-commit-hooks}/check-yaml";
+                types = ["yaml"];
+              };
+              end-of-file-fixer = {
+                enable = true;
+                entry = "${pre-commit-hooks}/end-of-file-fixer";
+                types = ["text"];
+              };
+              nix-format = {
+                enable = true;
+                entry = "${pkgs.alejandra}/bin/alejandra";
+                types = ["file" "nix"];
+              };
+              stylua = {
+                enable = true;
+                entry = "${pkgs.stylua}/bin/stylua";
+                types = ["file" "lua"];
+              };
+              trailing-whitespace = {
+                enable = true;
+                entry = "${pre-commit-hooks}/trailing-whitespace-fixer";
+                types = ["text"];
+              };
             };
           };
-          packages = utils.lib.exportPackages self.overlays channels;
-          devShell = pkgs.stdenv.mkDerivation {
-            name = "dotfiles";
-            buildInputs = with pkgs; [ cmake fup-repl git niv nix-zsh-completions nodejs ];
-            shellHook = self.lib.concatStringsSep "\n" [
-              self.checks."${pkgs.system}".pre-commit.shellHook
-              ''
-                export FLAKE=$(pwd)
-                export PATH=$FLAKE/bin:$PATH
-              ''
-            ];
-          };
         };
+        packages = utils.lib.exportPackages self.overlays channels;
+        devShell = pkgs.stdenv.mkDerivation {
+          name = "dotfiles";
+          buildInputs = with pkgs; [cmake fup-repl git niv nix-zsh-completions nodejs];
+          shellHook = self.lib.concatStringsSep "\n" [
+            self.checks."${pkgs.system}".pre-commit.shellHook
+            ''
+              export FLAKE=$(pwd)
+              export PATH=$FLAKE/bin:$PATH
+            ''
+          ];
+        };
+      };
 
       packages = {
         x86_64-darwin = {

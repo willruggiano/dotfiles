@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-
+{pkgs, ...}:
 # TODO: It's a bummer that only ESR is supported for addons :(
 pkgs.wrapFirefox pkgs.firefox-unwrapped {
   nixExtensions = [

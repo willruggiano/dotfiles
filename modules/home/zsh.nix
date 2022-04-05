@@ -1,11 +1,13 @@
 # vim: ft=nix
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.programs.zsh;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.zsh;
+in {
   options.programs.zsh = {
     colorscheme = mkOption {
       type = types.str;
@@ -15,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ atuin bc thefuck units ];
+    home.packages = with pkgs; [atuin bc thefuck units];
 
     programs.nix-index.enable = true;
 

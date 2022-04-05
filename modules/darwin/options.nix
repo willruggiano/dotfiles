@@ -1,7 +1,11 @@
-{ options, config, lib, darwin, ... }:
-
-with lib;
 {
+  options,
+  config,
+  lib,
+  darwin,
+  ...
+}:
+with lib; {
   config = {
     dotfiles.dir = "${config.user.home}/.config/darwin";
 

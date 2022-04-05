@@ -1,31 +1,30 @@
 final: prev: {
-  circle = prev.callPackage ./circle { };
-  clang-tools-unbroken =
-    let
-      inherit (prev) lib;
-      inherit (prev) llvmPackages_13;
-      unwrapped = llvmPackages_13.clang-unwrapped;
-    in
+  circle = prev.callPackage ./circle {};
+  clang-tools-unbroken = let
+    inherit (prev) lib;
+    inherit (prev) llvmPackages_13;
+    unwrapped = llvmPackages_13.clang-unwrapped;
+  in
     prev.clang-tools.overrideAttrs (_: {
       version = lib.getVersion unwrapped;
       inherit (llvmPackages_13) clang;
       inherit unwrapped;
     });
-  cppman = prev.callPackage ./cppman { };
-  docsets = prev.callPackage ./docsets { };
-  dummy = prev.runCommand "dummy-0.0.0" { } "mkdir $out";
-  firefox-extended = prev.callPackage ./firefox { };
-  keyd = prev.callPackage ./keyd { };
+  cppman = prev.callPackage ./cppman {};
+  docsets = prev.callPackage ./docsets {};
+  dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
+  firefox-extended = prev.callPackage ./firefox {};
+  keyd = prev.callPackage ./keyd {};
   luajitPackages = prev.luajitPackages.override {
     overrides = lua-final: lua-prev: {
-      lua-http-parser = lua-prev.callPackage ./luajitPackages/http-parser.nix { };
-      lua-openssl = lua-prev.callPackage ./luajitPackages/openssl.nix { };
-      luarocks-fetch-gitrec = lua-prev.callPackage ./luajitPackages/luarocks-fetch-gitrec.nix { };
+      lua-http-parser = lua-prev.callPackage ./luajitPackages/http-parser.nix {};
+      lua-openssl = lua-prev.callPackage ./luajitPackages/openssl.nix {};
+      luarocks-fetch-gitrec = lua-prev.callPackage ./luajitPackages/luarocks-fetch-gitrec.nix {};
     };
   };
-  nonicons = prev.callPackage ./nonicons { };
-  nvidia-omniverse = prev.callPackage ./nvidia-omniverse { };
-  pass-extension-meta = prev.callPackage ./pass-meta { };
+  nonicons = prev.callPackage ./nonicons {};
+  nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
+  pass-extension-meta = prev.callPackage ./pass-meta {};
   python39 = prev.python39.override {
     packageOverrides = python-final: python-prev: {
       python-lsp-server = python-prev.python-lsp-server.overrideAttrs (self: rec {
@@ -37,7 +36,7 @@ final: prev: {
           hash = "sha256-F8f9NAjPWkm01D/KwFH0oA6nQ3EF4ZVCCckZTL4A35Y=";
         };
       });
-      pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix { };
+      pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix {};
       rope = python-prev.rope.overrideAttrs (_: rec {
         version = "0.22.0";
         src = python-prev.fetchPypi {
@@ -45,7 +44,7 @@ final: prev: {
           inherit version;
           hash = "sha256-sA+8Bkom/GLXIgV4on/WObL61XITZjzDlsE36S1z8Q8=";
         };
-        patches = [ ];
+        patches = [];
       });
     };
   };
