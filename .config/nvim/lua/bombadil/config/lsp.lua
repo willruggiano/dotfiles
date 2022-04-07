@@ -111,11 +111,19 @@ local on_attach = function(_, bufnr)
       { buffer = bufnr, desc = "Toggle inlay hints" },
     },
     ["<leader>wd"] = {
-      vim.lsp.buf.document_symbol,
+      function()
+        require("telescope.builtin").lsp_document_symbols(telescope_themes.ivy)
+      end,
       { buffer = bufnr, desc = "Document symbols" },
     },
     ["<leader>ww"] = {
-      vim.lsp.buf.workspace_symbol,
+      function()
+        vim.ui.input({ prompt = "Query: " }, function(query)
+          require("telescope.builtin").lsp_workspace_symbols(
+            vim.tbl_deep_extend("force", telescope_themes.ivy, { query = query })
+          )
+        end)
+      end,
       { buffer = bufnr, desc = "Workspace symbols" },
     },
     ["<leader>K"] = {
