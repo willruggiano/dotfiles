@@ -14,7 +14,7 @@
     "clang-format.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/clang-format.nvim",
-        "rev": "f51a3f51ddd55d55bfe04cef0c46198b70a06015",
+        "rev": "ccb48a89b3486467011059345cf76015177fd7ac",
         "type": "git"
     },
     "clangd_extensions.nvim": {
