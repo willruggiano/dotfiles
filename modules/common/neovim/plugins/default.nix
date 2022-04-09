@@ -327,7 +327,7 @@ in rec {
 
   notify = {
     package = plugins.nvim-notify;
-    config = ''
+    setup = ''
       require "bombadil.config.notify";
     '';
   };
