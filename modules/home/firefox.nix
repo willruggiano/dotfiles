@@ -28,6 +28,16 @@ in {
           };
         };
       };
+
+      home.packages = with pkgs; [
+        (writeShellApplication {
+          name = "firefox-private";
+          runtimeInputs = [cfg.package];
+          text = ''
+            firefox --private-window
+          '';
+        })
+      ];
     }
     (mkIf config.programs.mpv.enable {
       programs.firefox.extensions = [firefox-addons.ff2mpv];
