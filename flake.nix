@@ -144,6 +144,7 @@
             hooks = let
               pre-commit-hooks = "${pkgs.python3Packages.pre-commit-hooks}/bin";
             in {
+              alejandra.enable = true;
               check-executables-have-shebangs = {
                 entry = "${pre-commit-hooks}/check-executables-have-shebangs";
                 types = ["text" "executable"];
@@ -172,11 +173,6 @@
                 enable = true;
                 entry = "${pre-commit-hooks}/end-of-file-fixer";
                 types = ["text"];
-              };
-              nix-format = {
-                enable = true;
-                entry = "${pkgs.alejandra}/bin/alejandra";
-                types = ["file" "nix"];
               };
               stylua = {
                 enable = true;
