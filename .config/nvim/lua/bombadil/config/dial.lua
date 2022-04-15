@@ -27,7 +27,7 @@ require("dial.config").augends:register_group {
       cyclic = true,
     },
   }),
-  gitrebase = vim.list_extend(default, {
+  git = vim.list_extend(default, {
     augend.constant.new {
       elements = { "pick", "edit", "fixup", "reword", "squash", "drop" },
       word = true,
