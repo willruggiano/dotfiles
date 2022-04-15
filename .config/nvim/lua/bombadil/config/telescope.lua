@@ -13,6 +13,7 @@ local set_prompt_to_entry_value = function(prompt_bufnr)
 end
 
 local _ = pcall(require, "nvim-nonicons")
+local programs = require "bombadil.generated.programs"
 
 local common_dirs = {
   ["~/.config"] = "conf",
@@ -107,6 +108,10 @@ telescope.setup {
       url_open_command = vim.env.BROWSER,
     },
 
+    docsets = {
+      query_command = programs.dasht.query_line,
+    },
+
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -125,6 +130,7 @@ telescope.setup {
 }
 
 telescope.load_extension "arecibo"
+telescope.load_extension "docsets"
 telescope.load_extension "dotfiles"
 telescope.load_extension "fzf"
 telescope.load_extension "git_worktree"
@@ -190,6 +196,14 @@ local mappings = {
       require("telescope").extensions.gh.run()
     end,
     { desc = "GitHub workflows" },
+  },
+  ["<leader>k"] = {
+    function()
+      require("telescope").extensions.docsets.find_word_under_cursor(
+        vim.tbl_deep_extend("force", themes.ivy, { previewer = false })
+      )
+    end,
+    { desc = "Docsets" },
   },
 }
 
