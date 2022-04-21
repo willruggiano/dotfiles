@@ -17,7 +17,6 @@ in {
 
   config = mkIf (cfg.enable && pkgs.stdenv.isLinux) {
     user.packages = with pkgs; [
-      qutebrowser
       (writeShellApplication {
         name = "qutebrowser-private";
         runtimeInputs = [qutebrowser];

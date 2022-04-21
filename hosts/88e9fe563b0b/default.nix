@@ -15,21 +15,21 @@ with lib; {
 
   # Desktop
   programs.code.enable = true;
+  programs.docker.enable = true;
   programs.firefox.enable = true;
+  programs.karabiner.enable = true;
+  programs.keeping-you-awake.enable = true;
+  programs.kitty.enable = true;
+  programs.neovim.enable = true;
   programs.qutebrowser = {
     enable = true;
     default = true;
   };
-  programs.karabiner.enable = true;
-  programs.keeping-you-awake.enable = true;
-  # TODO: libcxx-13 is marked as broken
-  # programs.slack.enable = true;
+  programs.rdp.enable = true;
   programs.tigervnc.enable = true;
-  services.yabai.enable = true;
-
-  # Terminal
-  programs.kitty.enable = true;
-  programs.neovim.enable = true;
-  programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
+  programs.xquartz.enable = true;
   programs.zk.enable = true;
+  programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
+
+  services.yabai.enable = true;
 }

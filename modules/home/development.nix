@@ -62,11 +62,10 @@ in {
       ])
       (mkSuite "nix" [
         pkgs.alejandra
-        pkgs.cached-nix-shell
         pkgs.statix
       ])
       (mkSuite "python" [
-        (pkgs.python39.withPackages (ps: with ps; [isort pipx]))
+        (pkgs.python3.withPackages (ps: with ps; [isort pipx]))
         pkgs.yapf
       ])
       (mkSuite "qt" [pkgs.qtcreator])

@@ -106,7 +106,7 @@ in rec {
     package = plugins.cpsm;
     override = {
       nativeBuildInputs = [pkgs.cmake];
-      buildInputs = with pkgs; [boost ncurses python310];
+      buildInputs = with pkgs; [boost ncurses python3];
       buildPhase = ''
         cmake -S . -B build -DPY3:BOOL=ON
         cmake --build build --target install

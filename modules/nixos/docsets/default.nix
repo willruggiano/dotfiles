@@ -8,7 +8,7 @@ with lib; let
   cfg = config.programs.docsets;
   filter-dasht-query = pkgs.writeShellApplication {
     name = "filter-dasht-query";
-    runtimeInputs = [pkgs.python310];
+    runtimeInputs = [pkgs.python3];
     text = ''
       COMMAND='${builtins.readFile ./filter-dasht-query-results.py}'
       python -c "''${COMMAND}"

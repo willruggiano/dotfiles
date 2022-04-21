@@ -65,7 +65,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = (lib'.reduceModules ./modules/home import); # ++ [ inputs.emanote.homeManagerModule ];
+          home-manager.sharedModules = lib'.reduceModules ./modules/home import; # ++ [ inputs.emanote.homeManagerModule ];
         }
       ];
 
@@ -77,9 +77,7 @@
           }
           ./hosts/mothership
           inputs.home-manager.nixosModule
-          {
-            home-manager.users.bombadil = import ./hosts/mothership/home.nix;
-          }
+          {home-manager.users.bombadil = import ./hosts/mothership/home.nix;}
         ];
         specialArgs = {
           inherit (self) lib;
@@ -95,9 +93,7 @@
           }
           ./hosts/orthanc
           inputs.home-manager.nixosModule
-          {
-            home-manager.users.saruman = import ./hosts/orthanc/home.nix;
-          }
+          {home-manager.users.saruman = import ./hosts/orthanc/home.nix;}
         ];
         specialArgs = {
           inherit (self) lib;
@@ -113,9 +109,7 @@
           }
           ./hosts/88e9fe563b0b
           inputs.home-manager.darwinModule
-          {
-            home-manager.users.wruggian = import ./hosts/88e9fe563b0b/home.nix;
-          }
+          {home-manager.users.wruggian = import ./hosts/88e9fe563b0b/home.nix;}
         ];
         specialArgs = {
           inherit (self) lib;

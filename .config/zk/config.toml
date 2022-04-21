@@ -1,5 +1,5 @@
 [note]
-filename = "{{date now '%Y-%m-%d'}}-{{slug title}}"
+filename = "{{slug title}}"
 template = "default.md"
 
 

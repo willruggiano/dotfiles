@@ -188,7 +188,7 @@
     "leap.nvim": {
         "branch": "main",
         "repo": "git@github.com:ggandor/leap.nvim",
-        "rev": "c345ccac43b9a787eeb87d8df9230be7c23cb312",
+        "rev": "2a7965c6ec3f5de9efde92dcec0c53f12c84732a",
         "type": "git"
     },
     "lir-git-status.nvim": {
@@ -284,7 +284,7 @@
     "nvim-bqf": {
         "branch": "main",
         "repo": "git@github.com:kevinhwang91/nvim-bqf",
-        "rev": "cc5300223f4c1d281f6ac565796b15cd86a23842",
+        "rev": "347ecd67f5a53032877621fdf4d94a062a2a79d7",
         "type": "git"
     },
     "nvim-cheat.sh": {
@@ -458,7 +458,7 @@
     "scope.nvim": {
         "branch": "main",
         "repo": "git@github.com:tiagovla/scope.nvim",
-        "rev": "28a7036645e7e94b1c637558b72614b1cb78bb37",
+        "rev": "4ec68b43c74afe3569aa6b0d9d5a25cb82777309",
         "type": "git"
     },
     "surround.nvim": {

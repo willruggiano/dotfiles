@@ -16,6 +16,7 @@ in {
           greasemonkey
           https-everywhere
           metamask
+          multi-account-containers
           ublock-origin
           vimium
         ];

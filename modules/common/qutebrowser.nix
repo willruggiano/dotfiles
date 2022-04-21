@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable (mkMerge [
     {
       user.packages = with pkgs; [
-        python39Packages.adblock
+        python3Packages.adblock
       ];
 
       home.configFile = {
@@ -25,7 +25,7 @@ in {
         "qutebrowser/userscripts/autorefresh" = {
           executable = true;
           text = ''
-            #!${pkgs.python39}/bin/python
+            #!${pkgs.python3}/bin/python
 
             import os
             import sys
