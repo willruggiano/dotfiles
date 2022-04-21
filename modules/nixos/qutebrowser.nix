@@ -17,6 +17,7 @@ in {
 
   config = mkIf (cfg.enable && pkgs.stdenv.isLinux) {
     user.packages = with pkgs; [
+      qutebrowser
       (writeShellApplication {
         name = "qutebrowser-private";
         runtimeInputs = [qutebrowser];
@@ -28,11 +29,11 @@ in {
 
     # Install language dictionaries for spellcheck backends
     system.userActivationScripts.qutebrowserInstallDicts = concatStringsSep "\\\n" (map
-      (lang: ''
-        if ! find "$HOME/.config/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
-          ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
-        fi
-      '')
-      cfg.dicts);
+    (lang: ''
+      if ! find "$HOME/.config/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
+        ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
+      fi
+    '')
+    cfg.dicts);
   };
 }
