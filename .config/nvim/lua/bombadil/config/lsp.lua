@@ -297,7 +297,11 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   lspconfig = {
     cmd = lsp_cmds.sumneko,
     on_init = on_init,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+    end,
     capabilities = updated_capabilities,
     root_dir = function(fname)
       return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
