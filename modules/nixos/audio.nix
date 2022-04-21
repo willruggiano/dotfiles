@@ -12,7 +12,6 @@ with lib; {
       hardware.pulseaudio.package = pkgs.pulseaudioFull;
     }
     (mkIf config.hardware.bluetooth.enable {
-      hardware.pulseaudio.extraModules = [pkgs.pulseaudio-modules-bt];
       hardware.bluetooth.settings = {
         General = {
           Enable = "Source,Sink,Media,Socket";

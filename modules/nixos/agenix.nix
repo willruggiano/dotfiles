@@ -35,7 +35,7 @@ in {
           (import secretsFile)
         else {};
       sshKeyPaths =
-        options.age.sshKeyPaths.default
+        options.age.identityPaths.default
         ++ [
           "${config.user.home}/.ssh/id_ed25519"
         ];

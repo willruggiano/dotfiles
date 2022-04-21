@@ -105,7 +105,7 @@ in {
         pythonEnv = buildEnv {
           name = "neovim-python-env";
           paths = [
-            (python3.withPackages (ps: with ps; [python-lsp-server pylsp-rope]))
+            (python3.withPackages (ps: with ps; [python-lsp-server]))
           ];
         };
       in

@@ -14,7 +14,7 @@
     };
     CMake = {
       url = "http://sanfrancisco.kapeli.com/feeds/CMake.tgz";
-      hash = "sha256-Yb8HrS+K4lhRkWW1Fwk5Sqm3FJSb5pJNIX5u3d9PMfs=";
+      hash = "sha256-XIT/GMJ7ojMDotxahisuq3K9CobjbQLAqRor5X0B2YA=";
     };
     Lua = {
       url = "http://sanfrancisco.kapeli.com/feeds/Lua_5.4.tgz";
@@ -22,11 +22,11 @@
     };
     "Python 3" = {
       url = "http://sanfrancisco.kapeli.com/feeds/Python_3.tgz";
-      hash = "sha256-++PwGO5/28nnUAbzO70IcLZEHsoEFIRm2xm1Lz+R/fk=";
+      hash = "sha256-jE0Y/x5S/bNR1FtqbbhVj0pjZ11mByfls3Z83M3Ly1U=";
     };
     Qt = {
       url = "http://sanfrancisco.kapeli.com/feeds/Qt_5.tgz";
-      hash = "sha256-h9VSoAiqB46yWUgjgCFfHW/46E/X6O9cbKp3thNSwoI=";
+      hash = "sha256-WcrcuEw9kiDylyfEeQuUtaVOliJF/Gzt1rcEz2bTVnk=";
     };
   };
 in
@@ -39,9 +39,9 @@ in
     installPhase = lib.concatStringsSep "\n" [
       "mkdir -p $out/share/docsets"
       (lib.concatMapStringsSep
-        "\n"
-        (lang: ''cp -r "${lang}.docset" $out/share/docsets/'')
-        (builtins.attrNames docsets))
+      "\n"
+      (lang: ''cp -r "${lang}.docset" $out/share/docsets/'')
+      (builtins.attrNames docsets))
     ];
 
     dontPatch = true;

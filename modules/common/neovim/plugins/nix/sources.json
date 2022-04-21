@@ -6,9 +6,9 @@
         "type": "git"
     },
     "bufferline.nvim": {
-        "branch": "master",
+        "branch": "main",
         "repo": "git@github.com:akinsho/bufferline.nvim",
-        "rev": "f63be9a3a3429a726af14c9085d547281bdf38cc",
+        "rev": "f02e19bd29a27944e6bcc1e7a492fe07534b6630",
         "type": "git"
     },
     "clang-format.nvim": {
@@ -377,12 +377,6 @@
         "rev": "095f98aaa7265628a72cd2706350c091544b5602",
         "type": "git"
     },
-    "nvim-toggleterm.lua": {
-        "branch": "master",
-        "repo": "git@github.com:akinsho/nvim-toggleterm.lua",
-        "rev": "f23866b8fbb0703be4e15d50c814ffe496242a67",
-        "type": "git"
-    },
     "nvim-treesitter": {
         "branch": "master",
         "repo": "git@github.com:nvim-treesitter/nvim-treesitter",
@@ -519,6 +513,12 @@
         "branch": "main",
         "repo": "git@github.com:folke/todo-comments.nvim",
         "rev": "98b1ebf198836bdc226c0562b9f906584e6c400e",
+        "type": "git"
+    },
+    "toggleterm.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:akinsho/toggleterm.nvim",
+        "rev": "dca8f4d9516270cb41c147ed692f3ee420c5e515",
         "type": "git"
     },
     "treesitter-unit": {

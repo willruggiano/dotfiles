@@ -460,7 +460,7 @@ in rec {
   };
 
   toggleterm = {
-    package = plugins."nvim-toggleterm.lua";
+    package = plugins."toggleterm.nvim";
     config = ''
       require "bombadil.config.toggleterm";
     '';
