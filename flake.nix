@@ -130,6 +130,10 @@
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
+        apps.update-treesitter-parsers = utils.lib.mkApp {
+          drv = pkgs.nvim-treesitter.update-grammars;
+        };
+
         checks = {
           pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
             src = ./.;
