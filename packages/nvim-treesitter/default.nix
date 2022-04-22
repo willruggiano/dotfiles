@@ -35,6 +35,9 @@
     go = {
       owner = "tree-sitter";
     };
+    html = {
+      owner = "tree-sitter";
+    };
     java = {
       owner = "tree-sitter";
     };
