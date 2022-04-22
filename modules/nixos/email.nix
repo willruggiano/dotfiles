@@ -8,7 +8,7 @@ with lib; let
   cfg = config.services.email;
 in {
   options.services.email = {
-    enable = mkEnableOption "Enable terminal email (neomutt)";
+    enable = mkEnableOption "Terminal email via neomutt";
   };
 
   config = mkIf cfg.enable {
@@ -22,7 +22,41 @@ in {
       "neomutt/mailcap".text = ''
         text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput;
       '';
-      "neomutt/neomuttrc".source = ../../.config/mutt/neomuttrc;
+      "neomutt/neomuttrc".text = ''
+        set realname = "Will Ruggiano"
+        set from = "wmruggiano@gmail.com"
+        set signature = "~/.config/neomutt/signature"
+
+        set smtp_url = "smtp://wmruggiano@smtp.gmail.com:587"
+        set smtp_pass = "`cat ${config.age.secrets."wmruggiano@gmail.com".path}`"
+
+        set folder = "~/mail"
+        set virtual_spoolfile = yes
+        virtual-mailboxes "Inbox"       "notmuch://?query=tag:inbox"
+        virtual-mailboxes "Updates"     "notmuch://?query=tag:updates"
+        virtual-mailboxes "Flagged"     "notmuch://?query=tag:flagged"
+        virtual-mailboxes "Important"   "notmuch://?query=tag:important"
+        virtual-mailboxes "Draft"       "notmuch://?query=tag:draft"
+        virtual-mailboxes "Sent"        "notmuch://?query=tag:sent"
+
+        set postponed = "~/mail/drafts"
+        set record = ""
+
+        set sort = threads
+        set sort_aux = reverse-last-date-received
+        set header_cache = "~/.cache/neomutt/headers"
+        set message_cachedir = "~/.cache/neomutt/bodies"
+
+        set sidebar_visible
+        set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+        set date_format = "%d/%m/%y %I:%M%p"
+
+        set mailcap_path = "~/.config/neomutt/mailcap"
+        auto_view text/html
+
+        source ~/.config/neomutt/vim-keys.rc
+        source ~/.config/neomutt/urlscan
+      '';
       "neomutt/urlscan".text = ''
         macro index,pager \cb "<pipe-message> ${pkgs.urlscan}/bin/urlscan<Enter>" "call urlscan to extract URLs out of a message"
         macro attach,compose \cb "<pipe-entry> ${pkgs.urlscan}/bin/urlscan<Enter>" "call urlscan to extract URLs out of a message"
