@@ -81,7 +81,7 @@
     toml = {
       owner = "ikatyang";
     };
-    vim = rec {
+    vim = {
       owner = "vigoux";
       repo = "tree-sitter-viml";
     };
@@ -99,12 +99,15 @@
     builtins.mapAttrs (name: value: rec {
       inherit (value) owner;
       repo =
-        if builtins.hasAttr "repo" value
+        if value ? "repo"
         then value.repo
         else "tree-sitter-${name}";
-      rev = lockfile."${name}".revision;
+      rev =
+        if value ? "rev"
+        then value.rev
+        else lockfile."${name}".revision;
       url =
-        if builtins.hasAttr "url" value
+        if value ? "url"
         then value.url
         else "https://github.com/${owner}/${repo}";
     })
@@ -165,8 +168,11 @@
 
       installPhase = ''
         runHook preInstall
-        mkdir $out
+        mkdir -p $out/queries
         mv parser $out/
+        for f in $src/queries/**/*.scm; do
+          cp $f $out/queries/$(basename $f)
+        done
         runHook postInstall
       '';
 
@@ -194,7 +200,13 @@ in
         "mkdir $out"
         "cp -r {autoload,doc,lua,parser-info,parser,plugin,queries} $out"
       ]
-      ++ (map (drv: "cp ${drv}/parser $out/parser/${drv.parserName}.so") treesitterGrammars)));
+      ++ (map (drv: ''
+        cp ${drv}/parser $out/parser/${drv.parserName}.so
+        for f in ${drv}/queries/*.scm; do
+          cp $f $out/queries/${drv.parserName}/$(basename $f)
+        done
+      '')
+      treesitterGrammars)));
 
     dontFixup = true;
 
