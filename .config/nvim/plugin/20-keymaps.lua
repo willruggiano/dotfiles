@@ -11,6 +11,7 @@ local quit = function()
   vim.cmd "q"
   return true
 end
+
 local bufdelete = function()
   local bufs = buffers.loaded()
   if #bufs > 1 then
@@ -20,6 +21,11 @@ local bufdelete = function()
   -- bufdelete on the last buffer does nothing
   return false
 end
+
+local bdelete = function()
+  vim.cmd "bdelete"
+end
+
 -- These are things we want to *always* close, as opposed to (maybe) bdelete'ing and cycling to the
 -- next buffer.
 local quitters = {
@@ -27,8 +33,10 @@ local quitters = {
   ["firvish-job-list"] = quit,
   ["firvish-job-output"] = quit,
   help = quit,
-  man = quit,
-  quickfix = quit,
+  man = bdelete,
+  quickfix = function()
+    vim.cmd "cclose"
+  end,
   terminal = quit,
   tsplayground = quit,
 }

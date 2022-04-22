@@ -1,4 +1,7 @@
-pkgs:
+{
+  lib,
+  pkgs,
+}:
 with pkgs.luajitPackages; let
   plugins = import ./nix/sources.nix {};
 in rec {
