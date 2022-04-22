@@ -16,6 +16,7 @@ with lib; {
   # Desktop
   programs.code.enable = true;
   programs.docker.enable = true;
+  programs.docsets.enable = true;
   programs.firefox.enable = true;
   programs.karabiner.enable = true;
   programs.keeping-you-awake.enable = true;
