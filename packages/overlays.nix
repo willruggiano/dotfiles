@@ -22,7 +22,7 @@ final: prev: {
         inherit (python-prev) buildPythonPackage pythonOlder pytestCheckHook mock;
         inherit (python-final) python-lsp-server rope;
       };
-      python-lsp-server = prev.callPackage ./python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi;};
+      python-lsp-server = prev.callPackage ./python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi setuptools-scm;};
       rope = prev.callPackage ./python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
     };
   };
