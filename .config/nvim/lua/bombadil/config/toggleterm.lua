@@ -1,6 +1,8 @@
 local toggleterm = require "toggleterm"
 
-toggleterm.setup {}
+toggleterm.setup {
+  shade_terminals = false,
+}
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
