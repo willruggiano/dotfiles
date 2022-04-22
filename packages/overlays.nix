@@ -4,6 +4,7 @@ final: prev: {
   dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
   firefox-extended = prev.callPackage ./firefox {};
   firenvim = (prev.callPackage ./firenvim {}).package;
+  html2text = prev.callPackage ./html2text {};
   keyd = prev.callPackage ./keyd {};
   luajitPackages = prev.luajitPackages.override {
     overrides = lua-final: lua-prev: {
