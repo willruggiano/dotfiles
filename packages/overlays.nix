@@ -16,4 +16,14 @@ final: prev: {
   nonicons = prev.callPackage ./nonicons {};
   nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
   pass-extension-meta = prev.callPackage ./pass-meta {};
+  python3 = prev.python3.override {
+    packageOverrides = python-final: python-prev: rec {
+      pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix {
+        inherit (python-prev) buildPythonPackage pythonOlder pytestCheckHook mock;
+        inherit (python-final) python-lsp-server rope;
+      };
+      python-lsp-server = prev.callPackage ./python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi;};
+      rope = prev.callPackage ./python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
+    };
+  };
 }
