@@ -41,16 +41,7 @@ in {
     (mkMerge [
       (mkSuite "cxx" [
         pkgs.cmake-format
-        pkgs.cppman
       ])
-      (mkIf (suiteEnabled "cpp") {
-        xdg.configFile."cppman/cppman.cfg".text = ''
-          [Settings]
-          source = cppreference.com
-          updatemanpath = True
-          pager = nvim
-        '';
-      })
       (mkSuite "json" [
         pkgs.jq
         pkgs.nodePackages.prettier

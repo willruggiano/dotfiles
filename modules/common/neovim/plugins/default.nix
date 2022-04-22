@@ -101,10 +101,6 @@ in rec {
     package = plugins."nvim-colorizer.lua";
   };
 
-  cppman = {
-    package = pkgs.cppman;
-  };
-
   cpsm = {
     package = plugins.cpsm;
     override = {

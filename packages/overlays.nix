@@ -1,6 +1,5 @@
 final: prev: {
   circle = prev.callPackage ./circle {};
-  cppman = prev.callPackage ./cppman {};
   docsets = prev.callPackage ./docsets {};
   dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
   firefox-extended = prev.callPackage ./firefox {};
