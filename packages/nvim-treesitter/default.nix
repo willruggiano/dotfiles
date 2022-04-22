@@ -119,7 +119,7 @@
 
   update-grammars = writeShellScriptBin "update-grammars.sh" ''
     set -euo pipefail
-    out="/etc/nixos/packages/nvim-treesitter/grammars"
+    out="''${1:-/etc/nixos}/packages/nvim-treesitter/grammars"
     mkdir -p "$out"
     ${
       foreachSh allGrammars ({
