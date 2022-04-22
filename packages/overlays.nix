@@ -14,6 +14,7 @@ final: prev: {
   };
   nonicons = prev.callPackage ./nonicons {};
   nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
+  nvim-treesitter = prev.callPackage ./nvim-treesitter {};
   pass-extension-meta = prev.callPackage ./pass-meta {};
   python3 = prev.python3.override {
     packageOverrides = python-final: python-prev: rec {

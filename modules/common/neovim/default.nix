@@ -44,23 +44,15 @@ in {
 
         runtimeEnv = pkgs.buildEnv {
           name = "neovim-runtime-env";
-          paths = let
-            inherit (pkgs) linkFarm;
-            runtime = let
-              grammars =
-                linkFarm "grammars"
-                (map (drv: let
-                  name = lib.strings.getName drv;
-                in {
-                  name = "parser/" + (lib.strings.replaceStrings ["-"] ["_"] (lib.strings.removePrefix "tree-sitter-" (lib.strings.removeSuffix "-grammar" name))) + ".so";
-                  path = "${drv}/parser";
-                })
-                pkgs.tree-sitter.allGrammars);
-            in
-              with pkgs.vimUtils; [(packDir plugins') grammars];
-          in
-            runtime;
-          # paths = with pkgs.vimUtils; [(packDir plugins') plugins.treesitter];
+          # paths = let
+          #   inherit (pkgs) linkFarm;
+          #   runtime = let
+          #     inherit (pkgs.nvim-treesitter) grammars;
+          #   in
+          #     with pkgs.vimUtils; [(packDir plugins') grammars];
+          # in
+          #   runtime;
+          paths = with pkgs.vimUtils; [(packDir plugins')];
         };
 
         pythonEnv = pkgs.buildEnv {

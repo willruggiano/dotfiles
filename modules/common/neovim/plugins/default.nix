@@ -466,7 +466,7 @@ in rec {
   };
 
   treesitter = {
-    package = plugins.nvim-treesitter;
+    package = pkgs.nvim-treesitter;
     config = ''
       require "bombadil.config.treesitter";
     '';
