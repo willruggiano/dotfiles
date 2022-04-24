@@ -173,6 +173,12 @@
         "rev": "f83a2e11cd7a486e92f3c6630e71e93a073a11da",
         "type": "git"
     },
+    "impatient.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:lewis6991/impatient.nvim",
+        "rev": "2337df7d778e17a58d8709f651653b9039946d8d",
+        "type": "git"
+    },
     "indent-blankline.nvim": {
         "branch": "master",
         "repo": "git@github.com:lukas-reineke/indent-blankline.nvim",

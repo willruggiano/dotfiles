@@ -217,6 +217,10 @@ in rec {
     '';
   };
 
+  impatient = {
+    package = plugins."impatient.nvim";
+  };
+
   kommentary = {
     package = plugins.kommentary;
     config = ''

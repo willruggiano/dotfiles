@@ -66,7 +66,14 @@ in {
       '';
 
       "nvim/plugin/00-setup-plugins.lua".text = let
-        preloadConfigs = flatten (mapAttrsToList (pname: p: optionals (p ? "setup") ["-- ${pname}" p.setup]) plugins);
+        preloadConfigs =
+          [
+            ''
+              local impatient = require "impatient"
+              impatient.enable_profile()
+            ''
+          ]
+          ++ flatten (mapAttrsToList (pname: p: optionals (p ? "setup") ["-- ${pname}" p.setup]) plugins);
       in
         concatStringsSep "\n" preloadConfigs;
 
