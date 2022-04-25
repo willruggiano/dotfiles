@@ -8,7 +8,8 @@ with lib; let
   cfg = config.programs.git;
   smerge =
     if pkgs.stdenv.isDarwin
-    then "smerge" # Will be installed via homebrew
+    then "smerge"
+    # Will be installed via homebrew
     else "${pkgs.sublime-merge}/bin/smerge $MERGED";
 in {
   config =
@@ -18,11 +19,11 @@ in {
         [
           delta
           git
-          gitflow
           git-quickfix
+          git-trim
+          gitflow
           lazygit
           pre-commit
-          tig
         ]
         ++ lib.optionals (!pkgs.stdenv.isDarwin) [
           sublime-merge

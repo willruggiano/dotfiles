@@ -28,6 +28,7 @@ with lib; {
   };
   programs.rdp.enable = true;
   programs.tigervnc.enable = true;
+  programs.xplr.enable = true;
   programs.xquartz.enable = true;
   programs.zk.enable = true;
   programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
