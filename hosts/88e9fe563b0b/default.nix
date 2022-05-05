@@ -13,7 +13,7 @@ with lib; {
   user.name = "wruggian";
   user.shell = pkgs.zsh;
 
-  # Desktop
+  programs.aws.enable = true;
   programs.code.enable = true;
   programs.docker.enable = true;
   programs.docsets.enable = true;

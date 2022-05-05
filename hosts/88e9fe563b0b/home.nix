@@ -16,7 +16,6 @@
   programs.zsh.enable = true;
 
   suites = {
-    # aws.enable = true;
     development.enable = true;
     development.suites = [
       "cxx"

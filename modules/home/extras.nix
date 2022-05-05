@@ -12,12 +12,10 @@ with lib; let
     };
 in {
   options.suites = {
-    aws.enable = mkEnableOption "Enable aws tools";
     file.enable = mkEnableOption "Enable file system/transfer tools";
   };
 
   config = mkMerge [
-    (mkExtra "aws" [pkgs.awscli2])
     (mkExtra "file" [
       pkgs.curl
       pkgs.fd

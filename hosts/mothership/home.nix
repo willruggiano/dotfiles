@@ -22,7 +22,6 @@
   services.kbfs.enable = true;
 
   suites = {
-    # aws.enable = true;
     development.enable = true;
     development.suites = "all";
     file.enable = true;
