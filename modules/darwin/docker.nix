@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    homebrew.brews = ["docker"];
     homebrew.casks = ["docker"];
-    user.packages = [pkgs.docker];
   };
 }
