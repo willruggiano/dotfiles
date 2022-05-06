@@ -252,7 +252,10 @@ require("clangd_extensions").setup {
     }),
     on_init = function(client)
       on_init(client)
-      require("clang-format").setup {}
+      require("clang-format").setup(function(config)
+        vim.bo.shiftwidth = config.IndentWidth
+        vim.bo.textwidth = config.ColumnLimit
+      end)
     end,
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
