@@ -24,6 +24,7 @@ end
 
 local bdelete = function()
   vim.cmd "bdelete"
+  return true
 end
 
 -- These are things we want to *always* close, as opposed to (maybe) bdelete'ing and cycling to the
@@ -36,6 +37,7 @@ local quitters = {
   man = bdelete,
   quickfix = function()
     vim.cmd "cclose"
+    return true
   end,
   terminal = quit,
   tsplayground = quit,

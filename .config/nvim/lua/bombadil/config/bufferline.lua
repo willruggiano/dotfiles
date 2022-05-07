@@ -3,6 +3,7 @@ vim.opt.termguicolors = true
 local bufferline = require "bufferline"
 
 local hidden_buffers = {
+  man = true,
   quickfix = true,
 }
 
@@ -15,7 +16,10 @@ local function setup()
       modified_icon = "[+]",
       diagnostics = false,
       custom_filter = function(bufnr, bufnrs)
-        if hidden_buffers[vim.bo[bufnr].buftype] == true then
+        local bo = vim.bo[bufnr]
+        local bt = hidden_buffers[bo.buftype] == true
+        local ft = hidden_buffers[bo.filetype] == true
+        if bt or ft then
           return false
         end
 
