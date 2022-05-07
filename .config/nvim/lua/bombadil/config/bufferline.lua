@@ -2,6 +2,10 @@ vim.opt.termguicolors = true
 
 local bufferline = require "bufferline"
 
+local hidden_buffers = {
+  quickfix = true,
+}
+
 local function setup()
   bufferline.setup {
     options = {
@@ -10,6 +14,13 @@ local function setup()
       indicator_icon = " * ",
       modified_icon = "[+]",
       diagnostics = false,
+      custom_filter = function(bufnr, bufnrs)
+        if hidden_buffers[vim.bo[bufnr].buftype] == true then
+          return false
+        end
+
+        return true
+      end,
       show_buffer_close_icons = false,
       show_close_icon = false,
     },
