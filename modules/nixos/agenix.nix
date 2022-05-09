@@ -10,8 +10,8 @@ with builtins;
 with lib; let
   inherit (inputs) agenix;
   cfg = config.services.agenix;
-  secretsDir = "${toString ../../hosts}/${config.networking.hostName}/secrets";
-  secretsFile = "${secretsDir}/secrets.nix";
+  shared_secrets = "${toString ../../secrets}";
+  system_secrets = "${toString ../../secrets}/${config.networking.hostName}/secrets";
 in {
   imports = [agenix.nixosModules.age];
 
@@ -23,17 +23,22 @@ in {
     environment.systemPackages = [agenix.defaultPackage.x86_64-linux];
 
     age = {
-      secrets =
-        if pathExists secretsFile
-        then
+      secrets = let
+        mapSecrets = dir:
           mapAttrs'
           (n: _:
             nameValuePair (removeSuffix ".age" n) {
-              file = "${secretsDir}/${n}";
+              file = "${dir}/${n}";
               owner = mkDefault config.user.name;
             })
-          (import secretsFile)
-        else {};
+          (import dir);
+      in
+        (mapSecrets shared_secrets)
+        // (
+          if pathExists "${system_secrets}/default.nix"
+          then (mapSecrets system_secrets)
+          else {}
+        );
       sshKeyPaths =
         options.age.identityPaths.default
         ++ [
