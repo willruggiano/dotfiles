@@ -9,6 +9,10 @@ with lib; let
 in {
   config = mkMerge [
     (mkIf cfg.docker.enable {
+      virtualisation.docker = {
+        enableOnBoot = true;
+        autoPrune.enable = true;
+      };
       user.extraGroups = ["docker"];
       user.packages = [pkgs.lazydocker];
     })

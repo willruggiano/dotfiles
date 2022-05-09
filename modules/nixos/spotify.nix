@@ -22,9 +22,8 @@ in {
     user.packages = [pkgs.spotify-tui pkgs.sysz];
 
     systemd.user.services.spotifyd = {
-      enable = true;
       wantedBy = ["multi-user.target"];
-      after = ["network-online.target" "sound.target"];
+      after = ["network.target" "sound.target"];
       description = "spotifyd, a Spotify playing daemon";
       environment.SHELL = "/bin/sh";
       serviceConfig = {
