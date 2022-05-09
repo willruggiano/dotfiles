@@ -6,10 +6,19 @@ snippet class
           $0
         };
 
+snippet tclass
+	 	template<$1>
+		class $2
+		{
+		public:
+		  using type = $2;
+		  $0
+		};
+
 snippet pragma
         #pragma $0
 
-snippet once
+snippet ponce
         #pragma once
 
 snippet lambda

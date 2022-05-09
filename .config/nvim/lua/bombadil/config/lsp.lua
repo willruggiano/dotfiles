@@ -261,7 +261,7 @@ require("clangd_extensions").setup {
       on_attach(client, bufnr)
       nnoremap("<leader>a", function()
         require("bombadil.lib.clangd").switch_source_header(bufnr, true)
-      end, { buffer = bufnr })
+      end, { buffer = bufnr, desc = "Switch source/header" })
       require("clang-format").on_attach(client, bufnr)
     end,
     init_options = {
