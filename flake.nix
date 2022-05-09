@@ -69,6 +69,22 @@
         }
       ];
 
+      hosts.ecthelion = rec {
+        system = "x86_64-linux";
+        modules = [
+          {
+            imports = lib'.reduceModules ./modules/nixos import;
+          }
+          ./hosts/ecthelion
+          inputs.home-manager.nixosModule
+          {home-manager.users.bombadil = import ./hosts/ecthelion/home.nix;}
+        ];
+        specialArgs = {
+          inherit (self) lib;
+          inherit inputs system;
+        };
+      };
+
       hosts.mothership = rec {
         system = "x86_64-linux";
         modules = [
