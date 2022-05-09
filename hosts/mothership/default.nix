@@ -1,10 +1,8 @@
 {
   pkgs,
   config,
-  lib,
   ...
-}:
-with lib; {
+}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -12,13 +10,14 @@ with lib; {
     ./security.nix
   ];
 
-  user.home = "/home/bombadil";
-  user.name = "bombadil";
-  user.shell = pkgs.zsh;
-  sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
+  user = rec {
+    name = "bombadil";
+    initialPassword = name;
+    home = "/home/${name}";
+    shell = pkgs.zsh;
+  };
 
-  hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = true;
+  sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
   programs.discord.enable = true;
   programs.docsets.enable = true;
@@ -45,5 +44,4 @@ with lib; {
   services.udev.packages = [pkgs.yubikey-personalization];
 
   virtualisation.docker.enable = true;
-  # virtualisation.virtualbox.host.enable = true;
 }

@@ -3,15 +3,15 @@
   lib,
   ...
 }: let
-  version = "master";
+  rev = "0d5828e295fa4863a6d318a127d3767623563eb3";
 in
   fetchurl
   {
-    name = "nonicons-${version}";
-    url = "https://raw.githubusercontent.com/yamatsum/nonicons/${version}/dist/nonicons.ttf";
+    name = "nonicons";
+    url = "https://raw.githubusercontent.com/yamatsum/nonicons/${rev}/dist/nonicons.ttf";
     downloadToTemp = true;
     recursiveHash = true;
-    hash = "sha256-EqTjrWd61QGZz1xMjKmkQmIiHT5tAOuwXxQAorNbkVI=";
+    hash = "sha256-stc/o8b9Eudh4vTi1z/9rvFV/su2AF1Aapb09hstWB4=";
 
     postFetch = ''
       mkdir -p $out/share/fonts

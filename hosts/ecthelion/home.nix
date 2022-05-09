@@ -14,6 +14,8 @@
   programs.starship.enable = true;
   programs.zsh.enable = true;
 
+  services.dropbox.enable = true;
+
   suites = {
     development.enable = true;
     development.suites = "all";
