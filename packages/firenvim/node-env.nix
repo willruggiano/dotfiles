@@ -11,15 +11,9 @@
   writeShellScript,
 }: let
   # Workaround to cope with utillinux in Nixpkgs 20.09 and util-linux in Nixpkgs master
-  utillinux =
-    if pkgs ? utillinux
-    then pkgs.utillinux
-    else pkgs.util-linux;
+  utillinux = pkgs.utillinux or pkgs.util-linux;
 
-  python =
-    if nodejs ? python
-    then nodejs.python
-    else python2;
+  python = nodejs.python or python2;
 
   # Create a tar wrapper that filters all the 'Ignoring unknown extended header keyword' noise
   tarWrapper = runCommand "tarWrapper" {} ''
@@ -188,7 +182,7 @@
         if [ -d node_modules ]
         then
             cd node_modules
-            ${lib.concatMapStrings (dependency: pinpointDependenciesOfPackage dependency) dependencies}
+            ${lib.concatMapStrings pinpointDependenciesOfPackage dependencies}
             cd ..
         fi
       ''
@@ -406,8 +400,8 @@
       name = "${name}-${version}";
       buildInputs =
         [tarWrapper python nodejs]
-        ++ lib.optional (stdenv.isLinux) utillinux
-        ++ lib.optional (stdenv.isDarwin) libtool
+        ++ lib.optional stdenv.isLinux utillinux
+        ++ lib.optional stdenv.isDarwin libtool
         ++ buildInputs;
 
       inherit nodejs;
@@ -453,7 +447,7 @@
       meta =
         {
           # default to Node.js' platforms
-          platforms = nodejs.meta.platforms;
+          inherit (nodejs.meta) platforms;
         }
         // meta;
     }
@@ -484,8 +478,8 @@
 
       buildInputs =
         [tarWrapper python nodejs]
-        ++ lib.optional (stdenv.isLinux) utillinux
-        ++ lib.optional (stdenv.isDarwin) libtool
+        ++ lib.optional stdenv.isLinux utillinux
+        ++ lib.optional stdenv.isDarwin libtool
         ++ buildInputs;
 
       inherit dontStrip; # Stripping may fail a build for some package deployments
@@ -548,7 +542,7 @@
     stdenv.mkDerivation {
       name = "node-shell-${name}-${version}";
 
-      buildInputs = [python nodejs] ++ lib.optional (stdenv.isLinux) utillinux ++ buildInputs;
+      buildInputs = [python nodejs] ++ lib.optional stdenv.isLinux utillinux ++ buildInputs;
       buildCommand = ''
         mkdir -p $out/bin
         cat > $out/bin/shell <<EOF

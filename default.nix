@@ -42,12 +42,12 @@ with lib; {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    bind
-    git
-    gnumake
-    unzip
-    vim
-    wget
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   bind
+  #   git
+  #   gnumake
+  #   unzip
+  #   vim
+  #   wget
+  # ];
 }

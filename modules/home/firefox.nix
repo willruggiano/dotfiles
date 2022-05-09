@@ -13,6 +13,7 @@ in {
       programs.firefox = {
         extensions = with firefox-addons; [
           duckduckgo-privacy-essentials
+          firenvim
           greasemonkey
           https-everywhere
           metamask

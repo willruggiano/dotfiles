@@ -22,9 +22,8 @@ in {
     user.packages = [pkgs.spotify-tui pkgs.sysz];
 
     systemd.user.services.spotifyd = {
-      wantedBy = ["multi-user.target"];
-      after = ["network.target" "sound.target"];
       description = "spotifyd, a Spotify playing daemon";
+      wantedBy = ["multi-user.target"];
       environment.SHELL = "/bin/sh";
       serviceConfig = {
         ExecStart = "${spotifyd}/bin/spotifyd --no-daemon --cache-path ${config.user.home}/.cache/spotifyd --config-path ${spotifydConf}";

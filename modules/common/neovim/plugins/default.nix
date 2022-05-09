@@ -180,6 +180,13 @@ in rec {
     '';
   };
 
+  firenvim = {
+    package = pkgs.firenvim.plugin;
+    config = ''
+      require "bombadil.config.firenvim"
+    '';
+  };
+
   firvish = {
     package = plugins."firvish.nvim";
     config = ''
