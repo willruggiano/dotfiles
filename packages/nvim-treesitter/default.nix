@@ -131,6 +131,7 @@
         rev,
         ...
       }: ''
+        echo "Updating treesitter parser for ${name}"
         ${nix-prefetch-git}/bin/nix-prefetch-git \
           --quiet \
           --no-deepClone \
