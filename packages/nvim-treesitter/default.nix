@@ -11,8 +11,8 @@
   src = fetchFromGitHub {
     owner = "nvim-treesitter";
     repo = "nvim-treesitter";
-    rev = "3c50297eca950b4b1a7c07b28e586b0576c0a796";
-    hash = "sha256-7KZa2L29g5pV0eC8rPh4wl6pz/Y3jbwKeFjDgn5peco=";
+    rev = "aaf5d370f477dd2ff5f7704fed93483f46d0eef0";
+    hash = "sha256-1SotIu6UXFVfmpHo2YtPAczpGZatfx+JbXwyRiG2CsY=";
   };
 
   # The grammar we care about:
