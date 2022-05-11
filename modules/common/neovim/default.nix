@@ -14,10 +14,9 @@ in {
       plugins = import ./plugins {inherit lib pkgs;};
       inherit (pkgs.vimUtils) buildVimPluginFrom2Nix;
 
-      mkPlugin = pname: p:
+      mkPlugin = name: p:
         buildVimPluginFrom2Nix ({
-          inherit pname;
-          version = "master";
+          inherit name;
           src = p.package;
         }
         // (p.override or {}));

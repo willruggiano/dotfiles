@@ -385,6 +385,13 @@ in rec {
     package = plugins.vim-repeat;
   };
 
+  satellite = {
+    package = plugins."satellite.nvim";
+    config = ''
+      require "bombadil.config.satellite"
+    '';
+  };
+
   scope = {
     package = plugins."scope.nvim";
     config = ''

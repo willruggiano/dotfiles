@@ -170,7 +170,7 @@
     "gitsigns.nvim": {
         "branch": "main",
         "repo": "git@github.com:lewis6991/gitsigns.nvim",
-        "rev": "f83a2e11cd7a486e92f3c6630e71e93a073a11da",
+        "rev": "aca84fd16ce129965d7c3c69de59f333d9da116c",
         "type": "git"
     },
     "impatient.nvim": {
@@ -447,6 +447,12 @@
         "branch": "master",
         "repo": "git@github.com:theprimeagen/refactoring.nvim",
         "rev": "94eaa199ad892f26d2c8594dbbc5656314cf5bdb",
+        "type": "git"
+    },
+    "satellite.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:lewis6991/satellite.nvim",
+        "rev": "e8ece1c9e47cf4d0f2baa6ed3b8c014d5f0aa081",
         "type": "git"
     },
     "scope.nvim": {
