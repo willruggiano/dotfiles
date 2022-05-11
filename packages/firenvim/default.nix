@@ -14,9 +14,9 @@ in
   // {
     package = nodePackages.package.override rec {
       src = fetchFromGitHub {
-        owner = "willruggiano";
+        owner = "glacambre";
         repo = "firenvim";
-        rev = "master";
+        rev = "458ccfe7859d8d26f34ab6fc78dfe4b53b5d6947";
         hash = "sha256-7gFV0iPU/y2PMUlGnzGiRe7ofnaodZdFG6yeBr5S2gQ=";
       };
       buildInputs = [pkgconfig glib vips];
