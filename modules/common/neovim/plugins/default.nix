@@ -34,12 +34,12 @@ in rec {
     package = plugins."bufdelete.nvim";
   };
 
-  bufferline = {
-    package = plugins."bufferline.nvim";
-    config = ''
-      require("bombadil.config.bufferline").setup()
-    '';
-  };
+  # bufferline = {
+  #   package = plugins."bufferline.nvim";
+  #   config = ''
+  #     require("bombadil.config.bufferline").setup()
+  #   '';
+  # };
 
   clang-format = {
     package = plugins."clang-format.nvim";
