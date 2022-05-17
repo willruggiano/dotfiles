@@ -57,16 +57,19 @@ end
 local noremap = require("bombadil.lib.keymap").noremap
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
+local loaded_launch_json = {}
+
 local mappings = {
   ["<leader>ds"] = {
     function()
-      if vim.fn.filereadable(launch_json) then
+      if vim.fn.filereadable(launch_json) and loaded_launch_json[launch_json] == nil then
         local config = json.load(launch_json)
         for _, c in ipairs(config.configurations) do
           if c.type == "cppdbg" then
             table.insert(dap.configurations.cpp, c)
           end
         end
+        loaded_launch_json[launch_json] = true
       end
       dap.continue()
     end,
