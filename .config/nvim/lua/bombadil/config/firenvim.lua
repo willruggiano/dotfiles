@@ -1,6 +1,4 @@
 if vim.g.started_by_firenvim then
-  vim.o.laststatus = 0
-
   vim.g.firenvim_config = {
     globalSettings = {
       alt = "all",
@@ -16,7 +14,7 @@ if vim.g.started_by_firenvim then
         priority = 9,
         takeover = "never",
       },
-      [ [[.*mail.google.com]] ] = {
+      [ [[.*mail\.google\.com]] ] = {
         priority = 9,
         takeover = "never",
       },
