@@ -269,12 +269,6 @@
         "rev": "6aea4ea33407750fdc6addebe07ad6e58701ab32",
         "type": "git"
     },
-    "nortia.nvim": {
-        "branch": "main",
-        "repo": "git@github.com:willruggiano/nortia.nvim",
-        "rev": "34f02e045096ace3e707e14974f6371be130262d",
-        "type": "git"
-    },
     "null-ls.nvim": {
         "branch": "main",
         "repo": "git@github.com:jose-elias-alvarez/null-ls.nvim",

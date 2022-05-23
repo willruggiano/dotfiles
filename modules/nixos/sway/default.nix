@@ -33,9 +33,6 @@ in {
       programs.light.enable = true;
       user.extraGroups = ["video"];
 
-      hardware.opengl.enable = true;
-      hardware.opengl.driSupport = true;
-
       home.configFile."sway/config".text = import ./sway.nix {inherit pkgs;};
       home.configFile."waybar/config".text = import ./waybar.nix {inherit pkgs;};
       home.configFile = {

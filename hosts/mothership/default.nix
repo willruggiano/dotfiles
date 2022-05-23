@@ -35,6 +35,7 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
+  # services.awesome.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;
   services.expressvpn.enable = true;

@@ -5,6 +5,14 @@
 with pkgs.luajitPackages; let
   plugins = import ./nix/sources.nix {};
 in rec {
+  awesome = {
+    package = lua-awesome.nvim-plugin;
+    config = ''
+      require "bombadil.config.awesome"
+    '';
+    rocks = [inspect];
+  };
+
   autopairs = {
     package = plugins.nvim-autopairs;
     config = ''
@@ -285,7 +293,7 @@ in rec {
   };
 
   lush = {
-    package = plugins."lush.nvim";
+    package = lua-lush.nvim-plugin;
   };
 
   make = {
@@ -326,13 +334,6 @@ in rec {
 
   nonicons = {
     package = plugins.nvim-nonicons;
-  };
-
-  nortia = {
-    package = plugins."nortia.nvim";
-    config = ''
-      require "bombadil.config.nortia"
-    '';
   };
 
   notify = {

@@ -28,13 +28,11 @@
     default = true;
   };
   programs.spotify.enable = true;
-  programs.sway = {
-    enable = true;
-    wlr.hardware-cursors = false;
-  };
+  programs.xplr.enable = true;
   programs.zk.enable = true;
 
   services.agenix.enable = true;
+  services.awesome.enable = true;
   services.dunst.enable = true;
   # services.email.enable = true;
   services.expressvpn.enable = true;
