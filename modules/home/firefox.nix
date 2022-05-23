@@ -18,6 +18,7 @@ in {
           https-everywhere
           metamask
           multi-account-containers
+          sourcegraph
           ublock-origin
           vimium
         ];

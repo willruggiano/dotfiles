@@ -4,7 +4,7 @@ template = "default.md"
 
 
 [format.markdown]
-link-format = "wiki"
+link-format = "markdown"
 hashtags = true
 colon-tags = true
 multiword-tags = true
