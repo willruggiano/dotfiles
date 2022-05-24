@@ -1,6 +1,8 @@
 local neogit = require "neogit"
 
 neogit.setup {
+  disable_hint = true,
+  disable_signs = true,
   integrations = {
     diffview = true,
   },
