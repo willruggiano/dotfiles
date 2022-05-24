@@ -26,28 +26,15 @@ in {
     services = {
       xserver = {
         enable = true;
-        layout = "us";
-        xkbOptions = "ctrl:nocaps";
-        libinput = {
-          enable = true;
-          touchpad = {
-            disableWhileTyping = true;
-            naturalScrolling = true;
-            tapping = false;
-          };
-        };
-        desktopManager.xterm.enable = false;
+
         displayManager = {
           defaultSession = "none+i3";
-          lightdm = {
-            enable = true;
-            greeters.mini.user = config.user.name;
-          };
           autoLogin = {
             enable = true;
             user = config.user.name;
           };
         };
+
         windowManager = {
           i3 = {
             enable = true;
@@ -62,16 +49,6 @@ in {
             ];
           };
         };
-      };
-    };
-
-    systemd.user.services.xbanish = {
-      description = "banish the mouse cursor when typing";
-      wantedBy = ["graphical-session.target"];
-      partOf = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart = "${pkgs.xbanish}/bin/xbanish";
-        Restart = "always";
       };
     };
 
