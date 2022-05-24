@@ -9,7 +9,7 @@ local t = require "awesome.theme"
 
 local theme = {}
 
-theme.font = "JetBrains Mono 6"
+theme.font = "JetBrains Mono 8"
 
 theme.bg_normal = t.bg()
 theme.bg_focus = "#535d6c"

@@ -81,28 +81,26 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-  {
-    "hotkeys",
-    function()
-      hotkeys_popup.show_help(nil, awful.screen.focused())
-    end,
-  },
-  { "manual", exec "man awesome" },
-  { "edit config", exec(editor .. " " .. awesome.conffile) },
-  { "restart", awesome.restart },
-  {
-    "quit",
-    function()
-      awesome.quit()
-    end,
-  },
-}
-
 mymainmenu = awful.menu {
   items = {
-    { "awesome", myawesomemenu },
+    {
+      "awesome",
+      {
+        "hotkeys",
+        function()
+          hotkeys_popup.show_help(nil, awful.screen.focused())
+        end,
+      },
+      { "manual", exec "man awesome" },
+      { "edit config", exec(editor .. " " .. awesome.conffile) },
+      { "restart", awesome.restart },
+      {
+        "quit",
+        function()
+          awesome.quit()
+        end,
+      },
+    },
     { "open terminal", terminal },
     { "open browser", browser },
     {
@@ -117,18 +115,15 @@ mymainmenu = awful.menu {
   },
 }
 
--- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
+-- TODO: Show "fn" layer for new keyboard
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
--- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t)
     t:view_only()
@@ -232,7 +227,8 @@ awful.screen.connect_for_each_screen(function(s)
   if s.index == 1 then
     right_layout:add(wibox.widget.systray())
   end
-  -- right_layout:add(require "widgets.spotify")
+  right_layout:add(require "widgets.spotify")
+  right_layout:add(spacer)
   -- right_layout:add(require "widgets.brightness")
   right_layout:add(require "widgets.cpu")
   right_layout:add(spacer)
