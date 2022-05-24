@@ -19,6 +19,7 @@ local hotkeys_popup = require "awful.hotkeys_popup"
 require "awful.hotkeys_popup.keys"
 
 local gfs = require "gears.filesystem"
+local dpi = require("beautiful").xresources.apply_dpi
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -81,26 +82,27 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
+myawesomemenu = {
+  {
+    "hotkeys",
+    function()
+      hotkeys_popup.show_help(nil, awful.screen.focused())
+    end,
+  },
+  { "manual", exec "man awesome" },
+  { "edit config", exec(editor .. " " .. awesome.conffile) },
+  { "restart", awesome.restart },
+  {
+    "quit",
+    function()
+      awesome.quit()
+    end,
+  },
+}
+
 mymainmenu = awful.menu {
   items = {
-    {
-      "awesome",
-      {
-        "hotkeys",
-        function()
-          hotkeys_popup.show_help(nil, awful.screen.focused())
-        end,
-      },
-      { "manual", exec "man awesome" },
-      { "edit config", exec(editor .. " " .. awesome.conffile) },
-      { "restart", awesome.restart },
-      {
-        "quit",
-        function()
-          awesome.quit()
-        end,
-      },
-    },
+    { "awesome", myawesomemenu },
     { "open terminal", terminal },
     { "open browser", browser },
     {
@@ -204,11 +206,59 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = taglist_buttons,
   }
 
+  local default_template = {
+    {
+      {
+        {
+          id = "icon_role",
+          widget = wibox.widget.imagebox,
+        },
+        margins = dpi(2),
+        widget = wibox.container.margin,
+      },
+      {
+        {
+          id = "text_role",
+          widget = wibox.widget.textbox,
+        },
+        id = "text_margin_role",
+        left = dpi(4),
+        right = dpi(4),
+        widget = wibox.container.margin,
+      },
+      fill_space = true,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    id = "background_role",
+    widget = wibox.container.background,
+  }
+
   -- Create a tasklist widget
   s.mytasklist = awful.widget.tasklist {
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
+    layout = {
+      fill_space = false,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    widget_template = {
+      {
+        {
+          {
+            id = "icon_role",
+            widget = wibox.widget.imagebox,
+          },
+          margins = dpi(2),
+          widget = wibox.container.margin,
+        },
+        left = dpi(10),
+        right = dpi(10),
+        widget = wibox.container.margin,
+      },
+      id = "background_role",
+      widget = wibox.container.background,
+    },
   }
 
   -- Create the wibox
