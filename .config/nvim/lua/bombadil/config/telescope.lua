@@ -13,7 +13,7 @@ local set_prompt_to_entry_value = function(prompt_bufnr)
 end
 
 local _ = pcall(require, "nvim-nonicons")
-local programs = require "bombadil.generated.programs"
+local exe = require "bombadil.generated.exe"
 
 local common_dirs = {
   ["~/.config"] = "conf",
@@ -109,7 +109,7 @@ telescope.setup {
     },
 
     docsets = {
-      query_command = programs.dasht.query_line,
+      query_command = exe.dasht.query_line,
     },
 
     fzf = {
