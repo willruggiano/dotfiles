@@ -11,11 +11,11 @@
   src = fetchFromGitHub {
     owner = "nvim-treesitter";
     repo = "nvim-treesitter";
-    rev = "aaf5d370f477dd2ff5f7704fed93483f46d0eef0";
-    hash = "sha256-1SotIu6UXFVfmpHo2YtPAczpGZatfx+JbXwyRiG2CsY=";
+    rev = "3dea0bbf71438d2d5a79de0145b509dfb16525a5";
+    hash = "sha256-/1Y8/q1EWj6SJrcTia5t9ZqCL6i+obOTMG40ocjGkCE=";
   };
 
-  # The grammar we care about:
+  # The grammars we care about:
   grammars = {
     bash = {
       owner = "tree-sitter";
