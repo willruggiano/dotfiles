@@ -1,1 +1,1 @@
--- TODO: Widget that displays the current volume level
+return require "volume-control" {}

@@ -27,6 +27,7 @@ in {
           # Other stuff
           inspect
           lua-awesome
+          lua-awesome-volume-control
           lua-awesome-widgets
           lua-lush
         ];

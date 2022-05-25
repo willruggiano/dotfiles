@@ -3,7 +3,8 @@ let
     luaPackages.override {
       overrides = final: prev: {
         lua-awesome = prev.callPackage ./luaPackages/awesome {};
-        lua-awesome-widgets = prev.callPackage ./luaPackages/awesome-widgets.nix {};
+        lua-awesome-volume-control = prev.callPackage ./luaPackages/awesome/volume-control.nix {};
+        lua-awesome-widgets = prev.callPackage ./luaPackages/awesome/widgets.nix {};
         lua-http-parser = prev.callPackage ./luaPackages/http-parser.nix {};
         lua-lush = prev.callPackage ./luaPackages/lush.nix {};
         lua-openssl = prev.callPackage ./luaPackages/openssl.nix {};

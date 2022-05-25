@@ -180,6 +180,8 @@ local function set_wallpaper(s)
   end
 end
 
+local volume_ctrl = require "widgets.volume"
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -282,7 +284,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- right_layout:add(require "widgets.brightness")
   right_layout:add(require "widgets.cpu")
   right_layout:add(spacer)
-  -- right_layout:add(require "widgets.volume")
+  right_layout:add(volume_ctrl.widget)
   -- right_layout:add(require "widgets.battery")
   right_layout:add(wibox.widget.textclock())
 
@@ -446,7 +448,18 @@ clientkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "m", function(c)
     c.maximized_horizontal = not c.maximized_horizontal
     c:raise()
-  end, { description = "(un)maximize horizontally", group = "client" })
+  end, { description = "(un)maximize horizontally", group = "client" }),
+
+  -- Volume control
+  awful.key({}, "XF86AudioRaiseVolume", function()
+    volume_ctrl:up()
+  end),
+  awful.key({}, "XF86AudioLowerVolume", function()
+    volume_ctrl:down()
+  end),
+  awful.key({}, "XF86AudioMute", function()
+    volume_ctrl:toggle()
+  end)
 )
 
 -- Bind all key numbers to tags.
