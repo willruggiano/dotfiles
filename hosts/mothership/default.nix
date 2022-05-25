@@ -43,6 +43,7 @@
   # services.keyd.enable = true;
   services.pcscd.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
+  services.xserver.displayManager.autoLogin.enable = false;
 
   virtualisation.docker.enable = true;
 }

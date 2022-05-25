@@ -13,18 +13,18 @@ in {
       xkbOptions = "ctrl:nocaps";
 
       libinput = {
-        enable = true;
+        enable = mkDefault true;
         touchpad = {
-          disableWhileTyping = true;
-          naturalScrolling = true;
-          tapping = false;
+          disableWhileTyping = mkDefault true;
+          naturalScrolling = mkDefault true;
+          tapping = mkDefault false;
         };
       };
 
       desktopManager.xterm.enable = false;
       displayManager = {
         autoLogin = {
-          enable = true;
+          enable = mkDefault true;
           user = config.user.name;
         };
       };
