@@ -12,7 +12,6 @@ with lib; let
     "json"
     "lua"
     "nix"
-    "nvidia"
     "python"
     "qt"
     "shell"
