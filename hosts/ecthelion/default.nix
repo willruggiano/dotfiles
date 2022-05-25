@@ -19,6 +19,7 @@
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
 
+  programs.blender.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.kitty.enable = true;
