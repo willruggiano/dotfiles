@@ -43,3 +43,5 @@ end
 function string:insert(pos, text)
   return self:sub(1, pos - 1) .. text .. self:sub(pos)
 end
+
+utf8 = require "lua-utf8"

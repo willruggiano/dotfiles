@@ -33,7 +33,11 @@ in {
       "nvim/init.lua".text = let
         luaEnv = pkgs.buildEnv {
           name = "neovim-lua-env";
-          paths = rocks;
+          paths =
+            rocks
+            ++ (with pkgs.luajitPackages; [
+              luautf8
+            ]);
         };
 
         nodejsEnv = pkgs.buildEnv {
