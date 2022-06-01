@@ -12,6 +12,7 @@
     userEmail = "wmruggiano@gmail.com";
   };
   programs.htop.enable = true;
+  programs.mpv.enable = true;
   programs.password-store.enable = true;
   programs.starship.enable = true;
   programs.zsh.enable = true;
