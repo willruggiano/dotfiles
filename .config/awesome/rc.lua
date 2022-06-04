@@ -103,10 +103,11 @@ myawesomemenu = {
 mymainmenu = awful.menu {
   items = {
     { "awesome", myawesomemenu },
-    { "open terminal", terminal },
-    { "open browser", browser },
+    { "terminal", terminal },
+    { "browser", browser },
+    { "private browser", "firefox-private" },
     {
-      "open file explorer",
+      "file explorer",
       function()
         awful.spawn(exec "xplr", {
           floating = true,
