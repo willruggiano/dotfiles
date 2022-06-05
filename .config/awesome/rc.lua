@@ -182,6 +182,7 @@ local function set_wallpaper(s)
 end
 
 local volume_ctrl = require "widgets.volume"
+local net_widgets = require "widgets.network"
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
@@ -282,6 +283,11 @@ awful.screen.connect_for_each_screen(function(s)
   end
   right_layout:add(require "widgets.spotify")
   right_layout:add(spacer)
+  right_layout:add(net_widgets.indicator { timeout = 5 })
+  -- right_layout:add(net_widgets.wireless { timeout = 5 })
+  right_layout:add(spacer)
+  -- right_layout:add(require "widgets.battery" {})
+  -- right_layout:add(spacer)
   -- right_layout:add(require "widgets.brightness")
   right_layout:add(require "widgets.cpu")
   right_layout:add(spacer)
