@@ -277,6 +277,10 @@ in rec {
     package = plugins."lsp_extensions.nvim";
   };
 
+  lsp-lines = {
+    package = plugins."lsp_lines.nvim";
+  };
+
   lualine = {
     package = plugins."lualine.nvim";
     config = ''

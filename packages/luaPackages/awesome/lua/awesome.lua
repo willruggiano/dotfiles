@@ -230,10 +230,10 @@ local theme = lush(function()
     DiagnosticUnderlineWarn { sp = Warn.fg, gui = Undercurl.gui },
     DiagnosticUnderlineInfo { sp = Neutral.fg, gui = Undercurl.gui },
     DiagnosticUnderlineHint { sp = Neutral.fg, gui = Undercurl.gui },
-    DiagnosticVirtualTextError { Error },
-    DiagnosticVirtualTextWarn { Warn },
-    DiagnosticVirtualTextInfo { Neutral },
-    DiagnosticVirtualTextHint { Neutral },
+    DiagnosticVirtualTextError { fg = Error.fg },
+    DiagnosticVirtualTextWarn { fg = Warn.fg },
+    DiagnosticVirtualTextInfo { fg = Neutral.fg },
+    DiagnosticVirtualTextHint { fg = Neutral.fg },
 
     TODO {},
 

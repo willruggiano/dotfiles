@@ -8,6 +8,8 @@ local lsp_cmds = require "bombadil.generated.lsp"
 
 lsp.kind.init()
 
+require("lsp_lines").register_lsp_virtual_lines()
+
 vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if not result or vim.tbl_isempty(result) then
     print "[LSP] Could not find definition"
@@ -30,11 +32,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   underline = true,
   update_in_insert = false,
-  virtual_text = {
-    severity_limit = "Error",
-    spacing = 4,
-    prefix = icons.get "dot-fill",
-  },
+  virtual_text = false,
+  virtual_lines = true,
+  -- virtual_text = {
+  --   severity_limit = "Error",
+  --   spacing = 4,
+  --   prefix = icons.get "dot-fill",
+  -- },
 })
 
 for type, icon in pairs(lsp.signs.get()) do

@@ -215,6 +215,12 @@
         "rev": "4011f4aec61ba59c734f5dbf52e91f258b99d985",
         "type": "git"
     },
+    "lsp_lines.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:maan2003/lsp_lines.nvim",
+        "rev": "ef668fa65b41f48b956a63c048e009143ab0c3cf",
+        "type": "git"
+    },
     "lspkind-nvim": {
         "branch": "master",
         "repo": "git@github.com:onsails/lspkind-nvim",
