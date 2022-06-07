@@ -57,9 +57,9 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-browser = "qutebrowser"
-terminal = "kitty"
-editor = os.getenv "EDITOR" or "nano"
+local browser = "qutebrowser"
+local terminal = "kitty"
+local editor = os.getenv "EDITOR" or "nano"
 
 local function exec(command)
   return terminal .. " -e " .. command
@@ -70,7 +70,7 @@ end
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod1"
+local modkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -82,7 +82,7 @@ awful.layout.layouts = {
 -- }}}
 
 -- {{{ Menu
-myawesomemenu = {
+local awesome_menu = {
   {
     "hotkeys",
     function()
@@ -100,9 +100,9 @@ myawesomemenu = {
   },
 }
 
-mymainmenu = awful.menu {
+local main_menu = awful.menu {
   items = {
-    { "awesome", myawesomemenu },
+    { "awesome", awesome_menu },
     { "terminal", terminal },
     { "browser", browser },
     { "private browser", "firefox-private" },
@@ -122,11 +122,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- TODO: Show "fn" layer for new keyboard
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
-mytextclock = wibox.widget.textclock()
-
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t)
     t:view_only()
@@ -195,8 +193,9 @@ awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
   -- Create a command prompt for each screen
-  s.mypromptbox = awful.widget.prompt()
-  s.mycommandprompt = awful.popup {
+  s.prompt_box = awful.widget.prompt()
+
+  s.command_prompt = awful.popup {
     widget = wibox.widget.textbox(),
     ontop = true,
     placement = awful.placement.bottom + awful.placement.maximize_horizontally,
@@ -204,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a taglist widget
-  s.mytaglist = awful.widget.taglist {
+  s.tag_list = awful.widget.taglist {
     screen = s,
     filter = awful.widget.taglist.filter.all,
     buttons = taglist_buttons,
@@ -238,7 +237,7 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create a tasklist widget
-  s.mytasklist = awful.widget.tasklist {
+  s.task_list = awful.widget.tasklist {
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
     buttons = tasklist_buttons,
@@ -266,16 +265,16 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   -- Create the wibox
-  s.mywibox = awful.wibar { position = "top", screen = s }
+  s.wibox = awful.wibar { position = "top", screen = s }
 
   local spacer = require "widgets.spacer"
 
   -- Add widgets to the wibox
   local left_layout = wibox.layout.fixed.horizontal()
-  left_layout:add(s.mytaglist)
-  left_layout:add(s.mypromptbox)
+  left_layout:add(s.tag_list)
+  left_layout:add(s.prompt_box)
 
-  local middle_layout = s.mytasklist
+  local middle_layout = s.task_list
 
   local right_layout = wibox.layout.fixed.horizontal()
   if s.index == 1 then
@@ -295,7 +294,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- right_layout:add(require "widgets.battery")
   right_layout:add(wibox.widget.textclock())
 
-  s.mywibox:setup {
+  s.wibox:setup {
     layout = wibox.layout.align.horizontal,
     left_layout,
     middle_layout,
@@ -305,13 +304,7 @@ end)
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-  awful.button({}, 3, function()
-    mymainmenu:toggle()
-  end),
-  awful.button({}, 4, awful.tag.viewnext),
-  awful.button({}, 5, awful.tag.viewprev)
-))
+root.buttons(gears.table.join(awful.button({}, 4, awful.tag.viewnext), awful.button({}, 5, awful.tag.viewprev)))
 -- }}}
 
 -- {{{ Key bindings
@@ -328,7 +321,11 @@ globalkeys = gears.table.join(
     awful.client.focus.byidx(-1)
   end, { description = "focus previous by index", group = "client" }),
   awful.key({ modkey }, "w", function()
-    mymainmenu:show()
+    local s = awful.screen.focused()
+    main_menu:show { coords = {
+      x = s.geometry.x,
+      y = s.geometry.y,
+    } }
   end, { description = "show main menu", group = "awesome" }),
 
   -- Layout manipulation
@@ -396,7 +393,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "r", function()
     awful.prompt.run {
       prompt = "Run: ",
-      textbox = awful.screen.focused().mycommandprompt.widget,
+      textbox = awful.screen.focused().command_prompt.widget,
       exe_callback = awful.spawn,
       history_path = gfs.get_cache_dir() .. "/history",
     }
@@ -405,7 +402,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "x", function()
     awful.prompt.run {
       prompt = "Run Lua code: ",
-      textbox = awful.screen.focused().mycommandprompt.widget,
+      textbox = awful.screen.focused().command_prompt.widget,
       exe_callback = awful.util.eval,
       history_path = gfs.get_cache_dir() .. "/history_eval",
     }
