@@ -8,6 +8,14 @@ local signs = {
   Warn = icons.get "alert",
 }
 
+local severity = vim.diagnostic.severity
+local severity_to_sign = {
+  [severity.ERROR] = "Error",
+  [severity.HINT] = "Hint",
+  [severity.INFO] = "Info",
+  [severity.WARN] = "Warn",
+}
+
 local M = {}
 
 ---@param lower boolean
@@ -26,6 +34,10 @@ end
 ---@param func funcref
 M.map = function(func)
   f.each(f.partial(func, signs), ipairs(vim.tbl_keys(signs)))
+end
+
+M.severity = function(i)
+  return signs[severity_to_sign[i]]
 end
 
 return M

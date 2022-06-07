@@ -143,6 +143,12 @@
         "rev": "1bfb32e7ba1344925ad815cb0d7f901dbc0ff7c1",
         "type": "git"
     },
+    "focus.nvim": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/beauwilliams/focus.nvim",
+        "rev": "86d036649ab8d00ac8fdca750533a541b892e4fb",
+        "type": "git"
+    },
     "fuzzy.nvim": {
         "branch": "master",
         "repo": "git@github.com:tzachar/fuzzy.nvim",

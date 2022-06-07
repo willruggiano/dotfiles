@@ -1,4 +1,3 @@
-local icons = require "nvim-nonicons"
 local lsp = require "bombadil.lsp"
 local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
@@ -9,7 +8,7 @@ local lsp_cmds = require "bombadil.generated.lsp"
 lsp.kind.init()
 
 local has_lsp_lines, lsp_lines = pcall(require, "lsp_lines")
-if not has_lsp_lines then
+if has_lsp_lines then
   lsp_lines.register_lsp_virtual_lines()
 end
 
@@ -28,24 +27,22 @@ end
 
 local diagnostic_config = {
   severity_sort = true,
-  signs = true,
+  signs = false,
   underline = true,
   update_in_insert = false,
+  virtual_text = {
+    format = function(diagnostic)
+      return string.format("%s  %s", lsp.signs.severity(diagnostic.severity), diagnostic.message)
+    end,
+    prefix = "",
+    spacing = 4,
+  },
 }
 
 if has_lsp_lines then
   diagnostic_config = vim.tbl_extend("force", diagnostic_config, {
     virtual_lines = true,
     virtual_text = false,
-  })
-  diagnostic_config["virtual_lines"] = true
-else
-  diagnostic_config = vim.tbl_extend("force", diagnostic_config, {
-    virtual_text = {
-      prefix = icons.get "dot-fill",
-      severity_limit = "Error",
-      spacing = 4,
-    },
   })
 end
 

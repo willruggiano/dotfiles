@@ -202,6 +202,13 @@ in rec {
     '';
   };
 
+  focus = {
+    package = plugins."focus.nvim";
+    config = ''
+      require "bombadil.config.focus"
+    '';
+  };
+
   # TODO: Do I even use this anymore?
   fugitive = {
     package = plugins.vim-fugitive;
@@ -277,9 +284,10 @@ in rec {
     package = plugins."lsp_extensions.nvim";
   };
 
-  lsp-lines = {
-    package = plugins."lsp_lines.nvim";
-  };
+  # TODO: Not sure if I prefer this over virtual text?
+  # lsp-lines = {
+  #   package = plugins."lsp_lines.nvim";
+  # };
 
   lualine = {
     package = plugins."lualine.nvim";
