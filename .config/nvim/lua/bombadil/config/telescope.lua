@@ -43,12 +43,9 @@ telescope.setup {
     layout_config = {
       width = 0.95,
       height = 0.85,
-      -- preview_cutoff = 120,
       prompt_position = "top",
 
       horizontal = {
-        -- width_padding = 0.1,
-        -- height_padding = 0.1,
         preview_width = function(_, cols, _)
           if cols > 200 then
             return math.floor(cols * 0.4)
@@ -59,8 +56,6 @@ telescope.setup {
       },
 
       vertical = {
-        -- width_padding = 0.05,
-        -- height_padding = 1,
         width = 0.9,
         height = 0.95,
         preview_height = 0.5,
@@ -80,22 +75,11 @@ telescope.setup {
 
     mappings = {
       i = {
-        ["<C-x>"] = false,
         ["<C-s>"] = actions.select_horizontal,
-
+        ["<C-x>"] = false,
         ["<C-y>"] = set_prompt_to_entry_value,
-
-        -- ["<M-m>"] = actions.master_stack,
-
-        -- Experimental
-        -- ["<tab>"] = actions.toggle_selection,
-
-        -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        -- ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
       },
     },
-
-    -- borderchars = { "-", "│", "-", "│", "+", "+", "+", "+" },
 
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -125,6 +109,16 @@ telescope.setup {
 
     ["ui-select"] = {
       themes.ivy,
+    },
+  },
+
+  pickers = {
+    buffers = {
+      mappings = {
+        n = {
+          ["<C-d>"] = actions.delete_buffer,
+        },
+      },
     },
   },
 }
