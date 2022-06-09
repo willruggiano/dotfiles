@@ -90,7 +90,7 @@ local awesome_menu = {
     end,
   },
   { "manual", exec "man awesome" },
-  { "edit config", exec(editor .. " " .. awesome.conffile) },
+  { "edit config", exec(editor .. " " .. "/etc/nixos/.config/awesome/rc.lua") },
   { "restart", awesome.restart },
   {
     "quit",

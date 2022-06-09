@@ -80,6 +80,9 @@ in {
               cmd = "${smerge}";
             };
           };
+          push = {
+            followTags = true;
+          };
           user = {
             signingkey = "79303BEC95097CB6";
           };
