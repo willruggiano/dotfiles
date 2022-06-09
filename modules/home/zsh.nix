@@ -11,6 +11,7 @@ in {
   options.programs.zsh = {
     colorscheme = mkOption {
       type = types.str;
+      # TODO: Can we make this use lush too?
       default = "snazzy";
       description = "The vivid colorscheme to use";
     };
@@ -24,20 +25,22 @@ in {
     programs.zsh = {
       dotDir = ".config/zsh";
 
-      enableAutosuggestions = true;
-
       enableCompletion = true;
       completionInit = "autoload -Uz compinit && compinit";
 
       plugins = with pkgs; [
         {
-          name = "atuin";
+          name = "fzf-tab";
           src = fetchFromGitHub {
-            owner = "ellie";
-            repo = "atuin";
-            rev = "v0.7.1";
-            hash = "sha256-jjGP8YeHnEr0f9RONwA6wZT872C0jXTvSRdt9zAu6KE=";
+            owner = "Aloxaf";
+            repo = "fzf-tab";
+            rev = "master";
+            hash = "sha256-ixUnuNtxxmiigeVjzuV5uG6rIBPY/1vdBZF2/Qv0Trs=";
           };
+        }
+        {
+          name = "atuin";
+          inherit (pkgs.atuin) src;
         }
         {
           name = "clipboard";
@@ -54,27 +57,22 @@ in {
           src = fetchFromGitHub {
             owner = "b4b4r07";
             repo = "enhancd";
-            rev = "aec0e0c1c0b1376e87da74b8940fda5657269948";
-            hash = "sha256-j50+2cOXhmJ8VmYj5oVQRJXP/iayrEk3VugVIadgwo4=";
+            rev = "master";
+            hash = "sha256-p7ZG4NC9UWa55tPxYAaFocc0waIaTt+WO6MNearbO0U=";
           };
           file = "init.sh";
         }
         {
           name = "fast-syntax-highlighting";
-          src = fetchFromGitHub {
-            owner = "zdharma";
-            repo = "fast-syntax-highlighting";
-            rev = "817916dfa907d179f0d46d8de355e883cf67bd97";
-            sha256 = "0m102makrfz1ibxq8rx77nngjyhdqrm8hsrr9342zzhq1nf4wxxc";
-          };
+          inherit (pkgs.zsh-fast-syntax-highlighting) src;
         }
         {
           name = "forgit";
           src = fetchFromGitHub {
             owner = "wfxr";
             repo = "forgit";
-            rev = "9f3a4239205b638b8c535220bfec0b1fbca2d620";
-            sha256 = "1w29ryc4l9pz60xbcwk0czxnhmjjh8xa6amh60whcapbsm174ssz";
+            rev = "master";
+            hash = "sha256-sWWv9UJR1K8Q5ZTcU7xjJtk8hTRXywVjSL2gQ5Kqj0M=";
           };
         }
         {
@@ -82,17 +80,8 @@ in {
           src = fetchFromGitHub {
             owner = "urbainvaes";
             repo = "fzf-marks";
-            rev = "f5c986657bfee0a135fd14277eea857d58ea8cdc";
-            sha256 = "11n33kx1v9mdgklhz7mkr673vln27nl02lyscybgc29fchwxfn8k";
-          };
-        }
-        {
-          name = "fzf-tab";
-          src = fetchFromGitHub {
-            owner = "Aloxaf";
-            repo = "fzf-tab";
-            rev = "89a33154707c09789177a893e5a8ebbb131d5d3d";
-            sha256 = "1g8011ldrghbw5ibchsp0p93r31cwyx2r1z5xplksd779jw79wdx";
+            rev = "master";
+            hash = "sha256-QXJkt/62gPv3pN0jqyNlHNx6K1OocTGaAg87dL1vwJE=";
           };
         }
         {
@@ -107,20 +96,23 @@ in {
         }
         {
           name = "zsh-autopair";
-          src = fetchFromGitHub {
-            owner = "hlissner";
-            repo = "zsh-autopair";
-            rev = "9d003fc02dbaa6db06e6b12e8c271398478e0b5d";
-            sha256 = "0s4xj7yv75lpbcwl4s8rgsaa72b41vy6nhhc5ndl7lirb9nl61l7";
-          };
+          inherit (pkgs.zsh-autopair) src;
+        }
+        {
+          name = "zsh-autosuggestions";
+          inherit (pkgs.zsh-autosuggestions) src;
         }
       ];
 
       initExtraBeforeCompInit = ''
         fpath+=("${config.home.profileDirectory}"/share/zsh/site-functions "${config.home.profileDirectory}"/share/zsh/$ZSH_VERSION/functions "${config.home.profileDirectory}"/share/zsh/vendor-completions)
+
+        for f in $HOME/.config/zsh/extra/0[0-9]-*.zsh; do
+          source "$f"
+        done
       '';
       initExtra = with pkgs; ''
-        for f in $HOME/.config/zsh/extra/[0-9][0-9]-*.zsh; do
+        for f in $HOME/.config/zsh/extra/1[0-9]-*.zsh; do
           source "$f"
         done
 

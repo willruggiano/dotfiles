@@ -1,1 +1,0 @@
-bindkey '^ ' autosuggest-accept
