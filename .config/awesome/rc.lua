@@ -104,8 +104,9 @@ local main_menu = awful.menu {
   items = {
     { "awesome", awesome_menu },
     { "terminal", terminal },
-    { "browser", browser },
-    { "private browser", "firefox-private" },
+    { "qutebrowser", browser },
+    { "firefox-private", "firefox-private" },
+    { "qutebrowser-private", "qutebrowser-private" },
     {
       "file explorer",
       function()
