@@ -72,7 +72,7 @@ in {
             owner = "wfxr";
             repo = "forgit";
             rev = "master";
-            hash = "sha256-sWWv9UJR1K8Q5ZTcU7xjJtk8hTRXywVjSL2gQ5Kqj0M=";
+            hash = "sha256-IfyDq2idDkN8GXwTcQ6tOzqnogO+ewDzFLuiyQqxgg4=";
           };
         }
         {
