@@ -2,6 +2,7 @@ require("firvish").setup {
   keymaps = {
     buffers = {
       n = {
+        ["-"] = false,
         zf = {
           function()
             local ft = vim.fn.input "> "
@@ -28,6 +29,7 @@ require("firvish").setup {
     },
     dir = {
       n = {
+        ["-"] = false,
         ["<enter>"] = {
           function()
             local linenr = vim.fn.line "."
@@ -45,10 +47,18 @@ require("firvish").setup {
   },
 }
 
-require("bombadil.lib.keymap").nnoremap("<space>j", function()
+local nnoremap = require("bombadil.lib.keymap").nnoremap
+
+nnoremap("<space>b", function()
+  require("firvish.buffers").open_buffers()
+end, { desc = "Buffers" })
+
+nnoremap("<space>h", function()
+  require("firvish.history").open_history()
+end, { desc = "History" })
+
+nnoremap("<space>j", function()
   require("firvish.job_control").show_jobs_list()
 end, { desc = "Jobs" })
 
--- We have to manually do this since filetype.vim doesn't get sourced (because we use the
--- filetype.nvim plugin)
 vim.cmd [[runtime ftdetect/firvish.lua]]

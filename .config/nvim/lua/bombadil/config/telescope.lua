@@ -137,12 +137,6 @@ end
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local mappings = {
-  ["<space>b"] = {
-    function()
-      require("telescope.builtin").buffers(themes.ivy)
-    end,
-    { desc = "Buffers" },
-  },
   ["<space>d"] = {
     function()
       require("telescope").extensions.dotfiles.dotfiles()
