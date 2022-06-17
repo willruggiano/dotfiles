@@ -20,6 +20,7 @@ in {
       pkgs.curl
       pkgs.fd
       pkgs.file
+      pkgs.mkcert
       pkgs.qrcp
       pkgs.ripgrep
       pkgs.sad

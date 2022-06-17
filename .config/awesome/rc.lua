@@ -104,11 +104,11 @@ local main_menu = awful.menu {
   items = {
     { "awesome", awesome_menu },
     { "terminal", terminal },
-    { "qutebrowser", browser },
     { "firefox-private", "firefox-private" },
+    { "qutebrowser", browser },
     { "qutebrowser-private", "qutebrowser-private" },
     {
-      "file explorer",
+      "xplr",
       function()
         awful.spawn(exec "xplr", {
           floating = true,

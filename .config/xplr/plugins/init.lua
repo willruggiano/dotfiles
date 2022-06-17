@@ -5,3 +5,5 @@ require("fzf").setup {
 }
 
 require("icons").setup()
+require("neomutt").setup()
+require("qrcp").setup()

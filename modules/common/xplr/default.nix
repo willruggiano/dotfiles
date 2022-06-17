@@ -6,6 +6,24 @@
 }:
 with lib; let
   cfg = config.programs.xplr;
+
+  buildXplrPlugin = {
+    name,
+    src,
+  }:
+    pkgs.stdenv.mkDerivation {
+      name = "${name}-xplr";
+      inherit src;
+
+      dontConfigure = true;
+      dontBuild = true;
+      dontFixup = true;
+
+      installPhase = ''
+        mkdir -p $out/lua/${name}
+        cp init.lua $out/lua/${name}/init.lua
+      '';
+    };
 in {
   options.programs.xplr = {
     enable = mkEnableOption "xplr";
@@ -15,42 +33,24 @@ in {
     user.packages = with pkgs; [xplr];
 
     home.configFile = let
-      fzf-xplr = pkgs.stdenv.mkDerivation {
-        name = "fzf-xplr";
+      fzf-xplr = buildXplrPlugin {
+        name = "fzf";
         src = pkgs.fetchFromGitHub {
           owner = "sayanarijit";
           repo = "fzf.xplr";
           rev = "5373cee9d2716f774d593af67812f8b4c0ccced8";
           hash = "sha256-MQALJ6xn+c3oIuFlrzcCzdoSTwqgZKwQ/kUyJ7lQLLA=";
         };
-
-        dontConfigure = true;
-        dontBuild = true;
-        dontFixup = true;
-
-        installPhase = ''
-          mkdir -p $out/lua/fzf
-          cp init.lua $out/lua/fzf/init.lua
-        '';
       };
 
-      icons-xplr = pkgs.stdenv.mkDerivation {
-        name = "icons-xplr";
+      icons-xplr = buildXplrPlugin {
+        name = "icons";
         src = pkgs.fetchFromGitHub {
           owner = "prncss-xyz";
           repo = "icons.xplr";
           rev = "6133ea79c41629591c72fa4c51132f7a3cb30782";
           hash = "sha256-RqSHqLVLZ0hrP6RLHgNtReoy6pW/nzxestwLdugFro0=";
         };
-
-        dontConfigure = true;
-        dontBuild = true;
-        dontFixup = true;
-
-        installPhase = ''
-          mkdir -p $out/lua/icons
-          cp init.lua $out/lua/icons/init.lua
-        '';
       };
 
       runtimeEnv = pkgs.buildEnv {
@@ -68,7 +68,7 @@ in {
         version = "${pkgs.xplr.version}"
 
         local home = os.getenv "HOME"
-        package.path = "${runtimeEnv}/lua/?/init.lua;" .. home .. "/.config/xplr/?/init.lua;;"
+        package.path = "${runtimeEnv}/lua/?/init.lua;" .. home .. "/.config/xplr/?/init.lua;" .. home .. "/.config/xplr/plugins/?/init.lua;;"
 
         require "plugins"
       '';
