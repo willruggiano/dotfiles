@@ -8,7 +8,7 @@ with lib; let
   cfg = config.programs.neovim;
 in {
   config = mkIf cfg.enable {
-    user.packages = [pkgs.neovim];
+    user.packages = [pkgs.neovim-custom];
 
     home.configFile = let
       plugins = import ./plugins {inherit lib pkgs;};
@@ -22,6 +22,10 @@ in {
         // (p.override or {}));
 
       # TODO: Find a better way to deal with rocks which have lua modules
+      # It would be nice for *each* plugin to be its own little Lua env (via buildEnv)
+      # and then only expose the lua bits from the primary package.
+      # This would make it easy to specify rocks and additional dependencies, while also
+      # keeping those guys hidden from the rest of the system. We'd really be creating little sandboxed envs for every plugin.
       plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)] ++ (p.rocks or []);}) plugins;
       rocks = flatten (mapAttrsToList (pname: p: p.rocks or []) plugins);
     in {

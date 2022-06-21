@@ -1,3 +1,4 @@
+local icons = require "nvim-nonicons"
 local opt = vim.opt
 
 -- Ignore compiled files
@@ -74,7 +75,13 @@ opt.shortmess = opt.shortmess
 opt.joinspaces = false -- Two spaces and grade school, we're done
 
 -- set fillchars=eob:~
-opt.fillchars = { eob = "~" }
+opt.fillchars = {
+  eob = " ",
+  fold = " ",
+  foldopen = " ",
+  foldclose = icons.get "chevron-right",
+  foldsep = " ",
+}
 opt.listchars = { space = "." }
 
 -- By default timeoutlen is 1000ms
@@ -89,4 +96,9 @@ opt.secure = true
 opt.grepprg = "rg --vimgrep --smart-case --follow"
 
 -- I like help,man,K to open in a vertical split
-vim.o.keywordprg = ":vert help"
+opt.keywordprg = ":vert help"
+
+opt.foldcolumn = "1"
+opt.foldcolumndigits = false
+opt.foldenable = true
+opt.foldlevel = 99

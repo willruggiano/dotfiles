@@ -390,6 +390,11 @@ in rec {
     package = plugins.popfix;
   };
 
+  # NOTE: Required by nvim-ufo
+  promise = {
+    package = plugins.promise-async;
+  };
+
   pqf = {
     package = plugins.nvim-pqf;
     config = ''
@@ -525,6 +530,13 @@ in rec {
 
   treesitter-playground = {
     package = plugins.playground;
+  };
+
+  ufo = {
+    package = plugins.nvim-ufo;
+    config = ''
+      require "bombadil.config.ufo"
+    '';
   };
 
   vim-snippets = {

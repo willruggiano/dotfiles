@@ -23,6 +23,9 @@ in
     keyd = prev.callPackage ./keyd {};
     luaPackages = overrideLua prev.luaPackages;
     luajitPackages = overrideLua prev.luajitPackages;
+    neovim-custom = final.neovim.overrideAttrs (attrs: {
+      patches = attrs.patches ++ [./neovim/17446.diff];
+    });
     nonicons = prev.callPackage ./nonicons {};
     nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
     nvim-treesitter = prev.callPackage ./nvim-treesitter {};

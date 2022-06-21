@@ -204,58 +204,65 @@ updated_capabilities.textDocument.completion.completionItem.resolveSupport = {
     "additionalTextEdits",
   },
 }
+updated_capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 local has_coq, coq = pcall(require, "coq")
 if has_coq then
   updated_capabilities = coq.lsp_ensure_capabilities({ capabilities = updated_capabilities }).capabilities
 end
 
-local has_null_ls, null_ls = pcall(require, "null-ls")
-if has_null_ls then
-  local custom_sources = require "bombadil.lsp.null-ls"
-  null_ls.setup {
-    debug = true,
+local null_ls = require "null-ls"
+local custom_sources = require "bombadil.lsp.null-ls"
+null_ls.setup {
+  debug = true,
 
-    on_attach = on_attach,
+  on_attach = on_attach,
 
-    sources = {
-      -- Formatting
-      -- null_ls.builtins.formatting.clang_format, -- via clangd
-      null_ls.builtins.formatting.cmake_format,
-      -- null_ls.builtins.formatting.isort, -- via pylsp
-      custom_sources.alejandra.formatting,
-      null_ls.builtins.formatting.prettier,
-      null_ls.builtins.formatting.rustfmt,
-      null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.yapf, -- via pylsp
-      -- Diagnostics
-      null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
-      null_ls.builtins.diagnostics.luacheck.with {
-        command = lsp_cmds.luacheck,
-        extra_args = { "--globals", "vim", "--no-max-line-length" },
-      },
-      null_ls.builtins.diagnostics.shellcheck,
-      null_ls.builtins.diagnostics.statix,
-      -- custom_sources.statix.diagnostics,
-
-      -- Code actions
-      null_ls.builtins.code_actions.gitsigns,
-      null_ls.builtins.code_actions.refactoring,
-      null_ls.builtins.code_actions.statix,
-      -- custom_sources.statix.code_actions,
-      -- Hover
-      null_ls.builtins.hover.dictionary,
-      -- custom_sources.man.hover,
-      -- Completion
-      -- null_ls.builtins.completion.spell,
+  sources = {
+    -- Formatting
+    -- null_ls.builtins.formatting.clang_format, -- via clangd
+    null_ls.builtins.formatting.cmake_format,
+    -- null_ls.builtins.formatting.isort, -- via pylsp
+    custom_sources.alejandra.formatting,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.stylua,
+    -- null_ls.builtins.formatting.yapf, -- via pylsp
+    -- Diagnostics
+    null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
+    null_ls.builtins.diagnostics.luacheck.with {
+      command = lsp_cmds.luacheck,
+      extra_args = { "--globals", "vim", "--no-max-line-length" },
     },
-  }
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.statix,
+    -- custom_sources.statix.diagnostics,
 
-  null_ls.register {
-    null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "cpp" }, extra_args = { "--language", "cpp" } },
-    null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
-  }
+    -- Code actions
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.statix,
+    -- custom_sources.statix.code_actions,
+    -- Hover
+    null_ls.builtins.hover.dictionary,
+    -- custom_sources.man.hover,
+    -- Completion
+    -- null_ls.builtins.completion.spell,
+  },
+}
+
+null_ls.register {
+  null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "cpp" }, extra_args = { "--language", "cpp" } },
+  null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
+}
+
+local function disable_formatting(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
 end
 
 require("clangd_extensions").setup {
@@ -295,8 +302,7 @@ lspconfig.cmake.setup {
   on_init = on_init,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    disable_formatting(client)
   end,
   capabilities = updated_capabilities,
 }
@@ -317,8 +323,7 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
     on_init = on_init,
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      disable_formatting(client)
     end,
     capabilities = updated_capabilities,
     root_dir = function(fname)

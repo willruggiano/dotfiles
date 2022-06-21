@@ -413,6 +413,12 @@
         "rev": "88343753dbe81c227a1c1fd2c8d764afb8d36269",
         "type": "git"
     },
+    "nvim-ufo": {
+        "branch": "main",
+        "repo": "git@github.com:kevinhwang91/nvim-ufo",
+        "rev": "c412ff87165eb8712e2810799dfa90b728c40028",
+        "type": "git"
+    },
     "nvim-web-devicons": {
         "branch": "master",
         "repo": "git@github.com:kyazdani42/nvim-web-devicons",
@@ -447,6 +453,12 @@
         "branch": "master",
         "repo": "git@github.com:rishabhrd/popfix",
         "rev": "ea262861ce3905b90c2c203b74a7be2539f1aba4",
+        "type": "git"
+    },
+    "promise-async": {
+        "branch": "main",
+        "repo": "git@github.com:kevinhwang91/promise-async",
+        "rev": "1a30ecd708b08adaa7de8ad3d207147aadf3e081",
         "type": "git"
     },
     "refactoring.nvim": {

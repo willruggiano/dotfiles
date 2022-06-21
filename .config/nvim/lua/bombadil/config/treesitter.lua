@@ -142,10 +142,6 @@ local unit = require "treesitter-unit"
 -- Can be toggled with ,thu
 -- unit.enable_highlighting()
 
-vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local noremap = require("bombadil.lib.keymap").noremap
 
