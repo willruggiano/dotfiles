@@ -34,6 +34,8 @@ in {
       };
     };
 
+    environment.systemPackages = [pkgs.acpitool];
+
     home.configFile = {
       awesome = {
         source = ../../../.config/awesome;
