@@ -35,6 +35,10 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
+  services.autorandrd = {
+    enable = true;
+    config = ./monitor-layout.kdl;
+  };
   services.awesome.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;

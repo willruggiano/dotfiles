@@ -100,10 +100,19 @@ local awesome_menu = {
   },
 }
 
+local function pass_clip()
+  awful.spawn(exec "pass clip", {
+    floating = true,
+    placement = awful.placement.centered,
+    height = 250,
+  })
+end
+
 local main_menu = awful.menu {
   items = {
     { "awesome", awesome_menu },
     { "terminal", terminal },
+    { "pass", pass_clip },
     { "firefox-private", "firefox-private" },
     { "qutebrowser", browser },
     { "qutebrowser-private", "qutebrowser-private" },
@@ -411,7 +420,9 @@ globalkeys = gears.table.join(
   -- Menubar
   awful.key({ modkey }, "p", function()
     menubar.show()
-  end, { description = "show the menubar", group = "launcher" })
+  end, { description = "show the menubar", group = "launcher" }),
+
+  awful.key({ modkey, "Shift" }, "p", pass_clip, { description = "open password store" })
 )
 
 clientkeys = gears.table.join(

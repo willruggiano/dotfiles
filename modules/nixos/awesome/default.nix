@@ -35,6 +35,7 @@ in {
     };
 
     environment.systemPackages = [pkgs.acpitool];
+    user.packages = with pkgs; [dmenu rofi];
 
     home.configFile = {
       awesome = {

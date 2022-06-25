@@ -1,0 +1,12 @@
+monitor "builtin"
+monitor "cville-dell" product="DELL U3415W" serial="PXF7906304UL"
+
+layout "cville-hdmi" {
+    matches "cville-dell" "builtin"
+    monitor "cville-dell" w=3440 h=1440 x=0 y=0 primary=true
+}
+
+layout "laptop" {
+    matches "builtin"
+    monitor "builtin" w=1920 h=1080 x=0 y=0 primary=true
+}

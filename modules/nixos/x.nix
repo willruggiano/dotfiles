@@ -30,6 +30,8 @@ in {
       };
     };
 
+    environment.systemPackages = with pkgs; [xclip];
+
     systemd.user.services.xbanish = {
       description = "banish the mouse cursor when typing";
       wantedBy = ["graphical-session.target"];

@@ -14,6 +14,7 @@ let
 in
   final: prev: {
     inherit (final.luaPackages) lua-awesome;
+    autorandr-rs = prev.callPackage ./autorandr-rs {};
     circle = prev.callPackage ./circle {};
     docsets = prev.callPackage ./docsets {};
     dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
@@ -29,6 +30,7 @@ in
     nonicons = prev.callPackage ./nonicons {};
     nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
     nvim-treesitter = prev.callPackage ./nvim-treesitter {};
+    pass-extension-clip = prev.callPackage ./pass-clip {};
     pass-extension-meta = prev.callPackage ./pass-meta {};
     python3 = prev.python3.override {
       packageOverrides = python-final: python-prev: rec {
