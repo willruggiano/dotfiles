@@ -117,6 +117,15 @@ local main_menu = awful.menu {
     { "qutebrowser", browser },
     { "qutebrowser-private", "qutebrowser-private" },
     {
+      "wifi",
+      function()
+        awful.spawn(exec "fzf-wifi", {
+          floating = true,
+          placement = awful.placement.centered,
+        })
+      end,
+    },
+    {
       "xplr",
       function()
         awful.spawn(exec "xplr", {
