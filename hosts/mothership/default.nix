@@ -40,6 +40,7 @@
     config = ./monitor-layout.kdl;
   };
   services.awesome.enable = true;
+  services.clipcat.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;
   services.expressvpn.enable = true;

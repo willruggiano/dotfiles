@@ -62,7 +62,7 @@ local terminal = "kitty"
 local editor = os.getenv "EDITOR" or "nano"
 
 local function exec(command)
-  return terminal .. " -e " .. command
+  return terminal .. " zsh -c " .. command
 end
 
 -- Default modkey.
@@ -101,7 +101,7 @@ local awesome_menu = {
 }
 
 local function pass_clip()
-  awful.spawn(exec "pass clip", {
+  awful.spawn(exec "pass-clipcat", {
     floating = true,
     placement = awful.placement.centered,
     height = 250,
@@ -122,6 +122,7 @@ local main_menu = awful.menu {
         awful.spawn(exec "fzf-wifi", {
           floating = true,
           placement = awful.placement.centered,
+          height = 300,
         })
       end,
     },
