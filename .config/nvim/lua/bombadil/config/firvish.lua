@@ -3,6 +3,12 @@ require("firvish").setup {
     buffers = {
       n = {
         ["-"] = false,
+        dd = {
+          function()
+            local line = vim.fn.line "."
+            require("firvish.buffers").buf_delete(line, line, true)
+          end,
+        },
         zf = {
           function()
             local ft = vim.fn.input "> "
@@ -23,6 +29,16 @@ require("firvish").setup {
                 return false
               end
             end)
+          end,
+        },
+      },
+      v = {
+        d = {
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), "x", true)
+            local start_line = vim.fn.line "'<"
+            local end_line = vim.fn.line "'>"
+            require("firvish.buffers").buf_delete(start_line, end_line, true)
           end,
         },
       },
