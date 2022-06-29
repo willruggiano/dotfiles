@@ -12,6 +12,7 @@ end
 require("filetype").setup {
   overrides = {
     extensions = {
+      ipp = "cpp",
       tpp = "cpp",
     },
   },
