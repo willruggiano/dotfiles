@@ -17,6 +17,7 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
     # emanote.url = "github:srid/emanote";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
@@ -55,9 +56,10 @@
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
-        # (final: prev: {
-        #   emanote = inputs.emanote.defaultPackage."${prev.system}";
-        # })
+        (final: prev: {
+          inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
+          # emanote = inputs.emanote.defaultPackage."${prev.system}";
+        })
       ];
 
       hostDefaults.modules = [
