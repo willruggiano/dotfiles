@@ -190,7 +190,6 @@
               };
               stylua = {
                 enable = true;
-                entry = "${pkgs.stylua}/bin/stylua";
                 types = ["file" "lua"];
               };
               trailing-whitespace = {

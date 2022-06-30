@@ -7,10 +7,6 @@
 with lib; let
   cfg = config.services.expressvpn;
 in {
-  options.services.expressvpn = {
-    enable = mkEnableOption "ExpressVPN";
-  };
-
   config = mkIf cfg.enable {
     services.openvpn.servers = {
       expressvpn-dallas = {

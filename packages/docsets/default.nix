@@ -6,15 +6,15 @@
   docsets = {
     C = {
       url = "http://sanfrancisco.kapeli.com/feeds/C.tgz";
-      hash = "sha256-pEGK9wKQesMngyEDJ3k+aD2756oHZMLokQ6nZbYo5/s=";
+      hash = "sha256-yi2uK0gimURYJmxOw+SGOXF5C+9/Ukuhnma1+2CWeNU=";
     };
     "C++" = {
       url = "http://sanfrancisco.kapeli.com/feeds/C++.tgz";
-      hash = "sha256-OPZJSdM1BzbEwP5b+PGbzgBFc6nACCnBWcZEAgcgNmM=";
+      hash = "sha256-a7K9lo8WX0PEGVN44E1OzCUQCF5ZngxvfhQ1zGl+sA8=";
     };
     CMake = {
       url = "http://sanfrancisco.kapeli.com/feeds/CMake.tgz";
-      hash = "sha256-XIT/GMJ7ojMDotxahisuq3K9CobjbQLAqRor5X0B2YA=";
+      hash = "sha256-ilukU3e1PHNfyF8T5jBWCENX0S4VfVCoUvprhK9zy7Q=";
     };
     Lua = {
       url = "http://sanfrancisco.kapeli.com/feeds/Lua_5.4.tgz";
@@ -22,11 +22,11 @@
     };
     "Python 3" = {
       url = "http://sanfrancisco.kapeli.com/feeds/Python_3.tgz";
-      hash = "sha256-jE0Y/x5S/bNR1FtqbbhVj0pjZ11mByfls3Z83M3Ly1U=";
+      hash = "sha256-4CLqUsh5CQa2ROAuABhuCPZlWJ8i2IfSsbfgOwSRJrM=";
     };
     Qt = {
       url = "http://sanfrancisco.kapeli.com/feeds/Qt_5.tgz";
-      hash = "sha256-WcrcuEw9kiDylyfEeQuUtaVOliJF/Gzt1rcEz2bTVnk=";
+      hash = "sha256-sFYf8jb2maTqgvDWW9cCGQIOF/u5oBEF2Jy0mbs54zQ=";
     };
   };
 in
@@ -40,7 +40,7 @@ in
       "mkdir -p $out/share/docsets"
       (lib.concatMapStringsSep
       "\n"
-      (lang: ''cp -r "${lang}.docset" $out/share/docsets/'')
+      (lang: ''cp -r "${lang}.docset" $out/share/docsets/${builtins.replaceStrings [" "] [""] lang}.docset'')
       (builtins.attrNames docsets))
     ];
 
