@@ -1,6 +1,5 @@
 #! /usr/bin/env lua
 local oklab = require "awesome.oklab"
-local inspect = require "inspect"
 
 local bg_colours = { 14, 14, 18, 18, 22, 22, 22, 22, 94, 96, 96, 98, 98, 96, 94, 94, 25, 22, 18, 18, 14, 14, 14, 14 }
 local fg_colours = { 84, 84, 88, 88, 84, 84, 84, 84, 35, 35, 35, 35, 35, 35, 35, 35, 84, 84, 84, 84, 84, 84, 80, 80 }
@@ -156,18 +155,6 @@ local function bg()
   return oklab.polar_to_hex(bg_base())
 end
 
-local function test()
-  print(inspect(base()))
-  print(inspect(bg_base()))
-  print(inspect(fg_base()))
-  print(inspect(palette(nil)))
-  print(inspect(w3c_contrast(fg_base(), bg_base())))
-  print(inspect(w3c_contrast(base(), bg_base())))
-  print(inspect(palette(function(x)
-    return oklab.rotate(x, -10)
-  end)))
-end
-
 return {
   rotate = oklab.rotate,
   get_hour = get_hour,
@@ -179,7 +166,6 @@ return {
   set_base = set_base,
   palette = palette,
   set_contrast_threshold = set_contrast_threshold,
-  test = test,
   gate = gate,
   fg = fg,
   bg = bg,
