@@ -89,7 +89,20 @@ local on_attach = function(_, bufnr)
     },
     ["<leader>f"] = {
       function()
-        vim.lsp.buf.format { async = true }
+        local disabled_clients = {
+          cmake = true,
+          rnix = true,
+          sumneko_lua = true,
+        }
+        vim.lsp.buf.format {
+          async = true,
+          filter = function(client)
+            if disabled_clients[client.name] then
+              return false
+            end
+            return true
+          end,
+        }
       end,
       { buffer = bufnr, desc = "Format" },
     },
@@ -229,7 +242,7 @@ null_ls.setup {
     -- null_ls.builtins.formatting.clang_format, -- via clangd
     null_ls.builtins.formatting.cmake_format,
     -- null_ls.builtins.formatting.isort, -- via pylsp
-    custom_sources.alejandra.formatting,
+    null_ls.builtins.formatting.alejandra,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.shfmt,
@@ -263,10 +276,14 @@ null_ls.register {
   null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
 }
 
-local function disable_formatting(client)
-  client.server_capabilities.document_formatting = false
-  client.server_capabilities.document_range_formatting = false
-end
+-- local function disable_formatting(capabilities)
+--   return vim.tbl_deep_extend("force", capabilities, {
+--     textDocument = {
+--       formatting = false,
+--       rangeFormatting = false,
+--     },
+--   })
+-- end
 
 require("clangd_extensions").setup {
   server = {
@@ -303,10 +320,7 @@ require("clangd_extensions").setup {
 lspconfig.cmake.setup {
   cmd = lsp_cmds.cmake,
   on_init = on_init,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    disable_formatting(client)
-  end,
+  on_attach = on_attach,
   capabilities = updated_capabilities,
 }
 
@@ -324,10 +338,7 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   lspconfig = {
     cmd = lsp_cmds.sumneko,
     on_init = on_init,
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      disable_formatting(client)
-    end,
+    on_attach = on_attach,
     capabilities = updated_capabilities,
     root_dir = function(fname)
       return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
@@ -343,17 +354,7 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
 
 lspconfig.rnix.setup {
   cmd = lsp_cmds.rnix,
-  on_init = function(client)
-    on_init(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end,
+  on_init = on_init,
   on_attach = on_attach,
-  capabilities = vim.tbl_deep_extend("force", updated_capabilities, {
-    textDocument = {
-      -- I use alejandra instead of nixpkgs-fmt
-      formatting = false,
-      rangeFormatting = false,
-    },
-  }),
+  capabilities = updated_capabilities,
 }

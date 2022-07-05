@@ -284,7 +284,7 @@
     "null-ls.nvim": {
         "branch": "main",
         "repo": "git@github.com:jose-elias-alvarez/null-ls.nvim",
-        "rev": "a887bd6c1bb992ccf48e673b40e061c3e816204f",
+        "rev": "a2b7bf89663c78d58a5494efbb791819a24bb025",
         "type": "git"
     },
     "nvim-autopairs": {
