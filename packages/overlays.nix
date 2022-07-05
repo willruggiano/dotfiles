@@ -44,5 +44,6 @@ in
         rope = prev.callPackage ./python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
       };
     };
+    src-cli = prev.callPackage ./sourcegraph {};
     xplr = prev.callPackage ./xplr {};
   }

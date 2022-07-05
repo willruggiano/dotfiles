@@ -5,6 +5,7 @@ in {
   "expressvpn-auth-user-pass.age".publicKeys = [ecthelion mothership];
   "expressvpn-dallas.age".publicKeys = [ecthelion mothership];
   "github.age".publicKeys = [ecthelion mothership];
+  "sourcegraph.age".publicKeys = [ecthelion mothership];
   "spotify.age".publicKeys = [ecthelion mothership];
   "wmruggiano@gmail.com.age".publicKeys = [ecthelion mothership];
 }
