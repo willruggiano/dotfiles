@@ -10,7 +10,6 @@ in rec {
     config = ''
       require "bombadil.config.awesome"
     '';
-    rocks = [inspect];
   };
 
   autopairs = {

@@ -52,6 +52,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "single",
 })
 
+---@diagnostic disable-next-line: missing-parameter
 for type, icon in pairs(lsp.signs.get()) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -87,7 +88,9 @@ local on_attach = function(_, bufnr)
       { buffer = bufnr, desc = "Code actions" },
     },
     ["<leader>f"] = {
-      vim.lsp.buf.formatting,
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
       { buffer = bufnr, desc = "Format" },
     },
     ["<leader>dd"] = {
@@ -116,7 +119,7 @@ local on_attach = function(_, bufnr)
     },
     ["<leader>rr"] = {
       function()
-        vim.lsp.stop_client(vim.lsp.get_active_clients())
+        vim.lsp.stop_client(vim.lsp.get_active_clients(), true)
         vim.cmd "e"
       end,
       { buffer = bufnr, desc = "Restart lsp clients" },
@@ -261,8 +264,8 @@ null_ls.register {
 }
 
 local function disable_formatting(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
 end
 
 require("clangd_extensions").setup {
