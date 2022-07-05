@@ -16,21 +16,21 @@ in rec {
   autopairs = {
     package = plugins.nvim-autopairs;
     config = ''
-      require "bombadil.config.autopairs";
+      require "bombadil.config.autopairs"
     '';
   };
 
   blankline = {
     package = plugins."indent-blankline.nvim";
     config = ''
-      require "bombadil.config.indent-blankline";
+      require "bombadil.config.indent-blankline"
     '';
   };
 
   bqf = {
     package = plugins.nvim-bqf;
     config = ''
-      require "bombadil.config.bqf";
+      require "bombadil.config.bqf"
     '';
   };
 
@@ -128,7 +128,7 @@ in rec {
   dap = {
     package = plugins.nvim-dap;
     config = ''
-      require "bombadil.config.dap";
+      require "bombadil.config.dap"
     '';
     rocks = [rapidjson];
   };
@@ -136,7 +136,7 @@ in rec {
   dap-ui = {
     package = plugins.nvim-dap-ui;
     config = ''
-      require "bombadil.config.dap-ui";
+      require "bombadil.config.dap-ui"
     '';
   };
 
@@ -149,15 +149,15 @@ in rec {
     # HACK: We don't have much in 00-setup-plugins.lua, so we are safe in knowing that this will fire setup anything requires devicons or nvim-nonicons. But we probably want a more robust solution eventually.
     # This is really the only case where plugin ordering comes into play.
     setup = ''
-      vim.g.override_nvim_web_devicons = true;
-      require "nvim-nonicons";
+      vim.g.override_nvim_web_devicons = true
+      require "nvim-nonicons"
     '';
   };
 
   dial = {
     package = plugins."dial.nvim";
     config = ''
-      require "bombadil.config.dial";
+      require "bombadil.config.dial"
     '';
   };
 
@@ -165,7 +165,7 @@ in rec {
     # package = plugins."diff-therapy.nvim";
     package = pkgs.dummy;
     config = ''
-      require "bombadil.config.diff-therapy";
+      require "bombadil.config.diff-therapy"
     '';
   };
 
@@ -193,7 +193,7 @@ in rec {
   filetype = {
     package = plugins."filetype.nvim";
     config = ''
-      require "bombadil.config.filetype";
+      require "bombadil.config.filetype"
     '';
   };
 
@@ -207,7 +207,7 @@ in rec {
   firvish = {
     package = plugins."firvish.nvim";
     config = ''
-      require "bombadil.config.firvish";
+      require "bombadil.config.firvish"
     '';
   };
 
@@ -237,14 +237,14 @@ in rec {
       vim.g.gitblame_enabled = false
     '';
     config = ''
-      require "bombadil.config.gitblame";
+      require "bombadil.config.gitblame"
     '';
   };
 
   gitsigns = {
     package = plugins."gitsigns.nvim";
     config = ''
-      require "bombadil.config.gitsigns";
+      require "bombadil.config.gitsigns"
     '';
   };
 
@@ -269,7 +269,7 @@ in rec {
   lir = {
     package = plugins."lir.nvim";
     config = ''
-      require "bombadil.config.lir";
+      require "bombadil.config.lir"
     '';
     rocks = [luafilesystem];
   };
@@ -301,7 +301,7 @@ in rec {
   lualine = {
     package = plugins."lualine.nvim";
     config = ''
-      require "bombadil.config.lualine";
+      require "bombadil.config.lualine"
     '';
   };
 
@@ -328,7 +328,7 @@ in rec {
   marks = {
     package = plugins."marks.nvim";
     config = ''
-      require "bombadil.config.marks";
+      require "bombadil.config.marks"
     '';
   };
 
@@ -342,14 +342,14 @@ in rec {
   neogit = {
     package = plugins.neogit;
     config = ''
-      require "bombadil.config.neogit";
+      require "bombadil.config.neogit"
     '';
   };
 
   nix = {
     package = plugins."nix.nvim";
     config = ''
-      require "bombadil.config.nix";
+      require "bombadil.config.nix"
     '';
   };
 
@@ -360,7 +360,7 @@ in rec {
   notify = {
     package = plugins.nvim-notify;
     setup = ''
-      require "bombadil.config.notify";
+      require "bombadil.config.notify"
     '';
   };
 
@@ -407,7 +407,7 @@ in rec {
   pqf = {
     package = plugins.nvim-pqf;
     config = ''
-      require "bombadil.config.pqf";
+      require "bombadil.config.pqf"
     '';
   };
 
@@ -429,14 +429,14 @@ in rec {
   scope = {
     package = plugins."scope.nvim";
     config = ''
-      require "bombadil.config.scope";
+      require "bombadil.config.scope"
     '';
   };
 
   surround = {
     package = plugins."surround.nvim";
     config = ''
-      require "bombadil.config.surround";
+      require "bombadil.config.surround"
     '';
   };
 
@@ -450,7 +450,7 @@ in rec {
   telescope = {
     package = plugins."telescope.nvim";
     config = ''
-      require "bombadil.config.telescope";
+      require "bombadil.config.telescope"
     '';
   };
 
@@ -485,7 +485,7 @@ in rec {
   telescope-worktree = {
     package = plugins."git-worktree.nvim";
     config = ''
-      require "bombadil.config.git-worktree";
+      require "bombadil.config.git-worktree"
     '';
   };
 
@@ -499,21 +499,21 @@ in rec {
   todo = {
     package = plugins."todo-comments.nvim";
     config = ''
-      require "bombadil.config.todo";
+      require "bombadil.config.todo"
     '';
   };
 
   toggleterm = {
     package = plugins."toggleterm.nvim";
     config = ''
-      require "bombadil.config.toggleterm";
+      require "bombadil.config.toggleterm"
     '';
   };
 
   treesitter = {
     package = pkgs.nvim-treesitter;
     config = ''
-      require "bombadil.config.treesitter";
+      require "bombadil.config.treesitter"
     '';
   };
 

@@ -5,13 +5,13 @@
 }:
 buildPythonPackage rec {
   pname = "rope";
-  version = "1.0.0";
+  version = "1.1.1";
 
   src = fetchFromGitHub {
     owner = "python-rope";
     repo = "rope";
     rev = version;
-    hash = "sha256-fA2p+W6DVb0RQhO2uZs/kK67fFlc09odHnU0lWqTxrE=";
+    hash = "sha256-BwODbTJuiaV3h0HnNmqqs90WDzbRH6BHy8xArVwujfM=";
   };
 
   checkInputs = [pytestCheckHook];
@@ -19,5 +19,7 @@ buildPythonPackage rec {
   disabledTestPaths = [
     # AttributeError: Can't pickle local object 'DOATest.try_CVE_2014_3539_exploit.<locals>.attacker'
     "ropetest/doatest.py"
+    "ropetest/contrib/autoimporttest.py"
+    "ropetest/contrib/autoimport/utilstest.py"
   ];
 }

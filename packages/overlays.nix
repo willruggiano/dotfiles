@@ -28,9 +28,7 @@ in
     neovim-custom = final.neovim.overrideAttrs (attrs: {
       patches = attrs.patches ++ [./neovim/17446.diff];
     });
-    neovim-remote = prev.neovim-remote.overrideAttrs (_: {
-      doCheck = false;
-    });
+    neovim-remote = prev.callPackage ./neovim-remote {};
     nonicons = prev.callPackage ./nonicons {};
     nvidia-omniverse = prev.callPackage ./nvidia-omniverse {};
     nvim-treesitter = prev.callPackage ./nvim-treesitter {};
