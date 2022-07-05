@@ -35,6 +35,7 @@
 
   services.agenix.enable = true;
   services.awesome.enable = true;
+  services.clipcat.enable = true;
   services.dunst.enable = true;
   # services.email.enable = true;
   services.expressvpn.enable = true;
