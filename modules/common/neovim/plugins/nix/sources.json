@@ -179,6 +179,12 @@
         "rev": "aca84fd16ce129965d7c3c69de59f333d9da116c",
         "type": "git"
     },
+    "harpoon": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/ThePrimeagen/harpoon",
+        "rev": "d3d3d22b6207f46f8ca64946f4d781e975aec0fc",
+        "type": "git"
+    },
     "impatient.nvim": {
         "branch": "main",
         "repo": "git@github.com:lewis6991/impatient.nvim",

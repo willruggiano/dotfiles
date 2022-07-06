@@ -96,7 +96,7 @@ nnoremap("cl", [["_cl]])
 nnoremap("x", [["_x]])
 
 -- Jumplist as quickfix list
-nnoremap("<space><cr>", function()
+nnoremap("<leader>j", function()
   local jumplist = vim.fn.getjumplist()[1]
   local sorted_jumplist = {}
   for i = #jumplist, 1, -1 do

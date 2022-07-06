@@ -247,6 +247,13 @@ in rec {
     '';
   };
 
+  harpoon = {
+    package = plugins.harpoon;
+    config = ''
+      require "bombadil.config.harpoon"
+    '';
+  };
+
   impatient = {
     package = plugins."impatient.nvim";
   };

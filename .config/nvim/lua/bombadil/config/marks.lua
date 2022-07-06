@@ -4,10 +4,6 @@ require("marks").setup {}
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
-nnoremap("<leader>bl", function()
-  execute "BookmarksListAll"
-end, { desc = "Bookmarks" })
-
 nnoremap("<leader>mb", function()
   execute "MarksListBuf"
 end, { desc = "Buffer marks" })
