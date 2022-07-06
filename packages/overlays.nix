@@ -36,15 +36,13 @@ in
     pass-extension-meta = prev.callPackage ./pass-meta {};
     python3 = prev.python3.override {
       packageOverrides = python-final: python-prev: rec {
-        pre-commit-hooks = python-prev.pre-commit-hooks.override (_: {
-          propagatedBuildInputs = with python-prev; [ruamel-yaml tomli];
-        });
-        pylsp-rope = prev.callPackage ./python-lsp-server/pylsp-rope.nix {
+        pre-commit-hooks = prev.callPackage ./pythonPackages/pre-commit-hooks.nix {};
+        pylsp-rope = prev.callPackage ./pythonPackages/python-lsp-server/pylsp-rope.nix {
           inherit (python-prev) buildPythonPackage pythonOlder pytestCheckHook mock;
           inherit (python-final) python-lsp-server rope;
         };
-        python-lsp-server = prev.callPackage ./python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi setuptools-scm;};
-        rope = prev.callPackage ./python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
+        python-lsp-server = prev.callPackage ./pythonPackages/python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi setuptools-scm;};
+        rope = prev.callPackage ./pythonPackages/python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
       };
     };
     src-cli = prev.callPackage ./sourcegraph {};

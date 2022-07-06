@@ -11,7 +11,8 @@ gears.timer {
   callback = function()
     awful.spawn.easy_async_with_shell("acpitool -b", function(stdout, _, _, exit_code)
       if exit_code == 0 then
-        widget:set_text(string.match(stdout, "(%d*.%d*%%)"))
+        local text = string.match(stdout, "(%d*.%d*%%)") or "100%"
+        widget:set_text(text)
       end
     end)
   end,
