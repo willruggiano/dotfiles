@@ -156,7 +156,7 @@
           pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
             src = ./.;
             hooks = let
-              pre-commit-hooks = "${pkgs.python3Packages.pre-commit-hooks}/bin";
+              pre-commit-hooks = "${pkgs.pre-commit-hooks}/bin";
             in {
               alejandra.enable = true;
               check-executables-have-shebangs = {

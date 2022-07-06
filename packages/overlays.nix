@@ -34,9 +34,9 @@ in
     nvim-treesitter = prev.callPackage ./nvim-treesitter {};
     pass-extension-clip = prev.callPackage ./pass-clip {};
     pass-extension-meta = prev.callPackage ./pass-meta {};
+    pre-commit-hooks = prev.callPackage ./pythonPackages/pre-commit-hooks.nix {inherit (prev.python3.pkgs) buildPythonPackage pytestCheckHook pythonOlder ruamel-yaml tomli;};
     python3 = prev.python3.override {
       packageOverrides = python-final: python-prev: rec {
-        pre-commit-hooks = prev.callPackage ./pythonPackages/pre-commit-hooks.nix {};
         pylsp-rope = prev.callPackage ./pythonPackages/python-lsp-server/pylsp-rope.nix {
           inherit (python-prev) buildPythonPackage pythonOlder pytestCheckHook mock;
           inherit (python-final) python-lsp-server rope;
