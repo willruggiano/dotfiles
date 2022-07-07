@@ -234,9 +234,7 @@ local null_ls = require "null-ls"
 local custom_sources = require "bombadil.lsp.null-ls"
 null_ls.setup {
   debug = true,
-
   on_attach = on_attach,
-
   sources = {
     -- Formatting
     -- null_ls.builtins.formatting.clang_format, -- via clangd
@@ -276,15 +274,6 @@ null_ls.register {
   null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
 }
 
--- local function disable_formatting(capabilities)
---   return vim.tbl_deep_extend("force", capabilities, {
---     textDocument = {
---       formatting = false,
---       rangeFormatting = false,
---     },
---   })
--- end
-
 require("clangd_extensions").setup {
   server = {
     cmd = vim.list_extend(lsp_cmds.clangd, {
@@ -294,10 +283,13 @@ require("clangd_extensions").setup {
     }),
     on_init = function(client)
       on_init(client)
-      require("clang-format").setup(function(config)
-        vim.bo.shiftwidth = config.IndentWidth
-        vim.bo.textwidth = config.ColumnLimit
-      end)
+      require("clang-format").setup {
+        exe = lsp_cmds["clang-format"][1],
+        on_attach = function(config)
+          vim.bo.shiftwidth = config.IndentWidth
+          vim.bo.textwidth = config.ColumnLimit
+        end,
+      }
     end,
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
