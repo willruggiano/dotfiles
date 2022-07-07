@@ -12,7 +12,9 @@ in {
 
     home.configFile = let
       plugins = import ./plugins {inherit lib pkgs;};
-      inherit (pkgs.vimUtils) buildVimPluginFrom2Nix;
+      inherit (pkgs.vimUtils) buildVimPluginFrom2Nix toVimPlugin;
+      inherit (pkgs.luajitPackages) luarocksMoveDataFolder;
+      lualib = pkgs.luajitPackages.lib;
 
       mkPlugin = name: p:
         buildVimPluginFrom2Nix ({
@@ -20,14 +22,32 @@ in {
           src = p.package;
         }
         // (p.override or {}));
+      buildNeovimPlugin = originalLuaDrv: let
+        luaDrv = lualib.overrideLuarocks originalLuaDrv (drv: {
+          extraConfig = ''
+            lua_modules_path = "lua"
+          '';
+        });
+      in
+        toVimPlugin (luaDrv.overrideAttrs (oa: {
+          nativeBuildInputs = oa.nativeBuildInputs or [] ++ [luarocksMoveDataFolder];
+        }));
 
       # TODO: Find a better way to deal with rocks which have lua modules
       # It would be nice for *each* plugin to be its own little Lua env (via buildEnv)
       # and then only expose the lua bits from the primary package.
       # This would make it easy to specify rocks and additional dependencies, while also
       # keeping those guys hidden from the rest of the system. We'd really be creating little sandboxed envs for every plugin.
-      plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)] ++ (p.rocks or []);}) plugins;
+      plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)];}) plugins;
       rocks = flatten (mapAttrsToList (pname: p: p.rocks or []) plugins);
+      rocksL =
+        map (p: {
+          name = p.pname;
+          value = p;
+        })
+        rocks;
+      rocksA = listToAttrs rocksL;
+      rocks' = mapAttrs (_: p: {start = [(buildNeovimPlugin p)];}) rocksA;
     in {
       nvim = {
         source = ../../../.config/nvim;
@@ -51,7 +71,7 @@ in {
 
         runtimeEnv = pkgs.buildEnv {
           name = "neovim-runtime-env";
-          paths = with pkgs.vimUtils; [(packDir plugins')];
+          paths = with pkgs.vimUtils; [(packDir plugins') (packDir rocks')];
         };
 
         pythonEnv = pkgs.buildEnv {
@@ -130,7 +150,7 @@ in {
       "nvim/site/pack/nix/start/nix/lua/bombadil/generated/lsp.lua".text = with pkgs; let
         cppEnv = buildEnv {
           name = "neovim-cpp-env";
-          paths = [clang-tools cmake-language-server];
+          paths = [clang-tools_14 cmake-language-server];
         };
 
         luaEnv = buildEnv {
