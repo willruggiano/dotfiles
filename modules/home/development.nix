@@ -15,6 +15,7 @@ with lib; let
     "python"
     "qt"
     "shell"
+    "zigmod"
   ];
 
   suiteEnabled = name: (isList cfg.suites && elem name cfg.suites) || cfg.suites == "all";
@@ -60,6 +61,7 @@ in {
       ])
       (mkSuite "qt" [pkgs.qtcreator])
       (mkSuite "shell" [pkgs.shellcheck pkgs.shfmt])
+      (mkSuite "zig" [pkgs.zigmod])
       # Finally, some general tools which we always want:
       {
         home.packages = with pkgs; [

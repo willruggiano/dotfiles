@@ -91,6 +91,9 @@
     yaml = {
       owner = "ikatyang";
     };
+    zig = {
+      owner = "maxxnino";
+    };
   };
 
   lockfile = lib.importJSON "${src}/lockfile.json";

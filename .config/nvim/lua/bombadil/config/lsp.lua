@@ -326,6 +326,13 @@ lspconfig.pylsp.setup {
   },
 }
 
+lspconfig.rnix.setup {
+  cmd = lsp_cmds.rnix,
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = updated_capabilities,
+}
+
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   lspconfig = {
     cmd = lsp_cmds.sumneko,
@@ -344,9 +351,8 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   },
 })
 
-lspconfig.rnix.setup {
-  cmd = lsp_cmds.rnix,
+lspconfig.zls.setup {
+  cmd = lsp_cmds.zls,
   on_init = on_init,
   on_attach = on_attach,
-  capabilities = updated_capabilities,
 }
