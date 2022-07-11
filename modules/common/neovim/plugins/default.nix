@@ -189,12 +189,12 @@ in rec {
     package = plugins."fidget.nvim";
   };
 
-  filetype = {
-    package = plugins."filetype.nvim";
-    config = ''
-      require "bombadil.config.filetype"
-    '';
-  };
+  # filetype = {
+  #   package = plugins."filetype.nvim";
+  #   config = ''
+  #     require "bombadil.config.filetype"
+  #   '';
+  # };
 
   firenvim = {
     package = pkgs.firenvim.plugin;

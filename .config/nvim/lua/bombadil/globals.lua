@@ -5,7 +5,6 @@ P = lib.pinspect
 RELOAD = lib.reload
 R = lib.rreload
 
--- Leader key -> ","
 vim.g.mapleader = ","
 
 -- Disable builtins
@@ -29,4 +28,5 @@ vim.g.loaded_zipPlugin = true
 
 vim.g.no_gitrebase_maps = true
 
-vim.g.did_load_filetypes = true
+-- Use Lua filetype detection
+vim.g.do_filetype_lua = true
