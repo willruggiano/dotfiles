@@ -17,5 +17,7 @@ with python3.pkgs;
 
     propagatedBuildInputs = [pynvim psutil setuptools];
 
-    doCheck = false;
+    preBuild = ''
+      export HOME=$TMPDIR
+    '';
   }
