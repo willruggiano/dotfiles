@@ -22,11 +22,11 @@ local common_dirs = {
   ["~/src"] = "src",
   ["~/workspaces"] = "work",
 }
-local frecency_workspaces = {}
 local project_dirs = {}
-for dir, abbr in pairs(common_dirs) do
+for dir, _ in pairs(common_dirs) do
+  ---@diagnostic disable-next-line: missing-parameter
+  dir = vim.fn.expand(dir)
   if vim.fn.isdirectory(dir) == 1 then
-    frecency_workspaces[abbr] = vim.fn.expand(dir)
     table.insert(project_dirs, dir)
   end
 end

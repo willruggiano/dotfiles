@@ -12,17 +12,19 @@ in {
 
     home.configFile = let
       plugins = import ./plugins {inherit lib pkgs;};
-      inherit (pkgs.vimUtils) buildVimPluginFrom2Nix toVimPlugin;
-      inherit (pkgs.luajitPackages) luarocksMoveDataFolder;
-      lualib = pkgs.luajitPackages.lib;
 
+      inherit (pkgs.vimUtils) buildVimPluginFrom2Nix;
       mkPlugin = name: p:
         buildVimPluginFrom2Nix ({
           inherit name;
           src = p.package;
         }
         // (p.override or {}));
-      buildNeovimPlugin = originalLuaDrv: let
+
+      inherit (pkgs.vimUtils) toVimPlugin;
+      inherit (pkgs.luajitPackages) luarocksMoveDataFolder;
+      lualib = pkgs.luajitPackages.lib;
+      buildLuarocksPlugin = originalLuaDrv: let
         luaDrv = lualib.overrideLuarocks originalLuaDrv (drv: {
           extraConfig = ''
             lua_modules_path = "lua"
@@ -33,21 +35,22 @@ in {
           nativeBuildInputs = oa.nativeBuildInputs or [] ++ [luarocksMoveDataFolder];
         }));
 
-      # TODO: Find a better way to deal with rocks which have lua modules
-      # It would be nice for *each* plugin to be its own little Lua env (via buildEnv)
+      # TODO: It would be nice for *each* plugin to be its own little Lua env (via buildEnv)
       # and then only expose the lua bits from the primary package.
       # This would make it easy to specify rocks and additional dependencies, while also
       # keeping those guys hidden from the rest of the system. We'd really be creating little sandboxed envs for every plugin.
       plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)];}) plugins;
       rocks = flatten (mapAttrsToList (pname: p: p.rocks or []) plugins);
-      rocksL =
-        map (p: {
-          name = p.pname;
-          value = p;
-        })
-        rocks;
-      rocksA = listToAttrs rocksL;
-      rocks' = mapAttrs (_: p: {start = [(buildNeovimPlugin p)];}) rocksA;
+      rocks' =
+        mapAttrs (_: p: {start = [(buildLuarocksPlugin p)];})
+        (listToAttrs (
+          map (p: {
+            name = p.pname;
+            value = p;
+          })
+          rocks
+        ));
+      # rocks' = mapAttrs (_: p: {start = [(buildLuarocksPlugin p)];}) rocksA;
     in {
       nvim = {
         source = ../../../.config/nvim;
