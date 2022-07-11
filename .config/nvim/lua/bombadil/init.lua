@@ -3,8 +3,14 @@ if vim.g.debug_options then
   require "bombadil.meta.options"
 end
 
--- Setup globals that I expect to always be available
 require "bombadil.globals"
+require "bombadil.stdlib"
 
--- Source local configuration via .nvimrc.lua
+require "bombadil.options"
+require "bombadil.abbreviations"
+require "bombadil.autocommands"
+require "bombadil.commands"
+require "bombadil.keymaps"
+require "bombadil.override"
+
 require("bombadil.localrc").load()
