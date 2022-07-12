@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./audio.nix
     ./hardware-configuration.nix
     ./i18n.nix
     ./networking.nix

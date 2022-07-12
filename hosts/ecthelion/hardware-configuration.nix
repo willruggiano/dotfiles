@@ -42,7 +42,6 @@
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-  hardware.pulseaudio.enable = true;
 
   services.xserver.videoDrivers = ["nvidia"];
 }
