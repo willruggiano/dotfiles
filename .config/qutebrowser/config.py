@@ -41,6 +41,7 @@ c.url.searchengines.update({
     'google': 'https://google.com/search?q={}',
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
     'pypi': 'https://pypi.org/project/{}',
+    'sourcegraph': 'https://sourcegraph.com/search?q=context:global+{}&patternType=literal',
 })
 c.url.searchengines['DEFAULT'] = c.url.searchengines['duckduckgo']
 
