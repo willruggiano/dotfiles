@@ -548,7 +548,7 @@
     "toggleterm.nvim": {
         "branch": "main",
         "repo": "git@github.com:akinsho/toggleterm.nvim",
-        "rev": "dca8f4d9516270cb41c147ed692f3ee420c5e515",
+        "rev": "8e6f938ed8eec7f988dc07aec2af148ad57c6d95",
         "type": "git"
     },
     "treesitter-unit": {
