@@ -1,3 +1,9 @@
+---Captures the output of a program.
+---@param cmd string the command to run
+---@param raw boolean if true, command output will be returned as is, else beginning/trailing spaces
+--and newlines will be removed
+---@return string
+---@see io.popen
 os.capture = function(cmd, raw)
   local f = assert(io.popen(cmd, "r"))
   local s = assert(f:read "*a")
@@ -11,18 +17,31 @@ os.capture = function(cmd, raw)
   return s
 end
 
+---Checks if a string contains the given substring.
+---@param sub string
+---@return boolean
 function string:contains(sub)
   return self:find(sub, 1, true) ~= nil
 end
 
+---Checks if a string starts with the given string.
+---@param start string
+---@return boolean
 function string:startswith(start)
   return self:sub(1, #start) == start
 end
 
+---Checks if a string ends with the given string.
+---@param ending string
+---@return boolean
 function string:endswith(ending)
   return ending == "" or self:sub(-#ending) == ending
 end
 
+---Replaces all instances of substring with a new substring.
+---@param old string the substring to be replaced
+---@param new string the substring to replace with
+---@return string
 function string:replace(old, new)
   local s = self
   local search_start_idx = 1
@@ -40,6 +59,10 @@ function string:replace(old, new)
   return s
 end
 
+---Inserts a string at a specific position.
+---@param pos number
+---@param text string
+---@return string
 function string:insert(pos, text)
   return self:sub(1, pos - 1) .. text .. self:sub(pos)
 end

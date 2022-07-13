@@ -12,5 +12,6 @@ local lazygit = Terminal:new {
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 nnoremap("<space>g", function()
+  ---@diagnostic disable-next-line: missing-parameter
   lazygit:toggle()
 end, { desc = "Lazygit" })

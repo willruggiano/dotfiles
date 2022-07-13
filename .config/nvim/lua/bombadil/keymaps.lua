@@ -70,6 +70,10 @@ nnoremap("<c-k>", "<c-w><c-k>")
 nnoremap("<c-h>", "<c-w><c-h>")
 nnoremap("<c-l>", "<c-w><c-l>")
 
+-- Better buffer navigation
+nnoremap("<tab>", "<cmd>:bnext<cr>", { desc = ":bnext" })
+nnoremap("<s-tab>", "<cmd>:bprev<cr>", { desc = ":bprev" })
+
 -- Better window resize
 nnoremap("+", "<c-w>+")
 nnoremap("_", "<c-w>-")

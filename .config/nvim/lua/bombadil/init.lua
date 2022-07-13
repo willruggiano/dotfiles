@@ -10,6 +10,7 @@ require "bombadil.options"
 require "bombadil.abbreviations"
 require "bombadil.autocommands"
 require "bombadil.commands"
+require "bombadil.filetype"
 require "bombadil.keymaps"
 require "bombadil.override"
 

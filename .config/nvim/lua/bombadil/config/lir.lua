@@ -76,22 +76,17 @@ custom_actions.edit = function()
       return
     end
   end
+  ---@diagnostic disable-next-line: missing-parameter
   actions.edit()
 end
 
 local fsize = function(bytes)
-  -- TODO: Human-readable
-  return bytes .. "b"
+  return require("bombadil.lib.bytes").human_readable(bytes)
 end
 
 local username = function(uid)
-  local p = io.popen(string.format("id -un %s", uid), "r")
-  local s = p:read "*a"
-  p:close()
-  s = string.gsub(s, "^%s+", "")
-  s = string.gsub(s, "%s+$", "")
-  s = string.gsub(s, "[\n\r]+", " ")
-  return s
+  ---@diagnostic disable-next-line: missing-parameter
+  return os.capture(string.format("id -un %s", uid))
 end
 
 local strftime = function(dt)
@@ -137,11 +132,13 @@ custom_actions.yank_path = function()
 end
 
 custom_actions.toggle_mark_down = function()
+  ---@diagnostic disable-next-line: missing-parameter
   mark_actions.toggle_mark()
   vim.cmd "normal! j"
 end
 
 custom_actions.toggle_mark_up = function()
+  ---@diagnostic disable-next-line: missing-parameter
   mark_actions.toggle_mark()
   vim.cmd "normal! k"
 end
@@ -311,6 +308,7 @@ local special = {
 }
 
 local explore = function()
+  ---@diagnostic disable-next-line: missing-parameter
   local fname = vim.fn.expand "%"
   if buffers.nameless(0) or special[fname] then
     vim.cmd "e ."
