@@ -46,6 +46,7 @@ cmp.setup {
       end,
     },
     ["<C-space>"] = cmp.mapping {
+      ---@diagnostic disable-next-line: missing-parameter
       i = cmp.mapping.complete(),
     },
     ["<C-n>"] = function(_)

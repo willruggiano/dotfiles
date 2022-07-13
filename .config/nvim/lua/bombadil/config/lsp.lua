@@ -66,11 +66,23 @@ end
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local vnoremap = require("bombadil.lib.keymap").vnoremap
 
+local disable_lsp_formatting = {
+  "clangd",
+  "cmake",
+  "rnix",
+  "sumneko_lua",
+}
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+  if vim.tbl_contains(disable_lsp_formatting, client.name) then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end
 
   local mappings = {
     ["]d"] = {
@@ -89,19 +101,14 @@ local on_attach = function(_, bufnr)
     },
     ["<leader>f"] = {
       function()
-        local disabled_clients = {
-          cmake = true,
-          rnix = true,
-          sumneko_lua = true,
-        }
         vim.lsp.buf.format {
           async = true,
-          filter = function(client)
-            if disabled_clients[client.name] then
-              return false
-            end
-            return true
-          end,
+          -- filter = function(client)
+          --   if vim.tbl_contains(disabled_formatting_for, client.name) then
+          --     return false
+          --   end
+          --   return true
+          -- end,
         }
       end,
       { buffer = bufnr, desc = "Format" },
@@ -198,7 +205,10 @@ local on_attach = function(_, bufnr)
       { buffer = bufnr, desc = "Code actions" },
     },
     ["<leader>f"] = {
-      vim.lsp.buf.range_formatting,
+      function()
+        ---@diagnostic disable-next-line: missing-parameter
+        vim.lsp.buf.range_formatting()
+      end,
       { buffer = bufnr, desc = "Format" },
     },
   }
@@ -209,6 +219,7 @@ local on_attach = function(_, bufnr)
 end
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 updated_capabilities.textDocument.codeLens = {
   dynamicRegistration = false,
 }
@@ -237,7 +248,10 @@ null_ls.setup {
   on_attach = on_attach,
   sources = {
     -- Formatting
-    -- null_ls.builtins.formatting.clang_format, -- via clangd
+    null_ls.builtins.formatting.clang_format.with {
+      command = lsp_cmds["clang-format"],
+      extra_args = { "--style=file" },
+    },
     null_ls.builtins.formatting.cmake_format,
     -- null_ls.builtins.formatting.isort, -- via pylsp
     null_ls.builtins.formatting.alejandra,
@@ -270,8 +284,26 @@ null_ls.setup {
 }
 
 null_ls.register {
-  null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "cpp" }, extra_args = { "--language", "cpp" } },
-  null_ls.builtins.diagnostics.cppcheck.with { filetypes = { "c" }, extra_args = { "--language", "c" } },
+  null_ls.builtins.diagnostics.cppcheck.with {
+    filetypes = { "cpp" },
+    command = lsp_cmds.cppcheck,
+    args = {
+      "--enable=warning,style,performance,portability",
+      "--language=cpp",
+      "--template=gcc",
+      "$FILENAME",
+    },
+  },
+  null_ls.builtins.diagnostics.cppcheck.with {
+    filetypes = { "c" },
+    command = lsp_cmds.cppcheck,
+    args = {
+      "--enable=warning,style,performance,portability",
+      "--language=c",
+      "--template=gcc",
+      "$FILENAME",
+    },
+  },
 }
 
 require("clangd_extensions").setup {
@@ -284,7 +316,7 @@ require("clangd_extensions").setup {
     on_init = function(client)
       on_init(client)
       require("clang-format").setup {
-        exe = lsp_cmds["clang-format"][1],
+        exe = lsp_cmds["clang-format"],
         on_attach = function(config)
           vim.bo.shiftwidth = config.IndentWidth
           vim.bo.textwidth = config.ColumnLimit
