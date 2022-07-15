@@ -1,5 +1,23 @@
 local config = require "kommentary.config"
 
+config.configure_language("cpp", {
+  prefer_single_line_comments = true,
+})
+
+config.configure_language("lua", {
+  prefer_single_line_comments = true,
+})
+
+config.configure_language("nix", {
+  single_line_comment_string = "#",
+  prefer_single_line_comments = true,
+})
+
+config.configure_language("zig", {
+  prefer_single_line_comments = true,
+  single_line_comment_string = "//",
+})
+
 config.use_extended_mappings()
 
 -- This function will be called automatically by the mapping, the first argument will be the line that is being operated on.
