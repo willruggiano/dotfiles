@@ -95,6 +95,24 @@
         "rev": "b10829736542e7cc9291e60bab134df1273165c9",
         "type": "git"
     },
+    "coq.artifacts": {
+        "branch": "artifacts",
+        "repo": "ssh://git@github.com/ms-jpq/coq.artifacts",
+        "rev": "ebfa29392b16ee616e78906911852d5bba01840c",
+        "type": "git"
+    },
+    "coq.thirdparty": {
+        "branch": "3p",
+        "repo": "ssh://git@github.com/ms-jpq/coq.thirdparty",
+        "rev": "b4daab72e3fab730e3827c942bb11c34bb6a4312",
+        "type": "git"
+    },
+    "coq_nvim": {
+        "branch": "coq",
+        "repo": "ssh://git@github.com/ms-jpq/coq_nvim",
+        "rev": "8ef99e8101d4c03556d38734c36edf6528b74c69",
+        "type": "git"
+    },
     "cpsm": {
         "branch": "master",
         "repo": "git@github.com:nixprime/cpsm",

@@ -57,55 +57,70 @@ in rec {
     package = plugins."clangd_extensions.nvim";
   };
 
-  cmp = {
-    package = plugins.nvim-cmp;
-    config = ''
-      require "bombadil.config.cmp"
-    '';
-  };
+  # cmp = {
+  #   package = plugins.nvim-cmp;
+  #   config = ''
+  #     require "bombadil.config.cmp"
+  #   '';
+  # };
 
-  cmp-buffer = {
-    package = plugins.cmp-buffer;
-  };
+  # cmp-buffer = {
+  #   package = plugins.cmp-buffer;
+  # };
 
-  cmp-cmdline = {
-    package = plugins.cmp-cmdline;
-  };
+  # cmp-cmdline = {
+  #   package = plugins.cmp-cmdline;
+  # };
 
-  cmp-fuzzy-path = {
-    package = plugins.cmp-fuzzy-path;
-  };
+  # cmp-fuzzy-path = {
+  #   package = plugins.cmp-fuzzy-path;
+  # };
 
-  cmp-git = {
-    package = plugins.cmp-git;
-  };
+  # cmp-git = {
+  #   package = plugins.cmp-git;
+  # };
 
-  cmp-nvim-lsp = {
-    package = plugins.cmp-nvim-lsp;
-  };
+  # cmp-nvim-lsp = {
+  #   package = plugins.cmp-nvim-lsp;
+  # };
 
-  cmp-nvim-lsp-signature-help = {
-    package = plugins.cmp-nvim-lsp-signature-help;
-  };
+  # cmp-nvim-lsp-signature-help = {
+  #   package = plugins.cmp-nvim-lsp-signature-help;
+  # };
 
-  cmp-nvim-lua = {
-    package = plugins.cmp-nvim-lua;
-  };
+  # cmp-nvim-lua = {
+  #   package = plugins.cmp-nvim-lua;
+  # };
 
-  cmp-path = {
-    package = plugins.cmp-path;
-  };
+  # cmp-path = {
+  #   package = plugins.cmp-path;
+  # };
 
-  cmp-snippy = {
-    package = plugins.cmp-snippy;
-  };
+  # cmp-snippy = {
+  #   package = plugins.cmp-snippy;
+  # };
 
-  cmp-under-comparator = {
-    package = plugins.cmp-under-comparator;
-  };
+  # cmp-under-comparator = {
+  #   package = plugins.cmp-under-comparator;
+  # };
 
   colorizer = {
     package = plugins."nvim-colorizer.lua";
+  };
+
+  coq = {
+    package = plugins.coq_nvim;
+    config = ''
+      require "bombadil.config.coq"
+    '';
+  };
+
+  coq-artifacts = {
+    package = plugins."coq.artifacts";
+  };
+
+  coq-3p = {
+    package = plugins."coq.thirdparty";
   };
 
   cpsm = {
@@ -188,20 +203,9 @@ in rec {
     '';
   };
 
-  eunuch = {
-    package = plugins.vim-eunuch;
-  };
-
   fidget = {
     package = plugins."fidget.nvim";
   };
-
-  # filetype = {
-  #   package = plugins."filetype.nvim";
-  #   config = ''
-  #     require "bombadil.config.filetype"
-  #   '';
-  # };
 
   firenvim = {
     package = pkgs.firenvim.plugin;

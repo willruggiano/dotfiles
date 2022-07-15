@@ -228,7 +228,6 @@ if has_coq then
   updated_capabilities = coq.lsp_ensure_capabilities(updated_capabilities)
 end
 
-updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 updated_capabilities.textDocument.codeLens = {
   dynamicRegistration = false,
 }

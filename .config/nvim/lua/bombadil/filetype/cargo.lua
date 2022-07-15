@@ -20,7 +20,9 @@ return function(bufnr)
       CargoOpenDocs = crates.open_documentation,
     }
     for k, v in pairs(commands) do
-      vim.api.nvim_buf_create_user_command(bufnr, k, v)
+      vim.api.nvim_buf_create_user_command(bufnr, k, v, {})
     end
+
+    vim.keymap.set("n", "K", crates.show_popup, { buffer = bufnr })
   end
 end
