@@ -1,4 +1,5 @@
 if pcall(require, "cmp") then
+  error "[setup] both nvim-cmp and coq.nvim are installed"
   return
 end
 

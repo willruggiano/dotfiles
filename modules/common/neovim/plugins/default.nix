@@ -120,6 +120,13 @@ in rec {
     };
   };
 
+  crates = {
+    package = plugins."crates.nvim";
+    config = ''
+      require "bombadil.config.crates"
+    '';
+  };
+
   cursorhold = {
     package = plugins."fixcursorhold.nvim";
   };
@@ -423,6 +430,10 @@ in rec {
 
   repeat = {
     package = plugins.vim-repeat;
+  };
+
+  rust-tools = {
+    package = plugins."rust-tools.nvim";
   };
 
   satellite = {

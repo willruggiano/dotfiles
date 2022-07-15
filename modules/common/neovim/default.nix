@@ -173,6 +173,11 @@ in {
           ];
         };
 
+        rustEnv = buildEnv {
+          name = "neovim-rust-env";
+          paths = [rust-analyzer rustfmt];
+        };
+
         zigEnv = buildEnv {
           name = "neovim-zig-env";
           paths = with pkgs; [zls];
@@ -186,6 +191,8 @@ in {
           ''local cppcheck = "${cppEnv}/bin/cppcheck"''
           ''local luacheck = { "${luaEnv}/bin/luacheck" }''
           ''local rnix = { "${nixEnv}/bin/rnix-lsp" }''
+          ''local rust_analyzer = { "${rustEnv}/bin/rust-analyzer" }''
+          ''local rustfmt = { "${rustEnv}/bin/rustfmt" }''
           ''local pylsp = { "${pythonEnv}/bin/pylsp" }''
           ''local zls = { "${zigEnv}/bin/zls" }''
         ]
@@ -208,6 +215,8 @@ in {
               luacheck = luacheck,
               pylsp = pylsp,
               rnix = rnix,
+              ["rust-analyzer"] = rust_analyzer,
+              rustfmt = rustfmt,
               sumneko = sumneko,
               zls = zls,
             }

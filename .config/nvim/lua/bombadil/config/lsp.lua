@@ -219,6 +219,15 @@ local on_attach = function(client, bufnr)
 end
 
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
+local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
+if has_cmp then
+  updated_capabilities = cmp.update_capabilities(updated_capabilities)
+end
+local has_coq, coq = pcall(require, "coq")
+if has_coq then
+  updated_capabilities = coq.lsp_ensure_capabilities(updated_capabilities)
+end
+
 updated_capabilities = require("cmp_nvim_lsp").update_capabilities(updated_capabilities)
 updated_capabilities.textDocument.codeLens = {
   dynamicRegistration = false,
@@ -363,6 +372,30 @@ lspconfig.rnix.setup {
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
+}
+
+require("rust-tools").setup {
+  server = {
+    cmd = lsp_cmds["rust-analyzer"],
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = updated_capabilities,
+
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importGranularity = "module",
+          importPrefix = "by_self",
+        },
+        cargo = {
+          loadOutDirsFromCheck = true,
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    },
+  },
 }
 
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {

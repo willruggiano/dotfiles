@@ -4,5 +4,8 @@ vim.filetype.add {
   },
   filename = {
     [".clang-format"] = "yaml",
+    ["Cargo.toml"] = function()
+      return "toml", require "bombadil.filetype.cargo"
+    end,
   },
 }
