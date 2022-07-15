@@ -1,6 +1,11 @@
-local opts = {}
+local opts = {
+  null_ls = {
+    enabled = true,
+    name = "crates",
+  },
+}
 
-local has_coq, coq = pcall(require, "coq")
+local has_coq, _ = pcall(require, "coq")
 if has_coq then
   opts = vim.tbl_deep_extend("force", opts, {
     src = {
