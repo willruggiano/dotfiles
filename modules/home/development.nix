@@ -15,7 +15,7 @@ with lib; let
     "python"
     "qt"
     "shell"
-    "zigmod"
+    "zig"
   ];
 
   suiteEnabled = name: (isList cfg.suites && elem name cfg.suites) || cfg.suites == "all";
@@ -66,6 +66,7 @@ in {
       {
         home.packages = with pkgs; [
           codespell
+          hyperfine
         ];
       }
     ]);
