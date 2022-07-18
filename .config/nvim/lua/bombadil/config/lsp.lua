@@ -40,6 +40,7 @@ local diagnostic_config = {
 }
 
 if has_lsp_lines then
+  ---@diagnostic disable-next-line: cast-local-type
   diagnostic_config = vim.tbl_extend("force", diagnostic_config, {
     virtual_lines = true,
     virtual_text = false,
@@ -225,8 +226,10 @@ if has_cmp then
 end
 local has_coq, coq = pcall(require, "coq")
 if has_coq then
+  ---@diagnostic disable-next-line: cast-local-type
   updated_capabilities = coq.lsp_ensure_capabilities(updated_capabilities)
 end
+assert(updated_capabilities)
 
 updated_capabilities.textDocument.codeLens = {
   dynamicRegistration = false,
