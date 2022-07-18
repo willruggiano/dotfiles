@@ -148,8 +148,13 @@
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
-        apps.update-treesitter-parsers = utils.lib.mkApp {
-          drv = pkgs.nvim-treesitter.update-grammars;
+        apps = {
+          update-docsets = utils.lib.mkApp {
+            drv = pkgs.docsets.update-docsets;
+          };
+          update-treesitter-parsers = utils.lib.mkApp {
+            drv = pkgs.nvim-treesitter.update-grammars;
+          };
         };
 
         checks = {

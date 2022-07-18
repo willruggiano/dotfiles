@@ -195,8 +195,8 @@ in rec {
   };
 
   docker-ui = {
-    package = pkgs.empty;
-    # package = pkgs."docker-ui-nvim";
+    # package = pkgs.empty;
+    package = pkgs."docker-ui-nvim";
     rocks = [lua-date];
     config = ''
       require "bombadil.config.docker-ui"
