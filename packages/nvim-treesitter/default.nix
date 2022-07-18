@@ -5,14 +5,13 @@
   nix-prefetch-git,
   stdenv,
   tree-sitter,
-  writeShellScriptBin,
-  writeTextFile,
+  writeShellApplication,
 }: let
   src = fetchFromGitHub {
     owner = "nvim-treesitter";
     repo = "nvim-treesitter";
-    rev = "3dea0bbf71438d2d5a79de0145b509dfb16525a5";
-    hash = "sha256-/1Y8/q1EWj6SJrcTia5t9ZqCL6i+obOTMG40ocjGkCE=";
+    rev = "8b748a7570b89822d47ac0ed0f694efda6523c7d";
+    hash = "sha256-F9h/uEp+9R4Ft/2KRmPdzC4en/Cms/soj7OgnMCviCA=";
   };
 
   # The grammars we care about:
@@ -62,6 +61,12 @@
     };
     markdown = {
       owner = "MDeiml";
+      sourceRoot = "tree-sitter-markdown";
+    };
+    markdown_inline = {
+      owner = "MDeiml";
+      repo = "tree-sitter-markdown";
+      sourceRoot = "tree-sitter-markdown-inline";
     };
     nix = {
       owner = "cstrahan";
@@ -123,61 +128,70 @@
     lib.concatMapStringsSep "\n" f
     (lib.mapAttrsToList (k: v: {name = k;} // v) attrs);
 
-  update-grammars = writeShellScriptBin "update-grammars.sh" ''
-    set -euo pipefail
-    out="''${1:-/etc/nixos}/packages/nvim-treesitter/grammars"
-    mkdir -p "$out"
-    ${
-      foreachSh allGrammars ({
-        name,
-        url,
-        rev,
-        ...
-      }: ''
-        echo "Updating treesitter parser for ${name}"
-        ${nix-prefetch-git}/bin/nix-prefetch-git \
-          --quiet \
-          --no-deepClone \
-          --url "${url}" \
-          --rev "${rev}" > $out/${name}.json'')
-    }
-  '';
+  update-grammars = writeShellApplication {
+    name = "update-grammars.sh";
+    runtimeInputs = [nix-prefetch-git];
+    text = ''
+      out="''${1:-/etc/nixos}/packages/nvim-treesitter/grammars"
+      mkdir -p "$out"
+      ${
+        foreachSh allGrammars ({
+          name,
+          url,
+          rev,
+          ...
+        }: ''
+          echo "Updating treesitter parser for ${name}"
+          ${nix-prefetch-git}/bin/nix-prefetch-git \
+            --quiet \
+            --no-deepClone \
+            --url "${url}" \
+            --rev "${rev}" > "$out"/${name}.json'')
+      }
+    '';
+  };
 
-  treesitterGrammars = map (name:
+  treesitterGrammars = lib.mapAttrsToList (name: attrs:
     stdenv.mkDerivation {
       name = "tree-sitter-${name}-grammar";
       src = let
-        src = lib.importJSON "${toString ./.}/grammars/${name}.json";
+        src' = lib.importJSON "${toString ./.}/grammars/${name}.json";
       in
         fetchgit {
-          inherit (src) url rev sha256;
+          inherit (src') url rev sha256;
         };
 
       buildInputs = [tree-sitter];
 
-      dontUnpack = true;
+      CFLAGS = ["-Isrc" "-O2"];
+      CXXFLAGS = ["-Isrc" "-O2"];
+
       dontConfigure = true;
 
-      CFLAGS = ["-I${src}/src" "-O2"];
-      CXXFLAGS = ["-I${src}/src" "-O2"];
-
-      buildPhase = ''
-        runHook preBuild
-        if [[ -e "$src/src/scanner.cc" ]]; then
-              $CXX -c "$src/src/scanner.cc" -o scanner.o $CXXFLAGS
-        elif [[ -e "$src/src/scanner.c" ]]; then
-          $CC -c "$src/src/scanner.c" -o scanner.o $CFLAGS
-        fi
-        $CC -c "$src/src/parser.c" -o parser.o $CFLAGS
-        $CXX -shared -o parser *.o
-        runHook postBuild
-      '';
+      buildPhase = lib.concatStringsSep "\n" [
+        "runHook preBuild"
+        (
+          if attrs ? "sourceRoot"
+          then "cd ${attrs.sourceRoot}"
+          else ""
+        )
+        ''
+          if [[ -e "src/scanner.cc" ]]; then
+                $CXX -c "src/scanner.cc" -o scanner.o $CXXFLAGS
+          elif [[ -e "src/scanner.c" ]]; then
+            $CC -c "src/scanner.c" -o scanner.o $CFLAGS
+          fi
+          $CC -c "src/parser.c" -o parser.o $CFLAGS
+          $CXX -shared -o parser *.o
+          runHook postBuild
+        ''
+      ];
 
       installPhase = ''
         runHook preInstall
         mkdir -p $out/queries
         mv parser $out/
-        for f in $src/queries/**/*.scm; do
+        for f in queries/**/*.scm; do
           cp $f $out/queries/$(basename $f)
         done
         runHook postInstall
@@ -190,30 +204,25 @@
       '';
 
       passthru.parserName = name;
-    }) (builtins.attrNames grammars);
+    })
+  grammars;
 in
   stdenv.mkDerivation {
     name = "nvim-treesitter";
 
     inherit src;
 
-    installPhase = let
-      knownGrammarsJson = writeTextFile {
-        name = "known-grammars.json";
-        text = builtins.toJSON allGrammars;
-      };
-    in
-      lib.concatStringsSep "\n" (lib.lists.flatten ([
-        "mkdir $out"
-        "cp -r {autoload,doc,lua,parser-info,parser,plugin,queries} $out"
-      ]
-      ++ (map (drv: ''
-        cp ${drv}/parser $out/parser/${drv.parserName}.so
-        for f in ${drv}/queries/*.scm; do
-          cp $f $out/queries/${drv.parserName}/$(basename $f)
-        done
-      '')
-      treesitterGrammars)));
+    installPhase = lib.concatStringsSep "\n" (lib.lists.flatten ([
+      "mkdir $out"
+      "cp -r {autoload,doc,lua,parser-info,parser,plugin,queries} $out"
+    ]
+    ++ (map (drv: ''
+      cp ${drv}/parser $out/parser/${drv.parserName}.so
+      for f in ${drv}/queries/*.scm; do
+        cp $f $out/queries/${drv.parserName}/$(basename $f)
+      done
+    '')
+    treesitterGrammars)));
 
     dontFixup = true;
 
