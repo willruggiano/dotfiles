@@ -1,4 +1,3 @@
-# vim: ft=nix
 {
   config,
   lib,
