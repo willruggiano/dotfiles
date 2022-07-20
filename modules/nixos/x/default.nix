@@ -9,12 +9,12 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     services.xserver = {
-      layout = "programmers-dvorak";
+      layout = "dvp";
 
-      extraLayouts.programmers-dvorak = {
+      extraLayouts.dvp = {
         description = "Programmer's Dvorak";
         languages = ["eng"];
-        symbolsFile = ./xkb/symbols/programmers-dvorak;
+        symbolsFile = ./xkb/symbols/dvp;
       };
 
       libinput = {
