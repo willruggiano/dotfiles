@@ -151,9 +151,6 @@ local main_menu = awful.menu {
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- TODO: Show "fn" layer for new keyboard
--- mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t)
@@ -297,7 +294,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create the wibox
   s.wibox = awful.wibar { position = "top", screen = s }
 
-  local spacer = require "widgets.spacer"
+  local spacer = require "widgets.spacer"(3) -- N.B. Three spaces
 
   -- Add widgets to the wibox
   local left_layout = wibox.layout.fixed.horizontal()
@@ -325,7 +322,7 @@ awful.screen.connect_for_each_screen(function(s)
   right_layout:add(require "widgets.dpms")
   right_layout:add(spacer)
   right_layout:add(wibox.widget.textclock())
-  right_layout:add(spacer)
+  right_layout:add(require "widgets.spacer"(1)) -- N.B. One space
   right_layout:add(require "widgets.keyboard-layout")
 
   s.wibox:setup {
@@ -585,21 +582,9 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA", -- Firefox addon DownThemAll.
-        "copyq", -- Includes session name in class.
         "pinentry",
       },
       class = {
-        "Arandr",
-        "Blueman-manager",
-        "Gpick",
-        "Kruler",
-        "MessageWin", -- kalarm.
-        "Sxiv",
-        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui",
-        "veromix",
-        "xtightvncviewer",
         "mpv",
       },
 
@@ -609,8 +594,6 @@ awful.rules.rules = {
         "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow", -- Thunderbird's calendar.
-        "ConfigManager", -- Thunderbird's about:config.
         "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
       },
     },
@@ -620,10 +603,6 @@ awful.rules.rules = {
   -- Add titlebars to normal clients and dialogs
   { rule_any = { type = { "normal" } }, properties = { titlebars_enabled = false } },
   { rule_any = { type = { "dialog" } }, properties = { titlebars_enabled = true } },
-
-  -- Set Firefox to always map on the tag named "2" on screen 1.
-  -- { rule = { class = "Firefox" },
-  --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
