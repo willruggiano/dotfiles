@@ -325,6 +325,8 @@ awful.screen.connect_for_each_screen(function(s)
   right_layout:add(require "widgets.dpms")
   right_layout:add(spacer)
   right_layout:add(wibox.widget.textclock())
+  right_layout:add(spacer)
+  right_layout:add(require "widgets.keyboard-layout")
 
   s.wibox:setup {
     layout = wibox.layout.align.horizontal,
