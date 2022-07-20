@@ -9,8 +9,13 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     services.xserver = {
-      layout = "us";
-      xkbOptions = "ctrl:nocaps";
+      layout = "programmers-dvorak";
+
+      extraLayouts.programmers-dvorak = {
+        description = "Programmer's Dvorak";
+        languages = ["eng"];
+        symbolsFile = ./xkb/symbols/programmers-dvorak;
+      };
 
       libinput = {
         enable = mkDefault true;

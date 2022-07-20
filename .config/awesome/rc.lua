@@ -117,6 +117,16 @@ local main_menu = awful.menu {
     { "qutebrowser", browser },
     { "qutebrowser-private", "qutebrowser-private" },
     {
+      "bluetooth",
+      function()
+        awful.spawn(exec "fzf-bluetooth", {
+          floating = true,
+          placement = awful.placement.centered,
+          height = 300,
+        })
+      end,
+    },
+    {
       "wifi",
       function()
         awful.spawn(exec "fzf-wifi", {

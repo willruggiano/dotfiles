@@ -18,6 +18,10 @@ with lib; {
         };
       };
 
+      hardware.pulseaudio.extraConfig = ''
+        load-module module-switch-on-connect
+      '';
+
       systemd.user.services.mpris-proxy = {
         description = "mpris proxy";
         wantedBy = ["default.target"];
