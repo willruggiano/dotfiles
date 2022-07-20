@@ -12,6 +12,8 @@ gears.timer {
     awful.spawn.easy_async_with_shell([[spt playback --format "%s %t - %a"]], function(stdout, _, _, exit_code)
       if exit_code == 0 then
         widget:set_text(stdout)
+      else
+        widget:set_text ""
       end
     end)
   end,
