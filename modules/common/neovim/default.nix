@@ -40,7 +40,7 @@ in {
       # This would make it easy to specify rocks and additional dependencies, while also
       # keeping those guys hidden from the rest of the system. We'd really be creating little sandboxed envs for every plugin.
       plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)];}) plugins;
-      rocks = flatten (mapAttrsToList (pname: p: p.rocks or []) plugins);
+      rocks = (flatten (mapAttrsToList (pname: p: p.rocks or []) plugins)) ++ [pkgs.luajitPackages.lua-fun];
       rocks' =
         mapAttrs (_: p: {start = [(buildLuarocksPlugin p)];})
         (listToAttrs (
@@ -50,7 +50,6 @@ in {
           })
           rocks
         ));
-      # rocks' = mapAttrs (_: p: {start = [(buildLuarocksPlugin p)];}) rocksA;
     in {
       nvim = {
         source = ../../../.config/nvim;

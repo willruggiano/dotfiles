@@ -208,7 +208,9 @@ custom_actions.git = {
     if #marks > 0 then
       local paths = {}
       f.each(
-        f.partial(table.insert, paths),
+        function(...)
+          return table.insert(paths, ...)
+        end,
         f.map(function(i)
           return i.fullpath
         end, ipairs(marks))
@@ -225,7 +227,9 @@ custom_actions.git = {
     if #marks > 0 then
       local paths = {}
       f.each(
-        f.partial(table.insert, paths),
+        function(...)
+          return table.insert(paths, ...)
+        end,
         f.map(function(i)
           return i.fullpath
         end, ipairs(marks))
@@ -241,7 +245,9 @@ custom_actions.git = {
     if #marks > 0 then
       local paths = {}
       f.each(
-        f.partial(table.insert, paths),
+        function(...)
+          return table.insert(paths, ...)
+        end,
         f.map(function(i)
           return i.fullpath
         end, ipairs(marks))

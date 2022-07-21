@@ -33,7 +33,9 @@ end
 
 ---@param func funcref
 M.map = function(func)
-  f.each(f.partial(func, signs), ipairs(vim.tbl_keys(signs)))
+  f.each(function(...)
+    return func(signs, ...)
+  end, ipairs(vim.tbl_keys(signs)))
 end
 
 M.severity = function(i)

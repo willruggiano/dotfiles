@@ -7,6 +7,7 @@ let
         lua-awesome-widgets = prev.callPackage ./luaPackages/awesome/widgets.nix {};
         lua-date = prev.callPackage ./luaPackages/date.nix {};
         lua-dbus-proxy = prev.callPackage ./luaPackages/dbus-proxy.nix {};
+        lua-fun = prev.callPackage ./luaPackages/luafun.nix {};
         lua-http-parser = prev.callPackage ./luaPackages/http-parser.nix {};
         lua-lush = prev.callPackage ./luaPackages/lush.nix {};
         lua-openssl = prev.callPackage ./luaPackages/openssl.nix {};
