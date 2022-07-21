@@ -4,3 +4,6 @@
 [x] Check out arkav/lualine-lsp-progress
 [ ] Create a barebones "boot" configuration that can be used to create an iso for a brand new system
 [x] firenvim: disable bufferline and (maybe?) line numbers? Modify lualine to show a nicer "filename".
+[ ] Try out nushell?
+[ ] Use luafun instead of bombadil.lib.functional
+[ ] [GoXLR](https://github.com/GoXLR-on-Linux/GoXLR-Utility)
