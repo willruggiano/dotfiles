@@ -16,8 +16,8 @@ buildLuarocksPackage rec {
     .out;
 
   src = fetchFromGitHub {
-    owner = pname;
-    repo = pname;
+    owner = "luafun";
+    repo = "luafun";
     rev = "cb6a7e25d4b55d9578fd371d1474b00e47bd29f3";
     hash = "sha256-lqWTPn1HPQxhfkUFvEUCbS05IkkroaykgYehJqQ0+lw=";
   };
