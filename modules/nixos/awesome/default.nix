@@ -29,6 +29,7 @@ in {
           lua-awesome
           lua-awesome-volume-control
           lua-awesome-widgets
+          lua-dbus-proxy
           lua-lush
         ];
       };

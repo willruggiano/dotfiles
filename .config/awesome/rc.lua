@@ -294,8 +294,6 @@ awful.screen.connect_for_each_screen(function(s)
   -- Create the wibox
   s.wibox = awful.wibar { position = "top", screen = s }
 
-  local spacer = require "widgets.spacer"(3) -- N.B. Three spaces
-
   -- Add widgets to the wibox
   local left_layout = wibox.layout.fixed.horizontal()
   left_layout:add(s.tag_list)
@@ -303,26 +301,25 @@ awful.screen.connect_for_each_screen(function(s)
 
   local middle_layout = s.task_list
 
-  local right_layout = wibox.layout.fixed.horizontal()
+  local right_layout = wibox.widget {
+    layout = wibox.layout.fixed.horizontal,
+    spacing = 10,
+  }
   if s.index == 1 then
     right_layout:add(wibox.widget.systray())
   end
-  right_layout:add(require "widgets.spotify")
-  right_layout:add(spacer)
+
+  local spotify = require "widgets.spotifyd" { autohide = true, refresh_rate = 5 }
+
+  right_layout:add(spotify.widget)
   right_layout:add(net_widgets.indicator { timeout = 5 })
   -- right_layout:add(net_widgets.wireless { timeout = 5 })
-  right_layout:add(spacer)
   -- right_layout:add(require "widgets.brightness")
   right_layout:add(require "widgets.cpu")
-  right_layout:add(spacer)
   right_layout:add(volume_ctrl.widget)
-  right_layout:add(spacer)
   right_layout:add(require "widgets.battery")
-  right_layout:add(spacer)
   right_layout:add(require "widgets.dpms")
-  right_layout:add(spacer)
   right_layout:add(wibox.widget.textclock())
-  right_layout:add(require "widgets.spacer"(1)) -- N.B. One space
   right_layout:add(require "widgets.keyboard-layout")
 
   s.wibox:setup {

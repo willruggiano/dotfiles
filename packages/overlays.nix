@@ -6,6 +6,7 @@ let
         lua-awesome-volume-control = prev.callPackage ./luaPackages/awesome/volume-control.nix {};
         lua-awesome-widgets = prev.callPackage ./luaPackages/awesome/widgets.nix {};
         lua-date = prev.callPackage ./luaPackages/date.nix {};
+        lua-dbus-proxy = prev.callPackage ./luaPackages/dbus-proxy.nix {};
         lua-http-parser = prev.callPackage ./luaPackages/http-parser.nix {};
         lua-lush = prev.callPackage ./luaPackages/lush.nix {};
         lua-openssl = prev.callPackage ./luaPackages/openssl.nix {};
@@ -45,6 +46,7 @@ in
         rope = prev.callPackage ./pythonPackages/python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
       };
     };
+    spotifyd = prev.spotifyd.override (_: {withMpris = true;});
     src-cli = prev.callPackage ./sourcegraph {};
     xplr = prev.callPackage ./xplr {};
     zig_0_10_0 = prev.zig.overrideAttrs (_: {

@@ -3,7 +3,6 @@
   fetchFromGitHub,
   fetchurl,
   lua,
-  luarocks-fetch-gitrec,
 }:
 buildLuarocksPackage rec {
   pname = "date";
