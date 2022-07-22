@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./audio.nix
     ./hardware-configuration.nix
     ./i18n.nix
     ./networking.nix
@@ -43,6 +42,7 @@
   services.expressvpn.enable = true;
   services.interception-tools.enable = true;
   services.pcscd.enable = true;
+  services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
 
   virtualisation.docker.enable = true;

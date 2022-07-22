@@ -47,6 +47,7 @@
   services.interception-tools.enable = true;
   # services.keyd.enable = true;
   services.pcscd.enable = true;
+  services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
   services.xserver.displayManager.autoLogin.enable = false;
 
