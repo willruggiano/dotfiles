@@ -106,6 +106,9 @@ in rec {
 
   colorizer = {
     package = plugins."nvim-colorizer.lua";
+    config = ''
+      require "bombadil.config.colorizer"
+    '';
   };
 
   coq = {
