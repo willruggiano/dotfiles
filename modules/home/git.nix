@@ -8,8 +8,8 @@ with lib; let
   cfg = config.programs.git;
   smerge =
     if pkgs.stdenv.isDarwin
-    then "smerge"
     # Will be installed via homebrew
+    then "smerge"
     else "${pkgs.sublime-merge}/bin/smerge $MERGED";
 in {
   config =
@@ -19,6 +19,7 @@ in {
         [
           delta
           git
+          git-branchless
           git-quickfix
           git-trim
           gitflow
@@ -88,7 +89,6 @@ in {
           };
         };
         aliases = {
-          amend = "commit -a --amend --no-edit";
           dag = "log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order";
           ll = "log -n1";
           lo = "log --oneline";
