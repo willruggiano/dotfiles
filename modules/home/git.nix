@@ -25,6 +25,8 @@ in {
           gitflow
           lazygit
           pre-commit
+          rs-git-fsmonitor
+          watchman
         ]
         ++ lib.optionals (!pkgs.stdenv.isDarwin) [
           sublime-merge
