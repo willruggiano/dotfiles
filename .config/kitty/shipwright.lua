@@ -4,7 +4,6 @@ package.loaded["awesome"] = nil
 
 run(require "awesome", function(colors)
   local theme = require "awesome.theme"
-  theme.set_hour(16)
   local fg = theme.fg()
   local bg = theme.bg()
   return {
