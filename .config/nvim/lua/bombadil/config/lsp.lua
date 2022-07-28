@@ -68,7 +68,6 @@ local nnoremap = require("bombadil.lib.keymap").nnoremap
 local vnoremap = require("bombadil.lib.keymap").vnoremap
 
 local disable_lsp_formatting = {
-  "clangd",
   "cmake",
   "rnix",
   "sumneko_lua",
@@ -319,7 +318,7 @@ null_ls.register {
 
 require("clangd_extensions").setup {
   server = {
-    cmd = vim.list_extend(lsp_cmds.clangd, {
+    cmd = vim.list_extend({ "clangd" }, {
       "--background-index",
       "--header-insertion=iwyu",
       "--suggest-missing-includes",
@@ -327,7 +326,6 @@ require("clangd_extensions").setup {
     on_init = function(client)
       on_init(client)
       require("clang-format").setup {
-        exe = lsp_cmds["clang-format"],
         on_attach = function(config)
           vim.bo.shiftwidth = config.IndentWidth
           vim.bo.textwidth = config.ColumnLimit

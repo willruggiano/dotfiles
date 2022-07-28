@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     nix.url = "github:nixos/nix/master";
     darwin.url = "github:LnL7/nix-darwin/master";
@@ -23,6 +23,7 @@
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar/v1.3.0";
+    zig.url = "github:willruggiano/zig.nix";
   };
 
   outputs = {
@@ -56,6 +57,7 @@
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
+        inputs.zig.overlays.default
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
           # emanote = inputs.emanote.defaultPackage."${prev.system}";

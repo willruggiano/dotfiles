@@ -50,20 +50,4 @@ in
     spotifyd = prev.spotifyd.override (_: {withMpris = true;});
     src-cli = prev.callPackage ./sourcegraph {};
     xplr = prev.callPackage ./xplr {};
-    zig_0_10_0 = prev.zig.overrideAttrs (_: {
-      version = "0.10.0";
-
-      src = prev.fetchFromGitHub {
-        owner = "ziglang";
-        repo = "zig";
-        rev = "b9ed07227832a10e5a18667d6c7cbdffd2018da7";
-        hash = "sha256-VEMX2SCaaEd6sYJpXxSlmH2gHYj9bzxatkT47/lszoA=";
-      };
-
-      nativeBuildInputs = with prev; [cmake llvmPackages_14.llvm.dev];
-      buildInputs = with prev; [libxml2 zlib] ++ (with prev.llvmPackages_14; [libclang lld llvm]);
-
-      cmakeFlags = ["-DZIG_STATIC_ZLIB=ON"];
-    });
-    zigmod = prev.callPackage ./zigmod {};
   }
