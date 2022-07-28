@@ -16,9 +16,11 @@ with lib; {
         cores = mkDefault 0;
         substituters = [
           "https://nix-community.cachix.org"
+          "https://willruggiano.cachix.org"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "willruggiano.cachix.org-1:rz00ME8/uQfWe+tN3njwK5vc7P8GLWu9qbAjjJbLoSw="
         ];
         trusted-users = users;
       };
