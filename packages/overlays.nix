@@ -1,7 +1,7 @@
 let
   overrideLua = luaPackages:
     luaPackages.override {
-      overrides = final: prev: {
+      overrides = final: prev: rec {
         lua-awesome = prev.callPackage ./luaPackages/awesome {};
         lua-awesome-volume-control = prev.callPackage ./luaPackages/awesome/volume-control.nix {};
         lua-awesome-widgets = prev.callPackage ./luaPackages/awesome/widgets.nix {};
@@ -11,12 +11,17 @@ let
         lua-http-parser = prev.callPackage ./luaPackages/http-parser.nix {};
         lua-lush = prev.callPackage ./luaPackages/lush.nix {};
         lua-openssl = prev.callPackage ./luaPackages/openssl.nix {};
+        lua-shipwright = prev.callPackage ./luaPackages/shipwright.nix {};
         luarocks-fetch-gitrec = prev.callPackage ./luaPackages/luarocks-fetch-gitrec.nix {};
       };
     };
 in
   final: prev: {
-    inherit (final.luaPackages) lua-awesome;
+    # inherit (final.luaPackages) lua-awesome lua-shipwright;
+    colorctl = prev.callPackage ./colorctl {
+      lua = prev.luajit;
+      luaPackages = final.luajitPackages;
+    };
     autorandr-rs = prev.callPackage ./autorandr-rs {};
     circle = prev.callPackage ./circle {};
     docsets = prev.callPackage ./docsets {};

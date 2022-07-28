@@ -457,10 +457,6 @@ in rec {
     '';
   };
 
-  shipwright = {
-    package = plugins."shipwright.nvim";
-  };
-
   surround = {
     package = plugins."surround.nvim";
     config = ''

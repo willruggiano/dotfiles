@@ -49,4 +49,4 @@ run(require "awesome", function(colors)
     -- mark3_fg = "#000000",
     -- mark3_bg = "#000000",
   }
-end, { kitty, "awesome" }, { overwrite, vim.fn.expand "~/.config/kitty/theme.conf" })
+end, { kitty, "awesome" }, { overwrite, os.getenv "HOME" .. "/.config/kitty/theme.conf" })

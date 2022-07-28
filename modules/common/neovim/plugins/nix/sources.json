@@ -515,12 +515,6 @@
         "rev": "4ec68b43c74afe3569aa6b0d9d5a25cb82777309",
         "type": "git"
     },
-    "shipwright.nvim": {
-        "branch": "master",
-        "repo": "git@github.com:rktjmp/shipwright.nvim",
-        "rev": "ab70e80bb67b7ed3350bec89dd73473539893932",
-        "type": "git"
-    },
     "surround.nvim": {
         "branch": "master",
         "repo": "git@github.com:ur4ltz/surround.nvim",

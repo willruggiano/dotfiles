@@ -18,7 +18,7 @@ in
     buildInputs = [lua];
 
     installPhase = let
-      libpath = "$out/lib/lua/${lua.luaversion}";
+      libpath = "$out/share/lua/${lua.luaversion}";
     in ''
       mkdir -p ${libpath}
       cp -r lua/* ${libpath}

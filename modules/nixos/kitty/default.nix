@@ -12,9 +12,13 @@ in {
 
     systemd.user.services.apply-kitty-theme = {
       description = "Re-apply kitty theme";
-      path = with pkgs; [kitty neovim];
+      path = with pkgs; [kitty colorctl procps];
       script = ''
-        nvim --headless -c 'Shipwright ~/.config/kitty/shipwright.lua' -c q && kitty @ --to unix:@kitty set-colors --all ~/.config/kitty/theme.conf
+        colorctl ${./.}/shipwright.lua && {
+          for pid in $(pgrep kitty-wrapped); do
+            kitty @ --to unix:@kitty-$pid set-colors --all ~/.config/kitty/theme.conf
+          done
+        }
       '';
     };
 
