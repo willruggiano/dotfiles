@@ -417,7 +417,6 @@ lspconfig.sumneko_lua.setup(require("lua-dev").setup {
 })
 
 lspconfig.zls.setup {
-  cmd = lsp_cmds.zls,
   on_init = on_init,
   on_attach = on_attach,
 }
