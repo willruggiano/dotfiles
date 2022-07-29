@@ -38,8 +38,7 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  # TODO: Enable this when I get the dongle
-  # hardware.bluetooth.enable = true;
+  hardware.bluetooth.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.opengl.enable = true;
