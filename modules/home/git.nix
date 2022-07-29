@@ -19,6 +19,7 @@ in {
         [
           delta
           git
+          git-absorb
           git-branchless
           git-quickfix
           git-trim
