@@ -1,0 +1,4 @@
+#! /usr/bin/env cached-nix-shell
+#! nix-shell -i sh -p cachix -p jq
+
+nix build --json "$@" | jq -r '.[].outputs | to_entries[].value' | cachix push willruggiano

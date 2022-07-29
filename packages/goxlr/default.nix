@@ -6,23 +6,22 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "goxlr";
-  version = "main";
+  version = "0.2.0";
   src = fetchFromGitHub {
     owner = "GoXLR-on-Linux";
     repo = "goxlr-utility";
-    rev = "7ed2cd49f324d4e01c1bba85b87ef64df541b4f3";
+    rev = "v${version}";
     hash = "sha256-Qg8JGy+51+4YZBzbjt3cVMYd+cX8/TFnXkL2OHlCKqQ=";
   };
 
-  cargoSha256 = "sha256-PmzGE4Aod4VavH68YFILk/LSW1T3hem/xWnmrqJxnhQ=";
+  cargoSha256 = "sha256-mF0kn82TxHe5Xrt+DUGqmJU3gVnQuHjEMQAIjfoU3Rk=";
 
   passthru.goxlr-udev-rules = stdenv.mkDerivation {
     name = "goxlr-udev-rules";
 
     dontUnpack = true;
-
     installPhase = ''
-      install -Dm 644 "${./50-goxlr.rules}" $out/lib/udev/rules.d/50-goxlr.rules
+      install -Dm 644 "${src}/50-goxlr.rules" $out/lib/udev/rules.d/50-goxlr.rules
     '';
   };
 

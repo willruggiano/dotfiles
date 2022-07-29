@@ -19,7 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [pkgs.spotify-tui pkgs.sysz];
+    user.packages = [pkgs.spotify-tui];
 
     systemd.user.services.spotifyd = {
       description = "spotifyd, a Spotify playing daemon";
