@@ -28,6 +28,7 @@ in
     dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
     firefox-extended = prev.callPackage ./firefox {};
     firenvim = (prev.callPackage ./firenvim {}).package;
+    goxlr = prev.callPackage ./goxlr {};
     html2text = prev.callPackage ./html2text {};
     keyd = prev.callPackage ./keyd {};
     luaPackages = overrideLua prev.luaPackages;

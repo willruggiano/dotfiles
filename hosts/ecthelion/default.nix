@@ -40,6 +40,7 @@
   services.dunst.enable = true;
   # services.email.enable = true;
   services.expressvpn.enable = true;
+  # services.goxlr.enable = true;
   services.interception-tools.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
