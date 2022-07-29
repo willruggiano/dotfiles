@@ -13,18 +13,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = vim.highlight.on_yank,
 })
 
-vim.api.nvim_create_autocmd("BufWinEnter,WinEnter", {
+vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter", "WinEnter" }, {
   group = group,
   pattern = "term://*",
   callback = function()
     vim.cmd "startinsert"
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufLeave", {
-  group = group,
-  pattern = "term://*",
-  callback = function()
-    vim.cmd "stopinsert"
   end,
 })
