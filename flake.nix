@@ -11,6 +11,7 @@
     naersk.url = "github:nix-community/naersk";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +55,7 @@
         self.overlay
         inputs.naersk.overlay
         inputs.neovim.overlay
+        inputs.nixpkgs-wayland.overlays.default
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay

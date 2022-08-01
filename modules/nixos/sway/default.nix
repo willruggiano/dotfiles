@@ -24,9 +24,9 @@ in {
         wrapperFeatures.gtk = true;
       };
 
-      environment.loginShellInit = ''
-        [[ "$(tty)" == /dev/tty1 ]] && exec sway
-      '';
+      # environment.loginShellInit = ''
+      #   [[ "$(tty)" == /dev/tty1 ]] && exec sway
+      # '';
 
       programs.waybar.enable = true;
 
