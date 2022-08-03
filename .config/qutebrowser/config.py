@@ -39,6 +39,7 @@ c.url.searchengines.update({
     'duckduckgo': 'https://duckduckgo.com/?q={}',
     'github': 'https://github.com/search?q={}',
     'google': 'https://google.com/search?q={}',
+    'luarocks': 'https://luarocks.org/search?q={}',
     'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
     'pypi': 'https://pypi.org/project/{}',
     'sourcegraph': 'https://sourcegraph.com/search?q=context:global+{}&patternType=literal',
