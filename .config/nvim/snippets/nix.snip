@@ -27,3 +27,39 @@ snippet systemd
       Restart = "${6:always}";
     };
   };
+
+snippet flake
+  {
+    inputs = {
+      nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      pre-commit.url = "github:cachix/pre-commit-hooks.nix";
+      utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
+    };
+
+    outputs = {
+      self,
+      nixpkgs,
+      utils,
+      ...
+    } @ inputs:
+      utils.lib.eachDefaultSystem (system: let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      in {
+        checks = {
+          pre-commit = inputs.pre-commit.lib."${system}".run {
+            src = ./.;
+            hooks = {
+              alejandra.enable = true;
+            };
+          };
+        };
+
+        devShells.default = pkgs.mkShell {
+          name = "${1}";
+          nativeBuildInputs = with pkgs; [${2}];
+          inherit (self.checks."${system}".pre-commit) shellHook;
+        };
+      });
+  }

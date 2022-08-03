@@ -22,56 +22,46 @@ cmp.setup {
     ["<C-d>"] = cmp.mapping.scroll_docs(-5),
     ["<C-u>"] = cmp.mapping.scroll_docs(5),
     ["<C-c>"] = cmp.mapping.close(),
-    ["<CR>"] = function(fallback)
+    ["<C-y>"] = function(fallback)
       if cmp.visible() then
         return cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
-          select = false,
+          select = true,
         }(fallback)
       else
         return fallback()
       end
     end,
-    ["<Tab>"] = cmp.mapping {
+    ["<C-space>"] = cmp.mapping {
+      ---@diagnostic disable-next-line: missing-parameter
+      i = cmp.mapping.complete(),
+    },
+    ["<C-n>"] = cmp.mapping {
       i = function(fallback)
-        if cmp.visible() then
+        if snippy.can_expand_or_advance() then
+          snippy.expand_or_advance()
+        elseif neogen.jumpable() then
+          neogen.jump_next()
+        elseif cmp.visible() then
           return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
         else
           return fallback()
         end
       end,
     },
-    ["<S-Tab>"] = cmp.mapping {
+    ["<C-p>"] = cmp.mapping {
       i = function(fallback)
-        if cmp.visible() then
+        if snippy.can_jump(-1) then
+          snippy.previous()
+        elseif neogen.jumpable(-1) then
+          neogen.jump_prev()
+        elseif cmp.visible() then
           return cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert }(fallback)
         else
           return fallback()
         end
       end,
     },
-    ["<C-space>"] = cmp.mapping {
-      ---@diagnostic disable-next-line: missing-parameter
-      i = cmp.mapping.complete(),
-    },
-    ["<C-n>"] = function(_)
-      if snippy.can_expand_or_advance() then
-        snippy.expand_or_advance()
-      elseif neogen.jumpable() then
-        neogen.jump_next()
-      else
-        print "No marks to jump to"
-      end
-    end,
-    ["<C-p>"] = function(_)
-      if snippy.can_jump(-1) then
-        snippy.previous()
-      elseif neogen.jumpable(true) then
-        neogen.jump_prev()
-      else
-        print "No previous marks to jump to"
-      end
-    end,
   },
   sources = cmp.config.sources({
     { name = "shell" },
