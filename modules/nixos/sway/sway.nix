@@ -26,11 +26,12 @@ in ''
   set $menu $term --title 'launcher' -e sh -c '$launcher'
   for_window [title="^launcher$"] floating enable, border pixel, resize set 80ppt 20ppt
 
-  set $mode_launcher launch [b]rowser [p]ass
+  set $mode_launcher launch [b]rowser [f]irefox [p]ass
   bindsym $mod+o mode "$mode_launcher"
 
   mode "$mode_launcher" {
     bindsym b exec ${browser}; mode "default"
+    bindsym f exec firefox-private; mode "default"
     bindsym c exec ${dunstctl} close-all; mode "default"
     bindsym n exec ${dunstctl} history-pop; mode "default"
     bindsym p exec ${pkgs.pass}/bin/passmenu; mode "default"
@@ -89,10 +90,10 @@ in ''
   bindsym $mod+Return exec $term
 
   # Kill focused window
-  bindsym $mod+Shift+q kill
+  bindsym $mod+Shift+c kill
 
   # Start your launcher
-  bindsym $mod+d exec $menu
+  bindsym $mod+p exec $menu
 
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize them with right mouse button + $mod.
@@ -110,26 +111,16 @@ in ''
   # Moving around:
   #
   # Move your focus around
-  bindsym $mod+$left focus left
-  bindsym $mod+$down focus down
-  bindsym $mod+$up focus up
-  bindsym $mod+$right focus right
-  # Or use $mod+[up|down|left|right]
-  bindsym $mod+Left focus left
-  bindsym $mod+Down focus down
-  bindsym $mod+Up focus up
-  bindsym $mod+Right focus right
+  bindsym $mod+j focus next
+  bindsym $mod+k focus prev
+  bindsym $mod+h resize grow width
+  bindsym $mod+l resize shrink width
 
   # Move the focused window with the same, but add Shift
   bindsym $mod+Shift+$left move left
   bindsym $mod+Shift+$down move down
   bindsym $mod+Shift+$up move up
   bindsym $mod+Shift+$right move right
-  # Ditto, with arrow keys
-  bindsym $mod+Shift+Left move left
-  bindsym $mod+Shift+Down move down
-  bindsym $mod+Shift+Up move up
-  bindsym $mod+Shift+Right move right
   #
   # Workspaces:
   #
