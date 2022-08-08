@@ -55,13 +55,14 @@
         self.overlay
         inputs.naersk.overlay
         inputs.neovim.overlay
-        inputs.nixpkgs-wayland.overlays.default
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
         inputs.zig.overlays.default
+        inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
+          inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           # emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
       ];

@@ -1,4 +1,7 @@
-{pkgs}: let
+{
+  config,
+  pkgs,
+}: let
   kitty = "${pkgs.kitty}/bin/kitty";
   light = "${pkgs.light}/bin/light";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
@@ -16,15 +19,16 @@ in
       "sway/window"
     ];
     modules-right = [
+      "tray"
       "network"
       "cpu"
       "memory"
       "pulseaudio"
       "backlight"
       "battery"
-      "tray"
       "idle_inhibitor"
       "clock"
+      # "sway/language"
     ];
 
     # Modules
@@ -42,17 +46,17 @@ in
         critical = 15;
       };
       # Connected to AC
-      format = "{capacity}%+";
+      format = "{capacity}%";
       # Not connected to AC
-      format-discharging = "{capacity}%!";
+      format-discharging = "{capacity}%";
       tooltip = true;
     };
 
     clock = {
       interval = 60;
       format = "{:%e %b %Y %H:%M}";
-      locale = "en_US.UTF-8";
-      timezone = "America/Denver";
+      locale = "${config.i18n.defaultLocale}";
+      timezone = "${config.time.timeZone}";
     };
 
     cpu = {
@@ -92,6 +96,10 @@ in
       format-muted = "Muted";
       on-click = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
       tooltip = true;
+    };
+
+    "sway/language" = {
+      format = "[{short}]";
     };
 
     "sway/mode" = {

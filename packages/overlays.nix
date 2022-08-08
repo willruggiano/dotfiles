@@ -43,16 +43,6 @@ in
     pass-extension-clip = prev.callPackage ./pass-clip {};
     pass-extension-meta = prev.callPackage ./pass-meta {};
     pre-commit-hooks = prev.callPackage ./pythonPackages/pre-commit-hooks.nix {inherit (prev.python3.pkgs) buildPythonPackage pytestCheckHook pythonOlder ruamel-yaml tomli;};
-    python3 = prev.python3.override {
-      packageOverrides = python-final: python-prev: rec {
-        pylsp-rope = prev.callPackage ./pythonPackages/python-lsp-server/pylsp-rope.nix {
-          inherit (python-prev) buildPythonPackage pythonOlder pytestCheckHook mock;
-          inherit (python-final) python-lsp-server rope;
-        };
-        python-lsp-server = prev.callPackage ./pythonPackages/python-lsp-server {inherit (python-prev) python-lsp-server fetchPypi setuptools-scm;};
-        rope = prev.callPackage ./pythonPackages/python-lsp-server/rope.nix {inherit (python-prev) buildPythonPackage pytestCheckHook;};
-      };
-    };
     spotifyd = prev.spotifyd.override (_: {withMpris = true;});
     src-cli = prev.callPackage ./sourcegraph {};
     xplr = prev.callPackage ./xplr {};

@@ -168,7 +168,8 @@ in {
         pythonEnv = buildEnv {
           name = "neovim-python-env";
           paths = [
-            (python3.withPackages (ps: with ps; [python-lsp-server pylsp-rope]))
+            (python3.withPackages (ps: with ps; []))
+            nodePackages.pyright
           ];
         };
 
@@ -190,7 +191,7 @@ in {
           ''local rnix = { "${nixEnv}/bin/rnix-lsp" }''
           ''local rust_analyzer = { "${rustEnv}/bin/rust-analyzer" }''
           ''local rustfmt = { "${rustEnv}/bin/rustfmt" }''
-          ''local pylsp = { "${pythonEnv}/bin/pylsp" }''
+          ''local pylsp = { "${pythonEnv}/bin/pyright" }''
         ]
         ++ optional stdenv.isDarwin ''
           local sumneko = {

@@ -55,7 +55,7 @@ in {
         pkgs.statix
       ])
       (mkSuite "python" [
-        (pkgs.python3.withPackages (ps: with ps; [isort pipx]))
+        (pkgs.python3.withPackages (ps: with ps; [isort]))
         pkgs.yapf
       ])
       (mkSuite "qt" [pkgs.qtcreator])

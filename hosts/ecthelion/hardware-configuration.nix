@@ -40,9 +40,17 @@
 
   hardware.bluetooth.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.powerManagement.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  # NOTE: WLR_DRM_DEVICES solves the flickering problem I've been seeing with my nvidia gpu.
+  programs.sway.wlr.drm-devices = ["/dev/dri/card0"];
+
+  services.xserver = {
+    videoDrivers = ["nvidia"];
+    displayManager.gdm.wayland = true;
+  };
 }
