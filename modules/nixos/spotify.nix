@@ -6,7 +6,7 @@
 }:
 with lib; let
   cfg = config.programs.spotify;
-  spotifyd = pkgs.spotifyd.override {withPulseAudio = true;};
+  spotifyd = pkgs.spotifyd.override {withPulseAudio = config.hardware.pulseaudio.enable;};
   spotifydConf = let
     backend =
       if config.hardware.pulseaudio.enable
