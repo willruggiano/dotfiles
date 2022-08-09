@@ -3,8 +3,9 @@
   writeShellApplication,
   lua,
   luaPackages,
+  stdenvNoCC,
 }: let
-  luaEnv = lua.withPackages (ps: with ps; with luaPackages; [argparse lua-awesome lua-shipwright]);
+  luaEnv = lua.withPackages (ps: with ps; with luaPackages; [argparse inspect lua-awesome lua-toml lua-shipwright stdlib]);
 in
   writeShellApplication {
     name = "colorctl";

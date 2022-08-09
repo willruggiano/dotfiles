@@ -155,6 +155,9 @@
         pkgs = channels.nixpkgs;
       in {
         apps = {
+          colorctl = utils.lib.mkApp {
+            drv = pkgs.colorctl;
+          };
           update-docsets = utils.lib.mkApp {
             drv = pkgs.docsets.update-docsets;
           };

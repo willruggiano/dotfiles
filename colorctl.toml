@@ -1,0 +1,6 @@
+[kitty]
+buildfile = "/etc/nixos/modules/nixos/kitty/shipwright.lua"
+dest = "~/.config/kitty/theme.conf"
+
+[kitty.reload]
+command = "kitty @ --to unix:@kitty-$KITTY_PID set-colors --all $HOME/.config/kitty/theme.conf"
