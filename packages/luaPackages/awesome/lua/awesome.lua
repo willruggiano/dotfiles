@@ -167,7 +167,7 @@ local theme = lush(function()
     TabLineFill { fg = Back4.bg }, -- tab pages line, where there are no labels
     TabLineSel { fg = Back1.bg, bg = Palette1.fg }, -- tab pages line, active tab page label
     Title { gui = "bold" }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual { bg = Back3.bg }, -- Visual mode selection
+    Visual { bg = Back4.bg }, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg { fg = Warn.fg, bg = Warn.bg }, -- warning messages
     Whitespace { bg = Back4.bg }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
