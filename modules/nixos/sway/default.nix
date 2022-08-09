@@ -26,9 +26,15 @@ in {
         wrapperFeatures.gtk = true;
       };
 
-      environment.loginShellInit = ''
-        [[ "$(tty)" == /dev/tty1 ]] && exec sway --unsupported-gpu
-      '';
+      environment.loginShellInit = let
+        loginShellInit = optional (cfg.wlr.drm-devices != []) ''export WLR_DRM_DEVICES=${concatStringsSep ";" cfg.wlr.drm-devices}'';
+      in
+        concatStringsSep "\n" (loginShellInit
+        ++ [
+          ''
+            [[ "$(tty)" == /dev/tty1 ]] && exec sway --unsupported-gpu
+          ''
+        ]);
 
       programs.waybar.enable = true;
 
@@ -44,9 +50,6 @@ in {
         };
       };
     }
-    (mkIf (cfg.wlr.drm-devices != []) {
-      environment.variables.WLR_DRM_DEVICES = concatStringsSep ";" cfg.wlr.drm-devices;
-    })
     (mkIf (!cfg.wlr.hardware-cursors) {
       environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
     })
