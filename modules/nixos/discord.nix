@@ -18,11 +18,9 @@ in {
     ];
 
     home.configFile = {
-      "discord/settings.json".text = ''
-        {
-          "SKIP_HOST_UPDATE": true
-        }
-      '';
+      "discord/settings.json".text = builtins.toJSON {
+        SKIP_HOST_UPDATE = true;
+      };
     };
   };
 }
