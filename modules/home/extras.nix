@@ -21,7 +21,7 @@ in {
       pkgs.fd
       pkgs.file
       pkgs.mkcert
-      pkgs.qrcp
+      # pkgs.qrcp
       pkgs.ripgrep
       pkgs.sad
       pkgs.speedtest-cli

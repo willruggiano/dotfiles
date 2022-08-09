@@ -33,5 +33,5 @@ with lib; {
   programs.zk.enable = true;
   programs.zsh.enable = true; # We need this so zsh works correctly, even though we configure it through home-manager
 
-  services.yabai.enable = true;
+  services.yabai-homebrew.enable = true;
 }

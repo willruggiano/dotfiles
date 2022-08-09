@@ -5,14 +5,73 @@
   ...
 }:
 with lib; let
-  inherit (config.services) yabai;
+  cfg = config.services.yabai-homebrew;
+
+  toYabaiConfig = opts:
+    concatStringsSep "\n" (mapAttrsToList
+    (p: v: "yabai -m config ${p} ${toString v}")
+    opts);
+
+  configFile =
+    mkIf (cfg.config != {} || cfg.extraConfig != "")
+    "${
+      pkgs.writeScript "yabairc" (
+        (
+          if (cfg.config != {})
+          then "${toYabaiConfig cfg.config}"
+          else ""
+        )
+        + optionalString (cfg.extraConfig != "") ("\n" + cfg.extraConfig + "\n")
+      )
+    }";
+
   off = "off";
   on = "on";
   centered = "4:4:1:1:2:2";
 in {
-  config = mkIf yabai.enable {
-    services.yabai = {
-      package = pkgs.yabai;
+  options = with types; {
+    services.yabai-homebrew.enable = mkOption {
+      type = bool;
+      default = false;
+      description = "Whether to enable the yabai window manager.";
+    };
+
+    services.yabai-homebrew.config = mkOption {
+      type = attrs;
+      default = {};
+      example = literalExpression ''
+        {
+          focus_follows_mouse = "autoraise";
+          mouse_follows_focus = "off";
+          window_placement    = "second_child";
+          window_opacity      = "off";
+          top_padding         = 36;
+          bottom_padding      = 10;
+          left_padding        = 10;
+          right_padding       = 10;
+          window_gap          = 10;
+        }
+      '';
+      description = ''
+        Key/Value pairs to pass to yabai's 'config' domain, via the configuration file.
+      '';
+    };
+
+    services.yabai-homebrew.extraConfig = mkOption {
+      type = str;
+      default = "";
+      example = literalExpression ''
+        yabai -m rule --add app='System Preferences' manage=off
+      '';
+      description = "Extra arbitrary configuration to append to the configuration file";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    homebrew.taps = ["koekeishiya/formulae"];
+    homebrew.brews = ["yabai"];
+
+    services.yabai-homebrew = {
       config = {
         # global settings
         mouse_follows_focus = on;
@@ -63,6 +122,10 @@ in {
           "SPACEBAR_HEIGHT=$(${pkgs.spacebar}/bin/spacebar -m config height)"
           "yabai -m config external_bar all:0:$SPACEBAR_HEIGHT"
         ];
+    };
+
+    home.configFile = {
+      "yabai/yabairc".source = configFile;
     };
 
     services.skhd = {
