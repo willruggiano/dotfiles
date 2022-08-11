@@ -38,16 +38,19 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  hardware.bluetooth.enable = true;
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  hardware.nvidia.powerManagement.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-
-  # NOTE: WLR_DRM_DEVICES solves the flickering problem I've been seeing with my nvidia gpu.
-  programs.sway.wlr.drm-devices = ["/dev/dri/card0"];
+  hardware = {
+    bluetooth.enable = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    nvidia = {
+      modesetting.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = false;
+    };
+    opengl = {
+      enable = true;
+      driSupport = true;
+    };
+  };
 
   services.xserver = {
     videoDrivers = ["nvidia"];

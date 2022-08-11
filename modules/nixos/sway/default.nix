@@ -8,7 +8,6 @@ with lib; let
   cfg = config.programs.sway;
 in {
   options.programs.sway.wlr = with types; {
-    drm-devices = mkOpt (listOf str) [];
     hardware-cursors = mkEnableOption "wlr hardware cursor support";
   };
 
@@ -26,17 +25,16 @@ in {
         wrapperFeatures.gtk = true;
       };
 
-      environment.loginShellInit = let
-        loginShellInit = optional (cfg.wlr.drm-devices != []) ''export WLR_DRM_DEVICES=${concatStringsSep ";" cfg.wlr.drm-devices}'';
-      in
-        concatStringsSep "\n" (loginShellInit
-        ++ [
-          ''
-            [[ "$(tty)" == /dev/tty1 ]] && exec sway --unsupported-gpu
-          ''
-        ]);
+      environment.loginShellInit = ''
+        [[ "$(tty)" == /dev/tty1 ]] && exec sway --unsupported-gpu
+      '';
+
+      environment.sessionVariables = {
+        WLR_DRM_NO_ATOMIC = "1";
+      };
 
       programs.waybar.enable = true;
+      programs.xwayland.enable = true;
 
       programs.light.enable = true;
       user.extraGroups = ["video"];
@@ -51,7 +49,7 @@ in {
       };
     }
     (mkIf (!cfg.wlr.hardware-cursors) {
-      environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
+      environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
     })
   ]);
 }
