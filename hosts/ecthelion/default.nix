@@ -31,12 +31,12 @@
   };
   programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
-  programs.sway.enable = true;
+  # programs.sway.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
 
   services.agenix.enable = true;
-  # services.awesome.enable = true;
+  services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;
   # services.email.enable = true;

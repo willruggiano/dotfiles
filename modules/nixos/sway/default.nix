@@ -47,6 +47,10 @@ in {
           recursive = true;
         };
       };
+
+      services.xserver = {
+        displayManager.gdm.wayland = true;
+      };
     }
     (mkIf (!cfg.wlr.hardware-cursors) {
       environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
