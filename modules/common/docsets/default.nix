@@ -28,7 +28,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [docsets app];
+    user.packages = with pkgs; [dasht docsets app];
     environment.variables.DASHT_DOCSETS_DIR = "${pkgs.docsets}/share/docsets";
   };
 }

@@ -34,13 +34,13 @@
     stdenv.mkDerivation {
       name = "${lang}-docset";
       src = let
-        src = lib.importJSON "${toString ./.}/${lang'}.json";
+        src' = lib.importJSON "${toString ./.}/${lang'}.json";
       in
-        fetchurl {inherit (src) url sha256;};
+        fetchurl {inherit (src') url sha256;};
 
       installPhase = ''
         mkdir -p $out/share/docsets
-        cp -r $src $out/share/docsets/${lang'}.docset
+        cp -r . $out/share/docsets/${lang'}.docset
       '';
 
       dontPatch = true;
