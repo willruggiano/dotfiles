@@ -45,17 +45,17 @@ in {
       };
     };
 
-    systemd.user.services.restart-awesome = {
-      description = "Restart awesomewm";
+    systemd.user.services.reload-awesome-theme = {
+      description = "Reload the awesome theme";
       path = with pkgs; [awesome dbus];
       script = ''
-        echo 'awesome.restart()' | awesome-client
+        echo 'require("reload")()' | awesome-client
       '';
     };
 
-    systemd.user.timers.restart-awesome = {
-      description = "Restart awesomewm to apply theme changes";
-      partOf = ["restart-awesome.service"];
+    systemd.user.timers.reload-awesome-theme = {
+      description = "Reload the awesome theme";
+      partOf = ["reload-awesome-theme.service"];
       wantedBy = ["timers.target"];
       timerConfig.OnCalendar = "hourly";
     };
