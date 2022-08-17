@@ -20,6 +20,7 @@ in {
           done
         }
       '';
+      wantedBy = ["sleep.target"];
     };
 
     systemd.user.timers.apply-kitty-theme = {
