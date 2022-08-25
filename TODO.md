@@ -8,3 +8,4 @@
 [x] Use luafun instead of bombadil.lib.functional
 [ ] [GoXLR](https://github.com/GoXLR-on-Linux/GoXLR-Utility)
 [ ] [colorctl](./packages/colorctl)
+[ ] (darwin) awesome/sway-like keybinds for yabai

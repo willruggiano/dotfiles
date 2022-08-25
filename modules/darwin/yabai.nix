@@ -118,6 +118,7 @@ in {
           (float "app='^Messages$'")
           "# float other apps"
           (float "app='^Dictionary$'")
+          (float "app='^QuickTime Player$'")
           "# spacebar padding"
           "SPACEBAR_HEIGHT=$(${pkgs.spacebar}/bin/spacebar -m config height)"
           "yabai -m config external_bar all:0:$SPACEBAR_HEIGHT"
