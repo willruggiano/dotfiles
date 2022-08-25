@@ -24,7 +24,7 @@
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
-    spacebar.url = "github:cmacrae/spacebar/v1.3.0";
+    spacebar.url = "github:cmacrae/spacebar/v1.4.0";
     zig.url = "github:willruggiano/zig.nix";
   };
 
@@ -57,13 +57,13 @@
         inputs.naersk.overlay
         inputs.neovim.overlay
         inputs.nur.overlay
-        inputs.spacebar.overlay
         inputs.utils.overlay
         inputs.zig.overlays.default
         inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
+          inherit (inputs.spacebar.packages."${prev.system}") spacebar;
           # emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
       ];
@@ -141,11 +141,6 @@
         };
         builder = inputs.darwin.lib.darwinSystem;
         output = "darwinConfigurations";
-      };
-
-      homes.dev-desktop = lib'.makeHome ./hosts/dev-desktop {
-        system = "x86_64-linux";
-        username = "wruggian";
       };
 
       overlay = import ./packages/overlays.nix;
@@ -231,9 +226,6 @@
       packages = {
         x86_64-darwin = {
           dev-laptop = self.darwinConfigurations.dev-laptop.system;
-        };
-        x86_64-linux = {
-          dev-desktop = self.homes.dev-desktop.activationPackage;
         };
       };
     };

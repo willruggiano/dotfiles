@@ -222,7 +222,7 @@ in {
         title = on;
         spaces = on;
         clock = on;
-        power = on;
+        power = off;
         padding_left = 20;
         padding_right = 20;
         spacing_left = 25;
@@ -243,7 +243,7 @@ in {
         clock_icon = "";
         clock_format = ''"%m/%d/%y %R"'';
         dnd_icon = "";
-        right_shell = on;
+        right_shell = off;
         right_shell_icon = "";
         right_shell_icon_color = "0xffd8dee9";
         right_shell_command = "${cpuStat}/bin/cpuStat";
