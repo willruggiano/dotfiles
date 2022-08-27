@@ -311,6 +311,12 @@
         "rev": "6aea4ea33407750fdc6addebe07ad6e58701ab32",
         "type": "git"
     },
+    "notifier.nvim": {
+        "branch": "master",
+        "repo": "git@github.com:vigoux/notifier.nvim",
+        "rev": "7fb87f6948133fd56e4caf87fc72aca5340c4674",
+        "type": "git"
+    },
     "null-ls.nvim": {
         "branch": "main",
         "repo": "git@github.com:jose-elias-alvarez/null-ls.nvim",

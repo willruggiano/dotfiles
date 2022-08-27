@@ -59,14 +59,3 @@ require("lualine").setup {
     extensions.lir,
   },
 }
-
-require("fidget").setup {
-  text = {
-    spinner = "dots",
-  },
-  sources = {
-    ["null-ls"] = {
-      ignore = true,
-    },
-  },
-}

@@ -41,13 +41,6 @@ in rec {
     package = plugins."bufdelete.nvim";
   };
 
-  # bufferline = {
-  #   package = plugins."bufferline.nvim";
-  #   config = ''
-  #     require("bombadil.config.bufferline").setup()
-  #   '';
-  # };
-
   clang-format = {
     package = plugins."clang-format.nvim";
     rocks = [lyaml];
@@ -208,6 +201,9 @@ in rec {
 
   fidget = {
     package = plugins."fidget.nvim";
+    config = ''
+      require "bombadil.config.fidget"
+    '';
   };
 
   firenvim = {
@@ -377,8 +373,16 @@ in rec {
     package = plugins.nvim-nonicons;
   };
 
+  # notifier = {
+  #   package = plugins."notifier.nvim";
+  #   setup = ''
+  #     require "bombadil.config.notify"
+  #   '';
+  # };
+
   notify = {
     package = plugins.nvim-notify;
+    # NOTE: Do this in setup since it changes what vim.notify points to
     setup = ''
       require "bombadil.config.notify"
     '';
