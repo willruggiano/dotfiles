@@ -200,7 +200,7 @@
     "gitsigns.nvim": {
         "branch": "main",
         "repo": "git@github.com:lewis6991/gitsigns.nvim",
-        "rev": "aca84fd16ce129965d7c3c69de59f333d9da116c",
+        "rev": "1e107c91c0c5e3ae72c37df8ffdd50f87fb3ebfa",
         "type": "git"
     },
     "harpoon": {

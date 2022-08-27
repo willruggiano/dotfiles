@@ -1,6 +1,7 @@
-local gitsigns = require "gitsigns"
+local noremap = require("bombadil.lib.keymap").noremap
+local nnoremap = require("bombadil.lib.keymap").nnoremap
 
-gitsigns.setup {
+require("gitsigns").setup {
   signs = {
     add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr" },
     change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr" },
@@ -9,68 +10,48 @@ gitsigns.setup {
     changedelete = { hl = "GitSignsDelete", text = "~", numhl = "GitSignsChangeNr" },
   },
 
-  -- Can't decide if I like this or not :)
   numhl = false,
-  keymaps = {},
-}
 
-local noremap = require("bombadil.lib.keymap").noremap
-local nnoremap = require("bombadil.lib.keymap").nnoremap
+  on_attach = function(bufnr)
+    local gitsigns = package.loaded.gitsigns
 
-local nmappings = {
-  ["]c"] = {
-    [[&diff ? "]c" : "<cmd>Gitsigns next_hunk<cr>"]],
-    { desc = "Next hunk", expr = true },
-  },
-  ["[c"] = {
-    [[&diff ? "[c" : "<cmd>Gitsigns prev_hunk<cr>"]],
-    { desc = "Previous hunk", expr = true },
-  },
-  ["<leader>hb"] = {
-    function()
+    -- Navigation
+    nnoremap("]c", function()
+      if vim.wo.diff then
+        return "]c"
+      end
+      vim.schedule(function()
+        gitsigns.next_hunk()
+      end)
+      return "<Ignore>"
+    end, { buffer = bufnr, expr = true, desc = "Next hunk" })
+
+    nnoremap("[c", function()
+      if vim.wo.diff then
+        return "[c"
+      end
+      vim.schedule(function()
+        gitsigns.prev_hunk()
+      end)
+      return "<Ignore>"
+    end, { buffer = bufnr, expr = true, desc = "Previous hunk" })
+
+    -- Actions
+    noremap({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", { buffer = bufnr, desc = "Stage hunk" })
+    noremap({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", { buffer = bufnr, desc = "Reset hunk" })
+    nnoremap("<leader>hS", gitsigns.stage_buffer, { buffer = bufnr, desc = "Stage buffer" })
+    nnoremap("<leader>hu", gitsigns.undo_stage_hunk, { buffer = bufnr, desc = "Unstage hunk" })
+    nnoremap("<leader>hR", gitsigns.reset_buffer, { buffer = bufnr, desc = "Reset buffer" })
+    nnoremap("<leader>hp", gitsigns.preview_hunk, { buffer = bufnr, desc = "Preview hunk" })
+    nnoremap("<leader>hb", function()
       gitsigns.blame_line { full = true }
-    end,
-    { desc = "Blame line" },
-  },
-  ["<leader>hR"] = {
-    "<cmd>Gitsigns reset_buffer<cr>",
-    { desc = "Reset buffer" },
-  },
-  ["<leader>hp"] = {
-    "<cmd>Gitsigns preview_hunk<cr>",
-    { desc = "Preview hunk" },
-  },
-  ["<leader>hS"] = {
-    "<cmd>Gitsigns stage_buffer<cr>",
-    { desc = "Stage buffer" },
-  },
-  ["<leader>hu"] = {
-    "<cmd>Gitsigns undo_stage_hunk<cr>",
-    { desc = "Unstage hunk" },
-  },
-  ["<leader>hU"] = {
-    "<cmd>Gitsigns reset_buffer_index<cr>",
-    { desc = "Reset buffer index" },
-  },
+    end, { buffer = bufnr, desc = "Blame line" })
+    nnoremap("<leader>tb", gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = "Toggle line blame" })
+    nnoremap("<leader>hd", gitsigns.diffthis, { buffer = bufnr, desc = "Diff this" })
+    nnoremap("<leader>hD", function()
+      gitsigns.diffthis "~"
+    end, { buffer = bufnr, desc = "Diff this" })
+    nnoremap("<leader>td", gitsigns.toggle_deleted) -- Text object
+    noremap({ "o", "x" }, "ih", ":<c-u>Gitsigns select_hunk<cr>", { buffer = bufnr, desc = "hunk" })
+  end,
 }
-
-for key, opts in pairs(nmappings) do
-  nnoremap(key, opts[1], opts[2])
-end
-
-local nvmappings = {
-  ["<leader>hs"] = {
-    "<cmd>Gitsigns stage_hunk<cr>",
-    { desc = "Stage hunk" },
-  },
-  ["<leader>hr"] = {
-    "<cmd>Gitsigns reset_hunk<cr>",
-    { desc = "Reset hunk" },
-  },
-}
-
-for key, opts in pairs(nvmappings) do
-  noremap({ "n", "v" }, key, opts[1], opts[2])
-end
-
-noremap({ "o", "x" }, "ih", ":<c-u>Gitsigns select_hunk<cr>", { desc = "hunk" })
