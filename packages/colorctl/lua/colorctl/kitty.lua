@@ -1,25 +1,35 @@
 local M = {}
 
-local shipwright = require "shipwright"
 local utils = require "colorctl.utils"
+local kitty = require "shipwright.transform.contrib.kitty"
+local overwrite = require "shipwright.transform.overwrite"
 
 function M.run(opts)
   opts.dest = opts.dest or (os.getenv "HOME" .. "/.config/kitty/theme.conf")
 
-  -- TODO: This needs to run *inside* shipwright
-  local kitty = require "shipwright.transform.contrib.kitty"
-
-  package.loaded["awesome"] = nil
-
-  run(require "awesome", function(colors)
+  ---@diagnostic disable-next-line: undefined-global
+  require("shipwright").run(require "awesome", function(colors)
     local theme = require "awesome.theme"
-
-    if opts.override_hour ~= nil then
-      theme.set_hour(tonumber(opts.override_hour))
-    end
 
     local fg = theme.fg()
     local bg = theme.bg()
+
+    local offset = function(color, amount)
+      if theme.is_dark() then
+        return color.darken(amount)
+      else
+        return color.lighten(amount)
+      end
+    end
+
+    local black = colors.Black.fg
+    local red = colors.Palette4.fg
+    local green = colors.Palette3.fg
+    local yellow = colors.Palette1.fg
+    local blue = colors.Palette5.fg
+    local magenta = colors.Palette6.fg
+    local cyan = colors.Palette5.fg
+    local white = colors.White.fg
 
     return {
       fg = fg,
@@ -28,22 +38,22 @@ function M.run(opts)
       cursor_bg = fg,
       selection_fg = colors.Normal.fg.hex,
       selection_bg = colors.Visual.bg.hex,
-      black = colors.Black.fg.hex,
-      red = colors.Red.fg.hex,
-      green = colors.Green.fg.hex,
-      yellow = "#FFFF00",
-      blue = colors.Blue.fg.hex,
-      magenta = "#FF00FF",
-      cyan = "#00FFFF",
-      white = colors.White.fg.hex,
-      bright_black = colors.Black.fg.hex,
-      bright_red = colors.Red.fg.hex,
-      bright_green = colors.Green.fg.hex,
-      bright_yellow = "#FFFF00",
-      bright_blue = colors.Blue.fg.hex,
-      bright_magenta = "#FF00FF",
-      bright_cyan = "#00FFFF",
-      bright_white = colors.White.fg.hex,
+      black = black.hex,
+      red = red.hex,
+      green = green.hex,
+      yellow = yellow.hex,
+      blue = blue.hex,
+      magenta = magenta.hex,
+      cyan = cyan.hex,
+      white = white.hex,
+      bright_black = offset(black, 10).hex,
+      bright_red = offset(red, 10).hex,
+      bright_green = offset(green, 10).hex,
+      bright_yellow = offset(yellow, 10).hex,
+      bright_blue = offset(blue, 10).hex,
+      bright_magenta = offset(magenta, 10).hex,
+      bright_cyan = offset(cyan, 10).hex,
+      bright_white = offset(white, 10).hex,
       --
       --   Optionally any of:
       --
@@ -64,6 +74,7 @@ function M.run(opts)
       -- mark3_fg = "#000000",
       -- mark3_bg = "#000000",
     }
+    ---@diagnostic disable-next-line: undefined-global
   end, { kitty, "awesome" }, { overwrite, opts.dest })
 
   if opts.reload then
@@ -71,3 +82,5 @@ function M.run(opts)
     os.execute(utils.gsubenv(opts.reload.command))
   end
 end
+
+return M

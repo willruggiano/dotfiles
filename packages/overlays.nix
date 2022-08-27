@@ -21,6 +21,7 @@ in
     colorctl = prev.callPackage ./colorctl {
       lua = prev.luajit;
       luaPackages = final.luajitPackages;
+      inherit (prev.luajitPackages) toLuaModule;
     };
     autorandr-rs = prev.callPackage ./autorandr-rs {};
     circle = prev.callPackage ./circle {};

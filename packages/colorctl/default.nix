@@ -1,15 +1,31 @@
 {
   lib,
+  toLuaModule,
+  stdenv,
   writeShellApplication,
   lua,
   luaPackages,
   stdenvNoCC,
 }: let
-  luaEnv = lua.withPackages (ps: with ps; with luaPackages; [argparse inspect lua-awesome lua-toml lua-shipwright stdlib]);
+  colorctl = toLuaModule (stdenv.mkDerivation {
+    name = "colorctl";
+    version = "0.1.0";
+
+    src = ./.;
+
+    propagatedBuildInputs = [lua] ++ (with luaPackages; [argparse inspect luafilesystem lua-awesome lua-toml lua-shipwright stdlib]);
+
+    installPhase = let
+      libpath = "$out/share/lua/${lua.luaversion}";
+    in ''
+      mkdir -p ${libpath}
+      cp -r lua/* ${libpath}
+    '';
+  });
 in
   writeShellApplication {
     name = "colorctl";
-    runtimeInputs = [luaEnv];
+    runtimeInputs = [(lua.withPackages (_: [colorctl]))];
     text = ''
       lua ${./.}/colorctl.lua "$@"
     '';

@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.programs.kitty;
+  dest = "~/.config/kitty/theme.conf";
 in {
   config = mkIf cfg.enable {
     user.packages = [pkgs.kitty];
@@ -14,7 +15,7 @@ in {
       description = "Re-apply kitty theme";
       path = with pkgs; [kitty colorctl procps];
       script = ''
-        colorctl ${./.}/shipwright.lua && {
+        colorctl build kitty && {
           for pid in $(pgrep kitty-wrapped); do
             kitty @ --to unix:@kitty-$pid set-colors --all ~/.config/kitty/theme.conf
           done
