@@ -28,6 +28,7 @@ parser:flag("--debug", "Debug mode")
 local build = parser:command("build", "Rebuild (and re-apply) color configuration for a specific application")
 build:argument "application"
 build:option("--override-hour", "Override the hour used to compute the color configuration")
+build:flag("--reload", "Re-apply the color configuration for a specific application")
 build:action(function(args, _)
   debug(args, args)
 
@@ -40,6 +41,11 @@ build:action(function(args, _)
 
   local config = utils.tbl_merge(args.config[args.application] or {}, { override_hour = args.override_hour })
   require("colorctl." .. args.application).run(config)
+
+  if args.reload then
+    assert(config["reload-command"], "must have a reload-command for kitty")
+    os.execute(utils.gsubenv(config["reload-command"]))
+  end
 end)
 
 parser:parse()

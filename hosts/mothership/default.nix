@@ -19,6 +19,7 @@
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
+  programs.colorctl.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.firefox.enable = false; # via home.nix

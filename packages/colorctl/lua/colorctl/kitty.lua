@@ -76,11 +76,6 @@ function M.run(opts)
     }
     ---@diagnostic disable-next-line: undefined-global
   end, { kitty, "awesome" }, { overwrite, opts.dest })
-
-  if opts.reload then
-    assert(opts.reload.command, "must have a reload.command for kitty")
-    os.execute(utils.gsubenv(opts.reload.command))
-  end
 end
 
 return M
