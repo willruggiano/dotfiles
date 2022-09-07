@@ -272,6 +272,7 @@ null_ls.setup {
     -- null_ls.builtins.formatting.yapf, -- via pylsp
     -- Diagnostics
     null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
+    null_ls.builtins.diagnostics.jsonlint.with { command = lsp_cmds.jsonlint },
     null_ls.builtins.diagnostics.luacheck.with {
       command = lsp_cmds.luacheck,
       extra_args = { "--globals", "vim", "--no-max-line-length" },
