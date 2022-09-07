@@ -86,6 +86,9 @@
     scheme = {
       owner = "6cdh";
     };
+    sql = {
+      owner = "DerekStride";
+    };
     toml = {
       owner = "ikatyang";
     };
