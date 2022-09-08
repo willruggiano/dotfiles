@@ -213,13 +213,7 @@
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
           buildInputs = with pkgs; [fup-repl git niv nix-zsh-completions nodejs];
-          shellHook = self.lib.concatStringsSep "\n" [
-            self.checks."${pkgs.system}".pre-commit.shellHook
-            ''
-              export FLAKE=$(pwd)
-              export PATH=$FLAKE/bin:$PATH
-            ''
-          ];
+          inherit (self.checks."${pkgs.system}".pre-commit) shellHook;
         };
       };
 
