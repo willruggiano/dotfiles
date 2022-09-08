@@ -12,11 +12,7 @@ in {
     settings = mkOption {
       description = "Attribute set of application specific configuration";
       default = {};
-      type = types.attrsOf (types.submodule ({
-        name,
-        config,
-        ...
-      }: {
+      type = types.attrsOf (types.submodule {
         options = {
           reload = mkEnableOption "Enable reload for application";
           reload-command = mkOption {
@@ -25,7 +21,7 @@ in {
             description = "Command to run to reload application";
           };
         };
-      }));
+      });
     };
   };
 
@@ -75,7 +71,7 @@ in {
           }
         ]
         # TODO: This doesn't work -> infinite recursion :(
-        # ++ (mapAttrsToList toReloadConfig cfg.settings))
+        # ++ (mapAttrsToList toReloadConfig settings)
       )
     );
 }
