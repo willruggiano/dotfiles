@@ -13,18 +13,18 @@ in
   nodePackages
   // {
     package = nodePackages.package.override rec {
+      version = "0.2.13";
       src = fetchFromGitHub {
         owner = "glacambre";
         repo = "firenvim";
-        rev = "458ccfe7859d8d26f34ab6fc78dfe4b53b5d6947";
-        hash = "sha256-7gFV0iPU/y2PMUlGnzGiRe7ofnaodZdFG6yeBr5S2gQ=";
+        rev = "v${version}";
+        hash = "sha256-86Gr+95yunuNZGn/+XLPg1ws6z4C2VOMKt81a6+sxnI=";
       };
       buildInputs = [pkgconfig glib vips];
 
       passthru.plugin = stdenv.mkDerivation {
         pname = "firenvim-plugin";
-        version = "0.2.12";
-        inherit src;
+        inherit version src;
         dontBuild = true;
         installPhase = ''
           mkdir $out
