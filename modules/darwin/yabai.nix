@@ -218,6 +218,7 @@ in {
         '';
       in {
         position = "bottom";
+        display = "all";
         height = 26;
         title = on;
         spaces = on;

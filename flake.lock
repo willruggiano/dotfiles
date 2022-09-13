@@ -678,16 +678,15 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1644858436,
-        "narHash": "sha256-4LiG43kPZtsm7SQ/28RaGMpYsDshCaGvc1mouPG3jFM=",
+        "lastModified": 1652089322,
+        "narHash": "sha256-9RBiWNP9iL41nV/EUNuTehOsBL5pZA6pZfqkyEf1yrg=",
         "owner": "cmacrae",
         "repo": "spacebar",
-        "rev": "79257bae525059be5230e86df96b3b3f1a3ed0a7",
+        "rev": "8431008fcf97ba57228a21d212bfd1738db6e7c9",
         "type": "github"
       },
       "original": {
         "owner": "cmacrae",
-        "ref": "v1.4.0",
         "repo": "spacebar",
         "type": "github"
       }
