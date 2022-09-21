@@ -112,9 +112,9 @@ in {
         concatStringsSep "\n" pluginConfigs;
 
       "zsh/extra/19-neovim.zsh".text = ''
-        if (( ''${+NVIM_LISTEN_ADDRESS} )); then
+        if (( ''${+NVIM} )); then
           export MANPAGER="${pkgs.neovim-remote}/bin/nvr -c 'Man!' -o -"
-          alias open="${pkgs.neovim-remote}/bin/nvr -cc quit"
+          alias edit="${pkgs.neovim-remote}/bin/nvr -cc quit"
           alias split="${pkgs.neovim-remote}/bin/nvr -cc quit -o"
           alias vsplit="${pkgs.neovim-remote}/bin/nvr -cc quit -O"
         fi
