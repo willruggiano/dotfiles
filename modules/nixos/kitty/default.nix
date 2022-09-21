@@ -14,7 +14,7 @@ in {
       kitty = {
         reload = true;
         reload-command = let
-          reload-kitty = pkgs.writeShellApplication {
+          cmd = pkgs.writeShellApplication {
             name = "reload-kitty-theme";
             runtimeInputs = with pkgs; [colorctl kitty procps];
             text = ''
@@ -23,7 +23,7 @@ in {
               done
             '';
           };
-        in "${reload-kitty}/bin/reload-kitty-theme";
+        in "${cmd}/bin/reload-kitty-theme";
       };
     };
 

@@ -10,8 +10,7 @@ in {
   options.programs.zsh = {
     colorscheme = mkOption {
       type = types.str;
-      # TODO: Can we make this use lush too?
-      default = "snazzy";
+      default = "$XDG_CONFIG_HOME/vivid/themes/colorctl.yml";
       description = "The vivid colorscheme to use";
     };
   };

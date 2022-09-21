@@ -343,192 +343,192 @@ local theme = lush(function()
 
     -- Devicons
     -- TODO: Use the palette for these.
-    DevIconNodeModules { fg = "#e8274b" }, -- DevIconNodeModules xxx guifg=#E8274B
-    DevIconPl { fg = "#519aba" }, -- DevIconPl      xxx guifg=#519aba
-    DevIconTerminal { fg = "#31b53e" }, -- DevIconTerminal xxx guifg=#31B53E
-    DevIconPng { fg = "#a074c4" }, -- DevIconPng     xxx guifg=#a074c4
-    DevIconCpp { fg = "#519aba" }, -- DevIconCpp     xxx guifg=#519aba
-    DevIconPy { fg = "#3572a5" }, -- DevIconPy      xxx guifg=#3572A5
-    DevIconVue { fg = "#8dc149" }, -- DevIconVue     xxx guifg=#8dc149
-    DevIconPyc { fg = "#519aba" }, -- DevIconPyc     xxx guifg=#519aba
-    DevIconPyd { fg = "#519aba" }, -- DevIconPyd     xxx guifg=#519aba
-    DevIconPyo { fg = "#519aba" }, -- DevIconPyo     xxx guifg=#519aba
-    DevIconYaml { fg = "#6d8086" }, -- DevIconYaml    xxx guifg=#6d8086
-    DevIconDockerfile { fg = "#384d54" }, -- DevIconDockerfile xxx guifg=#384d54
-    DevIconRakefile { fg = "#701516" }, -- DevIconRakefile xxx guifg=#701516
-    DevIconRb { fg = "#701516" }, -- DevIconRb      xxx guifg=#701516
-    DevIconRs { fg = "#dea584" }, -- DevIconRs      xxx guifg=#dea584
-    DevIconDart { fg = "#03589c" }, -- DevIconDart    xxx guifg=#03589C
-    DevIconSql { fg = "#dad8d8" }, -- DevIconSql     xxx guifg=#dad8d8
-    DevIconConf { fg = "#6d8086" }, -- DevIconConf    xxx guifg=#6d8086
-    DevIconTs { fg = "#519aba" }, -- DevIconTs      xxx guifg=#519aba
+    DevIconAi { fg = "#cbcb41" }, -- DevIconAi      xxx guifg=#cbcb41
+    DevIconAwk { fg = "#4d5a5e" }, -- DevIconAwk     xxx guifg=#4d5a5e
+    DevIconBabelrc { fg = "#cbcb41" }, -- DevIconBabelrc xxx guifg=#cbcb41
+    DevIconBash { fg = "#89e051" }, -- DevIconBash    xxx guifg=#89e051
+    DevIconBashProfile { fg = "#89e051" }, -- DevIconBashProfile xxx guifg=#89e051
+    DevIconBashrc { fg = "#89e051" }, -- DevIconBashrc  xxx guifg=#89e051
+    DevIconBat { fg = "#c1f12e" }, -- DevIconBat     xxx guifg=#C1F12E
+    DevIconBinaryGLTF { fg = "#ffb13b" }, -- DevIconBinaryGLTF xxx guifg=#FFB13B
+    DevIconBmp { fg = "#a074c4" }, -- DevIconBmp     xxx guifg=#a074c4
+    DevIconBrewfile { fg = "#701516" }, -- DevIconBrewfile xxx guifg=#701516
     DevIconC { fg = "#599eff" }, -- DevIconC       xxx guifg=#599eff
+    DevIconCMake { fg = "#6d8086" }, -- DevIconCMake   xxx guifg=#6d8086
+    DevIconCMakeLists { fg = "#6d8086" }, -- DevIconCMakeLists xxx guifg=#6d8086
+    DevIconCPlusPlus { fg = "#f34b7d" }, -- DevIconCPlusPlus xxx guifg=#f34b7d
+    DevIconClojure { fg = "#8dc149" }, -- DevIconClojure xxx guifg=#8dc149
+    DevIconClojureC { fg = "#8dc149" }, -- DevIconClojureC xxx guifg=#8dc149
+    DevIconClojureJS { fg = "#519aba" }, -- DevIconClojureJS xxx guifg=#519aba
+    DevIconCobol { fg = "#005ca5" }, -- DevIconCobol   xxx guifg=#005ca5
+    DevIconCoffee { fg = "#cbcb41" }, -- DevIconCoffee  xxx guifg=#cbcb41
+    DevIconConf { fg = "#6d8086" }, -- DevIconConf    xxx guifg=#6d8086
+    DevIconConfigRu { fg = "#701516" }, -- DevIconConfigRu xxx guifg=#701516
+    DevIconConfiguration { fg = "#ececec" }, -- DevIconConfiguration xxx guifg=#ECECEC
+    DevIconCp { fg = "#519aba" }, -- DevIconCp      xxx guifg=#519aba
+    DevIconCpp { fg = hsl "#519aba" },
+    DevIconCrystal { fg = "#000000" }, -- DevIconCrystal xxx guifg=#000000
+    DevIconCs { fg = "#596706" }, -- DevIconCs      xxx guifg=#596706
+    DevIconCsh { fg = "#4d5a5e" }, -- DevIconCsh     xxx guifg=#4d5a5e
+    DevIconCson { fg = "#cbcb41" }, -- DevIconCson    xxx guifg=#cbcb41
+    DevIconCss { fg = "#563d7c" }, -- DevIconCss     xxx guifg=#563d7c
+    DevIconCxx { fg = "#519aba" }, -- DevIconCxx     xxx guifg=#519aba
+    DevIconD { fg = "#427819" }, -- DevIconD       xxx guifg=#427819
+    DevIconDart { fg = "#03589c" }, -- DevIconDart    xxx guifg=#03589C
+    DevIconDb { fg = "#dad8d8" }, -- DevIconDb      xxx guifg=#dad8d8
+    DevIconDefault { fg = "#6d8086" }, -- DevIconDefault xxx guifg=#6d8086
+    DevIconDesktopEntry { fg = "#563d7c" }, -- DevIconDesktopEntry xxx guifg=#563d7c
+    DevIconDiff { fg = "#41535b" }, -- DevIconDiff    xxx guifg=#41535b
+    DevIconDoc { fg = "#185abd" }, -- DevIconDoc     xxx guifg=#185abd
+    DevIconDockerfile { fg = "#384d54" }, -- DevIconDockerfile xxx guifg=#384d54
+    DevIconDropbox { fg = "#0061fe" }, -- DevIconDropbox xxx guifg=#0061FE
+    DevIconDsStore { fg = "#41535b" }, -- DevIconDsStore xxx guifg=#41535b
+    DevIconDump { fg = "#dad8d8" }, -- DevIconDump    xxx guifg=#dad8d8
+    DevIconEdn { fg = "#519aba" }, -- DevIconEdn     xxx guifg=#519aba
+    DevIconEex { fg = "#a074c4" }, -- DevIconEex     xxx guifg=#a074c4
+    DevIconEjs { fg = "#cbcb41" }, -- DevIconEjs     xxx guifg=#cbcb41
+    DevIconElm { fg = "#519aba" }, -- DevIconElm     xxx guifg=#519aba
+    DevIconErb { fg = "#701516" }, -- DevIconErb     xxx guifg=#701516
+    DevIconErl { fg = "#b83998" }, -- DevIconErl     xxx guifg=#B83998
+    DevIconEx { fg = "#a074c4" }, -- DevIconEx      xxx guifg=#a074c4
+    DevIconExs { fg = "#a074c4" }, -- DevIconExs     xxx guifg=#a074c4
+    DevIconFavicon { fg = "#cbcb41" }, -- DevIconFavicon xxx guifg=#cbcb41
+    DevIconFish { fg = "#4d5a5e" }, -- DevIconFish    xxx guifg=#4d5a5e
+    DevIconFs { fg = "#519aba" }, -- DevIconFs      xxx guifg=#519aba
+    DevIconFsharp { fg = "#519aba" }, -- DevIconFsharp  xxx guifg=#519aba
+    DevIconFsi { fg = "#519aba" }, -- DevIconFsi     xxx guifg=#519aba
+    DevIconFsscript { fg = "#519aba" }, -- DevIconFsscript xxx guifg=#519aba
+    DevIconFsx { fg = "#519aba" }, -- DevIconFsx     xxx guifg=#519aba
+    DevIconGDScript { fg = "#6d8086" }, -- DevIconGDScript xxx guifg=#6d8086
+    DevIconGemfile { fg = "#701516" }, -- DevIconGemfile xxx guifg=#701516
+    DevIconGemspec { fg = "#701516" }, -- DevIconGemspec xxx guifg=#701516
+    DevIconGif { fg = "#a074c4" }, -- DevIconGif     xxx guifg=#a074c4
     DevIconGitAttributes { fg = "#41535b" }, -- DevIconGitAttributes xxx guifg=#41535b
+    DevIconGitCommit { fg = "#41535b" }, -- DevIconGitCommit xxx guifg=#41535b
     DevIconGitConfig { fg = "#41535b" }, -- DevIconGitConfig xxx guifg=#41535b
     DevIconGitIgnore { fg = "#41535b" }, -- DevIconGitIgnore xxx guifg=#41535b
-    DevIconRss { fg = "#fb9d3b" }, -- DevIconRss     xxx guifg=#FB9D3B
-    DevIconPhp { fg = "#a074c4" }, -- DevIconPhp     xxx guifg=#a074c4
-    DevIconJava { fg = "#cc3e44" }, -- DevIconJava    xxx guifg=#cc3e44
-    DevIconZshrc { fg = "#89e051" }, -- DevIconZshrc   xxx guifg=#89e051
-    DevIconHtml { fg = "#e34c26" }, -- DevIconHtml    xxx guifg=#e34c26
-    DevIconGemfile { fg = "#701516" }, -- DevIconGemfile xxx guifg=#701516
-    DevIconWebp { fg = "#a074c4" }, -- DevIconWebp    xxx guifg=#a074c4
-    DevIconLicense { fg = "#cbcb41" }, -- DevIconLicense xxx guifg=#cbcb41
-    DevIconYml { fg = "#6d8086" }, -- DevIconYml     xxx guifg=#6d8086
-    DevIconCss { fg = "#563d7c" }, -- DevIconCss     xxx guifg=#563d7c
-    DevIconZsh { fg = "#89e051" }, -- DevIconZsh     xxx guifg=#89e051
-    DevIconCPlusPlus { fg = "#f34b7d" }, -- DevIconCPlusPlus xxx guifg=#f34b7d
-    DevIconR { fg = "#358a5b" }, -- DevIconR       xxx guifg=#358a5b
-    DevIconDb { fg = "#dad8d8" }, -- DevIconDb      xxx guifg=#dad8d8
-    DevIconHtm { fg = "#e34c26" }, -- DevIconHtm     xxx guifg=#e34c26
-    DevIconIco { fg = "#cbcb41" }, -- DevIconIco     xxx guifg=#cbcb41
-    DevIconSwift { fg = "#e37933" }, -- DevIconSwift   xxx guifg=#e37933
-    DevIconJs { fg = "#cbcb41" }, -- DevIconJs      xxx guifg=#cbcb41
-    DevIconJpg { fg = "#a074c4" }, -- DevIconJpg     xxx guifg=#a074c4
-    DevIconTsx { fg = "#519aba" }, -- DevIconTsx     xxx guifg=#519aba
-    DevIconJson { fg = "#cbcb41" }, -- DevIconJson    xxx guifg=#cbcb41
-    DevIconVim { fg = "#019833" }, -- DevIconVim     xxx guifg=#019833
     DevIconGitLogo { fg = "#f14c28" }, -- DevIconGitLogo xxx guifg=#F14C28
-    DevIconScala { fg = "#cc3e44" }, -- DevIconScala   xxx guifg=#cc3e44
-    DevIconMdx { fg = "#519aba" }, -- DevIconMdx     xxx guifg=#519aba
-    DevIconRake { fg = "#701516" }, -- DevIconRake    xxx guifg=#701516
-    DevIconLua { fg = "#51a0cf" }, -- DevIconLua     xxx guifg=#51a0cf
-    DevIconMakefile { fg = "#6d8086" }, -- DevIconMakefile xxx guifg=#6d8086
-    DevIconVimrc { fg = "#019833" }, -- DevIconVimrc   xxx guifg=#019833
-    DevIconGvimrc { fg = "#019833" }, -- DevIconGvimrc  xxx guifg=#019833
-    DevIconNPMIgnore { fg = "#e8274b" }, -- DevIconNPMIgnore xxx guifg=#E8274B
-    DevIconGo { fg = "#519aba" }, -- DevIconGo      xxx guifg=#519aba
-    DevIconBash { fg = "#89e051" }, -- DevIconBash    xxx guifg=#89e051
-    DevIconMd { fg = "#519aba" }, -- DevIconMd      xxx guifg=#519aba
-    DevIconJsx { fg = "#519aba" }, -- DevIconJsx     xxx guifg=#519aba
-    DevIconCp { fg = "#519aba" }, -- DevIconCp      xxx guifg=#519aba
-    DevIconToml { fg = "#6d8086" }, -- DevIconToml    xxx guifg=#6d8086
-    DevIconJpeg { fg = "#a074c4" }, -- DevIconJpeg    xxx guifg=#a074c4
-    DevIconMarkdown { fg = "#519aba" }, -- DevIconMarkdown xxx guifg=#519aba
-    DevIconSh { fg = "#4d5a5e" }, -- DevIconSh      xxx guifg=#4d5a5e
-    DevIconDefault { fg = "#6d8086" }, -- DevIconDefault xxx guifg=#6d8086
-    DevIconLirFolderNode { fg = "#7ebae4" }, -- DevIconLirFolderNode xxx guifg=#7ebae4
-    DevIconFsx { fg = "#519aba" }, -- DevIconFsx     xxx guifg=#519aba
     DevIconGitModules { fg = "#41535b" }, -- DevIconGitModules xxx guifg=#41535b
-    DevIconGitCommit { fg = "#41535b" }, -- DevIconGitCommit xxx guifg=#41535b
     DevIconGitlabCI { fg = "#e24329" }, -- DevIconGitlabCI xxx guifg=#e24329
+    DevIconGo { fg = "#519aba" }, -- DevIconGo      xxx guifg=#519aba
+    DevIconGodotProject { fg = "#6d8086" }, -- DevIconGodotProject xxx guifg=#6d8086
+    DevIconGruntfile { fg = "#e37933" }, -- DevIconGruntfile xxx guifg=#e37933
+    DevIconGulpfile { fg = "#cc3e44" }, -- DevIconGulpfile xxx guifg=#cc3e44
+    DevIconGvimrc { fg = "#019833" }, -- DevIconGvimrc  xxx guifg=#019833
+    DevIconH { fg = "#a074c4" }, -- DevIconH       xxx guifg=#a074c4
+    DevIconHaml { fg = "#eaeae1" }, -- DevIconHaml    xxx guifg=#eaeae1
     DevIconHbs { fg = "#f0772b" }, -- DevIconHbs     xxx guifg=#f0772b
-    DevIconZshenv { fg = "#89e051" }, -- DevIconZshenv  xxx guifg=#89e051
+    DevIconHeex { fg = "#a074c4" }, -- DevIconHeex    xxx guifg=#a074c4
+    DevIconHh { fg = "#a074c4" }, -- DevIconHh      xxx guifg=#a074c4
     DevIconHpp { fg = "#a074c4" }, -- DevIconHpp     xxx guifg=#a074c4
     DevIconHrl { fg = "#b83998" }, -- DevIconHrl     xxx guifg=#B83998
     DevIconHs { fg = "#a074c4" }, -- DevIconHs      xxx guifg=#a074c4
-    DevIconDump { fg = "#dad8d8" }, -- DevIconDump    xxx guifg=#dad8d8
-    DevIconErb { fg = "#701516" }, -- DevIconErb     xxx guifg=#701516
+    DevIconHtm { fg = "#e34c26" }, -- DevIconHtm     xxx guifg=#e34c26
+    DevIconHtml { fg = "#e34c26" }, -- DevIconHtml    xxx guifg=#e34c26
+    DevIconHxx { fg = "#a074c4" }, -- DevIconHxx     xxx guifg=#a074c4
+    DevIconIco { fg = "#cbcb41" }, -- DevIconIco     xxx guifg=#cbcb41
+    DevIconImportConfiguration { fg = "#ececec" }, -- DevIconImportConfiguration xxx guifg=#ECECEC
     DevIconIni { fg = "#6d8086" }, -- DevIconIni     xxx guifg=#6d8086
-    DevIconAwk { fg = "#4d5a5e" }, -- DevIconAwk     xxx guifg=#4d5a5e
-    DevIconMl { fg = "#e37933" }, -- DevIconMl      xxx guifg=#e37933
-    DevIconPm { fg = "#519aba" }, -- DevIconPm      xxx guifg=#519aba
-    DevIconBmp { fg = "#a074c4" }, -- DevIconBmp     xxx guifg=#a074c4
+    DevIconJava { fg = "#cc3e44" }, -- DevIconJava    xxx guifg=#cc3e44
+    DevIconJl { fg = "#a270ba" }, -- DevIconJl      xxx guifg=#a270ba
+    DevIconJpeg { fg = "#a074c4" }, -- DevIconJpeg    xxx guifg=#a074c4
+    DevIconJpg { fg = "#a074c4" }, -- DevIconJpg     xxx guifg=#a074c4
+    DevIconJs { fg = "#cbcb41" }, -- DevIconJs      xxx guifg=#cbcb41
+    DevIconJson { fg = "#cbcb41" }, -- DevIconJson    xxx guifg=#cbcb41
+    DevIconJsx { fg = "#519aba" }, -- DevIconJsx     xxx guifg=#519aba
+    DevIconKotlin { fg = "#f88a02" }, -- DevIconKotlin  xxx guifg=#F88A02
     DevIconKsh { fg = "#4d5a5e" }, -- DevIconKsh     xxx guifg=#4d5a5e
     DevIconLeex { fg = "#a074c4" }, -- DevIconLeex    xxx guifg=#a074c4
-    DevIconClojure { fg = "#8dc149" }, -- DevIconClojure xxx guifg=#8dc149
     DevIconLess { fg = "#563d7c" }, -- DevIconLess    xxx guifg=#563d7c
-    DevIconClojureC { fg = "#8dc149" }, -- DevIconClojureC xxx guifg=#8dc149
-    DevIconCsh { fg = "#4d5a5e" }, -- DevIconCsh     xxx guifg=#4d5a5e
+    DevIconLhs { fg = "#a074c4" }, -- DevIconLhs     xxx guifg=#a074c4
+    DevIconLicense { fg = "#cbcb41" }, -- DevIconLicense xxx guifg=#cbcb41
+    DevIconLirFolderNode { fg = "#7ebae4" }, -- DevIconLirFolderNode xxx guifg=#7ebae4
+    DevIconLua { fg = hsl "#51a0cf" },
+    DevIconMakefile { fg = "#6d8086" }, -- DevIconMakefile xxx guifg=#6d8086
+    DevIconMarkdown { fg = "#519aba" }, -- DevIconMarkdown xxx guifg=#519aba
+    DevIconMaterial { fg = "#b83998" }, -- DevIconMaterial xxx guifg=#B83998
+    DevIconMd { fg = "#519aba" }, -- DevIconMd      xxx guifg=#519aba
+    DevIconMdx { fg = "#519aba" }, -- DevIconMdx     xxx guifg=#519aba
+    DevIconMint { fg = "#87c095" }, -- DevIconMint    xxx guifg=#87c095
     DevIconMixLock { fg = "#a074c4" }, -- DevIconMixLock xxx guifg=#a074c4
     DevIconMjs { fg = "#f1e05a" }, -- DevIconMjs     xxx guifg=#f1e05a
-    DevIconCobol { fg = "#005ca5" }, -- DevIconCobol   xxx guifg=#005ca5
+    DevIconMl { fg = "#e37933" }, -- DevIconMl      xxx guifg=#e37933
     DevIconMli { fg = "#e37933" }, -- DevIconMli     xxx guifg=#e37933
     DevIconMustache { fg = "#e37933" }, -- DevIconMustache xxx guifg=#e37933
-    DevIconCoffee { fg = "#cbcb41" }, -- DevIconCoffee  xxx guifg=#cbcb41
-    DevIconCrystal { fg = "#000000" }, -- DevIconCrystal xxx guifg=#000000
+    DevIconNPMIgnore { fg = "#e8274b" }, -- DevIconNPMIgnore xxx guifg=#E8274B
+    DevIconNix { fg = hsl "#7ebae4" },
+    DevIconNodeModules { fg = "#e8274b" }, -- DevIconNodeModules xxx guifg=#E8274B
+    DevIconOPUS { fg = "#f88a02" }, -- DevIconOPUS    xxx guifg=#F88A02
+    DevIconOpenTypeFont { fg = "#ececec" }, -- DevIconOpenTypeFont xxx guifg=#ECECEC
+    DevIconPackedResource { fg = "#6d8086" }, -- DevIconPackedResource xxx guifg=#6d8086
+    DevIconPdf { fg = "#b30b00" }, -- DevIconPdf     xxx guifg=#b30b00
+    DevIconPhp { fg = "#a074c4" }, -- DevIconPhp     xxx guifg=#a074c4
+    DevIconPl { fg = "#519aba" }, -- DevIconPl      xxx guifg=#519aba
+    DevIconPm { fg = "#519aba" }, -- DevIconPm      xxx guifg=#519aba
+    DevIconPng { fg = "#a074c4" }, -- DevIconPng     xxx guifg=#a074c4
+    DevIconPp { fg = "#302b6d" }, -- DevIconPp      xxx guifg=#302B6D
+    DevIconPpt { fg = "#cb4a32" }, -- DevIconPpt     xxx guifg=#cb4a32
+    DevIconProcfile { fg = "#a074c4" }, -- DevIconProcfile xxx guifg=#a074c4
+    DevIconProlog { fg = "#e4b854" }, -- DevIconProlog  xxx guifg=#e4b854
     DevIconPromptPs1 { fg = "#4d5a5e" }, -- DevIconPromptPs1 xxx guifg=#4d5a5e
-    DevIconCson { fg = "#cbcb41" }, -- DevIconCson    xxx guifg=#cbcb41
-    DevIconScss { fg = "#f55385" }, -- DevIconScss    xxx guifg=#f55385
-    DevIconCxx { fg = "#519aba" }, -- DevIconCxx     xxx guifg=#519aba
-    DevIconBrewfile { fg = "#701516" }, -- DevIconBrewfile xxx guifg=#701516
+    DevIconPsb { fg = "#519aba" }, -- DevIconPsb     xxx guifg=#519aba
+    DevIconPsd { fg = "#519aba" }, -- DevIconPsd     xxx guifg=#519aba
+    DevIconPy { fg = "#3572a5" }, -- DevIconPy      xxx guifg=#3572A5
+    DevIconPyc { fg = "#519aba" }, -- DevIconPyc     xxx guifg=#519aba
+    DevIconPyd { fg = "#519aba" }, -- DevIconPyd     xxx guifg=#519aba
+    DevIconPyo { fg = "#519aba" }, -- DevIconPyo     xxx guifg=#519aba
+    DevIconR { fg = "#358a5b" }, -- DevIconR       xxx guifg=#358a5b
+    DevIconRake { fg = "#701516" }, -- DevIconRake    xxx guifg=#701516
+    DevIconRakefile { fg = "#701516" }, -- DevIconRakefile xxx guifg=#701516
+    DevIconRb { fg = "#701516" }, -- DevIconRb      xxx guifg=#701516
     DevIconRlib { fg = "#dea584" }, -- DevIconRlib    xxx guifg=#dea584
     DevIconRmd { fg = "#519aba" }, -- DevIconRmd     xxx guifg=#519aba
     DevIconRproj { fg = "#358a5b" }, -- DevIconRproj   xxx guifg=#358a5b
-    DevIconEex { fg = "#a074c4" }, -- DevIconEex     xxx guifg=#a074c4
+    DevIconRs { fg = "#dea584" }, -- DevIconRs      xxx guifg=#dea584
+    DevIconRss { fg = "#fb9d3b" }, -- DevIconRss     xxx guifg=#FB9D3B
     DevIconSass { fg = "#f55385" }, -- DevIconSass    xxx guifg=#f55385
-    DevIconEjs { fg = "#cbcb41" }, -- DevIconEjs     xxx guifg=#cbcb41
-    DevIconEx { fg = "#a074c4" }, -- DevIconEx      xxx guifg=#a074c4
+    DevIconScala { fg = "#cc3e44" }, -- DevIconScala   xxx guifg=#cc3e44
+    DevIconScss { fg = "#f55385" }, -- DevIconScss    xxx guifg=#f55385
+    DevIconSettingsJson { fg = "#854cc7" }, -- DevIconSettingsJson xxx guifg=#854CC7
+    DevIconSh { fg = "#4d5a5e" }, -- DevIconSh      xxx guifg=#4d5a5e
     DevIconSig { fg = "#e37933" }, -- DevIconSig     xxx guifg=#e37933
     DevIconSlim { fg = "#e34c26" }, -- DevIconSlim    xxx guifg=#e34c26
-    DevIconExs { fg = "#a074c4" }, -- DevIconExs     xxx guifg=#a074c4
-    DevIconSml { fg = "#e37933" }, -- DevIconSml     xxx guifg=#e37933
-    DevIconFsharp { fg = "#519aba" }, -- DevIconFsharp  xxx guifg=#519aba
-    DevIconCs { fg = "#596706" }, -- DevIconCs      xxx guifg=#596706
-    DevIconFavicon { fg = "#cbcb41" }, -- DevIconFavicon xxx guifg=#cbcb41
-    DevIconSuo { fg = "#854cc7" }, -- DevIconSuo     xxx guifg=#854CC7
-    DevIconTxt { fg = "#89e051" }, -- DevIconTxt     xxx guifg=#89e051
-    DevIconTwig { fg = "#8dc149" }, -- DevIconTwig    xxx guifg=#8dc149
-    DevIconWebmanifest { fg = "#f1e05a" }, -- DevIconWebmanifest xxx guifg=#f1e05a
-    DevIconXcPlayground { fg = "#e37933" }, -- DevIconXcPlayground xxx guifg=#e37933
-    DevIconXul { fg = "#e37933" }, -- DevIconXul     xxx guifg=#e37933
-    DevIconAi { fg = "#cbcb41" }, -- DevIconAi      xxx guifg=#cbcb41
-    DevIconKotlin { fg = "#f88a02" }, -- DevIconKotlin  xxx guifg=#F88A02
-    DevIconTextScene { fg = "#a074c4" }, -- DevIconTextScene xxx guifg=#a074c4
-    DevIconGodotProject { fg = "#6d8086" }, -- DevIconGodotProject xxx guifg=#6d8086
-    DevIconTextResource { fg = "#cbcb41" }, -- DevIconTextResource xxx guifg=#cbcb41
-    DevIconElm { fg = "#519aba" }, -- DevIconElm     xxx guifg=#519aba
-    DevIconFs { fg = "#519aba" }, -- DevIconFs      xxx guifg=#519aba
-    DevIconGDScript { fg = "#6d8086" }, -- DevIconGDScript xxx guifg=#6d8086
-    DevIconImportConfiguration { fg = "#ececec" }, -- DevIconImportConfiguration xxx guifg=#ECECEC
-    DevIconNix { fg = "#7ebae4" }, -- DevIconNix     xxx guifg=#7ebae4
-    DevIconMaterial { fg = "#b83998" }, -- DevIconMaterial xxx guifg=#B83998
-    DevIconOpenTypeFont { fg = "#ececec" }, -- DevIconOpenTypeFont xxx guifg=#ECECEC
-    DevIconPackedResource { fg = "#6d8086" }, -- DevIconPackedResource xxx guifg=#6d8086
-    DevIconDesktopEntry { fg = "#563d7c" }, -- DevIconDesktopEntry xxx guifg=#563d7c
-    DevIconTor { fg = "#519aba" }, -- DevIconTor     xxx guifg=#519aba
-    DevIconOPUS { fg = "#f88a02" }, -- DevIconOPUS    xxx guifg=#F88A02
-    DevIconJl { fg = "#a270ba" }, -- DevIconJl      xxx guifg=#a270ba
-    DevIconHh { fg = "#a074c4" }, -- DevIconHh      xxx guifg=#a074c4
-    DevIconProlog { fg = "#e4b854" }, -- DevIconProlog  xxx guifg=#e4b854
-    DevIconFsi { fg = "#519aba" }, -- DevIconFsi     xxx guifg=#519aba
-    DevIconVagrantfile { fg = "#1563ff" }, -- DevIconVagrantfile xxx guifg=#1563FF
-    DevIconMint { fg = "#87c095" }, -- DevIconMint    xxx guifg=#87c095
-    DevIconConfigRu { fg = "#701516" }, -- DevIconConfigRu xxx guifg=#701516
-    DevIconErl { fg = "#b83998" }, -- DevIconErl     xxx guifg=#B83998
-    DevIconHxx { fg = "#a074c4" }, -- DevIconHxx     xxx guifg=#a074c4
-    DevIconPdf { fg = "#b30b00" }, -- DevIconPdf     xxx guifg=#b30b00
-    DevIconPsd { fg = "#519aba" }, -- DevIconPsd     xxx guifg=#519aba
-    DevIconPsb { fg = "#519aba" }, -- DevIconPsb     xxx guifg=#519aba
-    DevIconBat { fg = "#c1f12e" }, -- DevIconBat     xxx guifg=#C1F12E
-    DevIconD { fg = "#427819" }, -- DevIconD       xxx guifg=#427819
-    DevIconCMakeLists { fg = "#6d8086" }, -- DevIconCMakeLists xxx guifg=#6d8086
-    DevIconFish { fg = "#4d5a5e" }, -- DevIconFish    xxx guifg=#4d5a5e
-    DevIconSvelte { fg = "#ff3e00" }, -- DevIconSvelte  xxx guifg=#ff3e00
-    DevIconGruntfile { fg = "#e37933" }, -- DevIconGruntfile xxx guifg=#e37933
-    DevIconGulpfile { fg = "#cc3e44" }, -- DevIconGulpfile xxx guifg=#cc3e44
-    DevIconDropbox { fg = "#0061fe" }, -- DevIconDropbox xxx guifg=#0061FE
-    DevIconTex { fg = "#3d6117" }, -- DevIconTex     xxx guifg=#3D6117
-    DevIconHeex { fg = "#a074c4" }, -- DevIconHeex    xxx guifg=#a074c4
-    DevIconDiff { fg = "#41535b" }, -- DevIconDiff    xxx guifg=#41535b
-    DevIconXls { fg = "#207245" }, -- DevIconXls     xxx guifg=#207245
-    DevIconConfiguration { fg = "#ececec" }, -- DevIconConfiguration xxx guifg=#ECECEC
-    DevIconZig { fg = "#f69a1b" }, -- DevIconZig     xxx guifg=#f69a1b
-    DevIconDoc { fg = "#185abd" }, -- DevIconDoc     xxx guifg=#185abd
-    DevIconClojureJS { fg = "#519aba" }, -- DevIconClojureJS xxx guifg=#519aba
-    DevIconGif { fg = "#a074c4" }, -- DevIconGif     xxx guifg=#a074c4
-    DevIconPpt { fg = "#cb4a32" }, -- DevIconPpt     xxx guifg=#cb4a32
-    DevIconCMake { fg = "#6d8086" }, -- DevIconCMake   xxx guifg=#6d8086
-    DevIconXml { fg = "#e37933" }, -- DevIconXml     xxx guifg=#e37933
-    DevIconHaml { fg = "#eaeae1" }, -- DevIconHaml    xxx guifg=#eaeae1
-    DevIconWebpack { fg = "#519aba" }, -- DevIconWebpack xxx guifg=#519aba
-    DevIconSettingsJson { fg = "#854cc7" }, -- DevIconSettingsJson xxx guifg=#854CC7
     DevIconSln { fg = "#854cc7" }, -- DevIconSln     xxx guifg=#854CC7
-    DevIconH { fg = "#a074c4" }, -- DevIconH       xxx guifg=#a074c4
-    DevIconEdn { fg = "#519aba" }, -- DevIconEdn     xxx guifg=#519aba
-    DevIconPp { fg = "#302b6d" }, -- DevIconPp      xxx guifg=#302B6D
-    DevIconProcfile { fg = "#a074c4" }, -- DevIconProcfile xxx guifg=#a074c4
-    DevIconGemspec { fg = "#701516" }, -- DevIconGemspec xxx guifg=#701516
-    DevIconSvg { fg = "#ffb13b" }, -- DevIconSvg     xxx guifg=#FFB13B
-    DevIconBinaryGLTF { fg = "#ffb13b" }, -- DevIconBinaryGLTF xxx guifg=#FFB13B
+    DevIconSml { fg = "#e37933" }, -- DevIconSml     xxx guifg=#e37933
+    DevIconSql { fg = "#dad8d8" }, -- DevIconSql     xxx guifg=#dad8d8
     DevIconStyl { fg = "#8dc149" }, -- DevIconStyl    xxx guifg=#8dc149
-    DevIconBashProfile { fg = "#89e051" }, -- DevIconBashProfile xxx guifg=#89e051
+    DevIconSuo { fg = "#854cc7" }, -- DevIconSuo     xxx guifg=#854CC7
+    DevIconSvelte { fg = "#ff3e00" }, -- DevIconSvelte  xxx guifg=#ff3e00
+    DevIconSvg { fg = "#ffb13b" }, -- DevIconSvg     xxx guifg=#FFB13B
+    DevIconSwift { fg = "#e37933" }, -- DevIconSwift   xxx guifg=#e37933
+    DevIconTerminal { fg = "#31b53e" }, -- DevIconTerminal xxx guifg=#31B53E
+    DevIconTex { fg = "#3d6117" }, -- DevIconTex     xxx guifg=#3D6117
+    DevIconTextResource { fg = "#cbcb41" }, -- DevIconTextResource xxx guifg=#cbcb41
+    DevIconTextScene { fg = "#a074c4" }, -- DevIconTextScene xxx guifg=#a074c4
+    DevIconToml { fg = "#6d8086" }, -- DevIconToml    xxx guifg=#6d8086
+    DevIconTor { fg = "#519aba" }, -- DevIconTor     xxx guifg=#519aba
+    DevIconTs { fg = "#519aba" }, -- DevIconTs      xxx guifg=#519aba
+    DevIconTsx { fg = "#519aba" }, -- DevIconTsx     xxx guifg=#519aba
+    DevIconTwig { fg = "#8dc149" }, -- DevIconTwig    xxx guifg=#8dc149
+    DevIconTxt { fg = "#89e051" }, -- DevIconTxt     xxx guifg=#89e051
+    DevIconVagrantfile { fg = "#1563ff" }, -- DevIconVagrantfile xxx guifg=#1563FF
+    DevIconVim { fg = hsl "#019833" },
+    DevIconVimrc { fg = "#019833" }, -- DevIconVimrc   xxx guifg=#019833
+    DevIconVue { fg = "#8dc149" }, -- DevIconVue     xxx guifg=#8dc149
+    DevIconWebmanifest { fg = "#f1e05a" }, -- DevIconWebmanifest xxx guifg=#f1e05a
+    DevIconWebp { fg = "#a074c4" }, -- DevIconWebp    xxx guifg=#a074c4
+    DevIconWebpack { fg = "#519aba" }, -- DevIconWebpack xxx guifg=#519aba
+    DevIconXcPlayground { fg = "#e37933" }, -- DevIconXcPlayground xxx guifg=#e37933
+    DevIconXls { fg = "#207245" }, -- DevIconXls     xxx guifg=#207245
+    DevIconXml { fg = "#e37933" }, -- DevIconXml     xxx guifg=#e37933
+    DevIconXul { fg = "#e37933" }, -- DevIconXul     xxx guifg=#e37933
+    DevIconYaml { fg = "#6d8086" }, -- DevIconYaml    xxx guifg=#6d8086
+    DevIconYml { fg = "#6d8086" }, -- DevIconYml     xxx guifg=#6d8086
+    DevIconZig { fg = hsl "#f69a1b" },
+    DevIconZsh { fg = hsl "#89e051" },
+    DevIconZshenv { fg = "#89e051" }, -- DevIconZshenv  xxx guifg=#89e051
     DevIconZshprofile { fg = "#89e051" }, -- DevIconZshprofile xxx guifg=#89e051
-    DevIconBashrc { fg = "#89e051" }, -- DevIconBashrc  xxx guifg=#89e051
-    DevIconBabelrc { fg = "#cbcb41" }, -- DevIconBabelrc xxx guifg=#cbcb41
-    DevIconLhs { fg = "#a074c4" }, -- DevIconLhs     xxx guifg=#a074c4
-    DevIconFsscript { fg = "#519aba" }, -- DevIconFsscript xxx guifg=#519aba
-    DevIconDsStore { fg = "#41535b" }, -- DevIconDsStore xxx guifg=#41535b
+    DevIconZshrc { fg = "#89e051" }, -- DevIconZshrc   xxx guifg=#89e051
   }
 end)
 

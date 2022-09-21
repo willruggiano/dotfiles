@@ -6,17 +6,32 @@
 }:
 with lib; {
   config = {
-    systemd.user.services.apply-bat-theme = {
-      description = "Re-apply bat theme";
-      path = with pkgs; [bat colorctl];
+    programs.colorctl.settings = {
+      bat = {
+        reload = true;
+        reload-command = let
+          cmd = pkgs.writeShellApplication {
+            name = "reload-bat-theme";
+            runtimeInputs = with pkgs; [bat];
+            text = ''
+              bat cache --clear && bat cache --build
+            '';
+          };
+        in "${cmd}/bin/reload-bat-theme";
+      };
+    };
+
+    systemd.user.services.reload-bat-theme = {
+      description = "Reload bat theme";
+      path = with pkgs; [colorctl];
       script = ''
-        colorctl build bat && bat cache --clear && bat cache --build
+        colorctl build --reload bat
       '';
     };
 
-    systemd.user.timers.apply-bat-theme = {
-      description = "Re-apply bat theme";
-      partOf = ["apply-bat-theme.service"];
+    systemd.user.timers.reload-bat-theme = {
+      description = "Reload bat theme";
+      partOf = ["reload-bat-theme.service"];
       wantedBy = ["timers.target"];
       timerConfig.OnCalendar = "hourly";
     };
