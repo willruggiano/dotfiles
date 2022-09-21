@@ -111,6 +111,23 @@ end
 local main_menu = awful.menu {
   items = {
     { "awesome", awesome_menu },
+    {
+      "system",
+      {
+        {
+          "restart",
+          function()
+            awful.spawn "shutdown -r now"
+          end,
+        },
+        {
+          "shutdown",
+          function()
+            awful.spawn "shutdown now"
+          end,
+        },
+      },
+    },
     { "terminal", terminal },
     { "pass", pass_clip },
     { "firefox-private", "firefox-private" },
