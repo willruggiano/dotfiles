@@ -8,7 +8,7 @@ with lib; let
   cfg = config.programs.kitty;
 in {
   config = mkIf cfg.enable {
-    user.packages = [pkgs.kitty];
+    user.packages = with pkgs; [kitty];
 
     programs.colorctl.settings = {
       kitty = {
@@ -25,6 +25,19 @@ in {
           };
         in "${reload-kitty}/bin/reload-kitty-theme";
       };
+    };
+
+    systemd.user.services.reload-kitty-theme = {
+      description = "Reload kitty theme";
+      path = with pkgs; [colorctl];
+      script = "colorctl build --reload kitty";
+    };
+
+    systemd.user.timers.reload-kitty-theme = {
+      description = "Reload kitty theme";
+      partOf = ["reload-kitty-theme.service"];
+      wantedBy = ["timers.target"];
+      timerConfig.OnCalendar = "hourly";
     };
   };
 }
