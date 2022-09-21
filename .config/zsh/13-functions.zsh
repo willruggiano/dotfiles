@@ -44,7 +44,11 @@ function git-turtle() {
 
 function lg() {
     if [[ $# -eq 0 ]]; then
-        lazygit
+        if [[ -f $XDG_CONFIG_HOME/lazygit/theme.yml ]]; then
+            lazygit --use-config-file="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/theme.yml"
+        else
+            lazygit
+        fi
     else
         command git $@
     fi
