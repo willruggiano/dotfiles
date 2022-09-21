@@ -267,7 +267,7 @@ null_ls.setup {
     null_ls.builtins.formatting.alejandra,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.rustfmt,
-    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.shfmt.with { filetypes = { "bash", "sh" } },
     null_ls.builtins.formatting.stylua,
     -- null_ls.builtins.formatting.yapf, -- via pylsp
     -- Diagnostics
@@ -277,13 +277,14 @@ null_ls.setup {
       command = lsp_cmds.luacheck,
       extra_args = { "--globals", "vim", "--no-max-line-length" },
     },
-    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.shellcheck.with { filetypes = { "bash", "sh" } },
     null_ls.builtins.diagnostics.statix,
     -- custom_sources.statix.diagnostics,
 
     -- Code actions
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.shellcheck.with { filetypes = { "bash", "sh" } },
     null_ls.builtins.code_actions.statix,
     -- custom_sources.statix.code_actions,
     -- Hover
