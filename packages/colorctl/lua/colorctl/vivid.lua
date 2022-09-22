@@ -34,11 +34,6 @@ function M.run(opts)
     }
     ---@diagnostic disable-next-line: undefined-global
   end, { vivid, "awesome" }, { overwrite, opts.dest })
-
-  -- if opts.reload then
-  --   assert(opts.reload.command, "must have a reload.command for vivid")
-  --   os.execute(utils.gsubenv(opts.reload.command))
-  -- end
 end
 
 return M

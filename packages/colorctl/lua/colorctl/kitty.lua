@@ -1,6 +1,5 @@
 local M = {}
 
-local utils = require "colorctl.utils"
 local kitty = require "shipwright.transform.contrib.kitty"
 local overwrite = require "shipwright.transform.overwrite"
 
