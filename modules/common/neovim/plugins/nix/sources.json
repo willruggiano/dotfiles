@@ -230,7 +230,7 @@
     "leap.nvim": {
         "branch": "main",
         "repo": "git@github.com:ggandor/leap.nvim",
-        "rev": "2a7965c6ec3f5de9efde92dcec0c53f12c84732a",
+        "rev": "aba53d7a8870426bea89eeca6c3b265d1f94c584",
         "type": "git"
     },
     "lir-git-status.nvim": {
