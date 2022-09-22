@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     nix.url = "github:nixos/nix/master";
@@ -65,6 +66,10 @@
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           # emanote = inputs.emanote.defaultPackage."${prev.system}";
+        })
+        (final: prev: {
+          # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
+          inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell;
         })
       ];
 
