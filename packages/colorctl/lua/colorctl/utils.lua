@@ -22,4 +22,10 @@ function M.to_rrggbb(color)
   end
 end
 
+function M.check_keys(app, colors, required_keys)
+  for _, key in ipairs(required_keys) do
+    assert(colors[key] ~= nil, app .. " colors table missing required key: " .. key)
+  end
+end
+
 return M
