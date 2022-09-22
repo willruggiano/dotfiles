@@ -20,6 +20,8 @@ function M.run(opts)
       bad_fg = utils.to_rrggbb(colors.Error.fg.hex),
       bad_bg = utils.to_rrggbb(colors.Error.bg.hex),
       directory_fg = utils.to_rrggbb(colors.Directory.fg.hex),
+      executable_fg = utils.to_rrggbb(colors.Palette4.fg.hex),
+      executable_style = "bold",
       -- Filetypes
       cxx = utils.to_rrggbb(colors.DevIconCpp.fg.hex),
       lua = utils.to_rrggbb(colors.DevIconLua.fg.hex),

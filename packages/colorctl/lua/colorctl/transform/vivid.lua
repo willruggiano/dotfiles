@@ -46,7 +46,8 @@ core:
   sticky:
     foreground: fg
   executable_file:
-    foreground: fg
+    foreground: '$executable_fg'
+    font-style: '$executable_style'
 
 text:
   special:
@@ -90,8 +91,8 @@ archives:
   foreground: fg
 
 executable:
-  foreground: fg
-  font-style: bold
+  foreground: '$executable_fg'
+  font-style: '$executable_style'
 
 unimportant:
   foreground: fg
@@ -105,6 +106,8 @@ local check_keys = {
   "bad_fg",
   "bad_bg",
   "directory_fg",
+  "executable_fg",
+  "executable_style",
   "cxx",
   "lua",
   "nix",
