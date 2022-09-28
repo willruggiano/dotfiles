@@ -28,6 +28,7 @@ vim.filetype.add {
       return "snip", require "bombadil.filetype.snippet"
     end,
     tpp = "cpp",
+    xit = "xit",
     zsh = function()
       return "zsh", require "bombadil.filetype.shell"
     end,

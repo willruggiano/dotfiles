@@ -96,6 +96,10 @@
       owner = "vigoux";
       repo = "tree-sitter-viml";
     };
+    xit = {
+      owner = "synaptiko";
+      rev = "0.1";
+    };
     yaml = {
       owner = "ikatyang";
     };
