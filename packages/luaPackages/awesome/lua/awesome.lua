@@ -110,7 +110,8 @@ local theme = lush(function()
       return awesome.rotate(x, 190)
     end)) },
 
-    Highlighter { fg = Black.fg, bg = hsl "#fcf7bb" },
+    Highlighter { fg = hsl(awesome.fg()), bg = bg_offset(Palette3.fg, -50) },
+    HighlighterSecondary { fg = hsl(awesome.fg()), bg = bg_offset(Palette5.fg, -50) },
 
     Bold { gui = "bold" },
     Italic { gui = "italic" },
@@ -158,7 +159,7 @@ local theme = lush(function()
     PmenuThumb { fg = Pmenu.fg, bg = Pmenu.bg }, -- TODO blend Popup menu: Thumb of the scrollbar.
     -- Question     { }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine { bg = CursorLine.bg }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search { fg = Black.fg, bg = Highlighter.bg }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    Search { Highlighter }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace| SpellBad  Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.  SpellCap  Word that should start with a capital. |spell| Combined with the highlighting used otherwise.  SpellLocal  Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     -- StatusLine   { }, -- status line of current window
@@ -328,9 +329,9 @@ local theme = lush(function()
     IndentBlanklineChar { fg = Fore10.fg, gui = "nocombine" },
 
     -- Leap
-    LeapMatch { gui = "bold,underline" },
+    LeapMatch { fg = bg_offset(Highlighter.bg, 30), gui = Underlined.gui },
     LeapLabelPrimary { Highlighter },
-    LeapLabelSecondary { Highlighter, gui = "underline" },
+    LeapLabelSecondary { HighlighterSecondary },
 
     -- Lir
     LirTransparentCursor { blend = 100, gui = Strikethrough.gui },

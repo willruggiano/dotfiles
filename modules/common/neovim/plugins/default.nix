@@ -282,6 +282,10 @@ in rec {
     '';
   };
 
+  leap-flit = {
+    package = plugins."flit.nvim";
+  };
+
   lir = {
     package = plugins."lir.nvim";
     config = ''

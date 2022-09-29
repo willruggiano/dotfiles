@@ -16,6 +16,7 @@
   programs.zsh.enable = true;
 
   services.dropbox.enable = true;
+  services.kbfs.enable = true;
 
   suites = {
     development.enable = true;
