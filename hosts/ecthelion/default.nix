@@ -17,6 +17,14 @@
     shell = pkgs.zsh;
   };
 
+  home.file = {
+    ".gitconfig".text = ''
+      [commit]
+          gpgSign = true
+          signingkey = "0xB3FE328FB2A3ECD6"
+    '';
+  };
+
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
 
   programs.blender.enable = true;
