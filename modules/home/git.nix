@@ -12,6 +12,11 @@ with lib; let
     then "smerge"
     else "${pkgs.sublime-merge}/bin/smerge $MERGED";
 in {
+  options.programs.git.signingkey = mkOption {
+    type = types.str;
+    description = "The device-specific PGP key to use for signing git commits.";
+  };
+
   config =
     mkIf cfg.enable
     {
@@ -96,6 +101,14 @@ in {
           loq = "log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative";
           pristine = "clean -dffx";
         };
+      };
+
+      home.file = {
+        ".gitconfig".text = ''
+          [commit]
+              gpgSign = true
+              signingkey = "${cfg.signingkey}"
+        '';
       };
 
       xdg.configFile = {
