@@ -8,6 +8,7 @@
   programs.fzf.enable = true;
   programs.git = {
     enable = true;
+    signingkey = "0x8C442553F8881E7A";
     userName = "Will Ruggiano";
     userEmail = "wmruggiano@gmail.com";
   };

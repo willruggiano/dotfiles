@@ -106,7 +106,9 @@ in {
       home.file = {
         ".gitconfig".text = ''
           [commit]
-              gpgSign = true
+              gpgsign = true
+
+          [user]
               signingkey = "${cfg.signingkey}"
         '';
       };
