@@ -253,33 +253,6 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = taglist_buttons,
   }
 
-  local default_template = {
-    {
-      {
-        {
-          id = "icon_role",
-          widget = wibox.widget.imagebox,
-        },
-        margins = dpi(2),
-        widget = wibox.container.margin,
-      },
-      {
-        {
-          id = "text_role",
-          widget = wibox.widget.textbox,
-        },
-        id = "text_margin_role",
-        left = dpi(4),
-        right = dpi(4),
-        widget = wibox.container.margin,
-      },
-      fill_space = true,
-      layout = wibox.layout.fixed.horizontal,
-    },
-    id = "background_role",
-    widget = wibox.container.background,
-  }
-
   -- Create a tasklist widget
   s.task_list = awful.widget.tasklist {
     screen = s,
@@ -353,7 +326,7 @@ root.buttons(gears.table.join(awful.button({}, 4, awful.tag.viewnext), awful.but
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
   awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
   awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
   awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
@@ -457,10 +430,10 @@ globalkeys = gears.table.join(
     menubar.show()
   end, { description = "show the menubar", group = "launcher" }),
 
-  awful.key({ modkey, "Shift" }, "p", pass_clip, { description = "open password store" })
+  awful.key({ modkey, "Shift" }, "p", pass_clip, { description = "open password store", group = "launcher" })
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
   awful.key({ modkey }, "f", function(c)
     c.fullscreen = not c.fullscreen
     c:raise()
@@ -556,7 +529,7 @@ for i = 1, 9 do
   )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
