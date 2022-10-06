@@ -87,9 +87,6 @@ in {
           push = {
             followTags = true;
           };
-          user = {
-            signingkey = "79303BEC95097CB6";
-          };
         };
         aliases = {
           dag = "log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order";
