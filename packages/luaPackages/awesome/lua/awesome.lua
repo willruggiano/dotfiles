@@ -110,8 +110,8 @@ local theme = lush(function()
       return awesome.rotate(x, 190)
     end)) },
 
-    Highlighter { fg = hsl(awesome.fg()), bg = bg_offset(Palette3.fg, -50) },
-    HighlighterSecondary { fg = hsl(awesome.fg()), bg = bg_offset(Palette5.fg, -50) },
+    -- Highlighter { fg = hsl(awesome.fg()), bg = bg_offset(Palette3.fg, -50) },
+    -- HighlighterSecondary { fg = hsl(awesome.fg()), bg = bg_offset(Palette5.fg, -50) },
 
     Bold { gui = "bold" },
     Italic { gui = "italic" },
@@ -143,7 +143,6 @@ local theme = lush(function()
     Folded { fg = Fore2.fg, bg = Back2.bg }, -- line used for closed folds
     FoldColumn { fg = Fore4.fg, bg = Back2.bg }, -- 'foldcolumn'
     SignColumn { fg = Fore4.fg, bg = Back2.bg }, -- column where |signs| are displayed
-    IncSearch { fg = DiffChange.fg, bg = DiffChange.bg }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     Substitute { fg = DiffAdd.fg, bg = DiffAdd.bg }, -- |:substitute| replacement text highlighting
     LineNr { fg = Fore4.fg, bg = Back2.bg }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     CursorLineNr { fg = Palette1.fg, bg = Back3.bg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -159,7 +158,8 @@ local theme = lush(function()
     PmenuThumb { fg = Pmenu.fg, bg = Pmenu.bg }, -- TODO blend Popup menu: Thumb of the scrollbar.
     -- Question     { }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine { bg = CursorLine.bg }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search { Highlighter }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    Search { bg = bg_offset(DiffChange.bg, 10) }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    IncSearch { Search }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace| SpellBad  Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.  SpellCap  Word that should start with a capital. |spell| Combined with the highlighting used otherwise.  SpellLocal  Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     -- StatusLine   { }, -- status line of current window
@@ -299,7 +299,7 @@ local theme = lush(function()
     -- TSOperator           { }, -- For any operator: `+`, but also `->` and `*` in C.
     -- TSParameter          { }, -- For parameters of a function.
     -- TSParameterReference { }, -- For references to parameters of a function.
-    TSPlaygroundFocus { Highlighter },
+    TSPlaygroundFocus { Search },
     TSProperty { TSField },
     -- TSPunctBracket       { }, -- For brackets and parens.
     -- TSPunctDelimiter     { }, -- For delimiters ie: `.`
@@ -329,9 +329,9 @@ local theme = lush(function()
     IndentBlanklineChar { fg = Fore10.fg, gui = "nocombine" },
 
     -- Leap
-    LeapMatch { fg = bg_offset(Highlighter.bg, 30), gui = Underlined.gui },
-    LeapLabelPrimary { Highlighter },
-    LeapLabelSecondary { HighlighterSecondary },
+    LeapMatch { fg = Search.bg, gui = Underlined.gui },
+    LeapLabelPrimary { Search },
+    LeapLabelSecondary { fg = bg_offset(LeapMatch.fg, 30) },
 
     -- Lir
     LirTransparentCursor { blend = 100, gui = Strikethrough.gui },
