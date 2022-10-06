@@ -380,7 +380,7 @@
     "nvim-lspconfig": {
         "branch": "master",
         "repo": "git@github.com:neovim/nvim-lspconfig",
-        "rev": "ad9903c66bac88f344890acb6532f63f1cd4dac3",
+        "rev": "1c2a57d991548995030748088a7ded73a7b5f496",
         "type": "git"
     },
     "nvim-luadev": {

@@ -24,6 +24,7 @@
     # emanote.url = "github:srid/emanote";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+    nil.url = "github:oxalica/nil";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar";
     zig.url = "github:willruggiano/zig.nix";
@@ -57,6 +58,7 @@
         self.overlay
         inputs.naersk.overlay
         inputs.neovim.overlay
+        inputs.nil.overlays.default
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay

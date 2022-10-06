@@ -162,7 +162,7 @@ in {
 
         nixEnv = buildEnv {
           name = "neovim-nix-env";
-          paths = [rnix-lsp];
+          paths = [nil rnix-lsp];
         };
 
         nodeEnv = buildEnv {
@@ -194,6 +194,7 @@ in {
           ''local cppcheck = "${cppEnv}/bin/cppcheck"''
           ''local jsonlint = "${nodeEnv}/bin/jsonlint"''
           ''local luacheck = { "${luaEnv}/bin/luacheck" }''
+          ''local nil_ls = { "${nixEnv}/bin/nil" }''
           ''local rnix = { "${nixEnv}/bin/rnix-lsp" }''
           ''local rust_analyzer = { "${rustEnv}/bin/rust-analyzer" }''
           ''local rustfmt = { "${rustEnv}/bin/rustfmt" }''
@@ -215,6 +216,7 @@ in {
               cppcheck = cppcheck,
               jsonlint = jsonlint,
               luacheck = luacheck,
+              nil_ls = nil_ls,
               pylsp = pylsp,
               rnix = rnix,
               ["rust-analyzer"] = rust_analyzer,

@@ -359,6 +359,13 @@ lspconfig.cmake.setup {
   capabilities = updated_capabilities,
 }
 
+lspconfig.nil_ls.setup {
+  cmd = lsp_cmds.nil_ls,
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = updated_capabilities,
+}
+
 lspconfig.pylsp.setup {
   cmd = lsp_cmds.pylsp,
   on_init = on_init,
@@ -369,12 +376,12 @@ lspconfig.pylsp.setup {
   },
 }
 
-lspconfig.rnix.setup {
-  cmd = lsp_cmds.rnix,
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = updated_capabilities,
-}
+-- lspconfig.rnix.setup {
+--   cmd = lsp_cmds.rnix,
+--   on_init = on_init,
+--   on_attach = on_attach,
+--   capabilities = updated_capabilities,
+-- }
 
 require("rust-tools").setup {
   server = {
