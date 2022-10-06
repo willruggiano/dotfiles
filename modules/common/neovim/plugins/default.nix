@@ -367,7 +367,8 @@ in rec {
   };
 
   nix = {
-    package = plugins."nix.nvim";
+    # package = plugins."nix.nvim";
+    package = pkgs.dummy;
     config = ''
       require "bombadil.config.nix"
     '';
