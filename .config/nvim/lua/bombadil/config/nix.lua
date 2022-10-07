@@ -1,1 +1,3 @@
-require("nix").setup {}
+require("nix").setup {
+  xray = true,
+}
