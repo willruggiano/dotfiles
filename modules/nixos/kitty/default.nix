@@ -26,18 +26,5 @@ in {
         in "${cmd}/bin/reload-kitty-theme";
       };
     };
-
-    systemd.user.services.reload-kitty-theme = {
-      description = "Reload kitty theme";
-      path = with pkgs; [colorctl];
-      script = "colorctl build --reload kitty";
-    };
-
-    systemd.user.timers.reload-kitty-theme = {
-      description = "Reload kitty theme";
-      partOf = ["reload-kitty-theme.service"];
-      wantedBy = ["timers.target"];
-      timerConfig.OnCalendar = "hourly";
-    };
   };
 }
