@@ -376,32 +376,21 @@ lspconfig.pylsp.setup {
   },
 }
 
--- lspconfig.rnix.setup {
---   cmd = lsp_cmds.rnix,
---   on_init = on_init,
---   on_attach = on_attach,
---   capabilities = updated_capabilities,
--- }
-
-require("rust-tools").setup {
-  server = {
-    cmd = lsp_cmds["rust-analyzer"],
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = updated_capabilities,
-
-    settings = {
-      ["rust-analyzer"] = {
-        assist = {
-          importGranularity = "module",
-          importPrefix = "by_self",
-        },
-        cargo = {
-          loadOutDirsFromCheck = true,
-        },
-        procMacro = {
-          enable = true,
-        },
+lspconfig.rust_analyzer.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = updated_capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importGranularity = "module",
+        importPrefix = "by_self",
+      },
+      cargo = {
+        loadOutDirsFromCheck = true,
+      },
+      procMacro = {
+        enable = true,
       },
     },
   },

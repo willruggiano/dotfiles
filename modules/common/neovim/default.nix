@@ -180,7 +180,7 @@ in {
 
         rustEnv = buildEnv {
           name = "neovim-rust-env";
-          paths = [rust-analyzer rustfmt];
+          paths = [];
         };
 
         zigEnv = buildEnv {
@@ -196,8 +196,6 @@ in {
           ''local luacheck = { "${luaEnv}/bin/luacheck" }''
           ''local nil_ls = { "${nixEnv}/bin/nil" }''
           ''local rnix = { "${nixEnv}/bin/rnix-lsp" }''
-          ''local rust_analyzer = { "${rustEnv}/bin/rust-analyzer" }''
-          ''local rustfmt = { "${rustEnv}/bin/rustfmt" }''
           ''local pylsp = { "${pythonEnv}/bin/pyright" }''
         ]
         ++ optional stdenv.isDarwin ''

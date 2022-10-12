@@ -448,10 +448,6 @@ in rec {
     package = plugins.vim-repeat;
   };
 
-  rust-tools = {
-    package = plugins."rust-tools.nvim";
-  };
-
   satellite = {
     package = plugins."satellite.nvim";
     config = ''

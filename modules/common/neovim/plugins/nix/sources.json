@@ -503,12 +503,6 @@
         "rev": "94eaa199ad892f26d2c8594dbbc5656314cf5bdb",
         "type": "git"
     },
-    "rust-tools.nvim": {
-        "branch": "master",
-        "repo": "ssh://git@github.com/simrat39/rust-tools.nvim",
-        "rev": "11dcd674781ba68a951ab4c7b740553cae8fe671",
-        "type": "git"
-    },
     "satellite.nvim": {
         "branch": "main",
         "repo": "git@github.com:lewis6991/satellite.nvim",
