@@ -20,20 +20,5 @@ with lib; {
         in "${cmd}/bin/reload-bat-theme";
       };
     };
-
-    systemd.user.services.reload-bat-theme = {
-      description = "Reload bat theme";
-      path = with pkgs; [colorctl];
-      script = ''
-        colorctl build --reload bat
-      '';
-    };
-
-    systemd.user.timers.reload-bat-theme = {
-      description = "Reload bat theme";
-      partOf = ["reload-bat-theme.service"];
-      wantedBy = ["timers.target"];
-      timerConfig.OnCalendar = "hourly";
-    };
   };
 }

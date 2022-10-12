@@ -19,7 +19,7 @@ function M.run(opts)
       caret = colors.Error.fg.hex,
       fg = fg,
       invisibles = colors.Error.fg.hex,
-      highlight = colors.Highlighter.fg.hex,
+      highlight = colors.Search.fg.hex,
       selection = colors.Visual.bg.hex,
       comment = colors.Comment.fg.hex,
       string = colors.String.fg.hex,
