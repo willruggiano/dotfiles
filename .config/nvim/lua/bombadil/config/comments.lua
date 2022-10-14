@@ -13,6 +13,10 @@ config.configure_language("nix", {
   prefer_single_line_comments = true,
 })
 
+config.configure_language("rust", {
+  prefer_single_line_comments = true,
+})
+
 config.configure_language("zig", {
   prefer_single_line_comments = true,
   single_line_comment_string = "//",

@@ -299,6 +299,12 @@
         "rev": "8e80a20a170434bc77decc97bc4364c3ba848925",
         "type": "git"
     },
+    "neo-minimap": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/ziontee113/neo-minimap",
+        "rev": "7ad412712d9695b6baeb548581d98fd1111c86ed",
+        "type": "git"
+    },
     "neogen": {
         "branch": "main",
         "repo": "git@github.com:danymat/neogen",
@@ -566,7 +572,7 @@
     "telescope.nvim": {
         "branch": "master",
         "repo": "git@github.com:nvim-telescope/telescope.nvim",
-        "rev": "92019d5053674676576b021904935d101b059fd5",
+        "rev": "f174a0367b4fc7cb17710d867e25ea792311c418",
         "type": "git"
     },
     "todo-comments.nvim": {

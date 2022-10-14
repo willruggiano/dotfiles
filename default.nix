@@ -32,4 +32,16 @@ with lib; {
       options = "--delete-older-than 10d";
     };
   };
+
+  environment.systemPackages = [
+    (pkgs.writeShellApplication {
+      name = "plug";
+      runtimeInputs = with pkgs; [niv];
+      text = ''
+        pushd "${config.dotfiles.dir}/modules/common/neovim/plugins" >/dev/null
+        niv "$@"
+        popd >/dev/null
+      '';
+    })
+  ];
 }

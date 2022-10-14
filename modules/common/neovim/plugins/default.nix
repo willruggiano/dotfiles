@@ -352,6 +352,10 @@ in rec {
     '';
   };
 
+  minimap = {
+    package = plugins.neo-minimap;
+  };
+
   neogen = {
     package = plugins.neogen;
     config = ''

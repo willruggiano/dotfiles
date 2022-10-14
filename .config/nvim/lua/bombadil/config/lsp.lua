@@ -113,12 +113,9 @@ local on_attach = function(client, bufnr)
       end,
       { buffer = bufnr, desc = "Format" },
     },
-    ["<leader>dd"] = {
-      function()
-        vim.fn.setqflist(vim.diagnostic.toqflist(vim.diagnostic.get(0)))
-        vim.cmd "botright copen"
-      end,
-      { buffer = bufnr, desc = "Document diagnostics" },
+    ["<space>d"] = {
+      vim.diagnostic.setloclist,
+      { buffer = bufnr, desc = "Diagnostics" },
     },
     ["<leader>dl"] = {
       function()
@@ -126,7 +123,7 @@ local on_attach = function(client, bufnr)
       end,
       { buffer = bufnr, desc = "Line diagnostics" },
     },
-    ["<leader>dw"] = {
+    ["<leader>dd"] = {
       function()
         vim.diagnostic.setqflist { open = false }
         vim.cmd "botright copen"
@@ -148,19 +145,17 @@ local on_attach = function(client, bufnr)
       require("clangd_extensions.inlay_hints").toggle_inlay_hints,
       { buffer = bufnr, desc = "Toggle inlay hints" },
     },
-    ["<leader>wd"] = {
+    ["<space>s"] = {
       function()
+        -- TODO: Consider using loclist for this?
+        -- TODO: Disable preview if window is too narrow?
         require("telescope.builtin").lsp_document_symbols(telescope_themes.ivy)
       end,
-      { buffer = bufnr, desc = "Document symbols" },
+      { buffer = bufnr, desc = "Symbols" },
     },
     ["<leader>ww"] = {
       function()
-        vim.ui.input({ prompt = "Query: " }, function(query)
-          require("telescope.builtin").lsp_workspace_symbols(
-            vim.tbl_deep_extend("force", telescope_themes.ivy, { query = query })
-          )
-        end)
+        require("telescope.builtin").lsp_workspace_symbols(telescope_themes.ivy)
       end,
       { buffer = bufnr, desc = "Workspace symbols" },
     },

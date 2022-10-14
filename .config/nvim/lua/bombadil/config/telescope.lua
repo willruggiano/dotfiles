@@ -134,14 +134,12 @@ if vim.fn.executable "gh" == 1 then
   telescope.load_extension "gh"
 end
 
+vim.api.nvim_create_user_command("Dotfiles", function()
+  require("telescope").extensions.dotfiles.dotfiles()
+end, { desc = "Edit dotfiles" })
+
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local mappings = {
-  ["<space>d"] = {
-    function()
-      require("telescope").extensions.dotfiles.dotfiles()
-    end,
-    { desc = "Dotfiles" },
-  },
   ["<space>e"] = {
     function()
       require("telescope.builtin").git_files()
@@ -184,7 +182,7 @@ local mappings = {
     end,
     { desc = "GitHub workflows" },
   },
-  ["<leader>k"] = {
+  ["<space>k"] = {
     function()
       require("telescope").extensions.docsets.find_word_under_cursor(
         vim.tbl_deep_extend("force", themes.ivy, { previewer = false })

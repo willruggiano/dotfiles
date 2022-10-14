@@ -14,18 +14,13 @@ M.jump_to_location = function(location)
     end
   end
 
-  if vim.lsp.util.jump_to_location(location, "utf-8") then
+  if vim.lsp.util.jump_to_location(location, "utf-8", true) then
     vim.cmd "normal! zz"
-    return true
-  else
-    return false
   end
 end
 
 M.kind = {
-  init = function()
-    require("lspkind").init()
-  end,
+  init = require("lspkind").init,
 }
 
 M.peek_definition = require "bombadil.lsp.peek"
