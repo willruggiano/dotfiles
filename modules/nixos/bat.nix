@@ -8,7 +8,7 @@ with lib; {
   config = {
     programs.colorctl.settings = {
       bat = {
-        reload = true;
+        enable = true;
         reload-command = let
           cmd = pkgs.writeShellApplication {
             name = "reload-bat-theme";

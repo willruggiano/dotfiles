@@ -12,7 +12,7 @@ in {
 
     programs.colorctl.settings = {
       kitty = {
-        reload = true;
+        enable = true;
         reload-command = let
           cmd = pkgs.writeShellApplication {
             name = "reload-kitty-theme";

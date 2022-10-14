@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   config = {
-    programs.colorctl.settings.lazygit.reload = true;
+    programs.colorctl.settings.lazygit.enable = true;
   };
 }

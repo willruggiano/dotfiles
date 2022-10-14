@@ -1,11 +1,9 @@
 {
-  lib,
   toLuaModule,
   stdenv,
   writeShellApplication,
   lua,
   luaPackages,
-  stdenvNoCC,
 }: let
   colorctl = toLuaModule (stdenv.mkDerivation {
     name = "colorctl";
@@ -13,7 +11,7 @@
 
     src = ./.;
 
-    propagatedBuildInputs = [lua] ++ (with luaPackages; [argparse inspect luafilesystem lua-awesome lua-toml lua-shipwright stdlib]);
+    propagatedBuildInputs = [lua] ++ (with luaPackages; [argparse inspect lua-awesome lua-shipwright stdlib]);
 
     installPhase = let
       libpath = "$out/share/lua/${lua.luaversion}";

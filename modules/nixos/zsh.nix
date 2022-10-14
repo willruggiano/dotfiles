@@ -1,5 +1,5 @@
 {pkgs, ...}: {
   config = {
-    programs.colorctl.settings.vivid.reload = true;
+    programs.colorctl.settings.vivid.enable = true;
   };
 }

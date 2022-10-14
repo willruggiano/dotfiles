@@ -1,8 +1,5 @@
 local argparse = require "argparse"
-local io = require "std.io"
 local inspect = require "inspect"
-local lfs = require "lfs"
-local toml = require "toml"
 
 local function debug(args, message)
   if args.debug then
@@ -13,22 +10,13 @@ end
 local utils = require "colorctl.utils"
 
 local parser = argparse("colorctl", "Control system color(schemes)")
-parser
-  :option("-c --config", "Path to config file", os.getenv "HOME" .. "/.config/colorctl/config.toml")
-  :convert(function(filename)
-    filename = utils.gsubenv(filename)
-    if not lfs.attributes(filename) then
-      return {}
-    end
-    local config = io.slurp(filename)
-    return toml.parse(config)
-  end)
 parser:flag("--debug", "Debug mode")
 
 local build = parser:command("build", "Rebuild (and re-apply) color configuration for a specific application")
 build:argument "application"
 build:option("--override-hour", "Override the hour used to compute the color configuration")
 build:flag("--reload", "Re-apply the color configuration for a specific application")
+build:option("--reload-command", "The command to run to reload the application-specific colorscheme")
 build:action(function(args, _)
   debug(args, args)
 
@@ -39,12 +27,11 @@ build:action(function(args, _)
     theme.set_hour(tonumber(args.override_hour))
   end
 
-  local config = utils.tbl_merge(args.config[args.application] or {}, { override_hour = args.override_hour })
-  require("colorctl." .. args.application).run(config)
+  require("colorctl." .. args.application).run(args)
 
   if args.reload then
-    assert(config["reload-command"], "must have a reload-command for kitty")
-    os.execute(utils.gsubenv(config["reload-command"]))
+    assert(args["reload-command"], "must have a reload-command for " .. args.application)
+    os.execute(utils.gsubenv(args["reload-command"]))
   end
 end)
 
