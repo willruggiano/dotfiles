@@ -1,0 +1,1 @@
+require("xit").setup {}

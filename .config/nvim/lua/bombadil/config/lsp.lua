@@ -147,8 +147,7 @@ local on_attach = function(client, bufnr)
     },
     ["<space>s"] = {
       function()
-        -- TODO: Consider using loclist for this?
-        -- TODO: Disable preview if window is too narrow?
+        -- TODO: Use loclist for this
         require("telescope.builtin").lsp_document_symbols(telescope_themes.ivy)
       end,
       { buffer = bufnr, desc = "Symbols" },

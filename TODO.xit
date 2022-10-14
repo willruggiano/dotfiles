@@ -8,5 +8,11 @@
 [x] Use luafun instead of bombadil.lib.functional
 [ ] [GoXLR](https://github.com/GoXLR-on-Linux/GoXLR-Utility)
 [x] [colorctl](./packages/colorctl)
-[ ] Initialize colorctl'd config files via nix
+[ ] !!! Initialize colorctl'd config files via nix
 [ ] (darwin) awesome/sway-like keybinds for yabai
+
+Lsp
+[ ] Fix peek definition
+
+Telescope
+[ ] Use location-list instead of telescope for document symbols

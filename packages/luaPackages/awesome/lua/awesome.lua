@@ -530,6 +530,25 @@ local theme = lush(function()
     DevIconZshenv { fg = "#89e051" }, -- DevIconZshenv  xxx guifg=#89e051
     DevIconZshprofile { fg = "#89e051" }, -- DevIconZshprofile xxx guifg=#89e051
     DevIconZshrc { fg = "#89e051" }, -- DevIconZshrc   xxx guifg=#89e051
+
+    -- Xit
+    XitHeadline { Underlined },
+    XitOpenCheckbox {},
+    XitOpenTaskMainLine {},
+    XitOpenTaskOtherLine {},
+    XitOpenTaskPriority { Palette4 },
+    XitOngoingCheckbox { Palette3 },
+    XitOngoingTaskMainLine { XitOngoingCheckbox },
+    XitOngoingTaskOtherLine { XitOngoingCheckbox },
+    XitOngoingTaskPriority { XitOpenTaskPriority },
+    XitCheckedCheckbox { Comment },
+    XitCheckedTaskMainLine { Comment },
+    XitCheckedTaskOtherLine { Comment },
+    XitCheckedTaskPriority { Comment },
+    XitObsoleteCheckbox { Comment },
+    XitObsoleteTaskMainLine { Comment, gui = Strikethrough.gui },
+    XitObsoleteTaskOtherLine { Comment, gui = Strikethrough.gui },
+    XitObsoleteTaskPriority { Comment, gui = Strikethrough.gui },
   }
 end)
 

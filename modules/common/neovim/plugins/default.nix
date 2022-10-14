@@ -615,6 +615,13 @@ in rec {
     '';
   };
 
+  xit = {
+    package = plugins."xit.nvim";
+    config = ''
+      require "bombadil.config.xit"
+    '';
+  };
+
   zk = {
     package = plugins.zk-nvim;
     config = ''

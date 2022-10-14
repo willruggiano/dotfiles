@@ -641,6 +641,18 @@
         "rev": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf",
         "type": "git"
     },
+    "xit.nvim": {
+        "branch": "master",
+        "description": "Plugin for [x]it! format",
+        "homepage": null,
+        "owner": "synaptiko",
+        "repo": "xit.nvim",
+        "rev": "fe89a5df51f3c08bd4cd9aa5c698d9877f99684e",
+        "sha256": "1s94wgggaqmn94addsq2dw831pry4as0ir0prdscvhml1pk29916",
+        "type": "tarball",
+        "url": "https://github.com/synaptiko/xit.nvim/archive/fe89a5df51f3c08bd4cd9aa5c698d9877f99684e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "zk-nvim": {
         "branch": "main",
         "repo": "git@github.com:mickael-menu/zk-nvim",
