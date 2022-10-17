@@ -264,6 +264,7 @@ null_ls.setup {
     null_ls.builtins.formatting.shfmt.with { filetypes = { "bash", "sh" } },
     null_ls.builtins.formatting.stylua,
     -- null_ls.builtins.formatting.yapf, -- via pylsp
+    custom_sources.jsonnet.formatting,
     -- Diagnostics
     null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
     null_ls.builtins.diagnostics.jsonlint.with { command = lsp_cmds.jsonlint },
