@@ -94,9 +94,7 @@ local on_attach = function(client, bufnr)
       { buffer = bufnr, desc = "Previous diagnostic" },
     },
     ["<leader>ca"] = {
-      function()
-        require("telescope.builtin").lsp_code_actions(telescope_themes.cursor)
-      end,
+      vim.lsp.buf.code_action,
       { buffer = bufnr, desc = "Code actions" },
     },
     ["<leader>f"] = {
@@ -192,12 +190,12 @@ local on_attach = function(client, bufnr)
   end
 
   local range_mappings = {
-    ["<leader>ca"] = {
-      function()
-        require("telescope.builtin").lsp_range_code_actions(telescope_themes.cursor)
-      end,
-      { buffer = bufnr, desc = "Code actions" },
-    },
+    -- ["<leader>ca"] = {
+    --   function()
+    --     require("telescope.builtin").lsp_range_code_actions(telescope_themes.cursor)
+    --   end,
+    --   { buffer = bufnr, desc = "Code actions" },
+    -- },
     ["<leader>f"] = {
       function()
         ---@diagnostic disable-next-line: missing-parameter
