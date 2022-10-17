@@ -170,7 +170,7 @@
     "flit.nvim": {
         "branch": "main",
         "repo": "ssh://git@github.com/ggandor/flit.nvim",
-        "rev": "dd43846edca345075a60d2f749bcca71cd47a17f",
+        "rev": "be110f9814a45788d10537fd59b3c76d956bb7ad",
         "type": "git"
     },
     "focus.nvim": {
@@ -236,7 +236,7 @@
     "leap.nvim": {
         "branch": "main",
         "repo": "git@github.com:ggandor/leap.nvim",
-        "rev": "9cde026be2cae23e7514e3bfe20a77277d5d28a9",
+        "rev": "a9d3232b178fddabb6660dc19abf40e05d6841b0",
         "type": "git"
     },
     "lir-git-status.nvim": {

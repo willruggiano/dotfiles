@@ -132,7 +132,7 @@
         };
       };
 
-      hosts.dev-laptop = rec {
+      hosts."88e9fe563b0b" = rec {
         system = "x86_64-darwin";
         modules = [
           {

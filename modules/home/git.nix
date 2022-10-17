@@ -13,7 +13,7 @@ with lib; let
     else "${pkgs.sublime-merge}/bin/smerge $MERGED";
 in {
   options.programs.git.signingkey = mkOption {
-    type = types.str;
+    type = types.nullOr types.str;
     description = "The device-specific PGP key to use for signing git commits.";
     default = null;
   };

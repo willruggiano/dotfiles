@@ -10,8 +10,8 @@
   src = fetchFromGitHub {
     owner = "nvim-treesitter";
     repo = "nvim-treesitter";
-    rev = "8b748a7570b89822d47ac0ed0f694efda6523c7d";
-    hash = "sha256-F9h/uEp+9R4Ft/2KRmPdzC4en/Cms/soj7OgnMCviCA=";
+    rev = "8f927a4d50716e534c5845e835625962adf878e1";
+    hash = "sha256-/hSv4gj/VWVqONMG6VwpIjJc5q9TDa2aMdyfKT/IgWU=";
   };
 
   # The grammars we care about:
@@ -52,6 +52,9 @@
     jsonc = rec {
       owner = "WhyNotHugo";
       url = "https://gitlab.com/${owner}/tree-sitter-jsonc";
+    };
+    jsonnet = {
+      owner = "sourcegraph";
     };
     lua = {
       owner = "MunifTanjim";

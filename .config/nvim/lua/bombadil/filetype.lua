@@ -9,6 +9,7 @@ vim.filetype.add {
     json = function()
       return "json", require "bombadil.filetype.json"
     end,
+    jsonnet = "jsonnet",
     lua = function()
       return "lua", require "bombadil.filetype.lua"
     end,
