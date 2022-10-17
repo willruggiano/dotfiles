@@ -79,7 +79,7 @@ in {
         pythonEnv = pkgs.buildEnv {
           name = "neovim-python-env";
           paths = with pkgs; [
-            (python3.withPackages (ps: with ps; [pynvim]))
+            (python3.withPackages (ps: with ps; [pynvim py-tree-sitter]))
           ];
         };
       in ''
@@ -172,10 +172,7 @@ in {
 
         pythonEnv = buildEnv {
           name = "neovim-python-env";
-          paths = [
-            (python3.withPackages (ps: with ps; []))
-            nodePackages.pyright
-          ];
+          paths = [nodePackages.pyright];
         };
 
         rustEnv = buildEnv {
