@@ -30,8 +30,8 @@ build:action(function(args, _)
   require("colorctl." .. args.application).run(args)
 
   if args.reload then
-    assert(args["reload-command"], "must have a reload-command for " .. args.application)
-    os.execute(utils.gsubenv(args["reload-command"]))
+    assert(args.reload_command, "must have a reload-command for " .. args.application)
+    os.execute(utils.gsubenv(args.reload_command))
   end
 end)
 
