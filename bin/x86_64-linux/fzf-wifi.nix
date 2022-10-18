@@ -33,7 +33,7 @@ writeShellApplication {
       exit 1
     }
 
-    nmcli -d wifi rescan 2>/dev/null
+    nmcli -d wifi rescan 2>/dev/null || true
     network=$(nmcli --color yes device wifi | fzf --ansi --height 40% --reverse --cycle --header-lines 1)
     [[ -z "$network" ]] && exit
     network=$(sed -r 's/^\s*\*?\s*//; s/\s*(Ad-Hoc|Infra).*//' <<<"$network")
