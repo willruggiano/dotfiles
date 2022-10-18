@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  system,
   ...
 }:
 with lib; {
@@ -33,13 +34,17 @@ with lib; {
   };
 
   environment.systemPackages = let
-    inherit (builtins) readDir;
+    inherit (builtins) pathExists readDir;
     mkBins = dir:
       mapAttrs'
       (n: v: nameValuePair "${removeSuffix ".nix" n}" (pkgs.callPackage "${toString dir}/${n}" {inherit config;}))
-      (filterAttrs (n: v: v != null && !(hasPrefix "_" n) && (hasSuffix ".nix" n)) (readDir dir));
+      (filterAttrs (n: v: v == "regular" && !(hasPrefix "_" n) && (hasSuffix ".nix" n)) (readDir dir));
 
-    bins = mkBins ./bin;
+    hasSystemBin = pathExists ./bin/${system};
+    bins =
+      if hasSystemBin
+      then (mkBins ./bin) // (mkBins ./bin/${system})
+      else mkBins ./bin;
   in
     attrValues bins;
 }

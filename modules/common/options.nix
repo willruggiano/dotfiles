@@ -65,7 +65,7 @@ with lib; {
 
     users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
-    env.PATH = ["${config.dotfiles.bin}" "$XDG_BIN_HOME" "$PATH"] ++ optional (builtins.pathExists "${config.dotfiles.bin}/${system}") "${config.dotfiles.bin}/${system}";
+    env.PATH = ["${config.dotfiles.bin}" "$XDG_BIN_HOME" "$PATH"];
 
     environment.extraInit =
       concatStringsSep "\n"
