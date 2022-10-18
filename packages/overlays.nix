@@ -1,7 +1,7 @@
 let
   overrideLua = luaPackages:
     luaPackages.override {
-      overrides = final: prev: rec {
+      overrides = final: prev: {
         lua-awesome = prev.callPackage ./luaPackages/awesome {};
         lua-awesome-volume-control = prev.callPackage ./luaPackages/awesome/volume-control.nix {};
         lua-awesome-widgets = prev.callPackage ./luaPackages/awesome/widgets.nix {};

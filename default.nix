@@ -33,15 +33,14 @@ with lib; {
     };
   };
 
-  environment.systemPackages = [
-    (pkgs.writeShellApplication {
-      name = "plug";
-      runtimeInputs = with pkgs; [niv];
-      text = ''
-        pushd "${config.dotfiles.dir}/modules/common/neovim/plugins" >/dev/null
-        niv "$@"
-        popd >/dev/null
-      '';
-    })
-  ];
+  environment.systemPackages = let
+    inherit (builtins) readDir;
+    mkBins = dir:
+      mapAttrs'
+      (n: v: nameValuePair "${removeSuffix ".nix" n}" (pkgs.callPackage "${toString dir}/${n}" {inherit config;}))
+      (filterAttrs (n: v: v != null && !(hasPrefix "_" n) && (hasSuffix ".nix" n)) (readDir dir));
+
+    bins = mkBins ./bin;
+  in
+    attrValues bins;
 }
