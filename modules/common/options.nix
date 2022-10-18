@@ -3,6 +3,7 @@
   config,
   lib,
   home-manager,
+  system,
   ...
 }:
 with lib; {
@@ -64,13 +65,7 @@ with lib; {
 
     users.users."${config.user.name}" = mkAliasDefinitions options.user;
 
-    # nix.settings = let users = [ "root" config.user.name ]; in
-    #   {
-    #     allowed-users = users;
-    #     trusted-users = users;
-    #   };
-
-    env.PATH = ["$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH"];
+    env.PATH = ["${config.dotfiles.bin}" "$XDG_BIN_HOME" "$PATH"] ++ optional (builtins.pathExists "${config.dotfiles.bin}/${system}") "${config.dotfiles.bin}/${system}";
 
     environment.extraInit =
       concatStringsSep "\n"

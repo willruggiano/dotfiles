@@ -9,7 +9,6 @@ with lib; {
   imports = reduceModules ./modules/common import;
 
   environment.variables.DOTFILES = config.dotfiles.dir;
-  environment.variables.DOTFILES_BIN = config.dotfiles.bin;
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
   nix = let
