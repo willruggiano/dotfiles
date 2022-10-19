@@ -15,6 +15,7 @@ with lib; {
 
   programs.aws.enable = true;
   programs.code.enable = true;
+  programs.colorctl.enable = true;
   programs.docker.enable = true;
   programs.docsets.enable = true;
   programs.firefox.enable = true;
