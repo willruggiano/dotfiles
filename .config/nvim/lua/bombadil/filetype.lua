@@ -28,11 +28,14 @@ vim.filetype.add {
     snippet = function()
       return "snip", require "bombadil.filetype.snippet"
     end,
-    tpp = "cpp",
     xit = "xit",
     zsh = function()
       return "zsh", require "bombadil.filetype.shell"
     end,
+    -- C++
+    ixx = "cpp",
+    mxx = "cpp",
+    txx = "cpp",
   },
   filename = {
     [".clang-format"] = "yaml",
