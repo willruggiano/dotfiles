@@ -52,7 +52,7 @@ in {
           then (mapSecrets system_secrets)
           else {}
         );
-      sshKeyPaths =
+      identityPaths =
         options.age.identityPaths.default
         ++ [
           "${config.user.home}/.ssh/id_ed25519"
