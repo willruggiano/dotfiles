@@ -31,7 +31,6 @@ in
     firenvim = (prev.callPackage ./firenvim {}).package;
     goxlr = prev.callPackage ./goxlr {};
     html2text = prev.callPackage ./html2text {};
-    keyd = prev.callPackage ./keyd {};
     luaPackages = overrideLua prev.luaPackages;
     luajitPackages = overrideLua prev.luajitPackages;
     neovim-custom = final.neovim.overrideAttrs (attrs: {

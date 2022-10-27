@@ -13,12 +13,13 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.keyd];
+    user.extraGroups = ["keyd"];
 
     systemd.services.keyd = {
       enable = true;
       requires = ["local-fs.target"];
       after = ["local-fs.target"];
-      wantedBy = ["sysinit.target"];
+      wantedBy = ["default.target"];
       description = "keyd remapping daemon";
       serviceConfig = {
         ExecStart = "${pkgs.keyd}/bin/keyd";
@@ -35,7 +36,7 @@ in {
         [main]
 
         # Turns capslock into an escape key when pressed and a control key when held.
-        capslock = overload(C, esc)
+        capslock = overload(control, esc)
 
         # Remaps the escape key to capslock
         esc = capslock
