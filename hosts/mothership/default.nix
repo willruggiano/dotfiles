@@ -31,7 +31,6 @@
   programs.qutebrowser.enable = true;
   programs.spotify.enable = true;
   programs.steam.enable = true;
-  programs.sway.enable = true;
   programs.taskwarrior.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
@@ -41,7 +40,7 @@
   #   enable = true;
   #   config = ./monitor-layout.kdl;
   # };
-  # services.awesome.enable = true;
+  services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;
