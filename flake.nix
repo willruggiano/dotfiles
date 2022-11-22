@@ -21,7 +21,6 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
-    # emanote.url = "github:srid/emanote";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     nil.url = "github:oxalica/nil";
@@ -67,7 +66,6 @@
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
-          # emanote = inputs.emanote.defaultPackage."${prev.system}";
         })
         (final: prev: {
           # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
@@ -80,7 +78,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = lib'.reduceModules ./modules/home import; # ++ [ inputs.emanote.homeManagerModule ];
+          home-manager.sharedModules = lib'.reduceModules ./modules/home import;
         }
       ];
 
