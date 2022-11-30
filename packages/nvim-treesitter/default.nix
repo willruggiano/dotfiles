@@ -1,6 +1,7 @@
 {
   fetchFromGitHub,
   fetchgit,
+  fetchpatch,
   lib,
   nix-prefetch-git,
   stdenv,
@@ -10,8 +11,8 @@
   src = fetchFromGitHub {
     owner = "nvim-treesitter";
     repo = "nvim-treesitter";
-    rev = "8f927a4d50716e534c5845e835625962adf878e1";
-    hash = "sha256-/hSv4gj/VWVqONMG6VwpIjJc5q9TDa2aMdyfKT/IgWU=";
+    rev = "18cc1216e128b2db1046cf7b3a46851c7c4e4073";
+    hash = "sha256-nms+gvbuvVR4gic04a9miwNdMGQYANxXLDuSHSO6QS8=";
   };
 
   # The grammars we care about:
@@ -27,6 +28,15 @@
     };
     cpp = {
       owner = "tree-sitter";
+      # NOTE: This patch provides support for several C++20 features, e.g. modules
+      # override = {
+      #   patches = [
+      #     (fetchpatch {
+      #       url = "https://github.com/tree-sitter/tree-sitter-cpp/pull/173.diff";
+      #       hash = "sha256-HoL3cwgSrgqdFgTSbTKGdSHfycXJd60mwiUZssyaL8w=";
+      #     })
+      #   ];
+      # };
     };
     dockerfile = {
       owner = "camdencheek";
@@ -162,7 +172,7 @@
   };
 
   treesitterGrammars = lib.mapAttrsToList (name: attrs:
-    stdenv.mkDerivation {
+    stdenv.mkDerivation ({
       name = "tree-sitter-${name}-grammar";
       src = let
         src' = lib.importJSON "${toString ./.}/grammars/${name}.json";
@@ -214,7 +224,8 @@
       '';
 
       passthru.parserName = name;
-    })
+    }
+    // attrs.override or {}))
   grammars;
 in
   stdenv.mkDerivation {
