@@ -27,6 +27,8 @@ in {
         # Lua
         luajitPackages.luacheck
         (lib.optionals stdenv.isLinux sumneko-lua-language-server)
+        # Markdown
+        marksman
         # Nix
         nil
         # Python

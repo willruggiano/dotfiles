@@ -33,6 +33,7 @@ in
     html2text = prev.callPackage ./html2text {};
     luaPackages = overrideLua prev.luaPackages;
     luajitPackages = overrideLua prev.luajitPackages;
+    marksman = prev.callPackage ./marksman {};
     neovim-custom = final.neovim.overrideAttrs (attrs: {
       patches = attrs.patches ++ [./neovim/17446.diff];
     });

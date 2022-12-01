@@ -345,6 +345,12 @@ lspconfig.cmake.setup {
   capabilities = updated_capabilities,
 }
 
+lspconfig.marksman.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = updated_capabilities,
+}
+
 lspconfig.nil_ls.setup {
   on_init = on_init,
   on_attach = on_attach,
