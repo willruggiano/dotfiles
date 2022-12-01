@@ -286,6 +286,10 @@ in rec {
     package = plugins."flit.nvim";
   };
 
+  leap-spooky = {
+    package = plugins."leap-spooky.nvim";
+  };
+
   lir = {
     package = plugins."lir.nvim";
     config = ''

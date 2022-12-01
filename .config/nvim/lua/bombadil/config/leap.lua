@@ -18,8 +18,12 @@ noremaps("o", {
 noremap({ "n", "x", "o" }, "gs", "<Plug>(leap-cross-window)", { desc = "Character (cross-window)" })
 
 local ok, flit = pcall(require, "flit")
-if not ok then
-  return
+if ok then
+  flit.setup {}
 end
 
-flit.setup {}
+---@diagnostic disable-next-line: redefined-local
+local ok, spooky = pcall(require, "leap-spooky")
+if ok then
+  spooky.setup()
+end

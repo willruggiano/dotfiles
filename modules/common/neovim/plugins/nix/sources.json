@@ -233,6 +233,12 @@
         "rev": "12ecde4ed3ecb39964000a5fd034ae4c1d307388",
         "type": "git"
     },
+    "leap-spooky.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:ggandor/leap-spooky.nvim",
+        "rev": "748b2614e859704d8004e86be97401c9f3e28e80",
+        "type": "git"
+    },
     "leap.nvim": {
         "branch": "main",
         "repo": "git@github.com:ggandor/leap.nvim",
