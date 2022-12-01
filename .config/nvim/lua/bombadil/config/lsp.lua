@@ -351,13 +351,10 @@ lspconfig.nil_ls.setup {
   capabilities = updated_capabilities,
 }
 
-lspconfig.pylsp.setup {
+lspconfig.pyright.setup {
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
-  settings = {
-    ["pylsp.plugins.flake8.enable"] = true,
-  },
 }
 
 lspconfig.rust_analyzer.setup {
