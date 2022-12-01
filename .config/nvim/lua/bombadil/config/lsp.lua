@@ -3,8 +3,6 @@ local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
 local telescope_themes = require "bombadil.telescope.themes"
 
-local lsp_cmds = require "bombadil.generated.lsp"
-
 lsp.kind.init()
 
 local has_lsp_lines, lsp_lines = pcall(require, "lsp_lines")
@@ -251,7 +249,6 @@ null_ls.setup {
   sources = {
     -- Formatting
     null_ls.builtins.formatting.clang_format.with {
-      command = lsp_cmds["clang-format"],
       extra_args = { "--style=file" },
     },
     null_ls.builtins.formatting.cmake_format,
@@ -265,9 +262,8 @@ null_ls.setup {
     custom_sources.jsonnet.formatting,
     -- Diagnostics
     null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
-    null_ls.builtins.diagnostics.jsonlint.with { command = lsp_cmds.jsonlint },
+    null_ls.builtins.diagnostics.jsonlint,
     null_ls.builtins.diagnostics.luacheck.with {
-      command = lsp_cmds.luacheck,
       extra_args = { "--globals", "vim", "--no-max-line-length" },
     },
     null_ls.builtins.diagnostics.shellcheck.with { filetypes = { "bash", "sh" } },
@@ -291,7 +287,6 @@ null_ls.setup {
 null_ls.register {
   null_ls.builtins.diagnostics.cppcheck.with {
     filetypes = { "cpp" },
-    command = lsp_cmds.cppcheck,
     args = {
       "--enable=warning,style,performance,portability",
       "--language=cpp",
@@ -301,7 +296,6 @@ null_ls.register {
   },
   null_ls.builtins.diagnostics.cppcheck.with {
     filetypes = { "c" },
-    command = lsp_cmds.cppcheck,
     args = {
       "--enable=warning,style,performance,portability",
       "--language=c",
@@ -346,21 +340,18 @@ require("clangd_extensions").setup {
 }
 
 lspconfig.cmake.setup {
-  cmd = lsp_cmds.cmake,
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
 }
 
 lspconfig.nil_ls.setup {
-  cmd = lsp_cmds.nil_ls,
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
 }
 
 lspconfig.pylsp.setup {
-  cmd = lsp_cmds.pylsp,
   on_init = on_init,
   on_attach = on_attach,
   capabilities = updated_capabilities,
@@ -391,7 +382,6 @@ lspconfig.rust_analyzer.setup {
 
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {
   lspconfig = {
-    cmd = lsp_cmds.sumneko,
     on_init = on_init,
     on_attach = on_attach,
     capabilities = updated_capabilities,

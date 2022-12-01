@@ -12,8 +12,6 @@ local set_prompt_to_entry_value = function(prompt_bufnr)
   action_state.get_current_picker(prompt_bufnr):reset_prompt(entry.ordinal)
 end
 
-local exe = require "bombadil.generated.exe"
-
 local common_dirs = {
   ["~/.config"] = "conf",
   ["~/dev"] = "dev",
@@ -92,7 +90,7 @@ telescope.setup {
     },
 
     docsets = {
-      query_command = exe.dasht.query_line,
+      query_command = "dasht-query-line",
     },
 
     fzf = {

@@ -7,4 +7,6 @@ lib: inputs: {
   reduceModules = import ./reduceModules.nix lib;
   mapModulesRec = import ./mapModulesRec.nix lib;
   reduceModulesRec = import ./reduceModulesRec.nix lib;
+  # TODO: Move to separate flake
+  neovim = import ./neovim lib;
 }
