@@ -638,7 +638,7 @@
     "which-key.nvim": {
         "branch": "main",
         "repo": "git@github.com:folke/which-key.nvim",
-        "rev": "a3c19ec5754debb7bf38a8404e36a9287b282430",
+        "rev": "61553aeb3d5ca8c11eea8be6eadf478062982ac9",
         "type": "git"
     },
     "wilder.nvim": {

@@ -286,9 +286,9 @@ in rec {
     package = plugins."flit.nvim";
   };
 
-  leap-spooky = {
-    package = plugins."leap-spooky.nvim";
-  };
+  # leap-spooky = {
+  #   package = plugins."leap-spooky.nvim";
+  # };
 
   lir = {
     package = plugins."lir.nvim";
@@ -607,9 +607,6 @@ in rec {
     config = ''
       require "bombadil.config.which-key"
     '';
-    override = {
-      patches = [./which-key-253.patch];
-    };
   };
 
   wilder = {
