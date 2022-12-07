@@ -38,7 +38,6 @@
     args = {inherit (self) lib;};
     lib' = import ./lib args inputs;
     commonModules = {dotfiles = import ./.;} // (lib'.mapModules ./modules/common import);
-    darwinModules = commonModules // (lib'.mapModules ./modules/darwin import);
     nixosModules = commonModules // (lib'.mapModules ./modules/nixos import);
   in
     utils.lib.mkFlake {
@@ -50,7 +49,7 @@
           inherit (lib') makeHome mapFilterAttrs mapModules reduceModules mapModulesRec reduceModulesRec mkOpt mkOpt';
         });
 
-      supportedSystems = ["x86_64-darwin" "x86_64-linux"];
+      supportedSystems = ["x86_64-linux"];
       channelsConfig.allowUnfree = true;
 
       channels.nixpkgs.overlaysBuilder = channels: [
@@ -76,6 +75,9 @@
       hostDefaults.modules = [
         ./. # default.nix
         {
+          imports = lib'.reduceModules ./modules/nixos import;
+        }
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.sharedModules = lib'.reduceModules ./modules/home import;
@@ -85,9 +87,6 @@
       hosts.ecthelion = rec {
         system = "x86_64-linux";
         modules = [
-          {
-            imports = lib'.reduceModules ./modules/nixos import;
-          }
           ./hosts/ecthelion
           inputs.home-manager.nixosModule
           {home-manager.users.bombadil = import ./hosts/ecthelion/home.nix;}
@@ -101,9 +100,6 @@
       hosts.mothership = rec {
         system = "x86_64-linux";
         modules = [
-          {
-            imports = lib'.reduceModules ./modules/nixos import;
-          }
           ./hosts/mothership
           inputs.home-manager.nixosModule
           {home-manager.users.bombadil = import ./hosts/mothership/home.nix;}
@@ -117,9 +113,6 @@
       hosts.orthanc = rec {
         system = "aarch64-linux";
         modules = [
-          {
-            imports = lib'.reduceModules ./modules/nixos import;
-          }
           ./hosts/orthanc
           inputs.home-manager.nixosModule
           {home-manager.users.saruman = import ./hosts/orthanc/home.nix;}
@@ -128,24 +121,6 @@
           inherit (self) lib;
           inherit inputs system;
         };
-      };
-
-      hosts."88e9fe563b0b" = rec {
-        system = "x86_64-darwin";
-        modules = [
-          {
-            imports = lib'.reduceModules ./modules/darwin import;
-          }
-          ./hosts/88e9fe563b0b
-          inputs.home-manager.darwinModule
-          {home-manager.users.wruggian = import ./hosts/88e9fe563b0b/home.nix;}
-        ];
-        specialArgs = {
-          inherit (self) lib;
-          inherit inputs system;
-        };
-        builder = inputs.darwin.lib.darwinSystem;
-        output = "darwinConfigurations";
       };
 
       overlay = import ./packages/overlays.nix;
@@ -217,14 +192,8 @@
         packages = utils.lib.exportPackages self.overlays channels;
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
-          buildInputs = with pkgs; [fup-repl git niv nix-zsh-completions nodejs];
+          buildInputs = with pkgs; [fup-repl git autorandr-rs niv nix-zsh-completions nodejs];
           inherit (self.checks."${pkgs.system}".pre-commit) shellHook;
-        };
-      };
-
-      packages = {
-        x86_64-darwin = {
-          dev-laptop = self.darwinConfigurations.dev-laptop.system;
         };
       };
     };

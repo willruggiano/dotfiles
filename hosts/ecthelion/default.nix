@@ -36,6 +36,10 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
+  services.autorandrd = {
+    enable = true;
+    config = ./monitor-layout.kdl;
+  };
   services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;

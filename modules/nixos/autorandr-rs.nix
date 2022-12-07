@@ -10,7 +10,7 @@ in {
   options.services.autorandrd = {
     enable = mkEnableOption "Enable autorandrd";
     config = mkOption {
-      description = "The configuration file, in TOML";
+      description = "The configuration file, in KDL";
       apply = path:
         if lib.isStorePath path
         then path
