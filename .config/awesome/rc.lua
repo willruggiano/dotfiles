@@ -106,12 +106,31 @@ local function pass_clip()
   })
 end
 
+local function set_keyboard_layout(layout)
+  return function()
+    awful.spawn("setxkbmap " .. layout)
+  end
+end
+
 local main_menu = awful.menu {
   items = {
     { "awesome", awesome_menu },
     {
       "system",
       {
+        {
+          "keyboard-layout",
+          {
+            {
+              "us",
+              set_keyboard_layout "us",
+            },
+            {
+              "dvp",
+              set_keyboard_layout "dvp",
+            },
+          },
+        },
         {
           "restart",
           function()
@@ -301,14 +320,10 @@ awful.screen.connect_for_each_screen(function(s)
 
   right_layout:add(spotify.widget)
   right_layout:add(net_widgets.indicator { timeout = 5 })
-  -- right_layout:add(net_widgets.wireless { timeout = 5 })
-  -- right_layout:add(require "widgets.brightness")
-  right_layout:add(require "widgets.cpu")
   right_layout:add(volume_ctrl.widget)
   right_layout:add(require "widgets.battery")
   right_layout:add(require "widgets.dpms")
   right_layout:add(wibox.widget.textclock())
-  right_layout:add(require "widgets.keyboard-layout")
 
   s.wibox:setup {
     layout = wibox.layout.align.horizontal,
