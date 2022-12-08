@@ -9,7 +9,7 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     services.xserver = {
-      layout = "dvp";
+      # layout = "dvp";
 
       extraLayouts.dvp = {
         description = "Programmer's Dvorak";
