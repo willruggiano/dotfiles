@@ -119,7 +119,7 @@ local main_menu = awful.menu {
       "system",
       {
         {
-          "keyboard-layout",
+          "xkbmap",
           {
             {
               "us",
@@ -316,13 +316,13 @@ awful.screen.connect_for_each_screen(function(s)
     right_layout:add(wibox.widget.systray())
   end
 
-  local spotify = require "widgets.spotifyd" { autohide = true, refresh_rate = 5 }
+  -- local spotify = require "widgets.spotifyd" { autohide = true, refresh_rate = 5 }
 
-  right_layout:add(spotify.widget)
-  right_layout:add(net_widgets.indicator { timeout = 5 })
-  right_layout:add(volume_ctrl.widget)
-  right_layout:add(require "widgets.battery")
-  right_layout:add(require "widgets.dpms")
+  -- right_layout:add(spotify.widget)
+  -- right_layout:add(net_widgets.indicator { timeout = 5 })
+  -- right_layout:add(volume_ctrl.widget)
+  -- right_layout:add(require "widgets.battery")
+  -- right_layout:add(require "widgets.dpms")
   right_layout:add(wibox.widget.textclock())
 
   s.wibox:setup {
@@ -353,10 +353,12 @@ local globalkeys = gears.table.join(
   end, { description = "focus previous by index", group = "client" }),
   awful.key({ modkey }, "w", function()
     local s = awful.screen.focused()
-    main_menu:show { coords = {
-      x = s.geometry.x,
-      y = s.geometry.y,
-    } }
+    main_menu:show {
+      coords = {
+        x = s.geometry.x,
+        y = s.geometry.y,
+      },
+    }
   end, { description = "show main menu", group = "awesome" }),
 
   -- Layout manipulation

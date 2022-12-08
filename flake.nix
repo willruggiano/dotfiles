@@ -192,7 +192,7 @@
         packages = utils.lib.exportPackages self.overlays channels;
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
-          buildInputs = with pkgs; [fup-repl git autorandr-rs niv nix-zsh-completions nodejs];
+          buildInputs = with pkgs; [fup-repl git niv nix-zsh-completions nodejs];
           inherit (self.checks."${pkgs.system}".pre-commit) shellHook;
         };
       };
