@@ -344,7 +344,7 @@
     "nvim-bqf": {
         "branch": "main",
         "repo": "git@github.com:kevinhwang91/nvim-bqf",
-        "rev": "3dbd349cf75cb23c7d1575b235ee57ecbe665d9d",
+        "rev": "3389264042e4590ed32ce26d7e47b17ec4e6e6d5",
         "type": "git"
     },
     "nvim-cheat.sh": {
@@ -422,7 +422,7 @@
     "nvim-pqf": {
         "branch": "main",
         "repo": "https://gitlab.com/yorickpeterse/nvim-pqf",
-        "rev": "d053a333c1eb8d7cabb023b6ba52e3f211211209",
+        "rev": "d15582d3d0c09280f371fa5f21537cf4530ed330",
         "type": "git"
     },
     "nvim-snippy": {

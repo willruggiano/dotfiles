@@ -7,3 +7,12 @@ end, { desc = "Harpoon" })
 nnoremap("<leader>ma", function()
   require("harpoon.mark").add_file()
 end, { desc = "Mark file" })
+
+vim.filetype.add {
+  harpoon = function(_, bufnr)
+    for k, v in pairs { signcolumn = "no" } do
+      vim.api.nvim_buf_set_option(bufnr, k, v)
+    end
+    return "harpoon"
+  end,
+}
