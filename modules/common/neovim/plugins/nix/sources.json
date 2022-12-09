@@ -275,12 +275,6 @@
         "rev": "57e5b5dfbe991151b07d272a06e365a77cc3d0e7",
         "type": "git"
     },
-    "lua-dev.nvim": {
-        "branch": "main",
-        "repo": "git@github.com:folke/lua-dev.nvim",
-        "rev": "a0ee77789d9948adce64d98700cc90cecaef88d5",
-        "type": "git"
-    },
     "lualine.nvim": {
         "branch": "master",
         "repo": "git@github.com:nvim-lualine/lualine.nvim",
@@ -309,6 +303,12 @@
         "branch": "master",
         "repo": "ssh://git@github.com/ziontee113/neo-minimap",
         "rev": "7ad412712d9695b6baeb548581d98fd1111c86ed",
+        "type": "git"
+    },
+    "neodev.nvim": {
+        "branch": "main",
+        "repo": "git@github.com:folke/neodev.nvim",
+        "rev": "f353ec5ac10a9e581c92dc0f937025c54e216022",
         "type": "git"
     },
     "neogen": {

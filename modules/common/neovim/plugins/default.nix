@@ -333,10 +333,6 @@ in rec {
     package = plugins.nvim-luaref;
   };
 
-  lua-dev = {
-    package = plugins."lua-dev.nvim";
-  };
-
   lush = {
     package = lua-lush.nvim-plugin;
   };
@@ -358,6 +354,10 @@ in rec {
 
   minimap = {
     package = plugins.neo-minimap;
+  };
+
+  neodev = {
+    package = plugins."neodev.nvim";
   };
 
   neogen = {

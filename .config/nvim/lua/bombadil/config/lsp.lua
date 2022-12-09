@@ -383,22 +383,24 @@ lspconfig.rust_analyzer.setup {
   },
 }
 
-lspconfig.sumneko_lua.setup(require("lua-dev").setup {
-  lspconfig = {
-    on_init = on_init,
-    on_attach = on_attach,
-    capabilities = updated_capabilities,
-    root_dir = function(fname)
-      return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
-    end,
-    globals = {
-      -- Custom (see bombadil.globals)
-      "P",
-      "R",
-      "RELOAD",
+-- NOTE: We must setup neodev first!
+require("neodev").setup {}
+-- ... and then the lsp
+lspconfig.sumneko_lua.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = updated_capabilities,
+  root_dir = function(fname)
+    return lspconfig_util.find_git_ancestor(fname) or lspconfig_util.path.dirname(fname)
+  end,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "P", "R", "RELOAD" },
+      },
     },
   },
-})
+}
 
 lspconfig.zls.setup {
   on_init = on_init,
