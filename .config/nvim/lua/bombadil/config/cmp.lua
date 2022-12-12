@@ -71,6 +71,7 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "snippy" },
   }, {
+    { name = "path" },
     { name = "buffer" },
   }),
   sorting = {
