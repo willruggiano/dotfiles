@@ -53,3 +53,11 @@ function lg() {
         command git $@
     fi
 }
+
+function asdf() {
+    setxkbmap dvp
+}
+
+function aoeu() {
+    setxkbmap us
+}
