@@ -405,6 +405,13 @@ in {
     package = plugins."null-ls.nvim";
   };
 
+  numb = {
+    package = plugins."numb.nvim";
+    config = ''
+      require "bombadil.config.numb"
+    '';
+  };
+
   nvim-cheat = {
     package = plugins."nvim-cheat.sh";
     config = ''

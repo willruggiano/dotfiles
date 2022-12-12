@@ -335,6 +335,12 @@
         "rev": "a2b7bf89663c78d58a5494efbb791819a24bb025",
         "type": "git"
     },
+    "numb.nvim": {
+        "branch": "master",
+        "repo": "git@github.com:nacro90/numb.nvim",
+        "rev": "d95b7ea62e320b02ca1aa9df3635471a88d6f3b1",
+        "type": "git"
+    },
     "nvim-autopairs": {
         "branch": "master",
         "repo": "git@github.com:windwp/nvim-autopairs",
