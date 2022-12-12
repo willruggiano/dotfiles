@@ -585,6 +585,13 @@ in {
     '';
   };
 
+  undotree = {
+    package = plugins.undotree;
+    config = ''
+      require "bombadil.config.undotree"
+    '';
+  };
+
   vim-snippets = {
     package = plugins.vim-snippets;
   };
