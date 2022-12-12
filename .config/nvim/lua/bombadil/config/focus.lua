@@ -1,4 +1,5 @@
 require("focus").setup {
-  excluded_filetypes = { "harpoon", "toggleterm" },
+  compatible_filetrees = { "lir" },
+  excluded_filetypes = { "harpoon", "toggleterm", "Undotree", "UndotreeDiff" },
   hybridnumber = false,
 }
