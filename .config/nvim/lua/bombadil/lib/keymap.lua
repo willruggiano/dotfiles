@@ -31,5 +31,8 @@ end
 M.vnoremap = function(lhs, rhs, opts)
   M.noremap("v", lhs, rhs, opts)
 end
+M.xnoremap = function(lhs, rhs, opts)
+  M.noremap("x", lhs, rhs, opts)
+end
 
 return M

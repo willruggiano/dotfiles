@@ -52,36 +52,24 @@ dap.adapters.nlua = function(callback, config)
   callback { type = "server", host = config.host, port = config.port }
 end
 
-local noremap = require("bombadil.lib.keymap").noremap
-local nnoremap = require("bombadil.lib.keymap").nnoremap
-
 local loaded_launch_json = {}
 local launch_json = ".vscode/launch.json"
 
-local mappings = {
-  ["<leader>ds"] = {
-    function()
-      if vim.fn.filereadable(launch_json) == 1 and loaded_launch_json[launch_json] == nil then
-        local config = json.load(launch_json)
-        for _, c in ipairs(config.configurations) do
-          if c.type == "cppdbg" then
-            table.insert(dap.configurations.cpp, c)
-          end
-        end
-        loaded_launch_json[launch_json] = true
+vim.api.nvim_create_user_command("Debug", function()
+  if vim.fn.filereadable(launch_json) == 1 and loaded_launch_json[launch_json] == nil then
+    local config = json.load(launch_json)
+    for _, c in ipairs(config.configurations) do
+      if c.type == "cppdbg" then
+        table.insert(dap.configurations.cpp, c)
       end
-      dap.continue()
-    end,
-    { desc = "Start debugger" },
-  },
-}
+    end
+    loaded_launch_json[launch_json] = true
+  end
+  dap.continue()
+end, {desc = "Start debugger"})
 
-for key, opts in pairs(mappings) do
-  noremap({ "n", "x" }, key, opts[1], opts[2])
-end
-
-nnoremap("<leader>de", function()
+vim.api.nvim_create_user_command("DebugConfig", function()
   if vim.fn.exists(launch_json) then
     vim.cmd(string.format("edit %s", launch_json))
   end
-end, { desc = "Edit debugger config" })
+end, { desc = "Edit debuffer config"})

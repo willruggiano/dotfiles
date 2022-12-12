@@ -24,6 +24,9 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result)
 end
 
 local diagnostic_config = {
+  float = {
+    border = "single",
+  },
   severity_sort = true,
   signs = false,
   underline = true,
@@ -113,13 +116,11 @@ local on_attach = function(client, bufnr)
       vim.diagnostic.setloclist,
       { buffer = bufnr, desc = "Diagnostics" },
     },
-    ["<leader>dl"] = {
-      function()
-        vim.diagnostic.open_float(0, { border = "single" })
-      end,
+    ["<leader><leader>l"] = {
+      vim.diagnostic.open_float,
       { buffer = bufnr, desc = "Line diagnostics" },
     },
-    ["<leader>dd"] = {
+    ["<leader><leader>w"] = {
       function()
         vim.diagnostic.setqflist { open = false }
         vim.cmd "botright copen"

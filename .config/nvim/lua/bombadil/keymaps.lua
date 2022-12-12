@@ -2,10 +2,12 @@ local buffers = require "bombadil.lib.buffers"
 local jump = require "bombadil.lib.jump"
 local keymap = require "bombadil.lib.keymap"
 
+local noremap = keymap.noremap
 local inoremap = keymap.inoremap
 local nnoremap = keymap.nnoremap
 local tnoremap = keymap.tnoremap
 local vnoremap = keymap.vnoremap
+local xnoremap = keymap.xnoremap
 
 local quit = function()
   vim.cmd "q"
@@ -92,12 +94,11 @@ tnoremap("<esc><esc>", function()
   require("bombadil.lib.terminal").close()
 end)
 
--- Remap some of the single char yanks so they use the _ register
-nnoremap("cj", [["_cj]])
-nnoremap("ck", [["_ck]])
-nnoremap("ch", [["_ch]])
-nnoremap("cl", [["_cl]])
-nnoremap("x", [["_x]])
+-- GOAT remaps?
+xnoremap("<leader>p", [["_dP]])
+noremap({ "n", "v" }, "<leader>y", [["+y]])
+nnoremap("<leader>Y", [["+Y]])
+noremap({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Jumplist as quickfix list
 nnoremap("<leader>j", function()
