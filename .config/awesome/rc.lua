@@ -155,9 +155,15 @@ local main_menu = awful.menu {
       function()
         awful.spawn(exec "fzf-bluetooth", {
           floating = true,
-          placement = awful.placement.centered,
+          placement = awful.placement.top + awful.placement.maximize_horizontally,
           height = 300,
         })
+      end,
+    },
+    {
+      "htop",
+      function()
+        awful.spawn(exec "htop")
       end,
     },
     {
@@ -165,7 +171,7 @@ local main_menu = awful.menu {
       function()
         awful.spawn(exec "fzf-wifi", {
           floating = true,
-          placement = awful.placement.centered,
+          placement = awful.placement.top + awful.placement.maximize_horizontally,
           height = 300,
         })
       end,
@@ -175,7 +181,7 @@ local main_menu = awful.menu {
       function()
         awful.spawn(exec "xplr", {
           floating = true,
-          placement = awful.placement.centered,
+          placement = awful.placement.maximize,
         })
       end,
     },
