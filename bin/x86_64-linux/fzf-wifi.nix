@@ -39,6 +39,6 @@ writeShellApplication {
     network=$(sed -r 's/^\s*\*?\s*//; s/\s*(Ad-Hoc|Infra).*//' <<<"$network")
     SSID=$(echo "$network" | grep -o "\s.*$" | sed 's/^[[:space:]]*//')
     echo "connecting to \"''${SSID}\"..."
-    nmcli -a device wifi connect "$SSID"
+    sudo nmcli -a device wifi connect "$SSID"
   '';
 }

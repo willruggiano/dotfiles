@@ -36,21 +36,15 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
-  # services.autorandrd = {
-  #   enable = true;
-  #   config = ./monitor-layout.kdl;
-  # };
   services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;
   services.expressvpn.enable = true;
-  # services.interception-tools.enable = true;
   services.keyd.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
-  # services.xserver.displayManager.autoLogin.enable = false;
 
   virtualisation.docker.enable = true;
 }
