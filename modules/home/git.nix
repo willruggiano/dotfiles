@@ -28,6 +28,7 @@ in {
             git
             git-absorb
             git-branchless
+            git-lfs
             git-quickfix
             git-trim
             gitflow
