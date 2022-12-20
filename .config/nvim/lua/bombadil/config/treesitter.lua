@@ -15,6 +15,28 @@ local swap_next, swap_prev = (function()
   return n, p
 end)()
 
+local highlights = {
+  cpp = {
+    ["alias.name"] = "Variable",
+    ["alias.type"] = "Type",
+    ["function.return"] = "Keyword",
+    ["function.parameter_type"] = "Keyword",
+  },
+  lua = {
+    ["repeat"] = "Keyword",
+  },
+  rust = {
+    ["storageclass.lifetime"] = "String",
+    ["type.qualifier"] = "Keyword",
+  },
+}
+
+for lang, maps in pairs(highlights) do
+  for group, link in pairs(maps) do
+    vim.api.nvim_set_hl(0, "@" .. group .. "." .. lang, { link = link })
+  end
+end
+
 require("nvim-treesitter.configs").setup {
   autopairs = { enable = true },
 
@@ -23,19 +45,7 @@ require("nvim-treesitter.configs").setup {
 
   highlight = {
     enable = true,
-    use_languagetree = false,
     disable = { "cmake", "json" },
-    custom_captures = {
-      -- C++ alias declarations; `using <name> = <type>;`
-      ["alias.name"] = "Variable",
-      ["alias.type"] = "Type",
-      ["function.return"] = "Keyword",
-      ["function.parameter_type"] = "Keyword",
-      -- Rust
-      -- FIXME: For some reason these are working...?
-      -- ["storageclass.lifetime"] = "String",
-      -- ["type.qualifier"] = "Keyword",
-    },
   },
 
   query_linter = {
