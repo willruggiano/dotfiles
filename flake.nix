@@ -27,6 +27,8 @@
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
+    nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
+    nvim-treesitter-master.flake = false;
     nil.url = "github:oxalica/nil";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar";
@@ -69,6 +71,7 @@
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
+          inherit (inputs) nvim-treesitter-master;
         })
         (final: prev: {
           # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
