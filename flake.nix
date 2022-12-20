@@ -7,13 +7,17 @@
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
-    nix.url = "github:nixos/nix/master";
-    darwin.url = "github:LnL7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:LnL7/nix-darwin/master";
     naersk.url = "github:nix-community/naersk";
+    nix.url = "github:nixos/nix/master";
+    nix-flake-templates = {
+      url = "github:willruggiano/nix-flake-templates";
+      flake = false;
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nur.url = "github:nix-community/nur";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nur.url = "github:nix-community/nur";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

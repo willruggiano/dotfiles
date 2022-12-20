@@ -382,6 +382,22 @@
         "type": "github"
       }
     },
+    "nix-flake-templates": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671570495,
+        "narHash": "sha256-2sCDVc8Y0VF+lL+k6u1jsyO74oS68TDEr32YKpddAQA=",
+        "owner": "willruggiano",
+        "repo": "nix-flake-templates",
+        "rev": "776b36ed8fe97554527d19a230b29230787afc3c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "willruggiano",
+        "repo": "nix-flake-templates",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1656353817,
@@ -729,6 +745,7 @@
         "neovim": "neovim",
         "nil": "nil",
         "nix": "nix",
+        "nix-flake-templates": "nix-flake-templates",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-master": "nixpkgs-master",
