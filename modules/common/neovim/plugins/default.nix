@@ -5,10 +5,10 @@
 with pkgs.luajitPackages; let
   plugins = import ./nix/sources.nix {};
 in {
-  awesome = {
+  colorscheme = {
     package = lua-awesome.nvim-plugin;
     config = ''
-      require "bombadil.config.awesome"
+      require "bombadil.config.colorscheme"
     '';
   };
 

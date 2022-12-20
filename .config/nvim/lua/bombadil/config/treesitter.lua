@@ -32,7 +32,9 @@ require("nvim-treesitter.configs").setup {
       ["function.return"] = "Keyword",
       ["function.parameter_type"] = "Keyword",
       -- Rust
-      ["type.qualifier"] = "Keyword",
+      -- FIXME: For some reason these are working...?
+      -- ["storageclass.lifetime"] = "String",
+      -- ["type.qualifier"] = "Keyword",
     },
   },
 

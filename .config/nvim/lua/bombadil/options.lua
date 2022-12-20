@@ -1,6 +1,8 @@
 local icons = require "nvim-nonicons"
 local opt = vim.opt
 
+opt.termguicolors = true
+
 -- Ignore compiled files
 -- TODO: It'd be nice if we could use .gitignore for this?
 opt.wildignore = { "*.o", "*~", "*.pyc", "*pycache*" }
