@@ -448,12 +448,12 @@ in {
     package = plugins.promise-async;
   };
 
-  pqf = {
-    package = plugins.nvim-pqf;
-    config = ''
-      require "bombadil.config.pqf"
-    '';
-  };
+  # pqf = {
+  #   package = plugins.nvim-pqf;
+  #   config = ''
+  #     require "bombadil.config.pqf"
+  #   '';
+  # };
 
   refactoring = {
     package = plugins."refactoring.nvim";
