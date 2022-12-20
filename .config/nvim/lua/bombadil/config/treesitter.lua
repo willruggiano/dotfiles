@@ -31,6 +31,8 @@ require("nvim-treesitter.configs").setup {
       ["alias.type"] = "Type",
       ["function.return"] = "Keyword",
       ["function.parameter_type"] = "Keyword",
+      -- Rust
+      ["type.qualifier"] = "Keyword",
     },
   },
 
