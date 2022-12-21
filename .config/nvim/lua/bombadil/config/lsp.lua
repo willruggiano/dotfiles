@@ -212,7 +212,7 @@ end
 local updated_capabilities = vim.lsp.protocol.make_client_capabilities()
 local has_cmp, cmp = pcall(require, "cmp_nvim_lsp")
 if has_cmp then
-  updated_capabilities = cmp.update_capabilities(updated_capabilities)
+  updated_capabilities = cmp.default_capabilities()
 end
 local has_coq, coq = pcall(require, "coq")
 if has_coq then

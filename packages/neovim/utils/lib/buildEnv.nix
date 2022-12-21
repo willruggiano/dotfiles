@@ -22,7 +22,7 @@
 
     inherit (pkgs.vimUtils) toVimPlugin;
     inherit (pkgs.luajitPackages) luarocksMoveDataFolder;
-    lualib = pkgs.luajitPackages.lib;
+    lualib = pkgs.luajit.pkgs.luaLib;
     buildLuarocksPlugin = originalLuaDrv: let
       luaDrv = lualib.overrideLuarocks originalLuaDrv (drv: {
         extraConfig = ''

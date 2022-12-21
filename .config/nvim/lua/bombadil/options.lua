@@ -101,6 +101,6 @@ opt.grepprg = "rg --vimgrep --smart-case --follow"
 opt.keywordprg = ":vert help"
 
 opt.foldcolumn = "1"
-opt.foldcolumndigits = false
+opt.foldoptions = "nodigits"
 opt.foldenable = true
 opt.foldlevel = 99

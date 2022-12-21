@@ -41,5 +41,4 @@
   hardware.opengl.driSupport = true;
 
   services.xserver.videoDrivers = ["modesetting"];
-  services.xserver.useGlamor = true;
 }

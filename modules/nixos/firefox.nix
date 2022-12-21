@@ -8,7 +8,6 @@ with lib; let
   cfg = config.programs.firefox;
 in {
   options.programs.firefox = {
-    enable = mkEnableOption "Enable firefox";
     default = mkEnableOption "Make firefox the default browser";
   };
 
