@@ -10,6 +10,7 @@
 [x] [colorctl](./packages/colorctl)
 [ ] !!! Initialize colorctl'd config files via nix
 [ ] (darwin) awesome/sway-like keybinds for yabai
+[ ] !!! Find a better solution for upgrading packages (niv?)
 
 Lsp
 [ ] Fix peek definition

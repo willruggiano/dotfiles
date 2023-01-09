@@ -4,7 +4,8 @@
         "awesome",
         "client",
         "screen",
-        "root"
+        "root",
+        "vim"
     ],
     "Lua.workspace.checkThirdParty": false
 }

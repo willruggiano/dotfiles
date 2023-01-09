@@ -22,6 +22,9 @@ vim.filetype.add {
     nix = function()
       return "nix", require "bombadil.filetype.nix"
     end,
+    rs = function()
+      return "rust", require "bombadil.filetype.rust"
+    end,
     sh = function()
       return "sh", require "bombadil.filetype.shell"
     end,

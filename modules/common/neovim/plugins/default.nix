@@ -214,7 +214,8 @@ in {
   };
 
   firvish = {
-    package = plugins."firvish.nvim";
+    # package = plugins."firvish.nvim";
+    package = pkgs.dummy;
     config = ''
       require "bombadil.config.firvish"
     '';

@@ -23,7 +23,7 @@ local highlights = {
     ["function.parameter_type"] = "Keyword",
   },
   lua = {
-    ["repeat"] = "Keyword",
+    -- ["repeat"] = "Keyword",
   },
   rust = {
     ["storageclass.lifetime"] = "String",
