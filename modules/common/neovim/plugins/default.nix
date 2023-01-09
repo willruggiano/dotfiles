@@ -335,14 +335,6 @@ in {
     package = lua-lush.nvim-plugin;
   };
 
-  make = {
-    package = plugins."make.nvim";
-    config = ''
-      require "bombadil.config.make"
-    '';
-    rocks = [luafilesystem];
-  };
-
   marks = {
     package = plugins."marks.nvim";
     config = ''

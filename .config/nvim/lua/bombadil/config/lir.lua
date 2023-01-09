@@ -185,19 +185,14 @@ custom_actions.quit = function()
   end
 end
 
-local job_ctrl = require "firvish.job_control"
+local job_ctrl = require "firvish.job_control2"
 local function git(...)
-  local cmd = { "git" }
-  vim.list_extend(cmd, { ... })
   job_ctrl.start_job {
-    cmd = cmd,
+    command = "git",
+    args = { ... },
     filetype = "log",
     title = "git",
-    listed = true,
-    notify = true,
-    output_qf = false,
-    is_background_job = true,
-    cwd = vim.fn.getcwd(),
+    bopen = false,
   }
 end
 
@@ -261,8 +256,7 @@ custom_actions.git = {
 
 custom_actions.toggle_devicons = function()
   local config = require "lir.config"
-  local devicons = config.values.devicons_enable
-  config.values.devicons_enable = not devicons
+  config.values.devicons_enable = not config.values.devicons_enable
   actions.reload()
 end
 
