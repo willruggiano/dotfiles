@@ -15,7 +15,7 @@ in {
           duckduckgo-privacy-essentials
           firenvim
           greasemonkey
-          https-everywhere
+          # https-everywhere
           metamask
           multi-account-containers
           sourcegraph

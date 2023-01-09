@@ -167,12 +167,6 @@
         "rev": "127f9146175d6bbaff6a8b761081cfd2279f8351",
         "type": "git"
     },
-    "firvish.nvim-fork": {
-        "branch": "master",
-        "repo": "git@github.com:willruggiano/firvish.nvim",
-        "rev": "63987de978095533e482e6e64f09d0b8b4e9ed30",
-        "type": "git"
-    },
     "fixcursorhold.nvim": {
         "branch": "master",
         "repo": "git@github.com:antoinemadec/fixcursorhold.nvim",
@@ -561,6 +555,12 @@
         "branch": "master",
         "repo": "git@github.com:nvim-telescope/telescope-arecibo.nvim",
         "rev": "b706322027e44894c30f1d0a9bd79b35eb3e451a",
+        "type": "git"
+    },
+    "telescope-docsets.nvim": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/willruggiano/telescope-docsets.nvim",
+        "rev": "5728746789d07201979c0a6f9c8cfaece04cb7ee",
         "type": "git"
     },
     "telescope-fzf-native.nvim": {

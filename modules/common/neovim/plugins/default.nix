@@ -46,6 +46,7 @@ in {
   };
 
   clang-format = {
+    # dev = "clang-format.nvim";
     package = plugins."clang-format.nvim";
     rocks = [lyaml];
   };
@@ -182,14 +183,6 @@ in {
     '';
   };
 
-  diff-therapy = {
-    # package = plugins."diff-therapy.nvim";
-    package = pkgs.dummy;
-    config = ''
-      require "bombadil.config.diff-therapy"
-    '';
-  };
-
   diffview = {
     package = plugins."diffview.nvim";
   };
@@ -218,8 +211,8 @@ in {
   };
 
   firvish = {
-    # package = plugins."firvish.nvim";
-    package = pkgs.dummy;
+    dev = "firvish.nvim";
+    package = plugins."firvish.nvim";
     config = ''
       require "bombadil.config.firvish"
     '';
@@ -380,8 +373,8 @@ in {
   };
 
   nix = {
-    # package = plugins."nix.nvim";
-    package = pkgs.dummy;
+    dev = "nix.nvim";
+    package = plugins."nix.nvim";
     config = ''
       require "bombadil.config.nix"
     '';
@@ -506,6 +499,10 @@ in {
   telescope-arecibo = {
     package = plugins."telescope-arecibo.nvim";
     rocks = [lua-openssl lua-http-parser];
+  };
+
+  telescope-docsets = {
+    package = plugins."telescope-docsets.nvim";
   };
 
   telescope-fzf = {

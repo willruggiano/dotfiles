@@ -34,11 +34,13 @@
         nativeBuildInputs = oa.nativeBuildInputs or [] ++ [luarocksMoveDataFolder];
       }));
 
+    remote-plugins = filterAttrs (_: p: !(p ? "dev")) plugins;
+    local-plugins = filterAttrs (_: p: p ? "dev") plugins;
     # TODO: It would be nice for *each* plugin to be its own little Lua env (via buildEnv)
     # and then only expose the lua bits from the primary package.
     # This would make it easy to specify rocks and additional dependencies, while also
     # keeping those guys hidden from the rest of the system. We'd really be creating little sandboxed envs for every plugin.
-    plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)];}) plugins;
+    plugins' = mapAttrs (pname: p: {start = [(mkPlugin pname p)];}) remote-plugins;
     rocks = flatten (mapAttrsToList (pname: p: p.rocks or []) plugins) ++ [pkgs.luajitPackages.lua-fun];
     rocks' =
       mapAttrs (_: p: {start = [(buildLuarocksPlugin p)];})
@@ -110,7 +112,7 @@
       name = "neovim-env";
       paths = [wrapper];
       passthru = {
-        inherit plugins;
+        inherit plugins local-plugins;
         rplugin = let
           lua-config = pkgs.writeText "init.lua" ''
             vim.cmd "set packpath^=${packageEnv}"

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -76,9 +77,21 @@ in {
         '';
       };
 
-      home.dataFile = {
-        "nvim/rplugin.vim".source = neovim.rplugin;
-      };
+      home.dataFile = let
+        inherit (inputs.home-manager.lib.hm.strings) storeFileName;
+        mkOutOfStoreSymlink = path: let
+          pathStr = toString path;
+          name = storeFileName (baseNameOf pathStr);
+        in
+          pkgs.runCommandLocal name {} ''ln -s ${escapeShellArg pathStr} $out'';
+
+        mkLocalPlugin = pname: p:
+          nameValuePair "nvim/site/pack/dev/start/${pname}" {source = mkOutOfStoreSymlink "${config.user.home}/dev/${p.dev}";};
+      in
+        {
+          "nvim/rplugin.vim".source = neovim.rplugin;
+        }
+        // mapAttrs' mkLocalPlugin neovim.local-plugins;
 
       environment.variables.EDITOR = "nvim";
       environment.variables.MANPAGER = "nvim +Man!";
