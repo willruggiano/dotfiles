@@ -41,6 +41,10 @@ in {
     package = plugins."bufdelete.nvim";
   };
 
+  cargo-expand = {
+    package = plugins."cargo-expand.nvim";
+  };
+
   clang-format = {
     package = plugins."clang-format.nvim";
     rocks = [lyaml];

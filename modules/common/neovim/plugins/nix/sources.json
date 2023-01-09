@@ -11,6 +11,12 @@
         "rev": "f02e19bd29a27944e6bcc1e7a492fe07534b6630",
         "type": "git"
     },
+    "cargo-expand.nvim": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/willruggiano/cargo-expand.nvim",
+        "rev": "46dc1e99757f77ab622386a59f9e6773b946a19e",
+        "type": "git"
+    },
     "clang-format.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/clang-format.nvim",
