@@ -315,8 +315,8 @@ local special = {
 
 local explore = function()
   ---@diagnostic disable-next-line: missing-parameter
-  local fname = vim.fn.expand "%"
-  if buffers.nameless(0) or special[fname] then
+  local filename = vim.fn.expand "%"
+  if buffers.nameless(0) or special[filename] then
     vim.cmd "e ."
   else
     vim.cmd "e %:h"
