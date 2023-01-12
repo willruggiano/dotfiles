@@ -146,7 +146,7 @@
     "diffview.nvim": {
         "branch": "main",
         "repo": "git@github.com:sindrets/diffview.nvim",
-        "rev": "2d1f45282587d565cc4d84112490bc944c0b491d",
+        "rev": "18d88c86a1d7b5256f96694bd41aaee7037a6cc1",
         "type": "git"
     },
     "fidget.nvim": {

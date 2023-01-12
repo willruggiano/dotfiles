@@ -1,4 +1,4 @@
-local job_ctrl = require "firvish.job_control2"
+local job_ctrl = require "firvish.lib.jobs"
 
 local M = {}
 

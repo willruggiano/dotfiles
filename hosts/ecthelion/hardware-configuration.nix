@@ -7,19 +7,28 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}: let
+  kernelPackages = pkgs.linuxPackages_latest;
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = [];
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    extraModulePackages = with kernelPackages; [acpi_call];
+
+    initrd = {
+      availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
+      kernelModules = [];
+    };
+
+    kernelModules = ["acpi_call" "kvm-intel"];
+    inherit kernelPackages;
+
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   fileSystems."/" = {

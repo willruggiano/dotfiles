@@ -11,6 +11,8 @@
 [ ] !!! Initialize colorctl'd config files via nix
 [ ] (darwin) awesome/sway-like keybinds for yabai
 [ ] !!! Find a better solution for upgrading packages (niv?)
+[ ] !!! Disable indentblankline in help buffers
+[ ] !!! Custom :ZkNew which accepts a single string argument => title
 
 Lsp
 [ ] Fix peek definition

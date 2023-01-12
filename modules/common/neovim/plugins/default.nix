@@ -226,9 +226,9 @@ in {
   };
 
   # TODO: Do I even use this anymore?
-  fugitive = {
-    package = plugins.vim-fugitive;
-  };
+  # fugitive = {
+  #   package = plugins.vim-fugitive;
+  # };
 
   fuzzy = {
     package = plugins."fuzzy.nvim";

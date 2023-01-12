@@ -78,10 +78,13 @@ in {
             };
             merge = {
               conflictStyle = "zdiff3";
-              tool = "smerge";
+              tool = "diffview";
             };
             mergetool = {
               keepBackup = false;
+              diffview = {
+                cmd = ''nvim +DiffviewOpen'';
+              };
               fugitive = {
                 cmd = ''nvim -f -c "Gvdiffsplit!" $MERGED'';
               };
@@ -89,7 +92,7 @@ in {
                 cmd = ''nvim -d $LOCAL $MERGED $REMOTE'';
               };
               smerge = {
-                cmd = "${smerge}";
+                cmd = smerge;
               };
             };
             push = {

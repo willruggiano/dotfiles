@@ -185,9 +185,9 @@ custom_actions.quit = function()
   end
 end
 
-local job_ctrl = require "firvish.job_control2"
+local jobs = require "firvish.lib.jobs"
 local function git(...)
-  job_ctrl.start_job {
+  jobs.start_job {
     command = "git",
     args = { ... },
     filetype = "log",
