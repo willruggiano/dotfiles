@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
+    ./keyboard-layout.nix
     ./networking.nix
     ./security.nix
   ];
@@ -41,7 +42,6 @@
   services.dunst.enable = true;
   services.email.enable = true;
   services.expressvpn.enable = true;
-  services.keyd.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];

@@ -46,7 +46,6 @@
   # services.email.enable = true;
   services.expressvpn.enable = true;
   # services.goxlr.enable = true;
-  services.keyd.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];

@@ -6,9 +6,19 @@
 }:
 with lib; let
   cfg = config.services.keyd;
+  settings_format = pkgs.formats.ini {};
 in {
-  options.services.keyd = {
+  options.services.keyd = with types; {
     enable = mkEnableOption "Enable keyd";
+    settings = mkOption {
+      description = "Attribute set of settings to add to default.conf";
+      default = {};
+      type = attrsOf (
+        submodule {
+          freeformType = attrsOf str;
+        }
+      );
+    };
   };
 
   config = mkIf cfg.enable {
@@ -30,17 +40,12 @@ in {
     environment.etc = {
       "keyd/default.conf".text = ''
         [ids]
-
         *
 
-        [main]
-
-        # Turns capslock into an escape key when pressed and a control key when held.
-        capslock = overload(control, esc)
-
-        # Remaps the escape key to capslock
-        esc = capslock
+        include user
       '';
+
+      "keyd/user".source = settings_format.generate "user.conf" cfg.settings;
     };
   };
 }
