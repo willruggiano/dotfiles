@@ -2,6 +2,33 @@ local extensions = {}
 
 local lir = require "lir.vim"
 
+extensions.firvish = {
+  filetypes = {
+    "firvish-buffers",
+    "firvish-jobs",
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_c = {
+      {
+        "filename",
+        path = 2,
+      },
+    },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
+  },
+  inactive_sections = {
+    lualine_c = {
+      {
+        "filename",
+        path = 2,
+      },
+    },
+    lualine_x = { "location" },
+  },
+}
+
 extensions.lir = {
   filetypes = { "lir" },
   sections = {
@@ -56,6 +83,7 @@ require("lualine").setup {
   extensions = {
     "quickfix",
     "toggleterm",
+    extensions.firvish,
     extensions.lir,
   },
 }

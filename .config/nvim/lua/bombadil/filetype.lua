@@ -45,6 +45,7 @@ vim.filetype.add {
     ["Cargo.toml"] = function()
       return "toml", require "bombadil.filetype.cargo"
     end,
+    ["flake.lock"] = "json",
     ["git-rebase-todo"] = function()
       return "gitrebase", require "bombadil.filetype.gitrebase"
     end,

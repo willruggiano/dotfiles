@@ -176,15 +176,6 @@ custom_actions.delete = function()
   custom_actions.trash()
 end
 
-custom_actions.quit = function()
-  if vim.w.lir_file_quit_on_edit then
-    actions.quit()
-  else
-    -- Then the lir window is the last one
-    vim.cmd "q"
-  end
-end
-
 local jobs = require "firvish.lib.jobs"
 local function git(...)
   jobs.start_job {
@@ -276,7 +267,6 @@ lir.setup {
     ["<s-tab>"] = custom_actions.toggle_mark_up,
 
     ["-"] = actions.up,
-    q = custom_actions.quit,
 
     a = custom_actions.new,
     r = actions.rename,
@@ -302,15 +292,8 @@ require("lir.git_status").setup {
   show_ignored = false,
 }
 
-local special = {
-  ["firvish://buffers"] = true,
-  ["firvish://history"] = true,
-}
-
 local explore = function()
-  ---@diagnostic disable-next-line: missing-parameter
-  local filename = vim.fn.expand "%"
-  if buffers.nameless(0) or special[filename] then
+  if buffers.nameless(vim.api.nvim_get_current_buf()) then
     vim.cmd "e ."
   else
     vim.cmd "e %:h"

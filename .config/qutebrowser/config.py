@@ -7,6 +7,12 @@ c.aliases = {
     'settings': 'open -t qute://settings',
 }
 
+config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
+config.bind('<Ctrl-y>', 'command-accept', mode='command')
+config.bind('<Tab>', 'command-history-next', mode='command')
+config.bind('<Shift-Tab>', 'command-history-prev', mode='command')
+
 config.bind(';q', 'hint links run :set-cmd-text -s :quickmark-add {hint-url}')
 config.unbind('q')  # as it will be the root of our quickmark hierarchy
 config.bind('ql', 'set-cmd-text -s :quickmark-load')

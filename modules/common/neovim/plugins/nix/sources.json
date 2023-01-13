@@ -284,7 +284,7 @@
     "lualine.nvim": {
         "branch": "master",
         "repo": "git@github.com:nvim-lualine/lualine.nvim",
-        "rev": "18a07f790ed7ed1f11d1b130c02782e9dfd8dd7d",
+        "rev": "0050b308552e45f7128f399886c86afefc3eb988",
         "type": "git"
     },
     "lush.nvim": {
@@ -482,7 +482,7 @@
     "nvim-web-devicons": {
         "branch": "master",
         "repo": "git@github.com:kyazdani42/nvim-web-devicons",
-        "rev": "4febe73506268a02ff15a240abcd7bf3eb9234da",
+        "rev": "6c38926351372ea87034dec26182b62c835ff3bc",
         "type": "git"
     },
     "one-small-step-for-vimkind": {

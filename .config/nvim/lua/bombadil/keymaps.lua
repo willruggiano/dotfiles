@@ -9,51 +9,6 @@ local tnoremap = keymap.tnoremap
 local vnoremap = keymap.vnoremap
 local xnoremap = keymap.xnoremap
 
-local quit = function()
-  vim.cmd "q"
-  return true
-end
-
-local bufdelete = function()
-  local bufs = buffers.loaded()
-  if #bufs > 1 then
-    require("bufdelete").bufdelete(0, true)
-    return true
-  end
-  -- bufdelete on the last buffer does nothing
-  return false
-end
-
-local bdelete = function()
-  vim.cmd "bdelete"
-  return true
-end
-
--- These are things we want to *always* close, as opposed to (maybe) bdelete'ing and cycling to the
--- next buffer.
-local quitters = {
-  ["[nvim-lua]"] = quit, -- nvim-luadev
-  ["firvish-job-list"] = quit,
-  ["firvish-job-output"] = quit,
-  help = quit,
-  man = bdelete,
-  quickfix = function()
-    vim.cmd "cclose"
-    return true
-  end,
-  terminal = quit,
-  tsplayground = quit,
-}
-local close = function(bt, ft, bname)
-  local fn = quitters[ft] or quitters[bt] or quitters[bname] or bufdelete
-  if fn() then
-    -- Success; nothing to do.
-  else
-    -- The defacto fallback.
-    quit()
-  end
-end
-
 -- Add large jumps to the jump list
 for _, d in ipairs { "j", "k" } do
   nnoremap(d, function()
@@ -124,15 +79,6 @@ end, { desc = "Move line up" })
 
 -- Silent save
 nnoremap("<c-s>", "<cmd>silent update!<cr>", { desc = "save" })
-
--- Does anyone even use macros?
-nnoremap("q", function()
-  close(vim.bo.buftype, vim.bo.filetype, vim.fn.bufname "%")
-end, { desc = "close" })
-
-nnoremap("Q", "<cmd>quitall<cr>", { desc = ":quitall" })
-
-nnoremap("<leader>q", "<cmd>quit<cr>", { desc = ":quit" })
 
 -- Move lines
 vnoremap("<M-j>", function()
