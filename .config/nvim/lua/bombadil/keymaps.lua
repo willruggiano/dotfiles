@@ -1,4 +1,3 @@
-local buffers = require "bombadil.lib.buffers"
 local jump = require "bombadil.lib.jump"
 local keymap = require "bombadil.lib.keymap"
 
@@ -18,33 +17,21 @@ end
 
 -- WhichKey doesn't seem to like these
 -- Opens line above or below the current line
-inoremap("<c-k>", "<c-o>O")
-inoremap("<c-j>", "<c-o>o")
+inoremap("<C-k>", "<C-o>O")
+inoremap("<C-j>", "<C-o>o")
 
 -- Better pane navigation
-nnoremap("<c-j>", "<c-w><c-j>")
-nnoremap("<c-k>", "<c-w><c-k>")
-nnoremap("<c-h>", "<c-w><c-h>")
-nnoremap("<c-l>", "<c-w><c-l>")
-
--- Better buffer navigation
-nnoremap("<tab>", "<cmd>:bnext<cr>", { desc = ":bnext" })
-nnoremap("<s-tab>", "<cmd>:bprev<cr>", { desc = ":bprev" })
+nnoremap("<C-j>", "<C-w><C-j>")
+nnoremap("<C-k>", "<C-w><C-k>")
+nnoremap("<C-h>", "<C-w><C-h>")
+nnoremap("<C-l>", "<C-w><C-l>")
 
 -- Better window resize
-nnoremap("+", "<c-w>+")
-nnoremap("_", "<c-w>-")
-
--- Scrolling
-nnoremap("<up>", "<c-y>")
-nnoremap("<down>", "<c-e>")
-
--- Tab navigation
-nnoremap("<right>", "gt")
-nnoremap("<left>", "gT")
+nnoremap("+", "<C-w>+")
+nnoremap("_", "<C-w>-")
 
 -- Make ESC leave terminal mode
-tnoremap("<esc>", "<c-\\><c-n>")
+tnoremap("<esc>", "<C-\\><C-n>")
 tnoremap("<esc><esc>", function()
   require("bombadil.lib.terminal").close()
 end)
@@ -64,9 +51,22 @@ nnoremap("<leader>j", function()
       table.insert(sorted_jumplist, jumplist[i])
     end
   end
-  vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = jumplist })
-  vim.cmd "botright copen"
+  vim.fn.setqflist({}, "r", { id = "jl", title = "jumplist", items = sorted_jumplist })
+  vim.cmd.copen { mods = { split = "botright" } }
 end, { desc = "Jumplist" })
+
+nnoremap("<leader>J", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local jumplist = vim.fn.getjumplist()[1]
+  local sorted_jumplist = {}
+  for i = #jumplist, 1, -1 do
+    if bufnr == jumplist[i].bufnr then
+      table.insert(sorted_jumplist, jumplist[i])
+    end
+  end
+  vim.fn.setloclist(vim.api.nvim_get_current_win(), {}, "r", { id = "jl", title = "jumplist", items = sorted_jumplist })
+  vim.cmd.lopen { mods = { split = "botright" } }
+end, { desc = "Jumplist (local)" })
 
 -- Move lines
 nnoremap("<M-j>", function()
@@ -78,7 +78,9 @@ nnoremap("<M-k>", function()
 end, { desc = "Move line up" })
 
 -- Silent save
-nnoremap("<c-s>", "<cmd>silent update!<cr>", { desc = "save" })
+nnoremap("<C-s>", function()
+  vim.cmd.update { bang = true, mods = { silent = true } }
+end, { desc = "save" })
 
 -- Move lines
 vnoremap("<M-j>", function()
