@@ -342,9 +342,9 @@ in {
     '';
   };
 
-  minimap = {
-    package = plugins.neo-minimap;
-  };
+  # minimap = {
+  #   package = plugins.neo-minimap;
+  # };
 
   neodev = {
     package = plugins."neodev.nvim";
@@ -421,10 +421,6 @@ in {
     package = plugins.one-small-step-for-vimkind;
   };
 
-  options = {
-    package = plugins."options.nvim";
-  };
-
   plenary = {
     package = plugins."plenary.nvim";
   };
@@ -453,12 +449,12 @@ in {
     package = plugins.vim-repeat;
   };
 
-  satellite = {
-    package = plugins."satellite.nvim";
-    config = ''
-      require "bombadil.config.satellite"
-    '';
-  };
+  # satellite = {
+  #   package = plugins."satellite.nvim";
+  #   config = ''
+  #     require "bombadil.config.satellite"
+  #   '';
+  # };
 
   scope = {
     package = plugins."scope.nvim";
