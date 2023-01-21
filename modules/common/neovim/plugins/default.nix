@@ -109,21 +109,6 @@ in {
     '';
   };
 
-  # coq = {
-  #   package = plugins.coq_nvim;
-  #   config = ''
-  #     require "bombadil.config.coq"
-  #   '';
-  # };
-
-  # coq-artifacts = {
-  #   package = plugins."coq.artifacts";
-  # };
-
-  # coq-3p = {
-  #   package = plugins."coq.thirdparty";
-  # };
-
   cpsm = {
     package = plugins.cpsm;
     override = {
@@ -225,11 +210,6 @@ in {
     '';
   };
 
-  # TODO: Do I even use this anymore?
-  # fugitive = {
-  #   package = plugins.vim-fugitive;
-  # };
-
   fuzzy = {
     package = plugins."fuzzy.nvim";
   };
@@ -315,11 +295,6 @@ in {
     package = plugins."lsp_extensions.nvim";
   };
 
-  # TODO: Not sure if I prefer this over virtual text?
-  # lsp-lines = {
-  #   package = plugins."lsp_lines.nvim";
-  # };
-
   lualine = {
     package = plugins."lualine.nvim";
     config = ''
@@ -341,10 +316,6 @@ in {
       require "bombadil.config.marks"
     '';
   };
-
-  # minimap = {
-  #   package = plugins.neo-minimap;
-  # };
 
   neodev = {
     package = plugins."neodev.nvim";
@@ -375,13 +346,6 @@ in {
   nonicons = {
     package = plugins.nvim-nonicons;
   };
-
-  # notifier = {
-  #   package = plugins."notifier.nvim";
-  #   setup = ''
-  #     require "bombadil.config.notify"
-  #   '';
-  # };
 
   notify = {
     package = plugins.nvim-notify;
@@ -429,18 +393,6 @@ in {
     package = plugins.popfix;
   };
 
-  # NOTE: Required by nvim-ufo
-  promise = {
-    package = plugins.promise-async;
-  };
-
-  # pqf = {
-  #   package = plugins.nvim-pqf;
-  #   config = ''
-  #     require "bombadil.config.pqf"
-  #   '';
-  # };
-
   refactoring = {
     package = plugins."refactoring.nvim";
   };
@@ -449,17 +401,17 @@ in {
     package = plugins.vim-repeat;
   };
 
-  # satellite = {
-  #   package = plugins."satellite.nvim";
-  #   config = ''
-  #     require "bombadil.config.satellite"
-  #   '';
-  # };
-
   scope = {
     package = plugins."scope.nvim";
     config = ''
       require "bombadil.config.scope"
+    '';
+  };
+
+  statuscol = {
+    package = plugins."statuscol.nvim";
+    config = ''
+      require "bombadil.config.statuscol"
     '';
   };
 
@@ -575,13 +527,6 @@ in {
     package = plugins.playground;
   };
 
-  ufo = {
-    package = plugins.nvim-ufo;
-    config = ''
-      require "bombadil.config.ufo"
-    '';
-  };
-
   undotree = {
     package = plugins.undotree;
     config = ''
@@ -599,11 +544,6 @@ in {
       vim.g.vimspector_base_dir = vim.fn.stdpath("data") .. "/" .. "vimspector"
       vim.g.vimspector_enable_mappings = "HUMAN"
     '';
-  };
-
-  # When are we going to get a lua version of this? Or, even better!, builtin support?
-  visual-multi = {
-    package = plugins.vim-visual-multi;
   };
 
   which-key = {

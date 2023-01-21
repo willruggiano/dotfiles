@@ -10,7 +10,7 @@ with lib; let
 in {
   config = let
     neovim = pkgs.neovim-utils.lib.buildEnv {
-      pkg = pkgs.neovim-custom;
+      pkg = pkgs.neovim;
       moduleName = "bombadil";
       lua = [pkgs.luajitPackages.luautf8];
       python = [pkgs.python3Packages.py-tree-sitter];

@@ -539,6 +539,12 @@
         "rev": "4ec68b43c74afe3569aa6b0d9d5a25cb82777309",
         "type": "git"
     },
+    "statuscol.nvim": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/luukvbaal/statuscol.nvim",
+        "rev": "5e545f98fe40498b4c93dcfaa472d7a972cec3fc",
+        "type": "git"
+    },
     "surround.nvim": {
         "branch": "master",
         "repo": "git@github.com:ur4ltz/surround.nvim",

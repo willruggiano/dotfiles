@@ -100,7 +100,7 @@ opt.grepprg = "rg --vimgrep --smart-case --follow"
 -- I like help,man,K to open in a vertical split
 opt.keywordprg = ":vert help"
 
-opt.foldcolumn = "1"
-opt.foldoptions = "nodigits"
-opt.foldenable = true
-opt.foldlevel = 99
+-- opt.foldcolumn = "1"
+-- opt.foldoptions = "nodigits"
+-- opt.foldenable = true
+-- opt.foldlevel = 99

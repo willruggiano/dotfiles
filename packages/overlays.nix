@@ -21,9 +21,6 @@ in
     luaPackages = overrideLua prev prev.lua;
     luajitPackages = overrideLua prev prev.luajit;
     marksman = prev.callPackage ./marksman {};
-    neovim-custom = final.neovim.overrideAttrs (attrs: {
-      patches = attrs.patches ++ [./neovim/17446.diff];
-    });
     neovim-utils = prev.callPackage ./neovim/utils {};
     neovim-remote = prev.callPackage ./neovim-remote {};
     nonicons = prev.callPackage ./nonicons {};
