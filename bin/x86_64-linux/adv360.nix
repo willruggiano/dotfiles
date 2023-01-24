@@ -40,7 +40,7 @@ writeShellApplication {
         install_firmware "$2"
         ;;
       clean)
-        rm -v -rf ./firmware
+        rm -v ./firmware/*.uf2
         ;;
       help)
         echo "Usage: adv360 download|install|clean [left|right]"
