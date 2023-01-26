@@ -11,6 +11,12 @@
         "rev": "f02e19bd29a27944e6bcc1e7a492fe07534b6630",
         "type": "git"
     },
+    "buffers.firvish": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/willruggiano/buffers.firvish",
+        "rev": "de03541416b065d145cc054bbe4e94feaf86cde5",
+        "type": "git"
+    },
     "cargo-expand.nvim": {
         "branch": "main",
         "repo": "ssh://git@github.com/willruggiano/cargo-expand.nvim",

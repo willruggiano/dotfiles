@@ -203,6 +203,11 @@ in {
     '';
   };
 
+  firvish-buffers = {
+    dev = "buffers.firvish";
+    package = plugins."buffers.firvish";
+  };
+
   focus = {
     package = plugins."focus.nvim";
     config = ''

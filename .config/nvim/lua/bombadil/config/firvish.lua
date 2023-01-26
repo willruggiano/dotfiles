@@ -1,19 +1,10 @@
-require("firvish").setup {
-  features = true,
-  -- features = {
-  --   buffers = true,
-  --   fh = true,
-  --   find = true,
-  --   grep = true,
-  --   history = true,
-  --   jobs = true,
-  -- },
-}
+require("buffers-firvish").setup {}
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 
 nnoremap("<space>b", function()
   vim.cmd.edit "firvish://buffers"
+  require("buffers-firvish").setup_buffer(vim.api.nvim_get_current_buf(), false)
 end, { desc = "Buffers" })
 
 nnoremap("<space>h", function()
