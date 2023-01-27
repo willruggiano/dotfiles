@@ -14,15 +14,19 @@ in {
     enable = mkEnableOption "Enable keyd";
     invertShiftKey = mkEnableOption "Invert shift key without breaking modifier behavior";
     altGrNav = mkEnableOption "AltGr + h/j/k/l => left/down/up/right";
-    layers = mkOption {
-      description = "Attribute set of settings to add to default.conf";
-      default = {};
-      type = attrsOf (
-        submodule {
-          freeformType = attrsOf str;
-        }
-      );
+    config = mkOption {
+      description = "Default keyd configuration";
+      type = str;
     };
+    # layers = mkOption {
+    #   description = "Attribute set of settings to add to default.conf";
+    #   default = {};
+    #   type = attrsOf (
+    #     submodule {
+    #       freeformType = attrsOf str;
+    #     }
+    #   );
+    # };
   };
 
   config = mkMerge [
@@ -43,19 +47,14 @@ in {
       };
 
       environment.etc = {
-        "keyd/default.conf".text = concatStringsSep "\n" ([
-          ''
-            [ids]
-            *
-          ''
-        ]
+        "keyd/default.conf".text = concatStringsSep "\n" ([cfg.config]
         ++ optional cfg.altGrNav "include nav"
         ++ optional cfg.invertShiftKey "include shift"
-        ++ ["include user"]
+        # ++ ["include user"]
         # HACK: Without this, for some reason, keyd errors on startup with: 'failed to parse /etc/keyd/default.conf'
         ++ [""]);
 
-        "keyd/user".source = settings_format.generate "user.conf" cfg.layers;
+        # "keyd/user".source = settings_format.generate "user.conf" cfg.layers;
       };
     })
     (mkIf cfg.altGrNav {
