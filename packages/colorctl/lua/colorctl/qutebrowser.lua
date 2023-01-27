@@ -1,6 +1,5 @@
 local M = {}
 
-local utils = require "colorctl.utils"
 local qutebrowser = require "colorctl.transform.qutebrowser"
 local overwrite = require "shipwright.transform.overwrite"
 
@@ -20,11 +19,6 @@ function M.run(opts)
     }
     ---@diagnostic disable-next-line: undefined-global
   end, { qutebrowser, "awesome" }, { overwrite, opts.dest })
-
-  -- if opts.reload then
-  --   assert(opts["reload-command"], "must have a reload.command for qutebrowser")
-  --   os.execute(utils.gsubenv(opts["reload-command"]))
-  -- end
 end
 
 return M

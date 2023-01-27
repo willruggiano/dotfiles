@@ -67,9 +67,4 @@ function M.run(opts)
       -- mark3_bg = "#000000",
     }
   end, { waybar, "awesome" }, { overwrite, opts.dest })
-
-  if opts.reload then
-    assert(opts["reload-command"], "must have a reload.command for waybar")
-    os.execute(utils.gsubenv(opts["reload-command"]))
-  end
 end

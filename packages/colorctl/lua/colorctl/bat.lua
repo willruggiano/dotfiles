@@ -1,6 +1,5 @@
 local M = {}
 
-local utils = require "colorctl.utils"
 local bat = require "colorctl.transform.bat"
 local overwrite = require "shipwright.transform.overwrite"
 
@@ -33,11 +32,6 @@ function M.run(opts)
     }
     ---@diagnostic disable-next-line: undefined-global
   end, { bat, "awesome" }, { overwrite, opts.dest })
-
-  if opts.reload then
-    assert(opts["reload-command"], "must have a reload.command for bat")
-    os.execute(utils.gsubenv(opts["reload-command"]))
-  end
 end
 
 return M
