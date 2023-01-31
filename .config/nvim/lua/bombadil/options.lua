@@ -1,3 +1,5 @@
+---@diagnostic disable: assign-type-mismatch
+
 local icons = require "nvim-nonicons"
 local opt = vim.opt
 
@@ -31,6 +33,7 @@ opt.updatetime = 1000 -- Make updates happen faster
 opt.hlsearch = true
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 opt.signcolumn = "yes"
+opt.conceallevel = 2
 
 -- Tabs
 opt.autoindent = true
@@ -102,5 +105,5 @@ opt.keywordprg = ":vert help"
 
 -- opt.foldcolumn = "1"
 -- opt.foldoptions = "nodigits"
--- opt.foldenable = true
--- opt.foldlevel = 99
+opt.foldenable = true
+opt.foldlevel = 99

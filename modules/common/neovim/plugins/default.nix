@@ -208,6 +208,16 @@ in {
     package = plugins."buffers.firvish";
   };
 
+  firvish-git = {
+    dev = "git.firvish";
+    package = plugins."git.firvish";
+  };
+
+  firivsh-jobs = {
+    dev = "jobs.firvish";
+    package = plugins."jobs.firvish";
+  };
+
   focus = {
     package = plugins."focus.nvim";
     config = ''
@@ -313,6 +323,13 @@ in {
 
   lush = {
     package = lua-lush.nvim-plugin;
+  };
+
+  markdown = {
+    package = plugins.vim-markdown;
+    config = ''
+      require "bombadil.config.markdown"
+    '';
   };
 
   marks = {

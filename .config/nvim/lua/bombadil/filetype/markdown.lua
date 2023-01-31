@@ -1,6 +1,5 @@
 return function(bufnr)
   vim.api.nvim_buf_call(bufnr, function()
-    vim.wo.conceallevel = 3
     -- FIXME: The markdown queries are broken.
     require("treesitter-unit").disable_highlighting()
   end)

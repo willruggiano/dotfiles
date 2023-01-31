@@ -1,4 +1,6 @@
 require("buffers-firvish").setup {}
+-- require("git-firvish").setup {}
+require("jobs-firvish").setup {}
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 

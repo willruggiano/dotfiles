@@ -239,6 +239,12 @@
         "rev": "045d9582094b27f5ae04d8b635c6da8e97e53f1d",
         "type": "git"
     },
+    "jobs.firvish": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/willruggiano/jobs.firvish",
+        "rev": "c6c96d436aa303478a0dde34bec80bd2875b5ad1",
+        "type": "git"
+    },
     "kommentary": {
         "branch": "main",
         "repo": "git@github.com:b3nj5m1n/kommentary",
@@ -645,6 +651,12 @@
         "branch": "master",
         "repo": "git@github.com:tpope/vim-fugitive",
         "rev": "b5bbd0d181ebc3cea5c42bdaed13141850432ba1",
+        "type": "git"
+    },
+    "vim-markdown": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/preservim/vim-markdown",
+        "rev": "df4be8626e2c5b2a42eb60e1f100fce469b81f7d",
         "type": "git"
     },
     "vim-repeat": {
