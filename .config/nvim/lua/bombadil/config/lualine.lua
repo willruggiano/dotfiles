@@ -53,7 +53,7 @@ extensions.lir = {
   },
 }
 
-require("lualine").setup {
+local opts = {
   options = {
     globalstatus = true,
     icons_enabled = true,
@@ -87,3 +87,9 @@ require("lualine").setup {
     extensions.lir,
   },
 }
+
+if pcall(require, "catppuccin") then
+  opts.options.theme = "catppuccin"
+end
+
+require("lualine").setup(opts)
