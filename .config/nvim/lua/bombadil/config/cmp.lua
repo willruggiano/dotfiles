@@ -95,6 +95,15 @@ cmp.setup {
     format = require("lspkind").cmp_format {
       mode = "symbol",
       maxwidth = 50,
+      menu = {
+        buffer = "[ buf]",
+        cmp_git = "[ git]",
+        nvim_lsp = "[ lsp]",
+        nvim_lua = "[nvim]",
+        path = "[path]",
+        shell = "[ sh]",
+        snippy = "[snip]",
+      },
     },
   },
 }

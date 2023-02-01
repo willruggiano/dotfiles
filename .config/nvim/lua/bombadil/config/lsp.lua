@@ -33,6 +33,7 @@ local diagnostic_config = {
   update_in_insert = false,
   virtual_text = {
     format = function(diagnostic)
+      vim.pretty_print(diagnostic)
       return string.format("%s  %s", lsp.signs.severity(diagnostic.severity), diagnostic.message)
     end,
     prefix = "",
