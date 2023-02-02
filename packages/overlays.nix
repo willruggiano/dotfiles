@@ -5,12 +5,13 @@ let
     };
 in
   final: prev: {
-    colorctl = prev.callPackage ./colorctl {
-      lua = prev.luajit;
-      luaPackages = final.luajitPackages;
-      inherit (prev.luajitPackages) toLuaModule;
-    };
+    # colorctl = prev.callPackage ./colorctl {
+    #   lua = prev.luajit;
+    #   luaPackages = final.luajitPackages;
+    #   inherit (prev.luajitPackages) toLuaModule;
+    # };
     autorandr-rs = prev.callPackage ./autorandr-rs {};
+    base16-templates = prev.callPackage ./base16-templates {};
     circle = prev.callPackage ./circle {};
     docsets = prev.callPackage ./docsets {};
     dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";

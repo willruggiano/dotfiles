@@ -24,6 +24,8 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+    base16-templates-source.url = "github:chriskempson/base16-templates-source";
+    base16-templates-source.flake = false;
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
@@ -76,6 +78,7 @@
         (final: prev: {
           # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell;
+          inherit (inputs) base16-templates-source;
         })
       ];
 

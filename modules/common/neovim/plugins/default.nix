@@ -5,18 +5,15 @@
 with pkgs.luajitPackages; let
   plugins = import ./nix/sources.nix {};
 in {
-  colorscheme = {
-    package = lua-awesome.nvim-plugin;
-    config = ''
-      require "bombadil.config.colorscheme"
-    '';
-  };
-
   autopairs = {
     package = plugins.nvim-autopairs;
     config = ''
       require "bombadil.config.autopairs"
     '';
+  };
+
+  base16 = {
+    package = plugins.base16;
   };
 
   blankline = {

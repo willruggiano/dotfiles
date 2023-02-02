@@ -44,6 +44,11 @@ in {
     mkIf cfg.enable {
       user.packages = [neovim];
 
+      programs.flavours.items.neovim = {
+        file = "~/.config/nvim/lua/bombadil/colors/flavours.lua";
+        template = "custom/neovim";
+      };
+
       home.configFile = {
         nvim = {
           source = ../../../.config/nvim;

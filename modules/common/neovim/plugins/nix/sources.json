@@ -1,4 +1,10 @@
 {
+    "base16": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/bradcush/base16-nvim",
+        "rev": "0389c498cba577474906341c463e4dea0ca4d979",
+        "type": "git"
+    },
     "bufdelete.nvim": {
         "branch": "master",
         "repo": "git@github.com:famiu/bufdelete.nvim",
