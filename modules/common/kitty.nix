@@ -12,6 +12,11 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.flavours.items.kitty = {
+      file = "~/.config/kitty/theme.conf";
+      template = "kitty";
+    };
+
     home.configFile = {
       kitty = {
         source = ../../.config/kitty;

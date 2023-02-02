@@ -17,6 +17,11 @@ in {
         python3Packages.adblock
       ];
 
+      programs.flavours.items.qutebrowser = {
+        file = "~/.config/qutebrowser/colors.py";
+        template = "qutebrowser";
+      };
+
       home.configFile = {
         qutebrowser = {
           source = ../../.config/qutebrowser;

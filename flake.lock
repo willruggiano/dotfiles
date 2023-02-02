@@ -20,6 +20,22 @@
         "type": "github"
       }
     },
+    "base16-templates-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660753358,
+        "narHash": "sha256-5RN3l74+DBY/3f0OUoAPuxfIT7vmkqNRdogUAkmLeWQ=",
+        "owner": "chriskempson",
+        "repo": "base16-templates-source",
+        "rev": "394b12c904fa5d0b8cf458639877dcc484520194",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chriskempson",
+        "repo": "base16-templates-source",
+        "type": "github"
+      }
+    },
     "cachix": {
       "locked": {
         "lastModified": 1658346836,
@@ -754,6 +770,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "base16-templates-source": "base16-templates-source",
         "darwin": "darwin",
         "docker-ui-nvim": "docker-ui-nvim",
         "home-manager": "home-manager",

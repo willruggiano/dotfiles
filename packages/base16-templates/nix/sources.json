@@ -1,0 +1,38 @@
+{
+  "base16-fzf": {
+    "branch": "main",
+    "repo": "ssh://git@github.com/fnune/base16-fzf",
+    "rev": "7ce3b963ecdd33119ccddca8e31d27e54c269399",
+    "type": "git"
+  },
+  "base16-kitty": {
+    "branch": "master",
+    "repo": "ssh://git@github.com/kdrag0n/base16-kitty",
+    "rev": "06bb401fa9a0ffb84365905ffbb959ae5bf40805",
+    "type": "git"
+  },
+  "base16-qutebrowser": {
+    "branch": "main",
+    "repo": "ssh://git@github.com/theova/base16-qutebrowser",
+    "rev": "5061ba84cd33fe47418213eb84990215f7afb14f",
+    "type": "git"
+  },
+  "base16-shell": {
+    "branch": "master",
+    "repo": "ssh://git@github.com/chriskempson/base16-shell",
+    "rev": "588691ba71b47e75793ed9edfcfaa058326a6f41",
+    "type": "git"
+  },
+  "base16-tmux": {
+    "branch": "main",
+    "repo": "ssh://git@github.com/mattdavis90/base16-tmux",
+    "rev": "3312bb2cbb26db7eeb2d2235ae17d4ffaef5e59b",
+    "type": "git"
+  },
+  "base16-waybar": {
+    "branch": "master",
+    "repo": "ssh://git@github.com/mnussbaum/base16-waybar",
+    "rev": "d2f943b1abb9c9f295e4c6760b7bdfc2125171d2",
+    "type": "git"
+  }
+}
