@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.programs.hyprland;
 in ''
-  monitor=,preferred,auto,auto
+  monitor=,preferred,auto,1
 
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 
