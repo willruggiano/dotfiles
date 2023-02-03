@@ -44,20 +44,5 @@ in {
         recursive = true;
       };
     };
-
-    systemd.user.services.restart-awesome = {
-      description = "Restart awesomewm";
-      path = with pkgs; [awesome dbus];
-      script = ''
-        echo 'awesome.restart()' | awesome-client
-      '';
-    };
-
-    systemd.user.timers.restart-awesome = {
-      description = "Restart awesomewm to apply theme changes";
-      partOf = ["restart-awesome.service"];
-      wantedBy = ["timers.target"];
-      timerConfig.OnCalendar = "hourly";
-    };
   };
 }
