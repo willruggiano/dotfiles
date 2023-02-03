@@ -1,1 +1,1 @@
-require("bombadil.colors").setup()
+vim.cmd.colorscheme "flavours"
