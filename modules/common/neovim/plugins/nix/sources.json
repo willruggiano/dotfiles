@@ -26,7 +26,7 @@
     "cargo-expand.nvim": {
         "branch": "main",
         "repo": "ssh://git@github.com/willruggiano/cargo-expand.nvim",
-        "rev": "46dc1e99757f77ab622386a59f9e6773b946a19e",
+        "rev": "1eabd52902e1fdd5abad523e8b2a33d163fcd9af",
         "type": "git"
     },
     "clang-format.nvim": {
