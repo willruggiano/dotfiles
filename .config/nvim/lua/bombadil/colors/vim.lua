@@ -17,7 +17,7 @@ function M.setup(palette)
   hi.DiffText = { fg = palette.base0D }
   -- hi.EndOfBuffer = "NonText"
   hi.ErrorMsg = { fg = palette.base08, bg = palette.base00 }
-  hi.WinSeparator = { fg = palette.base05, bg = palette.base00 }
+  hi.WinSeparator = { fg = palette.base04, bg = palette.base00 }
   hi.Folded = { fg = palette.base03, bg = palette.base01 }
   hi.FoldColumn = { fg = palette.base0C, bg = palette.base00 }
   hi.SignColumn = { fg = palette.base04, bg = palette.base00 }

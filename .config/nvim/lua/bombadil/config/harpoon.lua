@@ -16,3 +16,8 @@ vim.filetype.add {
     return "harpoon"
   end,
 }
+
+local hi = require("bombadil.colors").highlight
+
+hi.HarpoonWindow = "Normal"
+hi.HarpoonBorder = "Normal"
