@@ -59,6 +59,13 @@ in {
         concatStringsSep "\n\n" ([''shell = "${cfg.shell}"''] ++ items);
     };
 
+    home.dataFile = {
+      "flavours/base16" = {
+        source = pkgs.base16-templates;
+        recursive = true;
+      };
+    };
+
     system.userActivationScripts.flavours = ''
       ${pkgs.flavours}/bin/flavours apply ${cfg.colorscheme}
     '';
