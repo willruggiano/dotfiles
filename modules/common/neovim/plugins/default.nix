@@ -12,10 +12,6 @@ in {
     '';
   };
 
-  base16 = {
-    package = plugins.base16;
-  };
-
   blankline = {
     package = plugins."indent-blankline.nvim";
     config = ''

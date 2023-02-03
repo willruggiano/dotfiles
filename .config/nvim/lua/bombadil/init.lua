@@ -5,7 +5,6 @@ end
 
 require "bombadil.globals"
 require "bombadil.stdlib"
-require "bombadil.vim"
 
 require "bombadil.options"
 require "bombadil.abbreviations"
