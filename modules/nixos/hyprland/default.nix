@@ -14,10 +14,10 @@ with lib; let
   };
   hyprland-wrapped = hyprland-default.overrideAttrs (oa: {
     nativeBuildInputs = oa.nativeBuildInputs ++ [pkgs.makeWrapper];
-    postInstall =
+    postInstall = with pkgs;
       ''
         wrapProgram $out/bin/Hyprland \
-          --prefix PATH : ${makeBinPath [pkgs.pciutils]}
+          --prefix PATH : ${makeBinPath [hyprpaper pciutils]}
       ''
       + (optionalString cfg.nvidiaPatches ''
         wrapProgram $out/bin/Hyprland      \
@@ -30,6 +30,25 @@ in {
   imports = [
     inputs.hyprland.nixosModules.default
   ];
+
+  options.programs.hyprland = with types; {
+    wallpapers = mkOption {
+      type = attrsOf (
+        types.submodule {
+          options = {
+            wallpaper = mkOption {
+              type = path;
+            };
+          };
+        }
+      );
+      default = {
+        "DP-1" = {
+          wallpaper = ../../../wallpapers/gandalf.jpg;
+        };
+      };
+    };
+  };
 
   config = mkMerge [
     {
@@ -52,11 +71,8 @@ in {
       '';
 
       home.configFile = {
-        hypr = {
-          source = ../../../.config/hypr;
-          recursive = true;
-        };
-
+        "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit pkgs;};
+        "hypr/hyprpaper.conf".text = import ./hyprpaper.conf.nix {inherit config lib;};
         "hypr/keybinds.conf".text = import ./keybinds.conf.nix {inherit pkgs;};
       };
     })
