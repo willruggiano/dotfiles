@@ -11,6 +11,7 @@ in
     #   inherit (prev.luajitPackages) toLuaModule;
     # };
     autorandr-rs = prev.callPackage ./autorandr-rs {};
+    base16-schemes = prev.callPackage ./base16-schemes {};
     base16-templates = prev.callPackage ./base16-templates {};
     circle = prev.callPackage ./circle {};
     docsets = prev.callPackage ./docsets {};

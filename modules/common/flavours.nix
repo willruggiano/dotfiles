@@ -64,6 +64,11 @@ in {
         source = pkgs.base16-templates;
         recursive = true;
       };
+
+      "flavours/base16/schemes/base16" = {
+        source = pkgs.base16-schemes;
+        recursive = true;
+      };
     };
 
     system.userActivationScripts.flavours = ''

@@ -7,14 +7,6 @@
 with lib; let
   cfg = config.programs.zsh;
 in {
-  options.programs.zsh = {
-    colorscheme = mkOption {
-      type = types.str;
-      default = "$XDG_CONFIG_HOME/vivid/themes/colorctl.yml";
-      description = "The vivid colorscheme to use";
-    };
-  };
-
   config = mkIf cfg.enable {
     home.packages = with pkgs; [atuin bc thefuck units];
 
@@ -109,12 +101,10 @@ in {
           source "$f"
         done
       '';
-      initExtra = with pkgs; ''
+      initExtra = ''
         for f in $HOME/.config/zsh/extra/1[0-9]-*.zsh; do
           source "$f"
         done
-
-        export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate ${cfg.colorscheme})"
 
         [ -e $HOME/.zshrc ] && source $HOME/.zshrc
       '';
