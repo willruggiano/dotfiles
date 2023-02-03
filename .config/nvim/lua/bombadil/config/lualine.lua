@@ -53,45 +53,40 @@ extensions.lir = {
   },
 }
 
-local colors = require "bombadil.colors"
+local palette = require "bombadil.colors.flavours"
+local theme = {
+  normal = {
+    a = { fg = palette.base01, bg = palette.base0D },
+    b = { fg = palette.base05, bg = palette.base02 },
+    c = { fg = palette.base04, bg = palette.base01 },
+  },
+  replace = {
+    a = { fg = palette.base01, bg = palette.base09 },
+    b = { fg = palette.base05, bg = palette.base02 },
+  },
+  insert = {
+    a = { fg = palette.base01, bg = palette.base0B },
+    b = { fg = palette.base05, bg = palette.base02 },
+  },
+  visual = {
+    a = { fg = palette.base01, bg = palette.base0E },
+    b = { fg = palette.base05, bg = palette.base02 },
+  },
+  inactive = {
+    a = { fg = palette.base03, bg = palette.base01 },
+    b = { fg = palette.base03, bg = palette.base01 },
+    c = { fg = palette.base03, bg = palette.base01 },
+  },
+}
+
+theme.command = theme.normal
+theme.terminal = theme.insert
 
 require("lualine").setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = "gruvbox",
-    -- theme = {
-    --   normal = {
-    --     a = { bg = colors.gray, fg = colors.black, gui = "bold" },
-    --     b = { bg = colors.lightgray, fg = colors.white },
-    --     c = { bg = colors.darkgray, fg = colors.gray },
-    --   },
-    --   insert = {
-    --     a = { bg = colors.blue, fg = colors.black, gui = "bold" },
-    --     b = { bg = colors.lightgray, fg = colors.white },
-    --     c = { bg = colors.lightgray, fg = colors.white },
-    --   },
-    --   visual = {
-    --     a = { bg = colors.yellow, fg = colors.black, gui = "bold" },
-    --     b = { bg = colors.lightgray, fg = colors.white },
-    --     c = { bg = colors.inactivegray, fg = colors.black },
-    --   },
-    --   replace = {
-    --     a = { bg = colors.red, fg = colors.black, gui = "bold" },
-    --     b = { bg = colors.lightgray, fg = colors.white },
-    --     c = { bg = colors.black, fg = colors.white },
-    --   },
-    --   command = {
-    --     a = { bg = colors.green, fg = colors.black, gui = "bold" },
-    --     b = { bg = colors.lightgray, fg = colors.white },
-    --     c = { bg = colors.inactivegray, fg = colors.black },
-    --   },
-    --   inactive = {
-    --     a = { bg = colors.darkgray, fg = colors.gray, gui = "bold" },
-    --     b = { bg = colors.darkgray, fg = colors.gray },
-    --     c = { bg = colors.darkgray, fg = colors.gray },
-    --   },
-    -- },
+    theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = {},
