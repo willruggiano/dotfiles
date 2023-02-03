@@ -18,8 +18,18 @@ in {
     extraModulePackages = with kernelPackages; [acpi_call];
 
     initrd = {
-      availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "thunderbolt" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
-      kernelModules = [];
+      availableKernelModules = [
+        "ahci"
+        "nvme"
+        "sd_mod"
+        "sr_mod"
+        "thunderbolt"
+        "usb_storage"
+        "usbhid"
+        "vmd"
+        "xhci_pci"
+      ];
+      kernelModules = ["acpi" "acpi-call"];
     };
 
     kernelModules = ["acpi_call" "kvm-intel"];

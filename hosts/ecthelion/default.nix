@@ -48,7 +48,7 @@
   services.clipcat.enable = true;
   services.dunst.enable = true;
   # services.email.enable = true;
-  services.expressvpn.enable = true;
+  # services.expressvpn.enable = true;
   # services.goxlr.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;

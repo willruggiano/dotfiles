@@ -4,9 +4,7 @@
   pkgs,
   ...
 }:
-with lib; let
-  cfg = config.programs.nvidia;
-in {
+with lib; {
   options.programs.nvidia-omniverse = {
     enable = mkEnableOption "Nvidia omniverse";
   };
