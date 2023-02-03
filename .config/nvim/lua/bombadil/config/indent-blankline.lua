@@ -16,3 +16,9 @@ require("indent_blankline").setup {
     "vimcmake",
   },
 }
+
+local hi = require("bombadil.colors").highlight
+local palette = require "bombadil.colors.flavours"
+
+hi.IndentBlanklineChar = { fg = palette.base02, nocombine = true }
+hi.IndentBlanklineContextChar = { fg = palette.base04, nocombine = true }
