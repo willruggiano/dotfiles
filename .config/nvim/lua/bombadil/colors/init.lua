@@ -1,6 +1,6 @@
 local M = {}
 
-M.flavours = require "bombadil.colors.flavours"
+-- M.flavours = require "bombadil.colors.flavours"
 
 function M.highlight()
   --
