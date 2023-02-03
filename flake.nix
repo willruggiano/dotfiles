@@ -29,6 +29,7 @@
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
@@ -66,6 +67,7 @@
         self.overlay
         inputs.hyprland.overlays.default
         inputs.hyprpaper.overlays.default
+        inputs.hyprpicker.overlays.default
         inputs.naersk.overlay
         inputs.neovim.overlay
         inputs.nil.overlays.default

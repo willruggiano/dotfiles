@@ -27,14 +27,6 @@
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
-    wallpapers = {
-      "DP-1" = {
-        wallpaper = ../../wallpapers/moria.png;
-      };
-      "DP-2" = {
-        wallpaper = ../../wallpapers/gandalf.jpg;
-      };
-    };
   };
   programs.kitty.enable = true;
   programs.neovim.enable = true;

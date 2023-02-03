@@ -36,17 +36,13 @@ in {
       type = attrsOf (
         types.submodule {
           options = {
-            wallpaper = mkOption {
+            source = mkOption {
               type = path;
             };
           };
         }
       );
-      default = {
-        "DP-1" = {
-          wallpaper = ../../../wallpapers/gandalf.jpg;
-        };
-      };
+      default = {};
     };
   };
 
@@ -66,14 +62,20 @@ in {
     cfg.enable {
       programs.hyprland.package = hyprland-wrapped;
 
+      user.packages = with pkgs; [hyprpicker];
+
       environment.loginShellInit = ''
         [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
       '';
 
       home.configFile = {
-        "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit pkgs;};
-        "hypr/hyprpaper.conf".text = import ./hyprpaper.conf.nix {inherit config lib;};
+        "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config lib pkgs;};
         "hypr/keybinds.conf".text = import ./keybinds.conf.nix {inherit pkgs;};
+      };
+    })
+    (mkIf (cfg.wallpapers != {}) {
+      home.configFile = {
+        "hypr/hyprpaper.conf".text = import ./hyprpaper.conf.nix {inherit config lib;};
       };
     })
   ];

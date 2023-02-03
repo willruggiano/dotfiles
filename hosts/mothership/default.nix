@@ -24,7 +24,12 @@
   programs.docsets.enable = true;
   programs.firefox.enable = false; # via home.nix
   programs.flavours.enable = true;
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    wallpapers = {
+      "eDP-1".source = ../../wallpapers/gandalf.jpg;
+    };
+  };
   programs.kitty.enable = true;
   programs.libreoffice.enable = true;
   programs.neovim.enable = true;

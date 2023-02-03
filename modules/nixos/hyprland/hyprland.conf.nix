@@ -1,7 +1,15 @@
-{pkgs, ...}: ''
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.programs.hyprland;
+in ''
   monitor=,preferred,auto,auto
 
-  exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
+  ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 
   source = ~/.config/hypr/colors.conf
   source = ~/.config/hypr/keybinds.conf

@@ -8,8 +8,8 @@ with lib; let
   configs =
     mapAttrsToList (
       monitor: attrs: ''
-        preload = ${attrs.wallpaper}
-        wallpaper = ${monitor},${attrs.wallpaper}
+        preload = ${attrs.source}
+        wallpaper = ${monitor},${attrs.source}
       ''
     )
     wallpapers;
