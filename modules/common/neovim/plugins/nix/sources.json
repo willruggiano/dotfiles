@@ -23,12 +23,6 @@
         "rev": "1eabd52902e1fdd5abad523e8b2a33d163fcd9af",
         "type": "git"
     },
-    "catppuccin": {
-        "branch": "main",
-        "repo": "ssh://git@github.com/catppuccin/nvim",
-        "rev": "491f0a58ba8901258f84de94d848811a6eaf5b98",
-        "type": "git"
-    },
     "clang-format.nvim": {
         "branch": "main",
         "repo": "git@github.com:willruggiano/clang-format.nvim",

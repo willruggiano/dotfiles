@@ -116,9 +116,3 @@ require("lualine").setup {
     extensions.lir,
   },
 }
-
-if pcall(require, "catppuccin") then
-  opts.options.theme = "catppuccin"
-end
-
-require("lualine").setup(opts)
