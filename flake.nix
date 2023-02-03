@@ -27,6 +27,7 @@
     base16-templates-source.url = "github:chriskempson/base16-templates-source";
     base16-templates-source.flake = false;
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
+    hyprland.url = "github:hyprwm/hyprland";
     neovim.url = "github:neovim/neovim?dir=contrib";
     neovim.inputs.nixpkgs.follows = "nixpkgs";
     nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
@@ -62,6 +63,7 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         self.overlay
+        inputs.hyprland.overlays.default
         inputs.naersk.overlay
         inputs.neovim.overlay
         inputs.nil.overlays.default

@@ -20,11 +20,11 @@
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
-  # programs.colorctl.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.firefox.enable = false; # via home.nix
   programs.flavours.enable = true;
+  programs.hyprland.enable = true;
   programs.kitty.enable = true;
   programs.libreoffice.enable = true;
   programs.neovim.enable = true;
@@ -38,7 +38,7 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
-  services.awesome.enable = true;
+  # services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;
   services.email.enable = true;

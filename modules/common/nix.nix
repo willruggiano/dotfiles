@@ -9,6 +9,7 @@
 with lib; {
   options = with types; {
     user = mkOpt attrs {};
+
     sshPublicKey = mkOption {
       type = str;
       description = "The primary user's ssh public key";

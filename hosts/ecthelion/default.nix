@@ -24,6 +24,10 @@
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.flavours.enable = true;
+  programs.hyprland = {
+    enable = true;
+    nvidiaPatches = true;
+  };
   programs.kitty.enable = true;
   programs.neovim.enable = true;
   programs.nvtop.enable = true;
@@ -41,7 +45,6 @@
     enable = true;
     config = ./monitor-layout.kdl;
   };
-  services.awesome.enable = true;
   services.clipcat.enable = true;
   services.dunst.enable = true;
   # services.email.enable = true;
