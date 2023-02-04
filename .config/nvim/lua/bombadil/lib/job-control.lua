@@ -1,16 +1,17 @@
-local job_ctrl = require "firvish.lib.jobs"
+local firvish = require "firvish"
 
 local M = {}
 
 ---Run an executable.
 ---@param command string The command to run.
----@param errorlist string|boolean One of (quickfix|loclist|false) specifying whether to send command output to an errorlist, or `false` to run the command in the foregroud.
----@param args table The arguments to pass to the command.
+---@param args table? The arguments to pass to the command.
+---@param errorlist string|boolean? One of (quickfix|loclist|false) specifying whether to send command output to an errorlist, or `false` to run the command in the foregroud.
 M.run = function(command, args, errorlist)
-  local background = errorlist ~= false
+  local background = errorlist ~= nil or errorlist ~= false
 
-  job_ctrl.start_job {
-    cmd = vim.list_extend({ command }, args),
+  firvish.start_job {
+    command = command,
+    args = args or {},
     filetype = "log",
     title = command,
     errorlist = errorlist,
