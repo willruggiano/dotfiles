@@ -10,6 +10,8 @@ vim.api.nvim_create_autocmd("ModeChanged", {
       vim.opt.laststatus = 3
     end
 
-    pcall(vim.cmd, [[silent! redraw]])
+    pcall(function()
+      vim.cmd.redraw { mods = { emsg_silent = true } }
+    end)
   end,
 })
