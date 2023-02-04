@@ -479,11 +479,11 @@
     "nix-flake-templates": {
       "flake": false,
       "locked": {
-        "lastModified": 1673550570,
-        "narHash": "sha256-Dv5Ob0Dj7L+57rEaN0ELKqGEOE1v0mW4Of2h3O/0Tc8=",
+        "lastModified": 1675494270,
+        "narHash": "sha256-LlAyxicRG9yShDjxlVU1WTsZtzIDw8yzz7Bk+/SBJWo=",
         "owner": "willruggiano",
         "repo": "nix-flake-templates",
-        "rev": "3e11f886bcf884ac69fbe626a5925689240cd17d",
+        "rev": "b0abd6637f5f55facf3564840994f13a6ffb3984",
         "type": "github"
       },
       "original": {
