@@ -18,6 +18,10 @@
   bind = $mod, K, movefocus, u
   bind = $mod, J, movefocus, d
 
+  # Cycle workspaces with mod + j/k
+  bind = $mod SHIFT, J, exec, hyprctl dispatch workspace +1
+  bind = $mod SHIFT, K, exec, hyprctl dispatch workspace -1
+
   # Switch workspaces with mod + [0-9]
   bind = $mod, 1, workspace, 1
   bind = $mod, 2, workspace, 2

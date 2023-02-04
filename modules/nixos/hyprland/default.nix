@@ -7,6 +7,7 @@
 }:
 with lib; let
   cfg = config.programs.hyprland;
+
   hyprland-default = pkgs.hyprland.override {
     enableXWayland = cfg.xwayland.enable;
     hidpiXWayland = cfg.xwayland.hidpi;
@@ -58,8 +59,7 @@ in {
         template = "custom/hypr";
       };
     }
-    (mkIf
-    cfg.enable {
+    (mkIf cfg.enable {
       programs.hyprland.package = hyprland-wrapped;
 
       user.packages = with pkgs; [hyprpicker];
