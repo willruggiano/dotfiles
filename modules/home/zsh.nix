@@ -29,10 +29,6 @@ in {
           };
         }
         {
-          name = "atuin";
-          inherit (pkgs.atuin) src;
-        }
-        {
           name = "clipboard";
           src = fetchFromGitHub {
             owner = "ohmyzsh";
@@ -101,6 +97,7 @@ in {
           source "$f"
         done
       '';
+
       initExtra = ''
         for f in $HOME/.config/zsh/extra/1[0-9]-*.zsh; do
           source "$f"
