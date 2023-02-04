@@ -27,6 +27,7 @@
     base16-templates-source.url = "github:chriskempson/base16-templates-source";
     base16-templates-source.flake = false;
     docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
+    eww.url = "github:elkowar/eww";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -78,13 +79,14 @@
         inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
+          inherit (inputs.eww.packages."${prev.system}") eww-wayland;
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           inherit (inputs) nvim-treesitter-master;
+          inherit (inputs) base16-templates-source;
         })
         (final: prev: {
           # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell;
-          inherit (inputs) base16-templates-source;
         })
       ];
 

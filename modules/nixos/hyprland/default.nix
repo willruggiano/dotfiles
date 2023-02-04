@@ -19,6 +19,10 @@ with lib; let
         wrapProgram $out/bin/Hyprland \
           --prefix PATH : ${makeBinPath [hyprpaper pciutils]}
       ''
+      + (optionalString config.programs.eww.enable ''
+        wrapProgram $out/bin/Hyprland \
+          --prefix PATH : ${makeBinPath [config.programs.eww.package]}
+      '')
       + (optionalString cfg.nvidiaPatches ''
         wrapProgram $out/bin/Hyprland      \
           --set WLR_BACKEND vulkan         \
@@ -29,6 +33,7 @@ with lib; let
 in {
   imports = [
     inputs.hyprland.nixosModules.default
+    ./eww
   ];
 
   options.programs.hyprland = with types; {

@@ -23,6 +23,7 @@
   programs.blender.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
+  programs.eww.enable = true;
   programs.flavours.enable = true;
   programs.hyprland = {
     enable = true;

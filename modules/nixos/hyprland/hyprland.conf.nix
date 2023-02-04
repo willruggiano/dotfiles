@@ -10,6 +10,12 @@ in ''
   monitor=,preferred,auto,1
 
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
+  ${
+    optionalString config.programs.eww.enable ''
+      exec-once = ${config.programs.eww.package}/bin/eww daemon
+      exec-once = ${config.programs.eww.package}/bin/eww open bar
+    ''
+  }
 
   source = ~/.config/hypr/colors.conf
   source = ~/.config/hypr/keybinds.conf
