@@ -35,6 +35,7 @@
     nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
     nvim-treesitter-master.flake = false;
     nil.url = "github:oxalica/nil";
+    nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar";
     zig.url = "github:willruggiano/zig.nix";
@@ -78,13 +79,13 @@
         inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
-          inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           inherit (inputs) nvim-treesitter-master;
+          inherit (inputs) base16-templates-source;
+          nurl = inputs.nurl.packages."${prev.system}".default;
         })
         (final: prev: {
-          # NOTE: Packages we want on the bleeding edge (but without needing to update nixpkgs too often).
+          inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell;
-          inherit (inputs) base16-templates-source;
         })
       ];
 
