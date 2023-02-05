@@ -9,12 +9,6 @@
   writeShellApplication,
   nvim-treesitter-master,
 }: let
-  # src = fetchFromGitHub {
-  #   owner = "nvim-treesitter";
-  #   repo = "nvim-treesitter";
-  #   rev = "18cc1216e128b2db1046cf7b3a46851c7c4e4073";
-  #   hash = "sha256-nms+gvbuvVR4gic04a9miwNdMGQYANxXLDuSHSO6QS8=";
-  # };
   src = nvim-treesitter-master;
 
   # The grammars we care about:
