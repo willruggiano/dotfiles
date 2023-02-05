@@ -206,7 +206,7 @@ in {
     package = plugins."git.firvish";
   };
 
-  firivsh-jobs = {
+  firvish-jobs = {
     dev = "jobs.firvish";
     package = plugins."jobs.firvish";
   };
