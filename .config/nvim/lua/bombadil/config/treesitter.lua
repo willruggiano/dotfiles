@@ -45,7 +45,6 @@ require("nvim-treesitter.configs").setup {
 
   highlight = {
     enable = true,
-    disable = { "cmake", "json" },
   },
 
   query_linter = {
