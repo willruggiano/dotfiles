@@ -138,6 +138,12 @@ end, { desc = "Edit dotfiles" })
 
 local nnoremap = require("bombadil.lib.keymap").nnoremap
 local mappings = {
+  ["<space>/"] = {
+    function()
+      require("telescope.builtin").help_tags()
+    end,
+    { desc = "Help tags" },
+  },
   ["<space>e"] = {
     function()
       require("telescope.builtin").git_files()
