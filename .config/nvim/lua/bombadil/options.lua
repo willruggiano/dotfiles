@@ -3,6 +3,8 @@
 local icons = require "nvim-nonicons"
 local opt = vim.opt
 
+vim.cmd.syntax "off"
+
 opt.termguicolors = true
 
 -- Ignore compiled files

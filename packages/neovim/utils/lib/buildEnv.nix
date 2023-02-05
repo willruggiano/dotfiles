@@ -75,7 +75,7 @@
 
     initLua = utils.mkInitLua {
       inherit moduleName;
-      inherit nodejsEnv packageEnv pythonEnv;
+      inherit nodejsEnv packageEnv pythonEnv runtimeEnv;
     };
 
     # NOTE: Almost identical to `writeShellApplication`, except we *append* (rather than prepend) the runtimeInputs to PATH.
@@ -116,7 +116,7 @@
         rplugin = let
           lua-config = pkgs.writeText "init.lua" ''
             vim.cmd "set packpath^=${packageEnv}"
-            package.cpath = "${packageEnv}/lib/lua/5.1/?.so" .. ";" .. package.cpath
+            package.cpath = "${runtimeEnv}/lib/?.so" .. ";" .. "${packageEnv}/lib/lua/5.1/?.so" .. ";" .. package.cpath
             vim.cmd "set runtimepath^=${packageEnv}"
             vim.g.node_host_prog = "${nodejsEnv}/bin/neovim-node-host"
             vim.g.python3_host_prog = "${pythonEnv}/bin/python3"

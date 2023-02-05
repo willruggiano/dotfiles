@@ -36,6 +36,8 @@ in {
         nodePackages.pyright
         # Rust
         rust-analyzer
+        # Sourcegraph
+        sg-nvim
         # Zig
         zls
       ];

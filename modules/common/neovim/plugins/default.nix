@@ -423,6 +423,11 @@ in {
     '';
   };
 
+  sourcegraph = {
+    # dev = "sg.nvim";
+    package = pkgs.sg-nvim;
+  };
+
   statuscol = {
     package = plugins."statuscol.nvim";
     config = ''

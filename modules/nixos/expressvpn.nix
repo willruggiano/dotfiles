@@ -11,15 +11,16 @@ in {
     services.openvpn.servers = {
       expressvpn-dallas = {
         config = "config ${config.age.secrets.expressvpn-dallas.path}";
+        autoStart = false;
       };
     };
 
-    systemd.services.expressvpn-reconnect = {
-      description = "Restart OpenVPN after suspend";
-      wantedBy = ["sleep.target"];
-      serviceConfig = {
-        ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
-      };
-    };
+    # systemd.services.expressvpn-reconnect = {
+    #   description = "Restart OpenVPN after suspend";
+    #   wantedBy = ["sleep.target"];
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
+    #   };
+    # };
   };
 }

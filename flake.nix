@@ -37,6 +37,7 @@
     nil.url = "github:oxalica/nil";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
+    sg-nvim.url = "github:willruggiano/sg.nvim";
     spacebar.url = "github:cmacrae/spacebar";
     zig.url = "github:willruggiano/zig.nix";
   };
@@ -73,6 +74,7 @@
         inputs.neovim.overlay
         inputs.nil.overlays.default
         inputs.nur.overlay
+        inputs.sg-nvim.overlays.default
         inputs.spacebar.overlay
         inputs.utils.overlay
         inputs.zig.overlays.default

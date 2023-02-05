@@ -408,3 +408,11 @@ lspconfig.zls.setup {
   on_init = on_init,
   on_attach = on_attach,
 }
+
+require("sg").setup {
+  on_attach = on_attach,
+}
+
+require("bombadil.lib.keymap").nnoremap("<leader>s", function()
+  require("sg.telescope").fuzzy_search_results()
+end, { desc = "Sourcegraph search" })

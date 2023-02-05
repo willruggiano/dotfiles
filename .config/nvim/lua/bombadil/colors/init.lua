@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-  vim.cmd.syntax "reset"
   vim.opt.termguicolors = true
 
   local palette = require "bombadil.colors.flavours"
