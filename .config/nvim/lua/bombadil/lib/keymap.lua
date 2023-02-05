@@ -2,37 +2,67 @@ local keymap = vim.keymap
 
 local noremap = { noremap = true, silent = true }
 
-local M = {}
-
-M.noremap = function(modes, lhs, rhs, opts)
-  keymap.set(modes, lhs, rhs, vim.tbl_extend("force", noremap, opts or {}))
+local with_opts = function(default, overrides)
+  return vim.tbl_extend("force", default or {}, overrides or {})
 end
 
---- Apply a set of mappings.
----@param modes table the modes to apply mappings for
+local with_buffer = function(opts)
+  return with_opts({ buffer = vim.api.nvim_get_current_buf() }, opts)
+end
+
+local M = {}
+
+---Apply a mapping
+---By default, opts are `{ noremap = true, silent = true }`
+---@param modes string|table the modes to apply mappings for
+---@param lhs string left-hand side of the mapping
+---@param rhs string|function right-hand side of the mapping
+---@param opts table?
+---@see vim.keymap.set
+M.noremap = function(modes, lhs, rhs, opts)
+  keymap.set(modes, lhs, rhs, with_opts(noremap, opts))
+end
+
+---Shorthand for `noremap` but buffer local
+---@see M.noremap
+M.buf_noremap = function(modes, lhs, rhs, opts)
+  M.noremap(modes, lhs, rhs, with_buffer(opts))
+end
+
+---Apply a set of mappings
+---@param modes string|table the modes to apply mappings for
 ---@param mappings table a table of the form: { <lhs> = { <rhs>, [<opts>] }
----@param opts table options to apply to all mappings
+---@param opts table? options to apply to all mappings
 M.noremaps = function(modes, mappings, opts)
   opts = opts or {}
   for lhs, mapping in pairs(mappings) do
-    M.noremap(modes, lhs, mapping[1], vim.tbl_extend("force", mapping[2] or {}, opts))
+    M.noremap(modes, lhs, mapping[1], with_opts(mapping[2], opts))
   end
 end
 
-M.inoremap = function(lhs, rhs, opts)
-  M.noremap("i", lhs, rhs, opts)
+---Shorthand for `noremaps` but buffer local
+---@see M.noremaps
+M.buf_noremaps = function(modes, mappings, opts)
+  M.noremaps(modes, mappings, with_buffer(opts))
 end
-M.nnoremap = function(lhs, rhs, opts)
-  M.noremap("n", lhs, rhs, opts)
-end
-M.tnoremap = function(lhs, rhs, opts)
-  M.noremap("t", lhs, rhs, opts)
-end
-M.vnoremap = function(lhs, rhs, opts)
-  M.noremap("v", lhs, rhs, opts)
-end
-M.xnoremap = function(lhs, rhs, opts)
-  M.noremap("x", lhs, rhs, opts)
+
+local functions = {
+  i = "inoremap",
+  n = "nnoremap",
+  t = "tnoremap",
+  v = "vnoremap",
+  x = "xnoremap",
+}
+local proto = {}
+
+for mode, name in pairs(functions) do
+  M[name] = function(lhs, rhs, opts)
+    M.noremap(mode, lhs, rhs, opts)
+  end
+
+  M["buf_" .. name] = function(lhs, rhs, opts)
+    M.buf_noremap(mode, lhs, rhs, opts)
+  end
 end
 
 return M
