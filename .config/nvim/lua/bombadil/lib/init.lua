@@ -1,5 +1,5 @@
 local function pinspect(object)
-  print(vim.inspect(object))
+  vim.pretty_print(object)
   return object
 end
 

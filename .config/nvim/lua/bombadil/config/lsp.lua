@@ -397,8 +397,8 @@ lspconfig.sumneko_lua.setup {
   end,
   settings = {
     Lua = {
-      diagnostics = {
-        globals = { "P", "R", "RELOAD" },
+      completion = {
+        callSnippet = "Replace",
       },
     },
   },

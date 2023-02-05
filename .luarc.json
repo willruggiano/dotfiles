@@ -5,7 +5,10 @@
         "client",
         "screen",
         "root",
-        "vim"
+        "vim",
+        "P",
+        "R",
+        "RELOAD"
     ],
     "Lua.workspace.checkThirdParty": false
 }
