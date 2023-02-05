@@ -211,6 +211,11 @@ in {
     package = plugins."jobs.firvish";
   };
 
+  firvish-nix = {
+    dev = "nix.firvish";
+    package = plugins."nix.firvish";
+  };
+
   focus = {
     package = plugins."focus.nvim";
     config = ''
