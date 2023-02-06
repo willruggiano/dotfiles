@@ -7,6 +7,13 @@ local cmp = require "cmp"
 local snippy = require "snippy"
 local neogen = require "neogen"
 
+local cmp_buffer_locality_comparator = function(...)
+  return require("cmp_buffer"):compare_locality(...)
+end
+local cmp_clangd_comparator = require "clangd_extensions.cmp_scores"
+local cmp_fuzzy_path_comparator = require "cmp_fuzzy_path.compare"
+local cmp_under_comparator = require("cmp-under-comparator").under
+
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 require("cmp_git").setup()
@@ -79,14 +86,12 @@ cmp.setup {
   sorting = {
     priority_weight = 2,
     comparators = {
-      function(...)
-        return require("cmp_buffer"):compare_locality(...)
-      end,
-      require "cmp_fuzzy_path.compare",
+      cmp_buffer_locality_comparator,
+      cmp_fuzzy_path_comparator,
       cmp.config.compare.offset,
       cmp.config.compare.exact,
-      require "clangd_extensions.cmp_scores",
-      require("cmp-under-comparator").under,
+      cmp_clangd_comparator,
+      cmp_under_comparator,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,

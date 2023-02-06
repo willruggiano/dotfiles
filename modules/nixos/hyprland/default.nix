@@ -62,7 +62,7 @@ in {
     (mkIf cfg.enable {
       programs.hyprland.package = hyprland-wrapped;
 
-      user.packages = with pkgs; [hyprpicker];
+      user.packages = with pkgs; [hyprpicker wl-clipboard];
 
       environment.loginShellInit = ''
         [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
