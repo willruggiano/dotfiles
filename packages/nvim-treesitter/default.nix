@@ -8,6 +8,7 @@
   tree-sitter,
   writeShellApplication,
   nvim-treesitter-master,
+  tree-sitter-vimdoc,
 }: let
   src = nvim-treesitter-master;
 
@@ -105,6 +106,16 @@
       owner = "vigoux";
       repo = "tree-sitter-viml";
     };
+    vimdoc = {
+      owner = "neovim";
+      inherit (tree-sitter-vimdoc) rev;
+      override = {
+        passthru = {
+          parserName = "vimdoc";
+          queryName = "help";
+        };
+      };
+    };
     xit = {
       owner = "synaptiko";
       rev = "0.1";
@@ -118,9 +129,6 @@
   };
 
   lockfile = lib.importJSON "${src}/lockfile.json";
-
-  getName = drv:
-    lib.strings.removePrefix "tree-sitter-" (lib.strings.removeSuffix "-grammar" (lib.strings.removeSuffix "-${drv.version}" (lib.strings.getName drv)));
 
   allGrammars =
     builtins.mapAttrs (name: value: rec {
@@ -236,7 +244,7 @@ in
     ++ (map (drv: ''
       cp ${drv}/parser $out/parser/${drv.parserName}.so
       for f in ${drv}/queries/*.scm; do
-        cp $f $out/queries/${drv.parserName}/$(basename $f)
+        cp $f $out/queries/${drv.queryName or drv.parserName}/$(basename $f)
       done
     '')
     treesitterGrammars)));

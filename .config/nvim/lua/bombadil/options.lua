@@ -3,7 +3,7 @@
 local icons = require "nvim-nonicons"
 local opt = vim.opt
 
-vim.cmd.syntax "off"
+vim.cmd.syntax "manual"
 
 opt.termguicolors = true
 

@@ -18,7 +18,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 require("cmp_git").setup()
 require("cmp_shell").setup()
-require("nix-firvish.cmp").setup()
+require("nix-flake-prefetch.cmp").setup()
 
 cmp.setup {
   snippet = {
@@ -73,7 +73,7 @@ cmp.setup {
   },
   sources = cmp.config.sources({
     { name = "shell" },
-    { name = "nix" },
+    { name = "nix_flake_prefetch" },
   }, {
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },

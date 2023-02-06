@@ -189,8 +189,8 @@ in {
   };
 
   firvish = {
-    dev = "firvish.nvim";
-    package = plugins."firvish.nvim";
+    # dev = "firvish.nvim";
+    package = pkgs.firvish-nvim;
     config = ''
       require "bombadil.config.firvish"
     '';
@@ -211,9 +211,9 @@ in {
     package = plugins."jobs.firvish";
   };
 
-  firvish-nix = {
-    dev = "nix.firvish";
-    package = plugins."nix.firvish";
+  nix-flake-prefetch = {
+    # dev = "nix-flake-prefetch.nvim";
+    package = pkgs.nix-flake-prefetch-nvim;
   };
 
   focus = {

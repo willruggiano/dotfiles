@@ -341,6 +341,12 @@
         "rev": "c8dd268091ffcbcb673de59c5b37ff26a2eb24ed",
         "type": "git"
     },
+    "nix-flake-prefetch.nvim": {
+        "branch": "main",
+        "repo": "ssh://git@github.com/willruggiano/nix-flake-prefetch.nvim",
+        "rev": "7f90a72741c4da14d0a707f6fa00d390744bdc0f",
+        "type": "git"
+    },
     "notifier.nvim": {
         "branch": "master",
         "repo": "git@github.com:vigoux/notifier.nvim",
