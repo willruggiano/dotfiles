@@ -421,13 +421,6 @@ in {
     package = plugins.vim-repeat;
   };
 
-  scope = {
-    package = plugins."scope.nvim";
-    config = ''
-      require "bombadil.config.scope"
-    '';
-  };
-
   sourcegraph = {
     # dev = "sg.nvim";
     package = pkgs.sg-nvim;
