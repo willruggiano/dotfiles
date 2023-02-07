@@ -8,39 +8,19 @@ with lib; let
   cfg = config.programs.zsh;
 in {
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [atuin bc thefuck units];
-
-    programs.nix-index.enable = true;
+    home.packages = with pkgs; [atuin bc exa thefuck units];
 
     programs.zsh = {
       dotDir = ".config/zsh";
-
+      enableAutosuggestions = true;
       enableCompletion = true;
-      completionInit = "autoload -Uz compinit && compinit";
+
+      history.path = "$XDG_DATA_HOME/zsh/history";
 
       plugins = with pkgs; [
         {
-          name = "fzf-tab";
-          src = fetchFromGitHub {
-            owner = "Aloxaf";
-            repo = "fzf-tab";
-            rev = "master";
-            hash = "sha256-ixUnuNtxxmiigeVjzuV5uG6rIBPY/1vdBZF2/Qv0Trs=";
-          };
-        }
-        {
           name = "atuin";
           inherit (pkgs.atuin) src;
-        }
-        {
-          name = "clipboard";
-          src = fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "7a4f4ad91e1f937b36a54703984b958abe9da4b8";
-            sha256 = "1p43x3sx54h4vgbaa4iz3j1yj4d0qcnxlcq9c2z4q6j7021gjbvi";
-          };
-          file = "lib/clipboard.zsh";
         }
         {
           name = "enhancd";
@@ -57,15 +37,6 @@ in {
           inherit (pkgs.zsh-fast-syntax-highlighting) src;
         }
         {
-          name = "forgit";
-          src = fetchFromGitHub {
-            owner = "wfxr";
-            repo = "forgit";
-            rev = "master";
-            hash = "sha256-9ApobX4Q2v/87uzFpNGmV245K4Lueo67VTzvg3QHeM4=";
-          };
-        }
-        {
           name = "fzf-marks";
           src = fetchFromGitHub {
             owner = "urbainvaes";
@@ -76,61 +47,84 @@ in {
         }
         {
           name = "magic-enter";
-          src = fetchFromGitHub {
-            owner = "ohmyzsh";
-            repo = "ohmyzsh";
-            rev = "7a4f4ad91e1f937b36a54703984b958abe9da4b8";
-            sha256 = "1p43x3sx54h4vgbaa4iz3j1yj4d0qcnxlcq9c2z4q6j7021gjbvi";
-          };
+          inherit (pkgs.oh-my-zsh) src;
           file = "plugins/magic-enter/magic-enter.plugin.zsh";
-        }
-        {
-          name = "zsh-autopair";
-          inherit (pkgs.zsh-autopair) src;
-        }
-        {
-          name = "zsh-autosuggestions";
-          inherit (pkgs.zsh-autosuggestions) src;
         }
       ];
 
-      initExtraBeforeCompInit = ''
-        fpath+=("${config.home.profileDirectory}"/share/zsh/site-functions "${config.home.profileDirectory}"/share/zsh/$ZSH_VERSION/functions "${config.home.profileDirectory}"/share/zsh/vendor-completions)
-
-        for f in $HOME/.config/zsh/extra/0[0-9]-*.zsh; do
-          source "$f"
-        done
-      '';
       initExtra = ''
-        for f in $HOME/.config/zsh/extra/1[0-9]-*.zsh; do
+        setopt auto_pushd
+        setopt pushd_ignore_dups
+        setopt pushd_to_home
+        setopt auto_param_slash
+        setopt auto_param_keys
+        setopt extended_glob
+
+        bindkey '^y' autosuggest-accept
+        bindkey '^p' _atuin_search_widget
+
+        zstyle ':prompt:pure:git:stash' show yes
+
+        eval "$(thefuck --alias)"
+
+        export GPG_TTY=$(tty)
+
+        autoload colors
+        colors
+
+        zstyle ':completion:*' verbose yes
+        zstyle ':completion:*' completer _extensions _complete _history
+        zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+        zstyle ':completion:*:warnings' format '%F{RED}No matches for:%F{YELLOW} %d'$DEFAULT
+        zstyle ':completion:*:options' description 'yes'
+        zstyle ':completion:*:descriptions' format '[%d]'
+        zstyle ':completion:*:git-checkout:*' sort false
+        zstyle ':completion:*' group-name ""
+        zstyle ':completion:*' list-separator '-->'
+        zstyle ':completion:*:manuals' separate-sections true
+
+        for f in $HOME/.config/zsh/extra/*.zsh; do
           source "$f"
         done
 
         [ -e $HOME/.zshrc ] && source $HOME/.zshrc
       '';
 
-      shellAliases = with pkgs; {
-        bat = "${bat}/bin/bat --paging=never";
-        batp = "${bat}/bin/bat --paging=auto";
-        cat = "${bat}/bin/bat";
-        grep = "${ripgrep}/bin/rg --color=auto";
-        ls = "${exa}/bin/exa -F";
-        la = "${exa}/bin/exa -a";
-        ll = "${exa}/bin/exa -l";
-        lla = "${exa}/bin/exa -al";
-        lt = "${exa}/bin/exa --tree";
-        tree = "${exa}/bin/exa --tree";
+      shellAliases = {
+        bat = "bat --paging=never";
+        batp = "bat --paging=auto";
+        cat = "bat";
+        fvim = "nvim $(fzf)";
+        nvim-clear = "nvim --headless -c LuaCacheClear -c q && nvim";
+        git = "lg";
+        grep = "rg --color=auto";
+        ls = "exa -F";
+        la = "exa -a";
+        ll = "exa -l";
+        lla = "exa -al";
+        lt = "exa --tree";
+        nix = "noglob nix";
+        tree = "exa --tree";
       };
     };
 
     home.sessionVariables = {
+      ATUIN_NOBIND = "true";
       ENHANCD_FILTER = "fzf";
       ENHANCD_DISABLE_DOT = 1;
     };
 
-    xdg.configFile = {
+    xdg.configFile = let
+      toml = pkgs.formats.toml {};
+    in {
+      "atuin/config.toml".source = toml.generate "atuin-config" {
+        update_check = false;
+        search_mode = "fuzzy";
+        filter_mode = "directory";
+      };
+
       "zsh/extra" = {
-        source = ../../.config/zsh;
+        source = ../../.config/zsh/extra;
         recursive = true;
       };
     };

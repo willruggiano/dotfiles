@@ -3,10 +3,7 @@ local extensions = {}
 local lir = require "lir.vim"
 
 extensions.firvish = {
-  filetypes = {
-    "firvish-buffers",
-    "firvish-jobs",
-  },
+  filetypes = { "firvish" },
   sections = {
     lualine_a = { "mode" },
     lualine_c = {

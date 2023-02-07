@@ -41,6 +41,7 @@
   programs.taskwarrior.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
+  programs.zsh.enable = true;
 
   services.agenix.enable = true;
   # services.awesome.enable = true;

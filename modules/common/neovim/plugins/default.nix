@@ -189,8 +189,8 @@ in {
   };
 
   firvish = {
-    # dev = "firvish.nvim";
-    package = pkgs.firvish-nvim;
+    dev = "firvish.nvim";
+    # package = pkgs.firvish-nvim;
     config = ''
       require "bombadil.config.firvish"
     '';

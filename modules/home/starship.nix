@@ -20,6 +20,10 @@ in {
           "$line_break"
           "$character"
         ];
+        right_format = concatStrings [
+          "$time"
+          "$line_break"
+        ];
         scan_timeout = 30;
         command_timeout = 500;
         add_newline = true;
@@ -70,6 +74,11 @@ in {
 
         python = {
           format = "using [python/$version (\($virtualenv\))](bold yellow) ";
+        };
+
+        time = {
+          disabled = false;
+          format = "[$time]($style)";
         };
 
         line_break = {
