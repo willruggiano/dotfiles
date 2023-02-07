@@ -15,28 +15,6 @@ local swap_next, swap_prev = (function()
   return n, p
 end)()
 
--- local highlights = {
---   cpp = {
---     ["alias.name"] = "Variable",
---     ["alias.type"] = "Type",
---     ["function.return"] = "Keyword",
---     ["function.parameter_type"] = "Keyword",
---   },
---   lua = {
---     -- ["repeat"] = "Keyword",
---   },
---   rust = {
---     ["storageclass.lifetime"] = "String",
---     ["type.qualifier"] = "Keyword",
---   },
--- }
-
--- for lang, maps in pairs(highlights) do
---   for group, link in pairs(maps) do
---     vim.api.nvim_set_hl(0, "@" .. group .. "." .. lang, { link = link })
---   end
--- end
-
 local config = require("nvim-treesitter.parsers").get_parser_configs()
 -- FIXME: undefined symbol 'tree_sitter_vimdoc'
 -- config.vimdoc = {
@@ -159,6 +137,34 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
+local highlights = {
+  -- cpp = {
+  --   ["alias.name"] = "Variable",
+  --   ["alias.type"] = "Type",
+  --   ["function.return"] = "Keyword",
+  --   ["function.parameter_type"] = "Keyword",
+  -- },
+  -- lua = {
+  --   -- ["repeat"] = "Keyword",
+  -- },
+  markdown_inline = {
+    ["text.emphasis"] = { italic = true },
+    ["text.strike"] = { strikethrough = true },
+    ["text.strong"] = { bold = true },
+  },
+  -- rust = {
+  --   ["storageclass.lifetime"] = "String",
+  --   ["type.qualifier"] = "Keyword",
+  -- },
+}
+
+for lang, maps in pairs(highlights) do
+  for group, link in pairs(maps) do
+    local opts = type(link) == "table" and link or { link = link }
+    vim.api.nvim_set_hl(0, "@" .. group .. "." .. lang, opts)
+  end
+end
 
 local unit = require "treesitter-unit"
 
