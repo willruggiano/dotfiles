@@ -27,8 +27,8 @@ cmp.setup {
     end,
   },
   mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-5),
-    ["<C-u>"] = cmp.mapping.scroll_docs(5),
+    ["<C-d>"] = cmp.mapping.scroll_docs(5),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-5),
     ["<C-c>"] = cmp.mapping.close(),
     ["<C-y>"] = function(fallback)
       if cmp.visible() then
@@ -77,7 +77,6 @@ cmp.setup {
   }, {
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
-    { name = "nvim_lua" },
     { name = "snippy" },
   }, {
     { name = "path" },

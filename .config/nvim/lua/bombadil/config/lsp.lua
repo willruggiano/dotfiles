@@ -1,29 +1,10 @@
 local lsp = require "bombadil.lsp"
 local lspconfig = require "lspconfig"
 local lspconfig_util = require "lspconfig.util"
-local telescope_themes = require "bombadil.telescope.themes"
 
 lsp.kind.init()
 
-local has_lsp_lines, lsp_lines = pcall(require, "lsp_lines")
-if has_lsp_lines then
-  lsp_lines.register_lsp_virtual_lines()
-end
-
-vim.lsp.handlers["textDocument/definition"] = function(_, result)
-  if not result or vim.tbl_isempty(result) then
-    print "[LSP] Could not find definition"
-    return
-  end
-
-  if vim.tbl_islist(result) then
-    lsp.jump_to_location(result[1])
-  else
-    lsp.jump_to_location(result)
-  end
-end
-
-local diagnostic_config = {
+vim.diagnostic.config {
   float = {
     border = "single",
   },
@@ -41,19 +22,7 @@ local diagnostic_config = {
   },
 }
 
-if has_lsp_lines then
-  ---@diagnostic disable-next-line: cast-local-type
-  diagnostic_config = vim.tbl_extend("force", diagnostic_config, {
-    virtual_lines = true,
-    virtual_text = false,
-  })
-end
-
-vim.diagnostic.config(diagnostic_config)
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "single",
-})
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
 ---@diagnostic disable-next-line: missing-parameter
 for type, icon in pairs(lsp.signs.get()) do
@@ -101,15 +70,7 @@ local on_attach = function(client, bufnr)
     },
     ["<leader>f"] = {
       function()
-        vim.lsp.buf.format {
-          async = true,
-          -- filter = function(client)
-          --   if vim.tbl_contains(disabled_formatting_for, client.name) then
-          --     return false
-          --   end
-          --   return true
-          -- end,
-        }
+        vim.lsp.buf.format { async = true }
       end,
       { buffer = bufnr, desc = "Format" },
     },
@@ -123,8 +84,9 @@ local on_attach = function(client, bufnr)
     },
     ["<leader><leader>w"] = {
       function()
+        local foo
         vim.diagnostic.setqflist { open = false }
-        vim.cmd "botright copen"
+        vim.cmd.copen { mods = { split = "botright" } }
       end,
       { buffer = bufnr, desc = "Workspace diagnostics" },
     },
@@ -135,7 +97,7 @@ local on_attach = function(client, bufnr)
     ["<leader>rr"] = {
       function()
         vim.lsp.stop_client(vim.lsp.get_active_clients(), true)
-        vim.cmd "e"
+        vim.cmd.edit()
       end,
       { buffer = bufnr, desc = "Restart lsp clients" },
     },
@@ -145,14 +107,33 @@ local on_attach = function(client, bufnr)
     },
     ["<space>s"] = {
       function()
-        -- TODO: Use loclist for this
-        require("telescope.builtin").lsp_document_symbols(telescope_themes.ivy)
+        vim.lsp.buf.document_symbol {
+          ---@type fun(items: table[], title: string, context: table|nil)
+          on_list = function(items, title, context)
+            vim.fn.setloclist(vim.api.nvim_get_current_win(), {}, " ", {
+              context = context,
+              items = items,
+              title = title,
+            })
+            vim.cmd.lopen()
+          end,
+        }
       end,
       { buffer = bufnr, desc = "Symbols" },
     },
     ["<leader>ww"] = {
       function()
-        require("telescope.builtin").lsp_workspace_symbols(telescope_themes.ivy)
+        vim.lsp.buf.workspace_symbol("", {
+          ---@type fun(items: table[], title: string, context: table|nil)
+          on_list = function(items, title, context)
+            vim.fn.setqflist({}, " ", {
+              context = context,
+              items = items,
+              title = title,
+            })
+            vim.cmd.copen()
+          end,
+        })
       end,
       { buffer = bufnr, desc = "Workspace symbols" },
     },
@@ -238,11 +219,6 @@ updated_capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-local has_coq, coq = pcall(require, "coq")
-if has_coq then
-  updated_capabilities = coq.lsp_ensure_capabilities({ capabilities = updated_capabilities }).capabilities
-end
-
 local null_ls = require "null-ls"
 local custom_sources = require "bombadil.lsp.null-ls"
 null_ls.setup {
@@ -263,7 +239,7 @@ null_ls.setup {
     -- null_ls.builtins.formatting.yapf, -- via pylsp
     custom_sources.jsonnet.formatting,
     -- Diagnostics
-    null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "firvish-job-output", "log" } },
+    null_ls.builtins.diagnostics.codespell.with { disabled_filetypes = { "log" } },
     null_ls.builtins.diagnostics.jsonlint,
     null_ls.builtins.diagnostics.luacheck.with {
       extra_args = { "--globals", "vim", "--no-max-line-length" },
@@ -417,6 +393,6 @@ require("sg").setup {
   on_attach = on_attach,
 }
 
-require("bombadil.lib.keymap").nnoremap("<leader>s", function()
+nnoremap("<leader>s", function()
   require("sg.telescope").fuzzy_search_results()
 end, { desc = "Sourcegraph search" })

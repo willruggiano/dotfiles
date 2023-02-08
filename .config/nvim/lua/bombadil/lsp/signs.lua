@@ -31,7 +31,7 @@ M.get = function(lower)
   end
 end
 
----@param func funcref
+---@param func function
 M.map = function(func)
   f.each(function(...)
     return func(signs, ...)
