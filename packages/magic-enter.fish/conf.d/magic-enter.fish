@@ -1,1 +1,0 @@
-bind \r magic-enter

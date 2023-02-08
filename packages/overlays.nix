@@ -23,7 +23,6 @@ in
     html2text = prev.callPackage ./html2text {};
     luaPackages = overrideLua prev prev.lua;
     luajitPackages = overrideLua prev prev.luajit;
-    magic-enter-fish = prev.callPackage ./magic-enter.fish {};
     marksman = prev.callPackage ./marksman {};
     neovim-utils = prev.callPackage ./neovim/utils {};
     neovim-remote = prev.callPackage ./neovim-remote {};

@@ -5,7 +5,6 @@
   programs.brave.enable = true;
   programs.direnv.enable = true;
   programs.firefox.enable = true;
-  programs.fzf.enable = true;
   programs.git = {
     enable = true;
     signingkey = "0x8C442553F8881E7A";
@@ -16,7 +15,6 @@
   programs.mpv.enable = true;
   programs.password-store.enable = true;
   programs.starship.enable = true;
-  programs.zsh.enable = true;
 
   services.dropbox.enable = true;
   # services.emanote.enable = true;
