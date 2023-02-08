@@ -16,12 +16,14 @@ in
     circle = prev.callPackage ./circle {};
     docsets = prev.callPackage ./docsets {};
     dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
+    enhancd-fish = prev.callPackage ./enhancd {};
     firefox-extended = prev.callPackage ./firefox {};
     firenvim = (prev.callPackage ./firenvim {}).package;
     goxlr = prev.callPackage ./goxlr {};
     html2text = prev.callPackage ./html2text {};
     luaPackages = overrideLua prev prev.lua;
     luajitPackages = overrideLua prev prev.luajit;
+    magic-enter-fish = prev.callPackage ./magic-enter.fish {};
     marksman = prev.callPackage ./marksman {};
     neovim-utils = prev.callPackage ./neovim/utils {};
     neovim-remote = prev.callPackage ./neovim-remote {};

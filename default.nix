@@ -52,5 +52,7 @@ with lib; {
 
     user.packages = with pkgs; [nurl];
     users.defaultUserShell = pkgs.fish;
+
+    programs.command-not-found.enable = false;
   };
 }

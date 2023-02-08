@@ -15,7 +15,7 @@
     name = "bombadil";
     initialPassword = name;
     home = "/home/${name}";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
@@ -24,6 +24,8 @@
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.flavours.enable = true;
+  programs.fish.enable = true;
+  programs.fzf.enable = true;
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
@@ -37,6 +39,7 @@
   };
   programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
+  programs.starship.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
 

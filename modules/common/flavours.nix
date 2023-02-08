@@ -32,6 +32,10 @@ in {
             template = mkOption {
               type = types.str;
             };
+            subtemplate = mkOption {
+              type = types.str;
+              default = "default";
+            };
           };
         })
       );
@@ -48,11 +52,11 @@ in {
       };
 
       "flavours/config.toml".text = let
-        format = pkgs.formats.toml {};
+        toml = pkgs.formats.toml {};
         items = mapAttrsToList (name: attrs:
           concatStringsSep "\n" [
             "[[items]]"
-            (builtins.readFile (format.generate "${name}-flavours-config.toml" attrs))
+            (builtins.readFile (toml.generate "${name}-flavours-config.toml" attrs))
           ])
         cfg.items;
       in

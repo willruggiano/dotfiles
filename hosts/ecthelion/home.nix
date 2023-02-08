@@ -4,7 +4,6 @@
   programs.bat.enable = true;
   programs.direnv.enable = true;
   programs.firefox.enable = true;
-  programs.fzf.enable = true;
   programs.git = {
     enable = true;
     signingkey = "0xB3FE328FB2A3ECD6";
@@ -13,8 +12,6 @@
   };
   programs.mpv.enable = true;
   programs.password-store.enable = true;
-  programs.starship.enable = true;
-  programs.zsh.enable = true;
 
   services.dropbox.enable = true;
   services.kbfs.enable = true;
