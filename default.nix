@@ -34,6 +34,7 @@ with lib; {
       };
     };
 
+    environment.shells = with pkgs; [bash fish zsh];
     environment.systemPackages = let
       inherit (builtins) pathExists readDir;
       mkBins = dir:
@@ -50,5 +51,6 @@ with lib; {
       attrValues bins;
 
     user.packages = with pkgs; [nurl];
+    users.defaultUserShell = pkgs.fish;
   };
 }
