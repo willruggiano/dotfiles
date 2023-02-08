@@ -206,6 +206,11 @@ in {
     package = plugins."git.firvish";
   };
 
+  firvish-history = {
+    dev = "history.firvish";
+    package = plugins."history.firvish";
+  };
+
   firvish-jobs = {
     dev = "jobs.firvish";
     package = plugins."jobs.firvish";
