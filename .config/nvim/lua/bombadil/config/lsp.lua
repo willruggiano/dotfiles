@@ -399,6 +399,10 @@ lspconfig.sumneko_lua.setup {
     Lua = {
       completion = {
         callSnippet = "Replace",
+        keywordSnippet = "Replace",
+      },
+      format = {
+        enable = false,
       },
     },
   },

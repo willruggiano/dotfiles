@@ -1,14 +1,15 @@
 {
-    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "Lua.diagnostics.globals": [
-        "awesome",
-        "client",
-        "screen",
-        "root",
-        "vim",
-        "P",
-        "R",
-        "RELOAD"
-    ],
-    "Lua.workspace.checkThirdParty": false
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "Lua.diagnostics.globals": [
+    "awesome",
+    "client",
+    "screen",
+    "root",
+    "vim",
+    "P",
+    "R",
+    "RELOAD",
+    "lfs"
+  ],
+  "Lua.workspace.checkThirdParty": false
 }
