@@ -49,6 +49,12 @@ with lib; {
         else mkBins ./bin;
     in
       attrValues bins;
+    environment.variables = {
+      XDG_BIN_HOME = "$HOME/.local/bin";
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+    };
 
     user.packages = with pkgs; [nurl];
     users.defaultUserShell = pkgs.fish;

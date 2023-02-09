@@ -217,8 +217,8 @@ in {
   };
 
   nix-flake-prefetch = {
-    # dev = "nix-flake-prefetch.nvim";
-    package = pkgs.nix-flake-prefetch-nvim;
+    dev = "nix-flake-prefetch.nvim";
+    # package = pkgs.nix-flake-prefetch-nvim;
   };
 
   focus = {

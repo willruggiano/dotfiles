@@ -12,7 +12,7 @@ with lib; let
     text = ''
       if [[ $# -eq 0 ]]; then
           if [[ -f $HOME/.config/lazygit/theme.yml ]]; then
-              lazygit --use-config-file="$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/theme.yml"
+              lazygit --use-config-file="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/theme.yml"
           else
               lazygit
           fi
@@ -27,7 +27,9 @@ in {
       atuin
       exa
       git-wrapper
+      magic-enter-fish
       starship
+      zoxide
     ];
 
     programs.fish = {
@@ -35,18 +37,21 @@ in {
 
       interactiveShellInit = mkMerge [
         (mkBefore ''
-          set -g ATUIN_NOBIND true
-          set -g ENHANCD_FILTER fzf
-          set -g ENHANCD_DISABLE_DOT true
-          set -g fish_escape_delay_ms 300
-          set -g fish_greeting
+          set -gx ATUIN_NOBIND true
+          set -gx ENHANCD_FILTER fzf
+          set -gx ENHANCD_DISABLE_DOT true
+          set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
+          set -a _ZO_FZF_OPTS "--preview='exa --tree {2..}'"
+          set -gx fish_escape_delay_ms 300
+          set -gx fish_greeting
 
           atuin init fish | source
+          zoxide init fish | source
         '')
         (mkAfter ''
           fish_vi_key_bindings insert
           bind -M insert \r magic-enter
-          bind -M insert \co 'fzf | xargs -r $VISUAL'
+          bind -M insert \co 'fzf | xargs -r $EDITOR'
           bind -M insert \cr _atuin_search
           bind -M insert \cy accept-autosuggestion
           bind -M insert -k nul complete
@@ -66,7 +71,6 @@ in {
         ll = "exa -l";
         lla = "exa -al";
         lt = "exa --tree";
-        nix = "noglob nix";
         tree = "exa --tree";
       };
     };
@@ -158,11 +162,6 @@ in {
         update_check = false;
         search_mode = "fuzzy";
         filter_mode = "directory";
-      };
-
-      fish = {
-        source = ../../.config/fish;
-        recursive = true;
       };
     };
   };

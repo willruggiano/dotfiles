@@ -23,17 +23,30 @@ in {
         "-1"
         "--reverse"
         "--multi"
-        "--preview='string match -r \'binary\' {} && echo {} is a binary file || bat --style=numbers --color=always {} 2>/dev/null | head -30'"
-        "--preview-window='right:hidden:wrap'"
+        "--preview-window=right:wrap"
         "--bind='f3:execute(bat --style=numbers {} || less -f {}),ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
       ];
       description = "FZF_DEFAULT_OPTS";
+    };
+
+    preview = mkOption {
+      type = types.str;
+      default = "--preview='bat --style=numbers --color=always {} 2>/dev/null'";
     };
   };
 
   config = mkMerge [
     (mkIf cfg.enable {
-      user.packages = with pkgs; [fzf];
+      user.packages = with pkgs; [
+        (symlinkJoin {
+          name = "fzf-wrapped";
+          paths = [fzf];
+          buildInputs = [makeWrapper];
+          postBuild = ''
+            wrapProgram $out/bin/fzf --add-flags "${cfg.preview}"
+          '';
+        })
+      ];
 
       environment.variables = {
         FZF_DEFAULT_COMMAND = cfg.command;
