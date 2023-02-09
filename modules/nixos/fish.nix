@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.programs.fish;
+
   git-wrapper = pkgs.writeShellApplication {
     name = "lg";
     runtimeInputs = with pkgs; [lazygit];
@@ -19,6 +20,16 @@ with lib; let
       else
           command git "$@"
       fi
+    '';
+  };
+
+  exa-wrapped = pkgs.writeShellApplication {
+    name = "exa";
+    runtimeInputs = with pkgs; [exa];
+    text = ''
+      pushd "$1" >/dev/null
+      exa --tree --git-ignore
+      popd >/dev/null
     '';
   };
 in {
@@ -41,7 +52,7 @@ in {
           set -gx ENHANCD_FILTER fzf
           set -gx ENHANCD_DISABLE_DOT true
           set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
-          set -a _ZO_FZF_OPTS "--preview='exa --tree {2..}'"
+          set -a _ZO_FZF_OPTS "--preview='${exa-wrapped}/bin/exa {2..}'"
           set -gx fish_escape_delay_ms 300
           set -gx fish_greeting
 
