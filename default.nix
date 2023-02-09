@@ -35,6 +35,7 @@ with lib; {
     };
 
     environment.shells = with pkgs; [bash fish zsh];
+
     environment.systemPackages = let
       inherit (builtins) pathExists readDir;
       mkBins = dir:
@@ -48,7 +49,9 @@ with lib; {
         then (mkBins ./bin) // (mkBins ./bin/${system})
         else mkBins ./bin;
     in
-      attrValues bins;
+      [pkgs.man-pages pkgs.man-pages-posix] ++ (attrValues bins);
+    documentation.dev.enable = true;
+
     environment.variables = {
       XDG_BIN_HOME = "$HOME/.local/bin";
       XDG_CACHE_HOME = "$HOME/.cache";

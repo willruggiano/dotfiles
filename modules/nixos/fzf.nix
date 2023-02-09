@@ -23,7 +23,7 @@ in {
         "-1"
         "--reverse"
         "--multi"
-        "--preview-window=right:wrap"
+        "--preview-window=right,border-sharp,wrap"
         "--bind='f3:execute(bat --style=numbers {} || less -f {}),ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
       ];
       description = "FZF_DEFAULT_OPTS";
@@ -40,7 +40,7 @@ in {
       user.packages = with pkgs; [
         (symlinkJoin {
           name = "fzf-wrapped";
-          paths = [fzf];
+          paths = [fzf fzf.man];
           buildInputs = [makeWrapper];
           postBuild = ''
             wrapProgram $out/bin/fzf --add-flags "${cfg.preview}"
