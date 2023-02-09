@@ -5,6 +5,7 @@
   lib,
   nix-prefetch-git,
   stdenv,
+  symlinkJoin,
   tree-sitter,
   writeShellApplication,
   nvim-treesitter-master,
@@ -37,6 +38,9 @@
     };
     dockerfile = {
       owner = "camdencheek";
+    };
+    fish = {
+      owner = "ram02z";
     };
     go = {
       owner = "tree-sitter";
@@ -109,12 +113,6 @@
     vimdoc = {
       owner = "neovim";
       inherit (tree-sitter-vimdoc) rev;
-      override = {
-        passthru = {
-          parserName = "vimdoc";
-          queryName = "help";
-        };
-      };
     };
     xit = {
       owner = "synaptiko";
@@ -213,43 +211,23 @@
 
       installPhase = ''
         runHook preInstall
-        mkdir -p $out/queries
-        mv parser $out/
-        for f in queries/**/*.scm; do
-          cp $f $out/queries/$(basename $f)
-        done
+        mkdir -p $out/parser
+        mv parser $out/parser/${name}.so
+        ln -s queries $out/queries
         runHook postInstall
       '';
 
       fixupPhase = lib.optionalString stdenv.isLinux ''
         runHook preFixup
-        $STRIP $out/parser
+        $STRIP $out/parser/${name}.so
         runHook postFixup
       '';
-
-      passthru.parserName = name;
     }
     // attrs.override or {}))
   grammars;
 in
-  stdenv.mkDerivation {
+  symlinkJoin {
     name = "nvim-treesitter";
-
-    inherit src;
-
-    installPhase = lib.concatStringsSep "\n" (lib.lists.flatten ([
-      "mkdir $out"
-      "cp -r {autoload,doc,lua,parser-info,parser,plugin,queries} $out"
-    ]
-    ++ (map (drv: ''
-      cp ${drv}/parser $out/parser/${drv.parserName}.so
-      for f in ${drv}/queries/*.scm; do
-        cp $f $out/queries/${drv.queryName or drv.parserName}/$(basename $f)
-      done
-    '')
-    treesitterGrammars)));
-
-    dontFixup = true;
-
+    paths = [src] ++ treesitterGrammars;
     passthru = {inherit update-grammars;};
   }
