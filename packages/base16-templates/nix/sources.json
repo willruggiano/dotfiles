@@ -1,4 +1,10 @@
 {
+    "base16-dunst": {
+        "branch": "master",
+        "repo": "ssh://git@github.com/tinted-theming/base16-dunst",
+        "rev": "2e2afe2809126d6b36bc5a6e6bb27b820623584c",
+        "type": "git"
+    },
     "base16-fzf": {
         "branch": "main",
         "repo": "ssh://git@github.com/fnune/base16-fzf",
