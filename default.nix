@@ -49,7 +49,13 @@ with lib; {
         then (mkBins ./bin) // (mkBins ./bin/${system})
         else mkBins ./bin;
     in
-      [pkgs.man-pages pkgs.man-pages-posix] ++ (attrValues bins);
+      (attrValues bins)
+      ++ (with pkgs; [
+        acpitool
+        man-pages
+        man-pages-posix
+      ]);
+
     documentation.dev.enable = true;
 
     environment.variables = {
