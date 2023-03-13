@@ -192,6 +192,11 @@ in {
         search_mode = "fuzzy";
         filter_mode = "directory";
       };
+
+      "fish/functions" = {
+        source = ./functions;
+        recursive = true;
+      };
     };
   };
 }
