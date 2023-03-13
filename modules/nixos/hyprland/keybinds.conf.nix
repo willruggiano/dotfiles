@@ -45,4 +45,9 @@
   bind = $mod SHIFT, 8, movetoworkspace, 8
   bind = $mod SHIFT, 9, movetoworkspace, 9
   bind = $mod SHIFT, 0, movetoworkspace, 10
+
+  # Audio
+  bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+  bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+  bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 ''
