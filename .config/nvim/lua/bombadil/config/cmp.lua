@@ -120,3 +120,9 @@ cmp.setup.filetype("gitcommit", {
     { name = "buffer", group_index = 2 },
   },
 })
+
+cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+  sources = {
+    { name = "vim-dadbod-completion" },
+  },
+})

@@ -125,6 +125,18 @@ in {
     package = plugins."fixcursorhold.nvim";
   };
 
+  dadbod = {
+    package = plugins.vim-dadbod;
+  };
+
+  dadbod-cmp = {
+    package = plugins.vim-dadbod-completion;
+  };
+
+  dadbod-ui = {
+    package = plugins.vim-dadbod-ui;
+  };
+
   dap = {
     package = plugins.nvim-dap;
     config = ''

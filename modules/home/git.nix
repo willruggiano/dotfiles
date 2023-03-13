@@ -62,6 +62,10 @@ in {
               "https://github.com" = {
                 helper = "!gh auth git-credential";
               };
+              "https://git-codecommit.us-east-2.amazonaws.com" = {
+                helper = "!aws --profile tendrel-codecommit codecommit credential-helper $@";
+                UseHttpPath = true;
+              };
             };
             delta = {
               features = "side-by-side line-numbers decorations";

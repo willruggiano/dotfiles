@@ -106,35 +106,11 @@ local on_attach = function(client, bufnr)
       { buffer = bufnr, desc = "Toggle inlay hints" },
     },
     ["<space>s"] = {
-      function()
-        vim.lsp.buf.document_symbol {
-          ---@type fun(items: table[], title: string, context: table|nil)
-          on_list = function(items, title, context)
-            vim.fn.setloclist(vim.api.nvim_get_current_win(), {}, " ", {
-              context = context,
-              items = items,
-              title = title,
-            })
-            vim.cmd.lopen()
-          end,
-        }
-      end,
+      vim.lsp.buf.document_symbol,
       { buffer = bufnr, desc = "Symbols" },
     },
     ["<leader>ww"] = {
-      function()
-        vim.lsp.buf.workspace_symbol("", {
-          ---@type fun(items: table[], title: string, context: table|nil)
-          on_list = function(items, title, context)
-            vim.fn.setqflist({}, " ", {
-              context = context,
-              items = items,
-              title = title,
-            })
-            vim.cmd.copen()
-          end,
-        })
-      end,
+      require("telescope.builtin").lsp_dynamic_workspace_symbols,
       { buffer = bufnr, desc = "Workspace symbols" },
     },
     ["<leader>K"] = {
@@ -219,6 +195,16 @@ updated_capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
+local simple_servers = { "cmake", "marksman", "nil_ls", "pyright", "tsserver", "zls" }
+for _, name in ipairs(simple_servers) do
+  lspconfig[name].setup {
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = updated_capabilities,
+  }
+end
+
+-- TODO: Move to separate file
 local null_ls = require "null-ls"
 local custom_sources = require "bombadil.lsp.null-ls"
 null_ls.setup {
@@ -317,30 +303,6 @@ require("clangd_extensions").setup {
   },
 }
 
-lspconfig.cmake.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = updated_capabilities,
-}
-
-lspconfig.marksman.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = updated_capabilities,
-}
-
-lspconfig.nil_ls.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = updated_capabilities,
-}
-
-lspconfig.pyright.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = updated_capabilities,
-}
-
 lspconfig.rust_analyzer.setup {
   on_init = on_init,
   on_attach = on_attach,
@@ -382,11 +344,6 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
-}
-
-lspconfig.zls.setup {
-  on_init = on_init,
-  on_attach = on_attach,
 }
 
 require("sg").setup {

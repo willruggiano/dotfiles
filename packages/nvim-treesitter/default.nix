@@ -106,6 +106,15 @@
     toml = {
       owner = "ikatyang";
     };
+    tsx = {
+      owner = "tree-sitter";
+      repo = "tree-sitter-typescript";
+      sourceRoot = "tsx";
+    };
+    typescript = {
+      owner = "tree-sitter";
+      sourceRoot = "typescript";
+    };
     vim = {
       owner = "vigoux";
       repo = "tree-sitter-viml";

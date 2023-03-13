@@ -38,6 +38,8 @@ in {
         rust-analyzer
         # Sourcegraph
         sg-nvim
+        # Typescript
+        nodePackages.typescript-language-server
         # Zig
         zls
       ];
