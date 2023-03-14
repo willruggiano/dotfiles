@@ -38,6 +38,7 @@
   programs.obs-studio.enable = true;
   programs.qutebrowser.default = true;
   programs.qutebrowser.enable = true;
+  programs.slack.enable = true;
   programs.spotify.enable = true;
   programs.steam.enable = true;
   programs.taskwarrior.enable = true;
