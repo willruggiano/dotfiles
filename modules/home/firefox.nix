@@ -21,6 +21,17 @@ in {
           sourcegraph
           ublock-origin
           vimium
+          (firefox-addons.buildFirefoxXpiAddon rec {
+            pname = "aws-sso-containers";
+            version = "1.0";
+            addonId = "pyro2927@aws-sso-containers";
+            url = "https://github.com/pyro2927/AWS_SSO_Containers/releases/download/v${version}/aws_sso_container.xpi";
+            sha256 = "sha256-+mfJAhlGxuMD7FGqpnI4UmlNbN9lsqUmN54b7QhLZMw=";
+            meta = {
+              homepage = "https://github.com/pyro2927/AWS_SSO_Containers";
+              description = "Firefox extension to route AWS SSO logins into unique containers.";
+            };
+          })
         ];
         profiles = {
           default = {
