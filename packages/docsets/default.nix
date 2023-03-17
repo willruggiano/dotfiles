@@ -7,7 +7,7 @@
   nix,
   buildEnv,
 }: let
-  docsets = ["C" "C++" "CMake" "Lua 5.4" "Python 3" "Rust" "TypeScript"];
+  docsets = ["C" "C++" "CMake" "Lua 5.1" "Lua 5.4" "Python 3" "Rust" "TypeScript"];
 
   foreachSh = langs: f: lib.concatMapStringsSep "\n" f langs;
   update-docsets = writeShellApplication {
