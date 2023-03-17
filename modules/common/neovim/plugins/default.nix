@@ -478,6 +478,7 @@ in {
 
   telescope-docsets = {
     package = plugins."telescope-docsets.nvim";
+    dev = "telescope-docsets.nvim";
   };
 
   telescope-fzf = {
