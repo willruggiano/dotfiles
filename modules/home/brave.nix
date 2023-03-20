@@ -10,6 +10,11 @@ in {
   config = mkIf cfg.enable {
     programs.brave = {
       extensions = [
+        # Sourcegraph
+        {id = "dgjhfomjieaadpoljlnidmbgkdffpack";}
+        # uBlock Origin
+        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";}
+        # Vimium
         {id = "dbepggeogbaibhgnhhndojpepiihcmeb";}
       ];
     };
