@@ -2,7 +2,6 @@
   fonts.fontconfig.enable = true;
 
   programs.bat.enable = true;
-  programs.brave.enable = true;
   programs.direnv.enable = true;
   programs.firefox.enable = true;
   programs.git = {
