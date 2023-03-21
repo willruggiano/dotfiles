@@ -31,7 +31,6 @@
     nvidiaPatches = true;
   };
   programs.kitty.enable = true;
-  programs.neovim.enable = true;
   programs.nvtop.enable = true;
   programs.qutebrowser = {
     enable = true;

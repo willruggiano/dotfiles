@@ -34,7 +34,6 @@
   };
   programs.kitty.enable = true;
   programs.libreoffice.enable = true;
-  programs.neovim.enable = true;
   programs.obs-studio.enable = true;
   programs.qutebrowser.default = true;
   programs.qutebrowser.enable = true;

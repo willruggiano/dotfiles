@@ -31,8 +31,6 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    neovim.url = "github:neovim/neovim?dir=contrib";
-    neovim.inputs.nixpkgs.follows = "nixpkgs";
     nix-flake-prefetch-nvim.url = "github:willruggiano/nix-flake-prefetch.nvim";
     nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
     nvim-treesitter-master.flake = false;
@@ -44,6 +42,8 @@
     tree-sitter-vimdoc.url = "github:neovim/tree-sitter-vimdoc/v1.3.0";
     tree-sitter-vimdoc.flake = false;
     zig.url = "github:willruggiano/zig.nix";
+
+    neovim.url = "github:willruggiano/neovim.drv";
   };
 
   outputs = {
@@ -75,7 +75,7 @@
         inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
         inputs.naersk.overlay
-        inputs.neovim.overlay
+        # inputs.neovim.overlay
         inputs.nil.overlays.default
         inputs.nur.overlay
         inputs.sg-nvim.overlays.default
@@ -218,7 +218,7 @@
         packages = utils.lib.exportPackages self.overlays channels;
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
-          buildInputs = with pkgs; [fup-repl git niv neovim.lua nix-zsh-completions nodejs];
+          buildInputs = with pkgs; [fup-repl git niv nix-zsh-completions nodejs];
           inherit (self.checks."${pkgs.system}".pre-commit) shellHook;
         };
       };
