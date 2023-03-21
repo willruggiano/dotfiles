@@ -1025,11 +1025,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1679361670,
-        "narHash": "sha256-ghQlEwPIOS+AeGHtyib0YdMFq16/zjo/1MRuyfhFi/E=",
+        "lastModified": 1679379168,
+        "narHash": "sha256-SItCV2OoRXYe1qs54UVNK4diSIWltJoIVRW7rZRkoAE=",
         "owner": "willruggiano",
         "repo": "neovim.drv",
-        "rev": "77701eca68204fb9dcce303b069f7c4c820c74c2",
+        "rev": "033d3bf5ff57583dcd1bbaa8429d852bff779507",
         "type": "github"
       },
       "original": {
@@ -1047,11 +1047,11 @@
         "pre-commit-nix": "pre-commit-nix"
       },
       "locked": {
-        "lastModified": 1679351181,
-        "narHash": "sha256-7CX2bKTTGiwoRA1U7p26VK4lXwm4mdvswGb0+vyHA4k=",
+        "lastModified": 1679362402,
+        "narHash": "sha256-7JCFvCj/3ZNMqVabiDsSoQdQnGjURQF0/uoVXDCbmZ4=",
         "owner": "willruggiano",
         "repo": "neovim.nix",
-        "rev": "45d759a5fe92236dc91b756d08af50277e400829",
+        "rev": "970882fbb9dd640f7deb2d8f42ef5fd264a9bbff",
         "type": "github"
       },
       "original": {
