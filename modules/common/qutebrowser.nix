@@ -18,8 +18,7 @@ in {
       ];
 
       programs.flavours.items.qutebrowser = {
-        file = "~/.config/qutebrowser/colors.py";
-        template = "qutebrowser";
+        template = "${pkgs.base16-templates}/templates/qutebrowser/templates/default.mustache";
       };
 
       home.configFile = {
@@ -27,6 +26,7 @@ in {
           source = ../../.config/qutebrowser;
           recursive = true;
         };
+        "qutebrowser/colors.py".source = config.programs.flavours.build.qutebrowser;
         "qutebrowser/userscripts/autorefresh" = {
           executable = true;
           text = ''

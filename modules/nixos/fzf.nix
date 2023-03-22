@@ -57,15 +57,11 @@ in {
       user.packages = with pkgs.fishPlugins; [fzf-fish];
 
       programs.flavours.items.fzf = {
-        file = "~/.config/fish/conf.d/base16-fzf.fish";
-        template = "fzf";
-        subtemplate = "fish";
+        template = "${pkgs.base16-templates}/templates/fzf/templates/fish.mustache";
       };
-    })
-    (mkIf (cfg.enable && config.programs.zsh.enable) {
-      programs.flavours.items.fzf = {
-        file = "~/.config/zsh/extra/fzf-colors.zsh";
-        template = "fzf";
+
+      home.configFile = {
+        "fish/conf.d/base16-fzf.fish".source = config.programs.flavours.build.fzf;
       };
     })
   ];

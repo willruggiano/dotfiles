@@ -55,8 +55,7 @@ in {
       };
 
       programs.flavours.items.hyprland = {
-        file = "~/.config/hypr/colors.conf";
-        template = "custom/hypr";
+        template = ./hyprland.mustache;
       };
     }
     (mkIf cfg.enable {
@@ -68,9 +67,13 @@ in {
         [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
       '';
 
-      home.configFile = {
-        "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config lib pkgs;};
-        "hypr/keybinds.conf".text = import ./keybinds.conf.nix {inherit pkgs;};
+      home.configFile = let
+        hypr-keybinds = pkgs.writeTextFile {
+          name = "hypr-keybinds.conf";
+          text = import ./keybinds.conf.nix {inherit pkgs;};
+        };
+      in {
+        "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config hypr-keybinds lib pkgs;};
       };
     })
     (mkIf (cfg.wallpapers != {}) {

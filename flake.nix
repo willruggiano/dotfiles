@@ -26,21 +26,13 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     base16-templates-source.url = "github:chriskempson/base16-templates-source";
     base16-templates-source.flake = false;
-    docker-ui-nvim.url = "github:willruggiano/docker-ui.nvim";
-    firvish-nvim.url = "github:willruggiano/firvish.nvim/wip/v2.0";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    nix-flake-prefetch-nvim.url = "github:willruggiano/nix-flake-prefetch.nvim";
-    nvim-treesitter-master.url = "github:nvim-treesitter/nvim-treesitter";
-    nvim-treesitter-master.flake = false;
     nil.url = "github:oxalica/nil";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
-    sg-nvim.url = "github:willruggiano/sg.nvim";
     spacebar.url = "github:cmacrae/spacebar";
-    tree-sitter-vimdoc.url = "github:neovim/tree-sitter-vimdoc/v1.3.0";
-    tree-sitter-vimdoc.flake = false;
     zig.url = "github:willruggiano/zig.nix";
 
     neovim.url = "github:willruggiano/neovim.drv";
@@ -75,21 +67,14 @@
         inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
         inputs.naersk.overlay
-        # inputs.neovim.overlay
         inputs.nil.overlays.default
         inputs.nur.overlay
-        inputs.sg-nvim.overlays.default
         inputs.spacebar.overlay
         inputs.utils.overlay
         inputs.zig.overlays.default
         inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs) base16-templates-source;
-          inherit (inputs) nvim-treesitter-master;
-          inherit (inputs) tree-sitter-vimdoc;
-          inherit (inputs.docker-ui-nvim.packages."${prev.system}") docker-ui-nvim;
-          firvish-nvim = inputs.firvish-nvim.packages."${prev.system}".default;
-          nix-flake-prefetch-nvim = inputs.nix-flake-prefetch-nvim.packages."${prev.system}".default;
           nurl = inputs.nurl.packages."${prev.system}".default;
         })
         (final: prev: {

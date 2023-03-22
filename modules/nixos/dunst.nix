@@ -22,8 +22,11 @@ in {
     };
 
     programs.flavours.items.dunst = {
-      file = "~/.config/dunst/dunstrc";
-      template = "dunst";
+      template = "${pkgs.base16-templates}/templates/dunst/templates/default.mustache";
+    };
+
+    home.configFile = {
+      "dunst/dunstrc".source = config.programs.flavours.build.dunst;
     };
 
     systemd.user.services.dunst = {

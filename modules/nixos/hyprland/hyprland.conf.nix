@@ -1,5 +1,6 @@
 {
   config,
+  hypr-keybinds,
   lib,
   pkgs,
   ...
@@ -11,8 +12,8 @@ in ''
 
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 
-  source = ~/.config/hypr/colors.conf
-  source = ~/.config/hypr/keybinds.conf
+  source = ${toString config.programs.flavours.build.hyprland}
+  source = ${toString hypr-keybinds}
 
   input {
       kb_layout = us

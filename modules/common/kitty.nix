@@ -13,8 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     programs.flavours.items.kitty = {
-      file = "~/.config/kitty/theme.conf";
-      template = "kitty";
+      template = "${pkgs.base16-templates}/templates/kitty/templates/default.mustache";
     };
 
     home.configFile = {
@@ -75,6 +74,8 @@ in {
             map ctrl+semicolon>y ${hint} --type path --program -
           ''
         ];
+
+      "kitty/theme.conf".source = config.programs.flavours.build.kitty;
     };
   };
 }

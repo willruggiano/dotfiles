@@ -12,5 +12,9 @@ in {
       file = "~/.config/zsh/extra/19-zsh-colors.zsh";
       template = "shell";
     };
+
+    home.configFile = {
+      "zsh/extra/19-zsh-colors.zsh".source = config.programs.flavours.build.zsh;
+    };
   };
 }
