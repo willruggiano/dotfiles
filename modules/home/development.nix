@@ -65,6 +65,7 @@ in {
         home.packages = with pkgs; [
           codespell
           hyperfine
+          nodePackages.insect
         ];
       }
     ]);
