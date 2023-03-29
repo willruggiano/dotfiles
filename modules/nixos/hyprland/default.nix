@@ -70,7 +70,7 @@ in {
       home.configFile = let
         hypr-keybinds = pkgs.writeTextFile {
           name = "hypr-keybinds.conf";
-          text = import ./keybinds.conf.nix {inherit pkgs;};
+          text = import ./keybinds.conf.nix {inherit config pkgs;};
         };
       in {
         "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config hypr-keybinds lib pkgs;};

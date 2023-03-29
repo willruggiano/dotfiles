@@ -7,8 +7,12 @@
 with lib; let
   cfg = config.programs.kitty;
 in {
+  options.programs.kitty = {
+    package = mkPackageOption pkgs "kitty" {};
+  };
+
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [kitty];
+    user.packages = [cfg.package];
 
     programs.colorctl.settings = {
       kitty = {

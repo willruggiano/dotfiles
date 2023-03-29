@@ -9,23 +9,15 @@ with lib; let
 in {
   options.programs.qutebrowser = with types; {
     enable = mkEnableOption "Enable qutebrowser";
+    package = mkPackageOption pkgs "qutebrowser" {};
     dicts = mkOption {
       type = listOf str;
       default = ["en-US"];
     };
   };
 
-  config = mkIf (cfg.enable && pkgs.stdenv.isLinux) {
-    user.packages = with pkgs; [
-      qutebrowser
-      (writeShellApplication {
-        name = "qutebrowser-private";
-        runtimeInputs = [qutebrowser];
-        text = ''
-          qutebrowser -T -s content.private_browsing true
-        '';
-      })
-    ];
+  config = mkIf cfg.enable {
+    user.packages = [cfg.package];
 
     # Install language dictionaries for spellcheck backends
     # TODO: Re-enable this when a new release is created; see: https://github.com/qutebrowser/qutebrowser/issues/7481

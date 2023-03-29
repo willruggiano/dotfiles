@@ -13,10 +13,6 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      user.packages = with pkgs; [
-        python3Packages.adblock
-      ];
-
       programs.flavours.items.qutebrowser = {
         template = "${pkgs.base16-templates}/templates/qutebrowser/templates/default.mustache";
       };

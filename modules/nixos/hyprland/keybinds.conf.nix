@@ -1,8 +1,12 @@
-{pkgs, ...}: ''
+{
+  config,
+  pkgs,
+  ...
+}: ''
   $mod = ALT
 
-  bind = $mod, RETURN, exec, ${pkgs.kitty}/bin/kitty
-  bind = $mod SHIFT, RETURN, exec, ${pkgs.qutebrowser}/bin/qutebrowser
+  bind = $mod, RETURN, exec, ${config.programs.kitty.package}/bin/kitty
+  bind = $mod SHIFT, RETURN, exec, ${config.programs.qutebrowser.package}/bin/qutebrowser
   bind = $mod SHIFT, C, killactive,
   bind = $mod, SPACE, togglefloating,
   bind = $mod, F, fullscreen, 0 # fullscreen
