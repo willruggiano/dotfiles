@@ -141,8 +141,11 @@
         pkgs = channels.nixpkgs;
       in {
         apps = {
-          colorctl = utils.lib.mkApp {
-            drv = pkgs.colorctl;
+          bump-neovim = utils.lib.mkApp {
+            drv = pkgs.writeShellScriptBin "bump-neovim" ''
+              nix flake lock --update-input neovim
+              git commit -am 'bump: neovim'
+            '';
           };
           update-docsets = utils.lib.mkApp {
             drv = pkgs.docsets.update-docsets;
