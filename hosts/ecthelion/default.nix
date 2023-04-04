@@ -36,6 +36,7 @@
     enable = true;
     default = true;
   };
+  programs.slack.enable = true;
   programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
   programs.starship.enable = true;
