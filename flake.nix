@@ -3,39 +3,29 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.url = "github:LnL7/nix-darwin/master";
-    naersk.url = "github:nix-community/naersk";
-    nix.url = "github:nixos/nix/master";
-    nix-flake-templates = {
-      url = "github:willruggiano/nix-flake-templates";
-      flake = false;
-    };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nur.url = "github:nix-community/nur";
-
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-    base16-templates-source.url = "github:chriskempson/base16-templates-source";
     base16-templates-source.flake = false;
+    base16-templates-source.url = "github:chriskempson/base16-templates-source";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/master";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    naersk.url = "github:nix-community/naersk";
+    neovim.url = "github:willruggiano/neovim.drv";
     nil.url = "github:oxalica/nil";
+    nix-flake-templates.flake = false;
+    nix-flake-templates.url = "github:willruggiano/nix-flake-templates";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
     spacebar.url = "github:cmacrae/spacebar";
-    zig.url = "github:willruggiano/zig.nix";
-
-    neovim.url = "github:willruggiano/neovim.drv";
   };
 
   outputs = {
@@ -68,11 +58,10 @@
         inputs.hyprpicker.overlays.default
         inputs.naersk.overlay
         inputs.nil.overlays.default
+        inputs.nixpkgs-wayland.overlay
         inputs.nur.overlay
         inputs.spacebar.overlay
         inputs.utils.overlay
-        inputs.zig.overlays.default
-        inputs.nixpkgs-wayland.overlay
         (final: prev: {
           inherit (inputs) base16-templates-source;
           nurl = inputs.nurl.packages."${prev.system}".default;
@@ -154,60 +143,11 @@
             drv = pkgs.nvim-treesitter.update-grammars;
           };
         };
-
-        checks = {
-          pre-commit = inputs.pre-commit.lib."${pkgs.system}".run {
-            src = ./.;
-            hooks = let
-              pre-commit-hooks = "${pkgs.pre-commit-hooks}/bin";
-            in {
-              alejandra.enable = true;
-              check-executables-have-shebangs = {
-                entry = "${pre-commit-hooks}/check-executables-have-shebangs";
-                types = ["text" "executable"];
-              };
-              check-json = {
-                enable = true;
-                entry = "${pre-commit-hooks}/check-json";
-                types = ["json"];
-              };
-              check-merge-conflict = {
-                enable = true;
-                entry = "${pre-commit-hooks}/check-merge-conflict";
-                types = ["text"];
-              };
-              check-toml = {
-                enable = true;
-                entry = "${pre-commit-hooks}/check-toml";
-                types = ["toml"];
-              };
-              check-yaml = {
-                enable = true;
-                entry = "${pre-commit-hooks}/check-yaml";
-                types = ["yaml"];
-              };
-              end-of-file-fixer = {
-                enable = true;
-                entry = "${pre-commit-hooks}/end-of-file-fixer";
-                types = ["text"];
-              };
-              stylua = {
-                enable = true;
-                types = ["file" "lua"];
-              };
-              trailing-whitespace = {
-                enable = true;
-                entry = "${pre-commit-hooks}/trailing-whitespace-fixer";
-                types = ["text"];
-              };
-            };
-          };
-        };
         packages = utils.lib.exportPackages self.overlays channels;
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
-          buildInputs = with pkgs; [fup-repl git niv nix-zsh-completions nodejs];
-          inherit (self.checks."${pkgs.system}".pre-commit) shellHook;
+          buildInputs = with pkgs; [fup-repl git niv nodejs];
+          shellHook = "";
         };
       };
     };
