@@ -633,11 +633,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1680678903,
-        "narHash": "sha256-F3CmgnxekDF+PTgw8HNCNoaWNmEhIRkh4LF3QNCe6lo=",
+        "lastModified": 1680680164,
+        "narHash": "sha256-rrZ49HxsyIp+zXfMpyhNHSmCv+lQ8zt5au/QmBvGsw0=",
         "owner": "willruggiano",
         "repo": "neovim.drv",
-        "rev": "47e1cb07e9b444d67dfdaef1022d15bfb4287946",
+        "rev": "a452b4e625d667027b57dbd46bc7bce139fce45e",
         "type": "github"
       },
       "original": {
