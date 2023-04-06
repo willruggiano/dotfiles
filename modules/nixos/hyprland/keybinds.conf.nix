@@ -8,7 +8,7 @@
     name = "select-window";
     runtimeInputs = with pkgs; [fzf jq];
     text = ''
-      hyprctl clients -j | jq --raw-output '.[] | (.pid | tostring) + ":" + .title' | fzf --delimiter : --preview "" --bind "enter:become(hyprctl dispatch focuswindow pid:{1})"
+      hyprctl clients -j | jq --raw-output '.[] | (select(.pid != -1) | .pid | tostring) + ":" + .title' | fzf --delimiter : --preview "" --bind "enter:become(hyprctl dispatch focuswindow pid:{1})"
     '';
   };
   window-switcher = pkgs.writeShellApplication {
