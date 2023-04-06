@@ -70,4 +70,8 @@ in ''
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
       workspace_swipe = off
   }
+
+  windowrulev2 = float, class:^(popup)$
+  windowrulev2 = size 50% 50%, class:^(popup)$
+  windowrulev2 = center, class:^(popup)$
 ''

@@ -2,10 +2,26 @@
   config,
   pkgs,
   ...
-}: ''
+}: let
+  kitty = config.programs.kitty.package;
+  window-selector = pkgs.writeShellApplication {
+    name = "select-window";
+    runtimeInputs = with pkgs; [fzf jq];
+    text = ''
+      hyprctl clients -j | jq --raw-output '.[] | (.pid | tostring) + ":" + .title' | fzf --delimiter : --preview "" --bind "enter:become(hyprctl dispatch focuswindow pid:{1})"
+    '';
+  };
+  window-switcher = pkgs.writeShellApplication {
+    name = "switch-window";
+    runtimeInputs = [kitty];
+    text = ''
+      kitty --class popup sh -c '${window-selector}/bin/select-window'
+    '';
+  };
+in ''
   $mod = ALT
 
-  bind = $mod, RETURN, exec, ${config.programs.kitty.package}/bin/kitty
+  bind = $mod, RETURN, exec, ${kitty}/bin/kitty
   bind = $mod SHIFT, RETURN, exec, ${config.programs.qutebrowser.package}/bin/qutebrowser
   bind = $mod SHIFT, C, killactive,
   bind = $mod, SPACE, togglefloating,
@@ -15,6 +31,8 @@
   bind = $mod, Q, exit,
   bind = $mod, R, exec, ${pkgs.wofi}/bin/wofi --show drun
   bind = $mod, S, togglesplit, # dwindle
+  bind = $mod, W, exec, ${window-switcher}/bin/switch-window
+  bind = $mod, O, exec, hyprctl dispatch focuscurrentorlast
 
   # Move focus with mod + arrow keys
   bind = $mod, H, movefocus, l
