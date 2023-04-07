@@ -28,13 +28,20 @@ in {
         homepageLocation = "https://github.com";
 
         extraOpts = {
+          AudioCaptureAllowed = true;
           BrowserSignin = 0;
-          SyncDisabled = false;
+          DefaultNotificationsSetting = 2; # Do not allow any site to display desktop notifications
           HttpsOnlyMode = "force_enabled";
+          NotificationsAllowedForUrls = [
+            "https://meet.google.com"
+          ];
           PasswordManagerEnabled = false;
           PaymentMethodQueryEnabled = false;
+          ScreenCaptureAllowed = true;
           SpellcheckEnabled = true;
           SpellcheckLanguage = ["en-US"];
+          SyncDisabled = false;
+          VideoCaptureAllowed = true;
         };
       };
     }
