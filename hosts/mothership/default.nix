@@ -20,9 +20,10 @@
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
+  programs.brave.enable = true;
+  programs.browserpass.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
-  programs.firefox.enable = false; # via home.nix
   programs.flavours.enable = true;
   programs.fish.enable = true;
   programs.fzf.enable = true;

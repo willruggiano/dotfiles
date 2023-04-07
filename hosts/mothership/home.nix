@@ -3,7 +3,6 @@
 
   programs.bat.enable = true;
   programs.direnv.enable = true;
-  programs.firefox.enable = true;
   programs.git = {
     enable = true;
     signingkey = "0x8C442553F8881E7A";
