@@ -30,7 +30,7 @@ in {
         extraOpts = {
           BrowserSignin = 0;
           SyncDisabled = false;
-          HttpsOnly = "force_enabled";
+          HttpsOnlyMode = "force_enabled";
           PasswordManagerEnabled = false;
           PaymentMethodQueryEnabled = false;
           SpellcheckEnabled = true;
