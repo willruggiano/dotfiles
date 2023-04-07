@@ -32,6 +32,7 @@ in {
           SyncDisabled = false;
           HttpsOnly = "force_enabled";
           PasswordManagerEnabled = false;
+          PaymentMethodQueryEnabled = false;
           SpellcheckEnabled = true;
           SpellcheckLanguage = ["en-US"];
         };
