@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.programs.password-store;
+  PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
   pass-fzf = pkgs.writeShellApplication {
     name = "pass";
     runtimeInputs = with pkgs; [
@@ -25,7 +26,7 @@ with lib; let
       if (( $# > 0 )); then
         pass "$@"
       else
-        pushd "$PASSWORD_STORE_DIR" >/dev/null
+        pushd "${PASSWORD_STORE_DIR}" >/dev/null
         passfile=$(fd -e gpg --strip-cwd-prefix . | sed -e 's/.gpg$//' | sort | fzf)
         pass --clip "$passfile"
         unset passfile
@@ -53,7 +54,7 @@ in {
     programs.password-store = {
       package = pass-fzf;
       settings = {
-        PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+        inherit PASSWORD_STORE_DIR;
       };
     };
   };

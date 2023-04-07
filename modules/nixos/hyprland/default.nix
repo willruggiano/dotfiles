@@ -48,7 +48,7 @@ in {
   };
 
   config = mkMerge [
-    {
+    (mkIf cfg.enable {
       nix.settings = {
         substituters = ["https://hyprland.cachix.org"];
         trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -57,11 +57,14 @@ in {
       programs.flavours.items.hyprland = {
         template = ./hyprland.mustache;
       };
-    }
-    (mkIf cfg.enable {
+
       programs.hyprland.package = hyprland-wrapped;
 
-      user.packages = with pkgs; [hyprpicker wl-clipboard];
+      user.packages = with pkgs; [
+        hyprpicker
+        wl-clipboard
+        wofi
+      ];
 
       environment.loginShellInit = ''
         [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
