@@ -9,6 +9,7 @@ with lib; let
 in {
   options.programs.brave = {
     enable = mkEnableOption "brave browser";
+    package = mkPackageOption pkgs "brave" {};
     default = mkOption {
       type = types.bool;
       default = false;
@@ -17,6 +18,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
+      user.packages = [cfg.package];
       programs.chromium.enable = true;
     }
     (mkIf cfg.default {
