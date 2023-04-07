@@ -1,5 +1,5 @@
 {pkgs}:
-pkgs.writeScript ''
+pkgs.writeScript "autorefresh.py" ''
   #!${pkgs.python3}/bin/python
 
   import os

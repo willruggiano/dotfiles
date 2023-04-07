@@ -18,7 +18,7 @@ in {
       };
 
       home.configFile = {
-        "qutebrowser/config.py".text = import ./config.py {inherit config pkgs;};
+        "qutebrowser/config.py".text = import ./config.py.nix {inherit config pkgs;};
         "qutebrowser/userscripts/autorefresh".source = import ./autorefresh.py.nix {inherit pkgs;};
       };
     }

@@ -20,6 +20,8 @@
 
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
 
+  programs.brave.enable = true;
+  programs.browserpass.enable = true;
   programs.blender.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
@@ -49,11 +51,7 @@
     enable = true;
     config = ./monitor-layout.kdl;
   };
-  services.clipcat.enable = true;
   services.dunst.enable = true;
-  # services.email.enable = true;
-  # services.expressvpn.enable = true;
-  # services.goxlr.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
