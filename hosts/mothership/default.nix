@@ -34,8 +34,6 @@
     };
   };
   programs.kitty.enable = true;
-  programs.libreoffice.enable = true;
-  programs.obs-studio.enable = true;
   programs.qutebrowser.default = true;
   programs.qutebrowser.enable = true;
   programs.slack.enable = true;
@@ -46,10 +44,7 @@
   programs.zk.enable = true;
 
   services.agenix.enable = true;
-  # services.awesome.enable = true;
-  services.clipcat.enable = true;
   services.dunst.enable = true;
-  services.email.enable = true;
   services.expressvpn.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
