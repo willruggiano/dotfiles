@@ -68,8 +68,10 @@ in ''
   bind = $mod SHIFT, 9, movetoworkspace, 9
   bind = $mod SHIFT, 0, movetoworkspace, 10
 
-  # Audio
   bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
   bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
   bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+  bind = , XF86MonBrightnessDown, exec, ${pkgs.light}/bin/light -U 5
+  bind = , XF86MonBrightnessUp, exec, ${pkgs.light}/bin/light -A 5
 ''
