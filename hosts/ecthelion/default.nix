@@ -21,6 +21,7 @@
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
 
   programs.brave.enable = true;
+  programs.brave.default = true;
   programs.browserpass.enable = true;
   programs.blender.enable = true;
   programs.discord.enable = true;
@@ -34,10 +35,7 @@
   };
   programs.kitty.enable = true;
   programs.nvtop.enable = true;
-  programs.qutebrowser = {
-    enable = true;
-    default = true;
-  };
+  programs.qutebrowser.enable = true;
   programs.slack.enable = true;
   programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
