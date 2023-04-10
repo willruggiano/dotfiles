@@ -44,17 +44,17 @@ in {
           ''
 
           (optionalString
-          pkgs.stdenv.isLinux
-          ''
-            allow_remote_control yes
-            listen_on unix:@kitty
-          '')
+            pkgs.stdenv.isLinux
+            ''
+              allow_remote_control yes
+              listen_on unix:@kitty
+            '')
           (optionalString
-          pkgs.stdenv.isDarwin
-          ''
-            allow_remote_control yes
-            listen_on unix:/tmp/kitty
-          '')
+            pkgs.stdenv.isDarwin
+            ''
+              allow_remote_control yes
+              listen_on unix:/tmp/kitty
+            '')
 
           ''
 

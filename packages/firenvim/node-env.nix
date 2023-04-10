@@ -95,13 +95,13 @@
         cd node_modules
       ''
       + (lib.concatMapStrings (
-        dependency: ''
-          if [ ! -e "${dependency.name}" ]; then
-              ${composePackage dependency}
-          fi
-        ''
-      )
-      dependencies)
+          dependency: ''
+            if [ ! -e "${dependency.name}" ]; then
+                ${composePackage dependency}
+            fi
+          ''
+        )
+        dependencies)
       + ''
         cd ..
       ''
@@ -397,61 +397,61 @@
     extraArgs = removeAttrs args ["name" "dependencies" "buildInputs" "dontStrip" "dontNpmInstall" "preRebuild" "unpackPhase" "buildPhase" "meta"];
   in
     stdenv.mkDerivation ({
-      name = "${name}-${version}";
-      buildInputs =
-        [tarWrapper python nodejs]
-        ++ lib.optional stdenv.isLinux utillinux
-        ++ lib.optional stdenv.isDarwin libtool
-        ++ buildInputs;
+        name = "${name}-${version}";
+        buildInputs =
+          [tarWrapper python nodejs]
+          ++ lib.optional stdenv.isLinux utillinux
+          ++ lib.optional stdenv.isDarwin libtool
+          ++ buildInputs;
 
-      inherit nodejs;
+        inherit nodejs;
 
-      inherit dontStrip; # Stripping may fail a build for some package deployments
-      inherit dontNpmInstall preRebuild unpackPhase buildPhase;
+        inherit dontStrip; # Stripping may fail a build for some package deployments
+        inherit dontNpmInstall preRebuild unpackPhase buildPhase;
 
-      compositionScript = composePackage args;
-      pinpointDependenciesScript = pinpointDependenciesOfPackage args;
+        compositionScript = composePackage args;
+        pinpointDependenciesScript = pinpointDependenciesOfPackage args;
 
-      passAsFile = ["compositionScript" "pinpointDependenciesScript"];
+        passAsFile = ["compositionScript" "pinpointDependenciesScript"];
 
-      installPhase = ''
-        source ${installPackage}
-        # Create and enter a root node_modules/ folder
-        mkdir -p $out/lib/node_modules
-        cd $out/lib/node_modules
-        # Compose the package and all its dependencies
-        source $compositionScriptPath
-        ${prepareAndInvokeNPM {inherit packageName bypassCache reconstructLock npmFlags production;}}
-        # Create symlink to the deployed executable folder, if applicable
-        if [ -d "$out/lib/node_modules/.bin" ]
-        then
-            ln -s $out/lib/node_modules/.bin $out/bin
-        fi
-        # Create symlinks to the deployed manual page folders, if applicable
-        if [ -d "$out/lib/node_modules/${packageName}/man" ]
-        then
-            mkdir -p $out/share
-            for dir in "$out/lib/node_modules/${packageName}/man/"*
-            do
-                mkdir -p $out/share/man/$(basename "$dir")
-                for page in "$dir"/*
-                do
-                    ln -s $page $out/share/man/$(basename "$dir")
-                done
-            done
-        fi
-        # Run post install hook, if provided
-        runHook postInstall
-      '';
+        installPhase = ''
+          source ${installPackage}
+          # Create and enter a root node_modules/ folder
+          mkdir -p $out/lib/node_modules
+          cd $out/lib/node_modules
+          # Compose the package and all its dependencies
+          source $compositionScriptPath
+          ${prepareAndInvokeNPM {inherit packageName bypassCache reconstructLock npmFlags production;}}
+          # Create symlink to the deployed executable folder, if applicable
+          if [ -d "$out/lib/node_modules/.bin" ]
+          then
+              ln -s $out/lib/node_modules/.bin $out/bin
+          fi
+          # Create symlinks to the deployed manual page folders, if applicable
+          if [ -d "$out/lib/node_modules/${packageName}/man" ]
+          then
+              mkdir -p $out/share
+              for dir in "$out/lib/node_modules/${packageName}/man/"*
+              do
+                  mkdir -p $out/share/man/$(basename "$dir")
+                  for page in "$dir"/*
+                  do
+                      ln -s $page $out/share/man/$(basename "$dir")
+                  done
+              done
+          fi
+          # Run post install hook, if provided
+          runHook postInstall
+        '';
 
-      meta =
-        {
-          # default to Node.js' platforms
-          inherit (nodejs.meta) platforms;
-        }
-        // meta;
-    }
-    // extraArgs);
+        meta =
+          {
+            # default to Node.js' platforms
+            inherit (nodejs.meta) platforms;
+          }
+          // meta;
+      }
+      // extraArgs);
 
   # Builds a node environment (a node_modules folder and a set of binaries)
   buildNodeDependencies = {
@@ -474,50 +474,50 @@
     extraArgs = removeAttrs args ["name" "dependencies" "buildInputs"];
   in
     stdenv.mkDerivation ({
-      name = "node-dependencies-${name}-${version}";
+        name = "node-dependencies-${name}-${version}";
 
-      buildInputs =
-        [tarWrapper python nodejs]
-        ++ lib.optional stdenv.isLinux utillinux
-        ++ lib.optional stdenv.isDarwin libtool
-        ++ buildInputs;
+        buildInputs =
+          [tarWrapper python nodejs]
+          ++ lib.optional stdenv.isLinux utillinux
+          ++ lib.optional stdenv.isDarwin libtool
+          ++ buildInputs;
 
-      inherit dontStrip; # Stripping may fail a build for some package deployments
-      inherit dontNpmInstall unpackPhase buildPhase;
+        inherit dontStrip; # Stripping may fail a build for some package deployments
+        inherit dontNpmInstall unpackPhase buildPhase;
 
-      includeScript = includeDependencies {inherit dependencies;};
-      pinpointDependenciesScript = pinpointDependenciesOfPackage args;
+        includeScript = includeDependencies {inherit dependencies;};
+        pinpointDependenciesScript = pinpointDependenciesOfPackage args;
 
-      passAsFile = ["includeScript" "pinpointDependenciesScript"];
+        passAsFile = ["includeScript" "pinpointDependenciesScript"];
 
-      installPhase = ''
-        source ${installPackage}
-        mkdir -p $out/${packageName}
-        cd $out/${packageName}
-        source $includeScriptPath
-        # Create fake package.json to make the npm commands work properly
-        cp ${src}/package.json .
-        chmod 644 package.json
-        ${
-          lib.optionalString bypassCache ''
-            if [ -f ${src}/package-lock.json ]
-            then
-                cp ${src}/package-lock.json .
-            fi
-          ''
-        }
-        # Go to the parent folder to make sure that all packages are pinpointed
-        cd ..
-        ${lib.optionalString (builtins.substring 0 1 packageName == "@") "cd .."}
-        ${prepareAndInvokeNPM {inherit packageName bypassCache reconstructLock npmFlags production;}}
-        # Expose the executables that were installed
-        cd ..
-        ${lib.optionalString (builtins.substring 0 1 packageName == "@") "cd .."}
-        mv ${packageName} lib
-        ln -s $out/lib/node_modules/.bin $out/bin
-      '';
-    }
-    // extraArgs);
+        installPhase = ''
+          source ${installPackage}
+          mkdir -p $out/${packageName}
+          cd $out/${packageName}
+          source $includeScriptPath
+          # Create fake package.json to make the npm commands work properly
+          cp ${src}/package.json .
+          chmod 644 package.json
+          ${
+            lib.optionalString bypassCache ''
+              if [ -f ${src}/package-lock.json ]
+              then
+                  cp ${src}/package-lock.json .
+              fi
+            ''
+          }
+          # Go to the parent folder to make sure that all packages are pinpointed
+          cd ..
+          ${lib.optionalString (builtins.substring 0 1 packageName == "@") "cd .."}
+          ${prepareAndInvokeNPM {inherit packageName bypassCache reconstructLock npmFlags production;}}
+          # Expose the executables that were installed
+          cd ..
+          ${lib.optionalString (builtins.substring 0 1 packageName == "@") "cd .."}
+          mv ${packageName} lib
+          ln -s $out/lib/node_modules/.bin $out/bin
+        '';
+      }
+      // extraArgs);
 
   # Builds a development shell
   buildNodeShell = {

@@ -9,8 +9,8 @@ with lib; let
 
   toYabaiConfig = opts:
     concatStringsSep "\n" (mapAttrsToList
-    (p: v: "yabai -m config ${p} ${toString v}")
-    opts);
+      (p: v: "yabai -m config ${p} ${toString v}")
+      opts);
 
   configFile =
     mkIf (cfg.config != {} || cfg.extraConfig != "")

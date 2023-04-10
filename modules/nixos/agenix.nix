@@ -24,15 +24,15 @@ in {
       inherit (agenix-flake.packages."${pkgs.system}") agenix;
     in [
       (pkgs.writeShellApplication
-      {
-        name = "agenix";
-        runtimeInputs = [agenix];
-        text = ''
-          pushd ${config.dotfiles.dir}/secrets 1>/dev/null
-          RULES="./default.nix" agenix "$@"
-          popd 1>/dev/null
-        '';
-      })
+        {
+          name = "agenix";
+          runtimeInputs = [agenix];
+          text = ''
+            pushd ${config.dotfiles.dir}/secrets 1>/dev/null
+            RULES="./default.nix" agenix "$@"
+            popd 1>/dev/null
+          '';
+        })
     ];
 
     age = {

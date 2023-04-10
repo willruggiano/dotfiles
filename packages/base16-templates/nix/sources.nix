@@ -66,11 +66,11 @@ let
   in
     builtins.fetchGit
     ({
-      url = spec.repo;
-      inherit (spec) rev;
-      inherit ref;
-    }
-    // submoduleArg);
+        url = spec.repo;
+        inherit (spec) rev;
+        inherit ref;
+      }
+      // submoduleArg);
 
   fetch_local = spec: spec.path;
 
