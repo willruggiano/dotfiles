@@ -22,7 +22,10 @@ in {
       programs.chromium.enable = true;
     }
     (mkIf cfg.default {
-      environment.variables.BROWSER = "brave";
+      environment.sessionVariables = {
+        BROWSER = "${cfg.package}/bin/brave";
+        DEFAULT_BROWSER = "${cfg.package}/bin/brave";
+      };
     })
   ]);
 }
