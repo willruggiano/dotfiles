@@ -5,17 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
 
     agenix.url = "github:ryantm/agenix";
     base16-templates-source.flake = false;
     base16-templates-source.url = "github:chriskempson/base16-templates-source";
+    devenv.url = "github:cachix/devenv";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    naersk.url = "github:nix-community/naersk";
     neovim.url = "github:willruggiano/neovim.drv";
     nil.url = "github:oxalica/nil";
     nix-flake-templates.flake = false;
@@ -25,11 +26,11 @@
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
-    spacebar.url = "github:cmacrae/spacebar";
   };
 
   outputs = {
     self,
+    flake-parts,
     utils,
     nixpkgs,
     ...
@@ -38,8 +39,8 @@
     lib' = import ./lib args inputs;
     commonModules = {dotfiles = import ./.;} // (lib'.mapModules ./modules/common import);
     nixosModules = commonModules // (lib'.mapModules ./modules/nixos import);
-  in
-    utils.lib.mkFlake {
+
+    flake = utils.lib.mkFlake {
       inherit self inputs nixosModules;
 
       lib =
@@ -56,11 +57,9 @@
         inputs.hyprland.overlays.default
         inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
-        inputs.naersk.overlay
         inputs.nil.overlays.default
         inputs.nixpkgs-wayland.overlay
         inputs.nur.overlay
-        inputs.spacebar.overlay
         inputs.utils.overlay
         (final: prev: {
           inherit (inputs) base16-templates-source;
@@ -148,6 +147,25 @@
           name = "dotfiles";
           buildInputs = with pkgs; [fup-repl git niv nodejs];
           shellHook = "";
+        };
+      };
+    };
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      inherit flake;
+      imports = [
+        inputs.devenv.flakeModule
+        inputs.pre-commit.flakeModule
+      ];
+      systems = ["x86_64-linux"];
+      perSystem = {pkgs, ...}: {
+        devenv.shells.default = {
+          name = "dotfiles";
+          packages = with pkgs; [niv];
+
+          pre-commit.hooks = {
+            alejandra.enable = true;
+          };
         };
       };
     };

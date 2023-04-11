@@ -1,5 +1,6 @@
 ### Direnv
-.direnv
+.devenv/
+.direnv/
 
 ### Nix
 result
