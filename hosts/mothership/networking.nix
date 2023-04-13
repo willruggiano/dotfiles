@@ -7,6 +7,9 @@
     enable = true;
     environmentFile = config.age.secrets."networking.env".path;
     networks = {
+      jorynmarv = {
+        pskRaw = "@PSK_JORYNMARV@";
+      };
       NETGEAR39 = {
         pskRaw = "@PSK_NETGEAR_39@";
       };
