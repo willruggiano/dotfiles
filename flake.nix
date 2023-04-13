@@ -160,12 +160,12 @@
             alejandra.enable = true;
           };
           scripts = {
-            bump-neovim.exec = ''
-              nix flake lock --update-input neovim
-              git commit -am 'chore: bump neovim'
-            '';
             nixos-switch.exec = ''
               nixos-rebuild switch --use-remote-sudo
+            '';
+            update-neovim.exec = ''
+              nix flake lock --update-input neovim
+              git commit -am 'chore: update neovim'
             '';
           };
         };
