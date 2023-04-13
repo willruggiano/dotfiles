@@ -129,12 +129,6 @@
         pkgs = channels.nixpkgs;
       in {
         apps = {
-          bump-neovim = utils.lib.mkApp {
-            drv = pkgs.writeShellScriptBin "bump-neovim" ''
-              nix flake lock --update-input neovim
-              git commit -am 'bump: neovim'
-            '';
-          };
           update-docsets = utils.lib.mkApp {
             drv = pkgs.docsets.update-docsets;
           };
@@ -162,9 +156,17 @@
         devenv.shells.default = {
           name = "dotfiles";
           packages = with pkgs; [niv];
-
           pre-commit.hooks = {
             alejandra.enable = true;
+          };
+          scripts = {
+            bump-neovim.exec = ''
+              nix flake lock --update-input neovim
+              git commit -am 'chore: bump neovim'
+            '';
+            nixos-switch.exec = ''
+              nixos-rebuild switch --use-remote-sudo
+            '';
           };
         };
       };

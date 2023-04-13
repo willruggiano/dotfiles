@@ -21,6 +21,7 @@
   sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
   programs.brave.enable = true;
+  programs.brave.default = true;
   programs.browserpass.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
@@ -34,7 +35,6 @@
     };
   };
   programs.kitty.enable = true;
-  programs.qutebrowser.default = true;
   programs.qutebrowser.enable = true;
   programs.slack.enable = true;
   programs.spotify.enable = true;
