@@ -11,13 +11,14 @@ in {
     enable = mkEnableOption "Enable sourcegraph";
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [src-cli];
-
-    home.configFile = {
-      "zsh/extra/19-sourcegraph.zsh".text = ''
-        export SRC_ACCESS_TOKEN=$(cat ${config.age.secrets.sourcegraph.path})
+  config = mkIf cfg.enable (mkMerge [
+    {
+      user.packages = [pkgs.src-cli];
+    }
+    (mkIf config.programs.fish.enable {
+      programs.fish.interactiveShellInit = ''
+        set -gx SRC_ACCESS_TOKEN $(cat ${config.age.secrets.sourcegraph.path})
       '';
-    };
-  };
+    })
+  ]);
 }

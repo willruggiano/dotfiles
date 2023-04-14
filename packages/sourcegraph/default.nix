@@ -1,19 +1,22 @@
 {
-  buildGo118Module,
+  buildGoModule,
   fetchFromGitHub,
   git,
 }:
-buildGo118Module rec {
+buildGoModule rec {
   pname = "src-cli";
-  version = "3.41.0";
+  version = "5.0.3";
 
   src = fetchFromGitHub {
     owner = "sourcegraph";
     repo = pname;
     rev = version;
-    hash = "sha256-3esG1atn7RGGlG9Nwz05M21Qbx/5jlS++Zw3FtSCTh4=";
+    hash = "sha256-KqCH4f9QPfr/Hm4phR9qeCV925RkOawGnbCx8wz/QwE=";
   };
-  vendorSha256 = "sha256-wjGNVG/iK8EcJBWxbXIrA/e0JkCZlpxR67Lo8DleJ1Y=";
+  vendorSha256 = "sha256-NMLrBYGscZexnR43I4Ku9aqzJr38z2QAnZo0RouHFrc=";
 
-  doCheck = false;
+  doCheck = false; # FIXME: Build fails when running tests
+  preBuild = ''
+    export HOME=$TMPDIR
+  '';
 }

@@ -37,6 +37,7 @@
   programs.kitty.enable = true;
   programs.qutebrowser.enable = true;
   programs.slack.enable = true;
+  programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
   programs.steam.enable = true;
   programs.taskwarrior.enable = true;
