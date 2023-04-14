@@ -22,7 +22,7 @@ in ''
   $mod = ALT
 
   bind = $mod, RETURN, exec, ${kitty}/bin/kitty
-  bind = $mod SHIFT, RETURN, exec, ${config.programs.qutebrowser.package}/bin/qutebrowser
+  bind = $mod SHIFT, RETURN, exec, ${config.programs.brave.package}/bin/brave
   bind = $mod SHIFT, C, killactive,
   bind = $mod, SPACE, togglefloating,
   bind = $mod, F, fullscreen, 0 # fullscreen
