@@ -16,6 +16,9 @@
       NETGEAR39-5G = {
         pskRaw = "@PSK_NETGEAR_39_5G@";
       };
+      "Pitter Patter" = {
+        pskRaw = "@PSK_PITTER_PATTER@";
+      };
     };
   };
 }
