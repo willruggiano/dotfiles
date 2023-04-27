@@ -18,6 +18,19 @@
       kitty --class popup sh -c '${window-selector}/bin/select-window'
     '';
   };
+  move-focus = direction:
+    pkgs.writeShellApplication {
+      name = "move-focus";
+      runtimeInputs = with pkgs; [jq];
+      text = ''
+        if hyprctl activewindow -j | jq -e 'select(.grouped != [])' >/dev/null
+        then
+          hyprctl dispatch changegroupactive
+        else
+          hyprctl dispatch movefocus ${direction}
+        fi
+      '';
+    };
 in ''
   $mod = ALT
 
@@ -37,8 +50,8 @@ in ''
   # Move focus with mod + arrow keys
   bind = $mod, H, movefocus, l
   bind = $mod, L, movefocus, r
-  bind = $mod, K, movefocus, u
-  bind = $mod, J, movefocus, d
+  bind = $mod, K, exec, ${move-focus "u"}/bin/move-focus
+  bind = $mod, J, exec, ${move-focus "d"}/bin/move-focus
 
   # Cycle workspaces with mod + j/k
   bind = $mod SHIFT, J, exec, hyprctl dispatch workspace +1

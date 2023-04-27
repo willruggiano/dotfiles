@@ -71,7 +71,8 @@ in ''
       workspace_swipe = off
   }
 
-  windowrulev2 = float, class:^(popup)$
-  windowrulev2 = size 50% 50%, class:^(popup)$
-  windowrulev2 = center, class:^(popup)$
+  windowrulev2 = float,class:^(popup)$
+  windowrulev2 = size 50% 50%,class:^(popup)$
+  windowrulev2 = center,floating:1
+  windowrulev2 = float,title:^(.*Huddle.*)$
 ''
