@@ -29,6 +29,10 @@
   programs.flavours.enable = true;
   programs.fish.enable = true;
   programs.fzf.enable = true;
+  programs.git = {
+    enable = true;
+    signingKey = "0xB3FE328FB2A3ECD6";
+  };
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
