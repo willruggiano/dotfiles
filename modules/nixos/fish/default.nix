@@ -7,22 +7,6 @@
 with lib; let
   cfg = config.programs.fish;
 
-  git-wrapper = pkgs.writeShellApplication {
-    name = "lg";
-    runtimeInputs = with pkgs; [lazygit];
-    text = ''
-      if [[ $# -eq 0 ]]; then
-          if [[ -f $HOME/.config/lazygit/theme.yml ]]; then
-              lazygit --use-config-file="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/theme.yml"
-          else
-              lazygit
-          fi
-      else
-          command git "$@"
-      fi
-    '';
-  };
-
   exa-wrapped = pkgs.writeShellApplication {
     name = "exa";
     runtimeInputs = with pkgs; [exa];
@@ -54,7 +38,6 @@ in {
     environment.systemPackages = with pkgs; [
       atuin
       exa
-      git-wrapper
       magic-enter-fish
       pass-completions
       starship
@@ -93,7 +76,6 @@ in {
         cat = "bat";
         fvim = "nvim $(fzf)";
         nvim-clear = "nvim --headless -c LuaCacheClear -c q && nvim";
-        git = "lg";
         grep = "rg --color=auto";
         ls = "exa -F";
         la = "exa -a";
