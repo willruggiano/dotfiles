@@ -6,7 +6,6 @@
   programs.htop.enable = true;
   programs.mpv.enable = true;
   programs.password-store.enable = true;
-  programs.starship.enable = true;
 
   services.dropbox.enable = true;
   # services.emanote.enable = true;

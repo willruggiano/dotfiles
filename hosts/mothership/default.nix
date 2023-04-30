@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -44,6 +40,7 @@
     programs.slack.enable = true;
     programs.sourcegraph.enable = true;
     programs.spotify.enable = true;
+    programs.starship.enable = true;
     programs.steam.enable = true;
     programs.taskwarrior.enable = true;
     programs.xplr.enable = true;
