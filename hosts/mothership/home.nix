@@ -9,5 +9,4 @@
 
   services.dropbox.enable = true;
   # services.emanote.enable = true;
-  services.kbfs.enable = true;
 }

@@ -8,6 +8,6 @@ with lib; let
   cfg = config.services.kbfs;
 in {
   config = mkIf cfg.enable {
-    home.packages = [pkgs.keybase-gui];
+    user.packages = with pkgs; [keybase-gui];
   };
 }

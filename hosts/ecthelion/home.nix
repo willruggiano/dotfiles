@@ -13,5 +13,4 @@
   programs.password-store.enable = true;
 
   services.dropbox.enable = true;
-  services.kbfs.enable = true;
 }
