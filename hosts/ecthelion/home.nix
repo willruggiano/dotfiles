@@ -14,10 +14,4 @@
 
   services.dropbox.enable = true;
   services.kbfs.enable = true;
-
-  suites = {
-    development.enable = true;
-    development.suites = "all";
-    file.enable = true;
-  };
 }
