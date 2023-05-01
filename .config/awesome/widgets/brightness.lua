@@ -1,1 +1,0 @@
--- TODO: Widget that displays the current brightness level
