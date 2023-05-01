@@ -3,6 +3,22 @@ final: prev: {
   base16-schemes = prev.callPackage ./base16-schemes {};
   base16-templates = prev.callPackage ./base16-templates {};
   circle = prev.callPackage ./circle {};
+  dropbox-cli = prev.dropbox-cli.overrideAttrs (_: let
+    version = "2022.12.05";
+  in {
+    inherit version;
+    src = prev.fetchurl {
+      url = "https://linux.dropbox.com/packages/nautilus-dropbox-${version}.tar.bz2";
+      hash = "sha256-TB8TF21mpa2ev5ZOA1vhWWDKHUf0zJ8pdpY/OeXeWSs=";
+    };
+    patches = [
+      (prev.substituteAll {
+        src = ./dropbox/fix-cli-paths.patch;
+        dropboxd = "${prev.dropbox}/bin/dropbox";
+      })
+    ];
+  });
+
   docsets = prev.callPackage ./docsets {};
   dummy = prev.runCommand "dummy-0.0.0" {} "mkdir $out";
   firefox-extended = prev.callPackage ./firefox {};
