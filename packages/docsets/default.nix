@@ -7,14 +7,15 @@
   nix,
   buildEnv,
 }: let
-  docsets = ["C" "C++" "CMake" "Lua 5.1" "Lua 5.4" "Python 3" "Rust" "TypeScript"];
+  docsets = ["C" "C++" "CMake" "JavaScript" "Lua 5.1" "Lua 5.4" "Python 3" "Rust" "TypeScript"];
 
   foreachSh = langs: f: lib.concatMapStringsSep "\n" f langs;
   update-docsets = writeShellApplication {
-    name = "update-docsets.sh";
+    name = "update-docsets";
     runtimeInputs = [jq nix];
     text = ''
-      out="''${1:-/etc/nixos}/packages/docsets"
+      # NOTE: $1 is the path to this directory
+      out="$1/docsets"
       mkdir -p "$out"
       ${
         foreachSh docsets (lang: let
@@ -34,7 +35,7 @@
     stdenv.mkDerivation {
       name = "${lang}-docset";
       src = let
-        src' = lib.importJSON "${toString ./.}/${lang'}.json";
+        src' = lib.importJSON "${toString ./.}/docsets/${lang'}.json";
       in
         fetchurl {inherit (src') url sha256;};
 

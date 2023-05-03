@@ -17,12 +17,14 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     neovim.url = "github:willruggiano/neovim.drv";
     nil.url = "github:oxalica/nil";
     nix-flake-templates.flake = false;
     nix-flake-templates.url = "github:willruggiano/nix-flake-templates";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nix2container.url = "github:nlewo/nix2container";
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
@@ -128,14 +130,6 @@
       outputsBuilder = channels: let
         pkgs = channels.nixpkgs;
       in {
-        apps = {
-          update-docsets = utils.lib.mkApp {
-            drv = pkgs.docsets.update-docsets;
-          };
-          update-treesitter-parsers = utils.lib.mkApp {
-            drv = pkgs.nvim-treesitter.update-grammars;
-          };
-        };
         packages = utils.lib.exportPackages self.overlays channels;
         devShell = pkgs.stdenvNoCC.mkDerivation {
           name = "dotfiles";
@@ -152,7 +146,11 @@
         inputs.pre-commit.flakeModule
       ];
       systems = ["x86_64-linux"];
-      perSystem = {pkgs, ...}: {
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
         devenv.shells.default = {
           name = "dotfiles";
           packages = with pkgs; [niv];
@@ -162,6 +160,12 @@
           scripts = {
             nixos-switch.exec = ''
               nixos-rebuild switch --use-remote-sudo
+            '';
+            update-docsets.exec = let
+              inherit (self.packages."${system}".docsets) update-docsets;
+            in ''
+              ${update-docsets}/bin/update-docsets ./packages/docsets
+              git commit -am 'chore: update docsets'
             '';
             update-neovim.exec = ''
               nix flake lock --update-input neovim
