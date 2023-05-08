@@ -66,13 +66,6 @@ in {
         wofi
       ];
 
-      xdg.portal = {
-        enable = true;
-        extraPortals = [
-          pkgs.xdg-desktop-portal-hyprland
-        ];
-      };
-
       environment.loginShellInit = ''
         [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
       '';

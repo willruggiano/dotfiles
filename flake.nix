@@ -14,7 +14,7 @@
     devenv.url = "github:cachix/devenv";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "github:hyprwm/hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
@@ -23,7 +23,6 @@
     nix-flake-templates.flake = false;
     nix-flake-templates.url = "github:willruggiano/nix-flake-templates";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nix2container.url = "github:nlewo/nix2container";
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
@@ -60,7 +59,6 @@
         inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
         inputs.nil.overlays.default
-        inputs.nixpkgs-wayland.overlay
         inputs.nur.overlay
         inputs.utils.overlay
         (final: prev: {
@@ -69,7 +67,7 @@
         })
         (final: prev: {
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
-          inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell qutebrowser-qt6;
+          inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell qutebrowser-qt6 wayland;
         })
       ];
 
