@@ -807,11 +807,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1682919907,
-        "narHash": "sha256-n0LHZnNJ4rGV99NCq/soeiWCp2+eYLxD4OpK+YdYEnI=",
+        "lastModified": 1683568829,
+        "narHash": "sha256-HS5GGsyn5Iz+hsr/qJgyYDaT/eQ+UTJRJfc39P8JNeI=",
         "owner": "willruggiano",
         "repo": "neovim.drv",
-        "rev": "9040016dc42c66323780a26dcee83d33fd873b7e",
+        "rev": "3dbbcf337a4968a5e48a98f0dcda876833fe9748",
         "type": "github"
       },
       "original": {
