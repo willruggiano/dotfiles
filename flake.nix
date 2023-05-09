@@ -67,7 +67,7 @@
         })
         (final: prev: {
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
-          inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") nushell qutebrowser-qt6 wayland;
+          inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") brave;
         })
       ];
 
