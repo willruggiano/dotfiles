@@ -65,7 +65,7 @@ with lib; {
       XDG_DATA_HOME = "$HOME/.local/share";
     };
 
-    user.packages = with pkgs; [nurl];
+    user.packages = with pkgs; [cowsay nurl];
     users.defaultUserShell = pkgs.fish;
 
     programs.command-not-found.enable = false;
