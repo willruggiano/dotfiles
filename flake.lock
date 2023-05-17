@@ -734,11 +734,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1684318420,
-        "narHash": "sha256-sEgbDTOG+vf3VMs2hzzVfi35KsJI+CCKeyYFmyyOV4g=",
+        "lastModified": 1684476118,
+        "narHash": "sha256-jdsbZ3SJ89gWopoocfDkqjwpJ9cUAzF1WFm5OAjKcfo=",
         "owner": "willruggiano",
         "repo": "neovim.drv",
-        "rev": "be876dd5c2ff2254c9a8f2f439a1826e671a719b",
+        "rev": "a85ed8d740d5d54e88670882cecc1f364a7ef40f",
         "type": "github"
       },
       "original": {
@@ -1704,15 +1704,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1679338489,
-        "narHash": "sha256-otRXR+uuhncnh3cRZXUcBL/2sVo8PqmdN8Q2sGReIyc=",
-        "owner": "sourcegraph",
+        "lastModified": 1684283802,
+        "narHash": "sha256-ZLlRm7Fqa83DySCBYp+dLQk7rS+oVhRa6kzwRWIBsvY=",
+        "owner": "willruggiano",
         "repo": "sg.nvim",
-        "rev": "8432c5fb3934aff8f3b466c009cd9e7bb1bf771a",
+        "rev": "ad661c5fa8322092dd1feeb98ce12a2a6a18bf9b",
         "type": "github"
       },
       "original": {
-        "owner": "sourcegraph",
+        "owner": "willruggiano",
         "repo": "sg.nvim",
         "type": "github"
       }
