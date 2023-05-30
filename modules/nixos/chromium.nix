@@ -25,7 +25,7 @@ in {
           "dbepggeogbaibhgnhhndojpepiihcmeb"
         ];
 
-        homepageLocation = "https://github.com";
+        # homepageLocation = "https://github.com";
 
         extraOpts = {
           AudioCaptureAllowed = true;
@@ -38,6 +38,7 @@ in {
           PasswordManagerEnabled = false;
           PaymentMethodQueryEnabled = false;
           ScreenCaptureAllowed = true;
+          ShowHomeButton = true;
           SpellcheckEnabled = true;
           SpellcheckLanguage = ["en-US"];
           SyncDisabled = false;
