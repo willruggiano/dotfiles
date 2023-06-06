@@ -8,25 +8,22 @@
 }:
 with builtins;
 with lib; let
-  agenix-flake = inputs.agenix;
   cfg = config.services.agenix;
   shared_secrets = "${toString ../../secrets}";
   system_secrets = "${toString ../../secrets}/${config.networking.hostName}/secrets";
 in {
-  imports = [agenix-flake.nixosModules.age];
+  imports = [inputs.agenix.nixosModules.default];
 
   options.services.agenix = {
     enable = mkEnableOption "Enable agenix";
   };
 
   config = mkIf cfg.enable {
-    user.packages = let
-      inherit (agenix-flake.packages."${pkgs.system}") agenix;
-    in [
+    user.packages = [
       (pkgs.writeShellApplication
         {
           name = "agenix";
-          runtimeInputs = [agenix];
+          runtimeInputs = [inputs.agenix.packages."${pkgs.system}".default];
           text = ''
             pushd ${config.dotfiles.dir}/secrets 1>/dev/null
             RULES="./default.nix" agenix "$@"

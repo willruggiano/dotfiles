@@ -62,6 +62,7 @@ in {
 
       user.packages = with pkgs; [
         hyprpicker
+        slurp
         wl-clipboard
         wofi
       ];

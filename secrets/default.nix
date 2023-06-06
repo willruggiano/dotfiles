@@ -9,5 +9,7 @@ in {
   "slack.age".publicKeys = [ecthelion mothership];
   "sourcegraph.age".publicKeys = [ecthelion mothership];
   "spotify.age".publicKeys = [ecthelion mothership];
+  "tendrel-test.ovpn.age".publicKeys = [ecthelion mothership];
+  "tendrel-beta.ovpn.age".publicKeys = [ecthelion mothership];
   "wmruggiano@gmail.com.age".publicKeys = [ecthelion mothership];
 }

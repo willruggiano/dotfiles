@@ -47,12 +47,6 @@ in {
           };
           color.ui = "auto";
           commit.gpgsign = true;
-          credential = {
-            "https://git-codecommit.us-east-2.amazonaws.com" = {
-              UseHttpPath = true;
-              helper = "!aws --profile tendrel-codecommit codecommit credential-helper $@";
-            };
-          };
           include.path = "/home/bombadil/.gitconfig";
           init.defaultBranch = "main";
           merge = {
