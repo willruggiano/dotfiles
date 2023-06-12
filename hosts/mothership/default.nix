@@ -55,6 +55,8 @@
     services.pipewire.enable = true;
     services.udev.packages = [pkgs.yubikey-personalization];
 
+    tendrel.enable = true;
+
     virtualisation.docker.enable = true;
   };
 }
