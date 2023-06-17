@@ -14,7 +14,7 @@
     devenv.url = "github:cachix/devenv";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
-    hyprland.url = "github:hyprwm/hyprland/2df0d034bc4a18fafb3524401eeeceaa6b23e753";
+    hyprland.url = "github:hyprwm/hyprland/v0.26.0";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
@@ -55,7 +55,6 @@
 
       channels.nixpkgs.overlaysBuilder = channels: [
         self.overlay
-        inputs.hyprland.overlays.default
         inputs.hyprpaper.overlays.default
         inputs.hyprpicker.overlays.default
         inputs.nil.overlays.default

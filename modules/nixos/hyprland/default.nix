@@ -7,26 +7,6 @@
 }:
 with lib; let
   cfg = config.programs.hyprland;
-
-  hyprland-default = pkgs.hyprland.override {
-    enableXWayland = cfg.xwayland.enable;
-    hidpiXWayland = cfg.xwayland.hidpi;
-    inherit (cfg) nvidiaPatches;
-  };
-  hyprland-wrapped = hyprland-default.overrideAttrs (oa: {
-    nativeBuildInputs = oa.nativeBuildInputs ++ [pkgs.makeWrapper];
-    postInstall = with pkgs;
-      ''
-        wrapProgram $out/bin/Hyprland \
-          --prefix PATH : ${makeBinPath [hyprpaper pciutils]}
-      ''
-      + (optionalString cfg.nvidiaPatches ''
-        wrapProgram $out/bin/Hyprland      \
-          --set WLR_BACKEND vulkan         \
-          --set WLR_RENDERER vulkan        \
-          --set WLR_NO_HARDWARE_CURSORS 1
-      '');
-  });
 in {
   imports = [
     inputs.hyprland.nixosModules.default
@@ -58,9 +38,8 @@ in {
         template = ./hyprland.mustache;
       };
 
-      programs.hyprland.package = hyprland-wrapped;
-
       user.packages = with pkgs; [
+        hyprpaper
         hyprpicker
         slurp
         wl-clipboard

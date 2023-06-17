@@ -33,21 +33,19 @@ in ''
   }
 
   general {
+      border_size = 1
       gaps_in = 0
       gaps_out = 0
-      border_size = 1
-
-      layout = dwindle
+      layout = master
   }
 
   decoration {
-      rounding = 0
       blur = no
-      blur_size = 3
+      blur_new_optimizations = true
       blur_passes = 1
-      blur_new_optimizations = on
-
-      drop_shadow = no
+      blur_size = 3
+      drop_shadow = false
+      rounding = 0
       shadow_range = 4
       shadow_render_power = 3
   }
@@ -57,18 +55,16 @@ in ''
   }
 
   dwindle {
-      pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-      preserve_split = yes # you probably want this
+      pseudotile = false
+      preserve_split = true
   }
 
   master {
-      # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-      new_is_master = true
+      new_is_master = false
   }
 
   gestures {
-      # See https://wiki.hyprland.org/Configuring/Variables/ for more
-      workspace_swipe = off
+      workspace_swipe = false
   }
 
   windowrulev2 = float,class:^(popup)$

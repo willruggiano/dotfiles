@@ -38,24 +38,22 @@ in ''
   bind = $mod SHIFT, RETURN, exec, ${config.programs.brave.package}/bin/brave
   bind = $mod SHIFT, C, killactive,
   bind = $mod, SPACE, togglefloating,
-  bind = $mod, F, fullscreen, 0 # fullscreen
-  bind = $mod, M, fullscreen, 1 # maximize (keeps gaps and bars)
+  bind = $mod, F, layoutmsg, swapwithmaster master
+  bind = $mod, M, fullscreen, 1 # maximize
   bind = $mod, P, pseudo, # dwindle
   bind = $mod, Q, exit,
   bind = $mod, R, exec, ${pkgs.wofi}/bin/wofi --show drun
   bind = $mod, S, togglesplit, # dwindle
   bind = $mod, W, exec, ${window-switcher}/bin/switch-window
-  bind = $mod, O, exec, hyprctl dispatch focuscurrentorlast
+  bind = $mod, O, focuscurrentorlast
 
-  # Move focus with mod + arrow keys
-  bind = $mod, H, movefocus, l
-  bind = $mod, L, movefocus, r
-  bind = $mod, K, exec, ${move-focus "u"}/bin/move-focus
-  bind = $mod, J, exec, ${move-focus "d"}/bin/move-focus
+  # Move focus
+  bind = $mod, J, layoutmsg, cyclenext
+  bind = $mod, K, layoutmsg, cycleprev
 
   # Cycle workspaces with mod + j/k
-  bind = $mod SHIFT, J, exec, hyprctl dispatch workspace +1
-  bind = $mod SHIFT, K, exec, hyprctl dispatch workspace -1
+  bind = $mod SHIFT, J, workspace, +1
+  bind = $mod SHIFT, K, workspace, -1
 
   # Switch workspaces with mod + [0-9]
   bind = $mod, 1, workspace, 1
