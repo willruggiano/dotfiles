@@ -15,22 +15,9 @@
     name = "switch-window";
     runtimeInputs = [kitty];
     text = ''
-      kitty --class popup sh -c '${window-selector}/bin/select-window'
+      kitty --class=popup sh -c '${window-selector}/bin/select-window'
     '';
   };
-  move-focus = direction:
-    pkgs.writeShellApplication {
-      name = "move-focus";
-      runtimeInputs = with pkgs; [jq];
-      text = ''
-        if hyprctl activewindow -j | jq -e 'select(.grouped != [])' >/dev/null
-        then
-          hyprctl dispatch changegroupactive
-        else
-          hyprctl dispatch movefocus ${direction}
-        fi
-      '';
-    };
 in ''
   $mod = ALT
 
@@ -40,12 +27,13 @@ in ''
   bind = $mod, SPACE, togglefloating,
   bind = $mod, F, layoutmsg, swapwithmaster master
   bind = $mod, M, fullscreen, 1 # maximize
+  bind = $mod, O, focuscurrentorlast
   bind = $mod, P, pseudo, # dwindle
   bind = $mod, Q, exit,
   bind = $mod, R, exec, ${pkgs.wofi}/bin/wofi --show drun
   bind = $mod, S, togglesplit, # dwindle
   bind = $mod, W, exec, ${window-switcher}/bin/switch-window
-  bind = $mod, O, focuscurrentorlast
+  bind = , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
 
   # Move focus
   bind = $mod, J, layoutmsg, cyclenext

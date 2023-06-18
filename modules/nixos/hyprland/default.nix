@@ -39,6 +39,7 @@ in {
       };
 
       user.packages = with pkgs; [
+        grim
         hyprpaper
         hyprpicker
         slurp
