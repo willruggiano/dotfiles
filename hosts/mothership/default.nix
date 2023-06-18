@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -53,6 +57,7 @@
     services.kbfs.enable = true;
     services.pcscd.enable = true;
     services.pipewire.enable = true;
+    services.tailscale.enable = true;
     services.udev.packages = [pkgs.yubikey-personalization];
 
     tendrel.enable = true;
