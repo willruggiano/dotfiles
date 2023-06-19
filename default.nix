@@ -52,8 +52,10 @@ with lib; {
       (attrValues bins)
       ++ (with pkgs; [
         acpitool
+        cowsay
         man-pages
         man-pages-posix
+        nurl
       ]);
 
     documentation.dev.enable = true;
@@ -65,7 +67,6 @@ with lib; {
       XDG_DATA_HOME = "$HOME/.local/share";
     };
 
-    user.packages = with pkgs; [cowsay nurl];
     users.defaultUserShell = pkgs.fish;
 
     programs.command-not-found.enable = false;

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -18,8 +14,6 @@
       home = "/home/${name}";
       shell = pkgs.fish;
     };
-
-    sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS bombadil@mothership";
 
     programs.brave.enable = true;
     programs.brave.default = true;
@@ -57,6 +51,7 @@
     services.kbfs.enable = true;
     services.pcscd.enable = true;
     services.pipewire.enable = true;
+    services.ssh.enable = true;
     services.tailscale.enable = true;
     services.udev.packages = [pkgs.yubikey-personalization];
 

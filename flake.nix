@@ -47,6 +47,7 @@
       lib =
         nixpkgs.lib.extend
         (final: prev: {
+          inherit (inputs.home-manager.lib) hm;
           inherit (lib') makeHome mapFilterAttrs mapModules reduceModules mapModulesRec reduceModulesRec mkOpt mkOpt';
         });
 
