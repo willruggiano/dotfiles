@@ -4,18 +4,12 @@
   ...
 }: let
   kitty = config.programs.kitty.package;
-  window-selector = pkgs.writeShellApplication {
-    name = "select-window";
-    runtimeInputs = with pkgs; [fzf jq];
-    text = ''
-      hyprctl clients -j | jq --raw-output '.[] | (select(.pid != -1) | .pid | tostring) + ":" + .title' | fzf --delimiter : --preview "" --bind "enter:become(hyprctl dispatch focuswindow pid:{1})"
-    '';
-  };
   window-switcher = pkgs.writeShellApplication {
     name = "switch-window";
-    runtimeInputs = [kitty];
+    runtimeInputs = with pkgs; [wofi];
     text = ''
-      kitty --class=popup sh -c '${window-selector}/bin/select-window'
+      # shellcheck disable=SC2034
+      hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + .title' | wofi --show dmenu | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }
     '';
   };
 in ''

@@ -62,6 +62,13 @@ in {
         '')
         (mkAfter ''
           fish_vi_key_bindings insert
+          bind -M insert \ca beginning-of-line
+          bind -M insert \ce end-of-line
+          set fish_cursor_default block blink
+          set fish_cursor_insert line blink
+          set fish_cursor_replace_one underscore
+          set fish_cursor_visual block
+
           bind -M insert \r magic-enter
           bind -M insert \co 'fzf | xargs -r $EDITOR'
           bind -M insert \cr _atuin_search

@@ -58,6 +58,11 @@ in {
         };
       in {
         "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config hypr-keybinds lib pkgs;};
+
+        "wofi/config".text = ''
+          key_expand=Tab
+          layer=overlay
+        '';
       };
     })
     (mkIf (cfg.wallpapers != {}) {
