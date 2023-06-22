@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -19,10 +18,6 @@ in {
           "$python"
           "$line_break"
           "$character"
-        ];
-        right_format = concatStrings [
-          "$time"
-          "$line_break"
         ];
         scan_timeout = 30;
         command_timeout = 500;
@@ -77,7 +72,7 @@ in {
         };
 
         time = {
-          disabled = false;
+          disabled = true;
           format = "[$time]($style)";
         };
 

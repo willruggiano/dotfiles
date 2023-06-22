@@ -54,7 +54,6 @@ in {
           set -gx ENHANCD_DISABLE_DOT true
           set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
           set -a _ZO_FZF_OPTS "--preview='${exa-wrapped}/bin/exa {2..}'"
-          set -gx fish_escape_delay_ms 300
           set -gx fish_greeting
 
           atuin init fish | source
@@ -68,9 +67,9 @@ in {
           set fish_cursor_insert line blink
           set fish_cursor_replace_one underscore
           set fish_cursor_visual block
+          set fish_escape_delay_ms 300
 
           bind -M insert \r magic-enter
-          bind -M insert \co 'fzf | xargs -r $EDITOR'
           bind -M insert \cr _atuin_search
           bind -M insert \cy accept-autosuggestion
           bind -M insert -k nul complete
@@ -81,8 +80,6 @@ in {
         bat = "bat --paging=never";
         batp = "bat --paging=auto";
         cat = "bat";
-        fvim = "nvim $(fzf)";
-        nvim-clear = "nvim --headless -c LuaCacheClear -c q && nvim";
         grep = "rg --color=auto";
         ls = "exa -F";
         la = "exa -a";
@@ -90,86 +87,6 @@ in {
         lla = "exa -al";
         lt = "exa --tree";
         tree = "exa --tree";
-      };
-    };
-
-    programs.starship = {
-      enable = true;
-      settings = {
-        format = concatStrings [
-          "$hostname"
-          "$line_break"
-          "$directory"
-          "$git_branch"
-          "$nix_shell"
-          "$python"
-          "$line_break"
-          "$character"
-        ];
-        right_format = concatStrings [
-          "$time"
-          "$line_break"
-        ];
-        scan_timeout = 30;
-        command_timeout = 500;
-        add_newline = true;
-
-        character = {
-          disabled = false;
-          format = "$symbol ";
-          success_symbol = "[❯](bold green)";
-          error_symbol = "[❯](bold red)";
-          vicmd_symbol = "[❮](bold green)";
-        };
-
-        directory = {
-          disabled = false;
-          truncation_length = 3;
-          truncate_to_repo = true;
-          fish_style_pwd_dir_length = 0;
-          use_logical_path = true;
-          format = "[$path]($style)[$read_only]($read_only_style) ";
-          style = "cyan bold";
-          read_only = "🔒";
-          read_only_style = "red";
-          truncation_symbol = "";
-          home_symbol = "~";
-        };
-
-        git_branch = {
-          disabled = false;
-          format = "on [$symbol$branch]($style)(:[$remote]($style)) ";
-          style = "bold purple";
-          symbol = "";
-          truncation_length = 9223372036854775807;
-          truncation_symbol = "...";
-          only_attached = false;
-          always_show_remote = false;
-        };
-
-        hostname = {
-          ssh_only = true;
-          format = concatStrings [
-            "[$hostname](bold red)"
-          ];
-        };
-
-        nix_shell = {
-          format = "using [nix-shell/$name](bold blue) ";
-        };
-
-        python = {
-          format = "using [python/$version (\($virtualenv\))](bold yellow) ";
-        };
-
-        time = {
-          disabled = false;
-          format = "[$time]($style)";
-        };
-
-        line_break = {
-          disabled = false;
-        };
       };
     };
 

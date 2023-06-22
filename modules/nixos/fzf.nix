@@ -24,7 +24,7 @@ in {
         "--reverse"
         "--multi"
         "--preview-window=right,border-sharp,wrap"
-        "--bind='f3:execute(bat --style=numbers {} || less -f {}),ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
+        "--bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
       ];
       description = "FZF_DEFAULT_OPTS";
     };
@@ -37,11 +37,15 @@ in {
 
   config = mkMerge [
     (mkIf cfg.enable {
-      user.packages = with pkgs; [
-        (symlinkJoin {
+      environment.systemPackages = with pkgs; [
+        (pkgs.buildEnv {
           name = "fzf-wrapped";
-          paths = [fzf fzf.man];
           buildInputs = [makeWrapper];
+          paths = [fzf fzf.man];
+          pathsToLink = [
+            "/bin"
+            "/share/man"
+          ];
           postBuild = ''
             wrapProgram $out/bin/fzf --add-flags "${cfg.preview}"
           '';
@@ -54,7 +58,10 @@ in {
       };
     })
     (mkIf (cfg.enable && config.programs.fish.enable) {
-      user.packages = with pkgs.fishPlugins; [fzf-fish];
+      environment.systemPackages = with pkgs.fishPlugins; [fzf-fish];
+      programs.fish.interactiveShellInit = mkBefore ''
+        fzf_configure_bindings --history=\e\cr --variables=\e\cv
+      '';
 
       programs.flavours.items.fzf = {
         template = "${pkgs.base16-templates}/templates/fzf/templates/fish.mustache";
