@@ -9,9 +9,12 @@ with lib; let
 in {
   options.programs.kitty = {
     enable = mkEnableOption "Enable kitty";
+    package = mkPackageOption pkgs "kitty" {};
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [cfg.package];
+
     programs.flavours.items.kitty = {
       template = "${pkgs.base16-templates}/templates/kitty/templates/default.mustache";
     };

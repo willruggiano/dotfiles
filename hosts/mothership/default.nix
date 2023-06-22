@@ -15,6 +15,7 @@
       shell = pkgs.fish;
     };
 
+    programs.bat.enable = true;
     programs.brave.enable = true;
     programs.brave.default = true;
     programs.browserpass.enable = true;
