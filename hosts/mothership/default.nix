@@ -19,6 +19,7 @@
     programs.brave.enable = true;
     programs.brave.default = true;
     programs.browserpass.enable = true;
+    programs.direnv.enable = true;
     programs.discord.enable = true;
     programs.docsets.enable = true;
     programs.flavours.enable = true;
