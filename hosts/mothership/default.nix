@@ -28,6 +28,7 @@
       enable = true;
       signingKey = "0x8C442553F8881E7A";
     };
+    programs.htop.enable = true;
     programs.hyprland = {
       enable = true;
       wallpapers = {
