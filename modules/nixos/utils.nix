@@ -4,6 +4,6 @@
   ...
 }: {
   config = {
-    user.packages = with pkgs; [cached-nix-shell sysz];
+    environment.systemPackages = with pkgs; [cached-nix-shell sysz];
   };
 }

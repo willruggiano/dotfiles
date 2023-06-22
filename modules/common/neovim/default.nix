@@ -5,7 +5,7 @@
   ...
 }: {
   config = {
-    user.packages = [
+    environment.systemPackages = [
       inputs.neovim.packages."${system}".default
     ];
 

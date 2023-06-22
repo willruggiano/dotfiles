@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [pkgs.goxlr];
+    environment.systemPackages = [pkgs.goxlr];
 
     # home.configFile = {
     #   "goxlr-utility/settings.json".text =

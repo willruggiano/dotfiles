@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [taskwarrior taskwarrior-tui];
+    environment.systemPackages = with pkgs; [taskwarrior taskwarrior-tui];
 
     home.configFile = {
       "task/taskrc".text = ''

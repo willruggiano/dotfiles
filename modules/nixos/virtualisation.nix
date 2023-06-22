@@ -14,7 +14,7 @@ in {
         autoPrune.enable = true;
       };
       user.extraGroups = ["docker"];
-      user.packages = [pkgs.lazydocker];
+      environment.systemPackages = [pkgs.lazydocker];
     })
     (mkIf cfg.libvirtd.enable {
       user.extraGroups = ["libvirtd"];

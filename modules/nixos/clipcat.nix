@@ -8,7 +8,7 @@ with lib; let
   cfg = config.services.clipcat;
 in {
   config = mkIf cfg.enable {
-    user.packages = [
+    environment.systemPackages = [
       (pkgs.writeShellApplication {
         name = "pass-clipcat";
         runtimeInputs = [pkgs.clipcat];

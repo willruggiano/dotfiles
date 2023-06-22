@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = let
+    environment.systemPackages = let
       obs = pkgs.wrapOBS {
         plugins = with pkgs.obs-studio-plugins; [wlrobs];
       };

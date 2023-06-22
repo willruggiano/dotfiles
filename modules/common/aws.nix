@@ -12,6 +12,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [pkgs.awscli];
+    environment.systemPackages = [pkgs.awscli];
   };
 }

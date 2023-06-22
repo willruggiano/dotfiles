@@ -13,7 +13,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [dropbox-cli];
+    environment.systemPackages = with pkgs; [dropbox-cli];
 
     systemd.user.services.dropbox = {
       description = "dropbox";

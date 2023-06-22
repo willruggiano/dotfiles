@@ -17,7 +17,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [cfg.package];
+    environment.systemPackages = [cfg.package];
 
     # Install language dictionaries for spellcheck backends
     # TODO: Re-enable this when a new release is created; see: https://github.com/qutebrowser/qutebrowser/issues/7481

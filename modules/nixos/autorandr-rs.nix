@@ -19,7 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [pkgs.autorandr-rs];
+    environment.systemPackages = [pkgs.autorandr-rs];
 
     systemd.user.services.monitor-layout = {
       description = "monitor-layout daemon";

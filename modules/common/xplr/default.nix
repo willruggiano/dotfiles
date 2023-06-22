@@ -30,7 +30,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [xplr];
+    environment.systemPackages = with pkgs; [xplr];
 
     home.configFile = let
       fzf-xplr = buildXplrPlugin {

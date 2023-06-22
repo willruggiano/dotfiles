@@ -15,10 +15,10 @@ with lib; {
 
   config = mkMerge [
     (mkIf config.programs.nvidia-omniverse.enable {
-      user.packages = [pkgs.nvidia-omniverse];
+      environment.systemPackages = [pkgs.nvidia-omniverse];
     })
     (mkIf config.programs.nvtop.enable {
-      user.packages = [pkgs.nvtop];
+      environment.systemPackages = [pkgs.nvtop];
     })
   ];
 }

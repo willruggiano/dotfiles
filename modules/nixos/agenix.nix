@@ -19,7 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
+    environment.systemPackages = [
       (pkgs.writeShellApplication
         {
           name = "agenix";

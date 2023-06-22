@@ -18,7 +18,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      user.packages = [cfg.package];
+      environment.systemPackages = [cfg.package];
       programs.chromium.enable = true;
     }
     (mkIf cfg.default {

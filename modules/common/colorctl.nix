@@ -28,6 +28,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [colorctl];
+    environment.systemPackages = with pkgs; [colorctl];
   };
 }

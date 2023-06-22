@@ -15,7 +15,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [dunst libnotify];
+    environment.systemPackages = with pkgs; [dunst libnotify];
 
     home.dataFile = {
       "dbus-1/services/org.knopwob.dunst.service".source = "${pkgs.dunst}/share/dbus-1/services/org.knopwob.dunst.service";

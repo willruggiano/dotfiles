@@ -13,7 +13,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      user.packages = [pkgs.src-cli];
+      environment.systemPackages = [pkgs.src-cli];
     }
     (mkIf config.programs.fish.enable {
       programs.fish.interactiveShellInit = ''

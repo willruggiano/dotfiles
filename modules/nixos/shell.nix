@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   config = {
-    user.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       cached-nix-shell
       curl
       fd

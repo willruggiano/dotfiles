@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      user.packages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         awscli
         git-absorb
         git-branchless
@@ -70,7 +70,7 @@ in {
       };
     }
     {
-      user.packages = [pkgs.delta];
+      environment.systemPackages = [pkgs.delta];
       programs.git.config = {
         core.pager = "delta";
         delta = {
@@ -81,7 +81,7 @@ in {
       };
     }
     {
-      user.packages = [pkgs.gh];
+      environment.systemPackages = [pkgs.gh];
       programs.git.config = {
         credential = {
           "https://github.com" = {
@@ -91,7 +91,7 @@ in {
       };
     }
     {
-      user.packages = [
+      environment.systemPackages = [
         pkgs.lazygit
         (pkgs.writeShellApplication {
           name = "git";

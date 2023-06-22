@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [cfg.package];
+    environment.systemPackages = [cfg.package];
 
     programs.colorctl.settings = {
       kitty = {

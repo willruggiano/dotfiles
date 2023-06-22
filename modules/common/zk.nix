@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [pkgs.zk];
+    environment.systemPackages = [pkgs.zk];
 
     home.configFile.zk = {
       source = ../../.config/zk;

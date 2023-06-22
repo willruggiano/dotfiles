@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
+    environment.systemPackages = [
       pkgs.slack
     ];
   };

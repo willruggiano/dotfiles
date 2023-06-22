@@ -38,7 +38,7 @@ in {
         template = ./hyprland.mustache;
       };
 
-      user.packages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         grim
         hyprpaper
         hyprpicker
