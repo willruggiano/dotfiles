@@ -101,7 +101,6 @@
         modules = [
           ./hosts/mothership
           inputs.home-manager.nixosModule
-          {home-manager.users.bombadil = import ./hosts/mothership/home.nix;}
         ];
         specialArgs = {
           inherit (self) lib;

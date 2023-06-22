@@ -18,7 +18,6 @@
     programs.bat.enable = true;
     programs.brave.enable = true;
     programs.brave.default = true;
-    programs.browserpass.enable = true;
     programs.direnv.enable = true;
     programs.discord.enable = true;
     programs.docsets.enable = true;
@@ -37,6 +36,7 @@
       };
     };
     programs.kitty.enable = true;
+    programs.pass.enable = true;
     programs.qutebrowser.enable = true;
     programs.slack.enable = true;
     programs.sourcegraph.enable = true;

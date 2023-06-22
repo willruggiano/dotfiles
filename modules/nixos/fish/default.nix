@@ -16,31 +16,12 @@ with lib; let
       popd >/dev/null
     '';
   };
-
-  pass-completions = pkgs.stdenv.mkDerivation {
-    name = "pass-fish-completions";
-
-    inherit (pkgs.pass) src;
-
-    nativeBuildInputs = with pkgs; [installShellFiles];
-
-    dontBuild = true;
-    dontConfigure = true;
-    dontFixup = true;
-
-    installPhase = ''
-      installManPage man/pass.1
-      installShellCompletion --fish --name pass.fish src/completion/pass.fish-completion
-    '';
-  };
 in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       atuin
       exa
       magic-enter-fish
-      pass-completions
-      starship
       zoxide
     ];
 
