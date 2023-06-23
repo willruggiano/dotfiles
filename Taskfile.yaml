@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+tasks:
+  default:
+    deps:
+      - install
+  build:
+    cmds:
+      - nixos-rebuild build
+  install:
+    cmds:
+      - nixos-rebuild switch --use-remote-sudo
+    aliases:
+      - i

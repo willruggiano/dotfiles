@@ -53,10 +53,14 @@ with lib; {
       ++ (with pkgs; [
         acpitool
         cowsay
+        go-task
         man-pages
         man-pages-posix
         nurl
       ]);
+    environment.shellAliases = {
+      t = "go-task";
+    };
 
     documentation.dev.enable = true;
 
