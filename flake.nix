@@ -151,7 +151,7 @@
       }: {
         devenv.shells.default = {
           name = "dotfiles";
-          packages = with pkgs; [niv];
+          packages = with pkgs; [niv nix-output-monitor];
           pre-commit.hooks = {
             alejandra.enable = true;
           };

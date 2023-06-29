@@ -55,6 +55,7 @@
     services.pcscd.enable = true;
     services.pipewire.enable = true;
     services.ssh.enable = true;
+    services.syncthing.enable = true;
     services.tailscale.enable = true;
     services.udev.packages = [pkgs.yubikey-personalization];
 
