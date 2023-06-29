@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -18,12 +14,12 @@
     shell = pkgs.fish;
   };
 
-  sshPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAIngPgrqRfYi/YTrd0+eVRbylSL+weBTtL819GgXUb bombadil@ecthelion";
-
+  programs.bat.enable = true;
   programs.brave.enable = true;
   programs.brave.default = true;
   programs.browserpass.enable = true;
   programs.blender.enable = true;
+  programs.direnv.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
   programs.flavours.enable = true;
@@ -33,12 +29,14 @@
     enable = true;
     signingKey = "0xB3FE328FB2A3ECD6";
   };
+  programs.htop.enable = true;
   programs.hyprland = {
     enable = true;
     nvidiaPatches = true;
   };
   programs.kitty.enable = true;
   programs.nvtop.enable = true;
+  programs.pass.enable = true;
   programs.qutebrowser.enable = true;
   programs.slack.enable = true;
   programs.sourcegraph.enable = true;
@@ -58,6 +56,8 @@
   services.kbfs.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
+  services.ssh.enable = true;
+  services.tailscale.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
 
   tendrel.enable = true;

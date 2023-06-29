@@ -88,7 +88,6 @@
         modules = [
           ./hosts/ecthelion
           inputs.home-manager.nixosModule
-          {home-manager.users.bombadil = import ./hosts/ecthelion/home.nix;}
         ];
         specialArgs = {
           inherit (self) lib;
