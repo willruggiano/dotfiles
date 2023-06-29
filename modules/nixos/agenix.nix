@@ -1,5 +1,4 @@
 {
-  options,
   config,
   inputs,
   lib,
@@ -10,7 +9,7 @@ with builtins;
 with lib; let
   cfg = config.services.agenix;
   shared_secrets = "${toString ../../secrets}";
-  system_secrets = "${toString ../../secrets}/${config.networking.hostName}/secrets";
+  system_secrets = "${toString ../../hosts}/${config.networking.hostName}/secrets";
 in {
   imports = [inputs.agenix.nixosModules.default];
 
