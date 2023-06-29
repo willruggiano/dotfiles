@@ -11,7 +11,5 @@ in {
   "slack.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
   "sourcegraph.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
   "spotify.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
-  "tendrel-test.ovpn.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
-  "tendrel-beta.ovpn.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
   "wmruggiano@gmail.com.age".publicKeys = [ecthelion bombadil_ecthelion mothership bombadil_mothership];
 }
