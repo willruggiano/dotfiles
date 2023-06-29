@@ -56,6 +56,7 @@ with lib; {
         go-task
         man-pages
         man-pages-posix
+        nix-output-monitor
         nurl
       ]);
     environment.shellAliases = {

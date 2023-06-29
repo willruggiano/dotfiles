@@ -24,6 +24,7 @@
     nix-flake-templates.url = "github:willruggiano/nix-flake-templates";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix2container.url = "github:nlewo/nix2container";
+    nom.url = "github:maralorn/nix-output-monitor";
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
@@ -63,6 +64,7 @@
         inputs.utils.overlay
         (final: prev: {
           inherit (inputs) base16-templates-source;
+          nix-output-monitor = inputs.nom.packages."${prev.system}".default;
           nurl = inputs.nurl.packages."${prev.system}".default;
         })
         (final: prev: {
@@ -154,9 +156,6 @@
             alejandra.enable = true;
           };
           scripts = {
-            nixos-switch.exec = ''
-              nixos-rebuild switch --use-remote-sudo
-            '';
             update-docsets.exec = let
               inherit (self.packages."${system}".docsets) update-docsets;
             in ''

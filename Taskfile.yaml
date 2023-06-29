@@ -8,9 +8,18 @@ tasks:
       - install
   build:
     cmds:
-      - nixos-rebuild build
+      - nixos-rebuild build |& nom
+    aliases:
+      - b
+  clean:
+    cmds:
+      - nix-collect-garbage -d
+      - sudo nix-collect-garbage -d
+    aliases:
+      - c
   install:
     cmds:
+      - task: build
       - nixos-rebuild switch --use-remote-sudo
     aliases:
       - i
