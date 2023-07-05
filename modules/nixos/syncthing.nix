@@ -20,8 +20,16 @@ in {
         dev = {
           path = "${config.user.home}/dev";
           devices = ["ecthelion" "mothership"];
+          ignorePerms = false;
         };
       };
+    };
+
+    home.file = {
+      "dev/.stignore".text = ''
+        !/tendrel/envrc
+        *
+      '';
     };
   };
 }
