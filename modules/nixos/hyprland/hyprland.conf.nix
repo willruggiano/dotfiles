@@ -3,12 +3,16 @@
   hypr-keybinds,
   lib,
   pkgs,
+  screenlock-cmd,
   ...
 }:
 with lib; let
   cfg = config.programs.hyprland;
 in ''
   monitor=,preferred,auto,1
+
+  exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 10 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' resume 'hyprctl dispatch dpms on'
+  exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 300 '${screenlock-cmd}' timeout 330 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 

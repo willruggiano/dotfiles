@@ -18,7 +18,5 @@ in {
     ];
 
     services.udev.packages = [pkgs.android-udev-rules];
-
-    virtualisation.libvirtd.enable = true;
   };
 }
