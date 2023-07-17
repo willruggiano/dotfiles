@@ -30,16 +30,24 @@ in {
       type = attrsOf package;
       internal = true;
     };
+    colors = mkOption {
+      type = attrsOf str;
+      internal = true;
+    };
   };
 
   config = {
-    programs.flavours.build =
-      mapAttrs (
-        name: attrs:
-          pkgs.runCommand "${name}-flavours" {buildInputs = [pkgs.flavours];} ''
-            flavours build "${pkgs.base16-schemes}/${cfg.colorscheme}.yaml" "${attrs.template}" > $out
-          ''
-      )
-      cfg.items;
+    programs.flavours = {
+      build =
+        mapAttrs (
+          name: attrs:
+            pkgs.runCommandLocal "${name}-flavours" {buildInputs = [pkgs.flavours];} ''
+              flavours build "${pkgs.base16-schemes}/${cfg.colorscheme}.yaml" "${attrs.template}" > $out
+            ''
+        )
+        cfg.items;
+
+      colors = {};
+    };
   };
 }
