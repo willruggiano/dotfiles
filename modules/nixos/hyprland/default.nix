@@ -34,8 +34,9 @@ in {
         trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
       };
 
-      programs.flavours.items.hyprland = {
-        template = ./hyprland.mustache;
+      programs.flavours.items = {
+        hyprland.template = ./hyprland.mustache;
+        wofi.template = ./wofi.mustache;
       };
 
       environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
@@ -91,9 +92,12 @@ in {
         "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config hypr-keybinds lib pkgs screenlock-cmd;};
 
         "wofi/config".text = ''
-          key_expand=Tab
+          key_down=Control_L-j
+          key_up=Control_L-k
+          key_expand=Control_L-l
           layer=overlay
         '';
+        "wofi/style.css".source = config.programs.flavours.build.wofi;
       };
 
       security.pam.services.swaylock.text = ''
