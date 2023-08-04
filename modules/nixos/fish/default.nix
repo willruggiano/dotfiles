@@ -77,7 +77,7 @@ in {
       "atuin/config.toml".source = toml.generate "atuin-config" {
         update_check = false;
         search_mode = "fuzzy";
-        filter_mode = "directory";
+        filter_mode = "session";
       };
 
       "fish/functions" = {
