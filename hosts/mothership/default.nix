@@ -51,7 +51,6 @@
     services.agenix.enable = true;
     # services.dropbox.enable = true;
     services.dunst.enable = true;
-    services.expressvpn.enable = true;
     services.kbfs.enable = true;
     services.pcscd.enable = true;
     services.pipewire.enable = true;

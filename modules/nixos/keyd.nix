@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -9,7 +8,7 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     services.keyd = {
-      settings = {
+      keyboards.default.settings = {
         main = {
           capslock = "overload(control, esc)";
           esc = "capslock";

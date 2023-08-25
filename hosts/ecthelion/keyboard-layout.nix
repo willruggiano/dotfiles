@@ -2,7 +2,7 @@
   config = {
     services.keyd = {
       enable = true;
-      ids = ["0951:16d2"];
+      keyboards.default.ids = ["0951:16d2"];
     };
   };
 }

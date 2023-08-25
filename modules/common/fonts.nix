@@ -1,15 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib; {
+{pkgs, ...}: {
   config = {
     fonts.fontDir.enable = true;
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       font-awesome
-      # TODO: Why do I have both of these?
       jetbrains-mono
       (nerdfonts.override {fonts = ["JetBrainsMono"];})
       nonicons

@@ -7,8 +7,6 @@
 with lib; let
   cfg = config.programs.direnv;
 in {
-  options.programs.direnv.enable = mkEnableOption "direnv";
-
   config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.direnv];
 
