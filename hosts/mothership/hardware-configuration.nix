@@ -2,7 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
+  inputs,
   lib,
   pkgs,
   modulesPath,
@@ -12,6 +12,7 @@
 in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.nixos-hardware.nixosModules.system76
   ];
 
   boot = {

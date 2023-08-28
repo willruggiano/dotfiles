@@ -21,5 +21,6 @@ tasks:
     cmds:
       - task: build
       - nixos-rebuild switch --use-remote-sudo
+      - notify-send --transient 'nixos be ready'
     aliases:
       - i

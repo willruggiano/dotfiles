@@ -3,7 +3,6 @@
 # to /etc/nixos/configuration.nix instead.
 {
   config,
-  lib,
   pkgs,
   modulesPath,
   ...
@@ -14,64 +13,67 @@ in {
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    extraModulePackages = with kernelPackages; [acpi_call];
+  config = {
+    boot = {
+      extraModulePackages = with kernelPackages; [acpi_call];
 
-    initrd = {
-      availableKernelModules = [
-        "ahci"
-        "nvme"
-        "sd_mod"
-        "sr_mod"
-        "thunderbolt"
-        "usb_storage"
-        "usbhid"
-        "vmd"
-        "xhci_pci"
-      ];
-      kernelModules = ["acpi" "acpi-call"];
+      initrd = {
+        availableKernelModules = [
+          "ahci"
+          "nvme"
+          "sd_mod"
+          "sr_mod"
+          "thunderbolt"
+          "usb_storage"
+          "usbhid"
+          "vmd"
+          "xhci_pci"
+        ];
+        kernelModules = ["acpi" "acpi-call"];
+      };
+
+      kernelModules = ["acpi_call" "kvm-intel"];
+      inherit kernelPackages;
+
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
     };
 
-    kernelModules = ["acpi_call" "kvm-intel"];
-    inherit kernelPackages;
-
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+    fileSystems."/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
     };
-  };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D49C-A0DE";
-    fsType = "vfat";
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-label/swap";}
-  ];
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
-  hardware = {
-    bluetooth.enable = true;
-    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    nvidia = {
-      modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      powerManagement.enable = false;
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/D49C-A0DE";
+      fsType = "vfat";
     };
-    opengl = {
-      enable = true;
-      driSupport = true;
-    };
-  };
 
-  services.xserver = {
-    videoDrivers = ["nvidia"];
+    swapDevices = [
+      {device = "/dev/disk/by-label/swap";}
+    ];
+
+    powerManagement.cpuFreqGovernor = "powersave";
+
+    hardware = {
+      bluetooth.enable = true;
+      cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+      enableRedistributableFirmware = true;
+      nvidia = {
+        modesetting.enable = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        powerManagement.enable = false;
+      };
+      opengl = {
+        enable = true;
+        driSupport = true;
+      };
+    };
+
+    services.xserver = {
+      videoDrivers = ["nvidia"];
+    };
   };
 }
