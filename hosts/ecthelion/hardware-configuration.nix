@@ -29,7 +29,6 @@ in {
           "vmd"
           "xhci_pci"
         ];
-        kernelModules = ["acpi" "acpi-call"];
       };
 
       kernelModules = ["acpi_call" "kvm-intel"];
