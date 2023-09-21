@@ -9,7 +9,7 @@
     runtimeInputs = with pkgs; [wofi];
     text = ''
       # shellcheck disable=SC2034
-      hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + .title' | wofi --show dmenu | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }
+      hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + (select(.title != "") | .title)' | wofi --show dmenu | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }
     '';
   };
 in ''

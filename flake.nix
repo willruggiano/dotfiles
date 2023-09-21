@@ -14,7 +14,7 @@
     devenv.url = "github:cachix/devenv";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
-    hyprland.url = "github:hyprwm/hyprland/v0.26.0";
+    hyprland.url = "github:hyprwm/hyprland/v0.29.1";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";

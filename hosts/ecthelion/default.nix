@@ -32,7 +32,7 @@
   programs.htop.enable = true;
   programs.hyprland = {
     enable = true;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
   };
   programs.kitty.enable = true;
   programs.nvtop.enable = true;
@@ -56,9 +56,7 @@
   services.kbfs.enable = true;
   services.pcscd.enable = true;
   services.pipewire.enable = true;
-  services.resolved.enable = true;
   services.ssh.enable = true;
-  # services.syncthing.enable = true;
   services.tailscale.enable = true;
   services.udev.packages = [pkgs.yubikey-personalization];
 

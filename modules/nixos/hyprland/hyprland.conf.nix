@@ -44,14 +44,13 @@ in ''
   }
 
   decoration {
-      blur = no
-      blur_new_optimizations = true
-      blur_passes = 1
-      blur_size = 3
       drop_shadow = false
       rounding = 0
       shadow_range = 4
       shadow_render_power = 3
+      blur {
+          enabled = no
+      }
   }
 
   animations {

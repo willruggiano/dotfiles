@@ -7,12 +7,12 @@
 with lib; let
   cfg = config.programs.fish;
 
-  exa-wrapped = pkgs.writeShellApplication {
-    name = "exa";
-    runtimeInputs = with pkgs; [exa];
+  eza-wrapped = pkgs.writeShellApplication {
+    name = "eza";
+    runtimeInputs = with pkgs; [eza];
     text = ''
       pushd "$1" >/dev/null
-      exa --tree --git-ignore
+      eza --tree --git-ignore
       popd >/dev/null
     '';
   };
@@ -20,7 +20,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       atuin
-      exa
+      eza
       magic-enter-fish
       zoxide
     ];
@@ -34,7 +34,7 @@ in {
           set -gx ENHANCD_FILTER fzf
           set -gx ENHANCD_DISABLE_DOT true
           set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
-          set -a _ZO_FZF_OPTS "--preview='${exa-wrapped}/bin/exa {2..}'"
+          set -a _ZO_FZF_OPTS "--preview='${eza-wrapped}/bin/eza {2..}'"
           set -gx fish_greeting
 
           atuin init fish | source
@@ -62,12 +62,12 @@ in {
         batp = "bat --paging=auto";
         cat = "bat";
         grep = "rg --color=auto";
-        ls = "exa -F";
-        la = "exa -a";
-        ll = "exa -l";
-        lla = "exa -al";
-        lt = "exa --tree";
-        tree = "exa --tree";
+        ls = "eza -F";
+        la = "eza -a";
+        ll = "eza -l";
+        lla = "eza -al";
+        lt = "eza --tree";
+        tree = "eza --tree";
       };
     };
 
