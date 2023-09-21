@@ -4,21 +4,29 @@
   pkgs,
   ...
 }:
-with lib; {
-  options.programs.nvidia-omniverse = {
-    enable = mkEnableOption "Nvidia omniverse";
-  };
+with lib; let
+  cfg = config.hardware.nvidia;
+in {
+  options.hardware.nvidia.enable = mkEnableOption "nvidia";
 
-  options.programs.nvtop = {
-    enable = mkEnableOption "nvtop";
-  };
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [nvtop];
 
-  config = mkMerge [
-    (mkIf config.programs.nvidia-omniverse.enable {
-      environment.systemPackages = [pkgs.nvidia-omniverse];
-    })
-    (mkIf config.programs.nvtop.enable {
-      environment.systemPackages = [pkgs.nvtop];
-    })
-  ];
+    hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+
+    services.xserver.videoDrivers = ["nvidia"];
+
+    hardware.nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+  };
 }

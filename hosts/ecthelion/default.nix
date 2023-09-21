@@ -35,7 +35,6 @@
     enableNvidiaPatches = true;
   };
   programs.kitty.enable = true;
-  programs.nvtop.enable = true;
   programs.pass.enable = true;
   programs.qutebrowser.enable = true;
   programs.slack.enable = true;

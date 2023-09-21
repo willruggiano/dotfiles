@@ -60,19 +60,7 @@ in {
       bluetooth.enable = true;
       cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
       enableRedistributableFirmware = true;
-      nvidia = {
-        modesetting.enable = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
-        powerManagement.enable = false;
-      };
-      opengl = {
-        enable = true;
-        driSupport = true;
-      };
-    };
-
-    services.xserver = {
-      videoDrivers = ["nvidia"];
+      nvidia.enable = true;
     };
   };
 }
