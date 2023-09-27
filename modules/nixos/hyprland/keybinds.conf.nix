@@ -17,17 +17,22 @@ in ''
 
   bind = $mod, RETURN, exec, ${kitty}/bin/kitty
   bind = $mod SHIFT, RETURN, exec, ${config.programs.brave.package}/bin/brave
-  bind = $mod SHIFT, C, killactive,
-  bind = $mod, SPACE, togglefloating,
+  bind = $mod SHIFT, C, killactive
+  bind = $mod, SPACE, togglefloating
+  bind = $mod, C, centerwindow
   bind = $mod, F, layoutmsg, swapwithmaster master
   bind = $mod, M, fullscreen, 1 # maximize
   bind = $mod, O, focuscurrentorlast
-  bind = $mod, P, pseudo, # dwindle
-  bind = $mod, Q, exit,
+  bind = $mod, Q, exit
   bind = $mod, R, exec, ${pkgs.wofi}/bin/wofi --show drun
-  bind = $mod, S, togglesplit, # dwindle
+  bind = $mod, S, togglespecialworkspace
+  bind = $mod SHIFT, S, movetoworkspace, special
   bind = $mod, W, exec, ${window-switcher}/bin/switch-window
   bind = , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
+
+  # Move/resize windows with mouse
+  bindm = $mod, mouse:272, movewindow
+  bindm = $mod, mouse:273, resizewindow
 
   # Move focus
   bind = $mod, J, layoutmsg, cyclenext
@@ -64,7 +69,6 @@ in ''
   bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
   bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
   bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-
   bind = , XF86MonBrightnessDown, exec, ${pkgs.light}/bin/light -U 5
   bind = , XF86MonBrightnessUp, exec, ${pkgs.light}/bin/light -A 5
 ''
