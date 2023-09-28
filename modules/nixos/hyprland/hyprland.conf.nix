@@ -11,8 +11,9 @@ with lib; let
 in ''
   monitor=,preferred,auto,1
 
-  exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 10 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' resume 'hyprctl dispatch dpms on'
-  exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 300 '${screenlock-cmd}' timeout 330 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+  # TODO: Getting red screen when using this sometimes
+  # exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 10 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' resume 'hyprctl dispatch dpms on'
+  # exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 300 '${screenlock-cmd}' timeout 330 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
 
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 
@@ -74,5 +75,5 @@ in ''
   windowrulev2 = size 50% 50%,class:^(popup)$
   windowrulev2 = center,floating:1
   windowrulev2 = float,title:^(.*Huddle.*)$
-  windowrulev2 = idleinhibit title:^(.*Huddle.*)$
+  windowrulev2 = idleinhibit,title:^(.*Huddle.*)$
 ''
