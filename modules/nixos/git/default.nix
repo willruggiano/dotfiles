@@ -26,6 +26,7 @@ in {
         git-trim
         gitflow
         rs-git-fsmonitor
+        spr
         sublime-merge
         watchman
       ];
@@ -44,6 +45,8 @@ in {
             lo = "log --oneline";
             loq = "log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative";
             pristine = "clean -dffx";
+            ss = "sync 'stack()'";
+            stack = "!spr";
           };
           color.ui = "auto";
           commit.gpgsign = true;
@@ -60,6 +63,9 @@ in {
             nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
             smerge.cmd = "smerge $MERGED";
             push.followTags = true;
+          };
+          spr = {
+            requireTestPlan = false;
           };
           user = {
             email = "wmruggiano@gmail.com";
