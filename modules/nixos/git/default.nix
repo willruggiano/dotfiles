@@ -88,6 +88,9 @@ in {
     }
     {
       environment.systemPackages = [pkgs.gh];
+      environment.interactiveShellInit = ''
+        export GH_TOKEN="$(cat ${config.age.secrets."willruggiano@github".path})"
+      '';
       programs.git.config = {
         credential = {
           "https://github.com" = {

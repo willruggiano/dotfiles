@@ -19,16 +19,7 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      (pkgs.writeShellApplication
-        {
-          name = "agenix";
-          runtimeInputs = [inputs.agenix.packages."${pkgs.system}".default];
-          text = ''
-            pushd ${config.dotfiles.dir}/secrets 1>/dev/null
-            RULES="./default.nix" agenix "$@"
-            popd 1>/dev/null
-          '';
-        })
+      inputs.agenix.packages."${pkgs.system}".default
     ];
 
     age = {
@@ -44,7 +35,7 @@ in {
       in
         (mapSecrets shared_secrets)
         // (
-          if pathExists "${system_secrets}/default.nix"
+          if pathExists system_secrets
           then (mapSecrets system_secrets)
           else {}
         );
