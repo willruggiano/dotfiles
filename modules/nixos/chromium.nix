@@ -21,11 +21,9 @@ in {
           "dgjhfomjieaadpoljlnidmbgkdffpack"
           # ublock-origin
           "cjpalhdlnbpafiamejdnhcphjbkeiagm"
-          # vimium
-          "dbepggeogbaibhgnhhndojpepiihcmeb"
+          # vimmatic
+          "pghmfgnakhjiphmlcnhfpgopkcjhiedc"
         ];
-
-        # homepageLocation = "https://github.com";
 
         extraOpts = {
           AudioCaptureAllowed = true;
@@ -34,6 +32,7 @@ in {
           HttpsOnlyMode = "force_enabled";
           NotificationsAllowedForUrls = [
             "https://meet.google.com"
+            "https://app.slack.com/client"
           ];
           PasswordManagerEnabled = false;
           PaymentMethodQueryEnabled = false;
