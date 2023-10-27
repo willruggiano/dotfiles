@@ -11,6 +11,8 @@ in {
     {
       programs.chromium = {
         extensions = mkBefore [
+          # cloaked
+          "oppdbdefikkkihgbliidckokhgcmmiga"
           # duck duck go privacy essentials
           "bkdgflcldnnnapblkhphbgpggdiikppg"
           # firenvim
@@ -28,12 +30,14 @@ in {
         extraOpts = {
           AudioCaptureAllowed = true;
           BrowserSignin = 0;
-          DefaultNotificationsSetting = 2; # Do not allow any site to display desktop notifications
-          HttpsOnlyMode = "force_enabled";
+          # Do not allow any site to display desktop notifications
+          DefaultNotificationsSetting = 2;
+          # except for:
           NotificationsAllowedForUrls = [
             "https://meet.google.com"
             "https://app.slack.com/client"
           ];
+          HttpsOnlyMode = "force_enabled";
           PasswordManagerEnabled = false;
           PaymentMethodQueryEnabled = false;
           ScreenCaptureAllowed = true;
