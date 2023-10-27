@@ -32,9 +32,9 @@
     programs.htop.enable = true;
     programs.hyprland = {
       enable = true;
-      wallpapers = {
-        "eDP-1".source = ../../wallpapers/gandalf.jpg;
-      };
+      # wallpapers = {
+      #   "eDP-1".source = ../../wallpapers/gandalf.jpg;
+      # };
     };
     programs.kitty.enable = true;
     programs.pass.enable = true;
