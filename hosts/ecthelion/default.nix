@@ -45,6 +45,7 @@
   programs.sourcegraph.enable = true;
   programs.spotify.enable = true;
   programs.starship.enable = true;
+  programs.steam.enable = true;
   programs.taskwarrior.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
