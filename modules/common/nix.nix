@@ -33,6 +33,8 @@ with lib; {
       default = {};
       description = "";
     };
+
+    term = mkOpt str "kitty";
   };
 
   config = {

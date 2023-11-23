@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  kitty = config.programs.kitty.package;
+  inherit (config) term;
   window-switcher = pkgs.writeShellApplication {
     name = "switch-window";
     runtimeInputs = with pkgs; [wofi];
@@ -15,7 +15,7 @@
 in ''
   $mod = ALT
 
-  bind = $mod, RETURN, exec, ${kitty}/bin/kitty
+  bind = $mod, RETURN, exec, ${config.programs.${term}.package}/bin/${term}
   bind = $mod SHIFT, RETURN, exec, ${config.programs.brave.package}/bin/brave
   bind = $mod SHIFT, C, killactive
   bind = $mod, SPACE, togglefloating
