@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./i18n.nix
@@ -47,6 +43,7 @@
   programs.starship.enable = true;
   programs.steam.enable = true;
   programs.taskwarrior.enable = true;
+  # programs.wezterm.enable = true;
   programs.xplr.enable = true;
   programs.zk.enable = true;
 

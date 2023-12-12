@@ -12,8 +12,7 @@ config.color_scheme = (function()
     return scheme[override]
   end
   local t = os.date "*t"
-  -- Use light theme between 8am and 8pm, dark theme otherwise
-  if t.hour < 8 or t.hour > 20 then
+  if t.hour < 8 or t.hour > 17 then
     return scheme.dark
   else
     return scheme.light
@@ -30,9 +29,9 @@ config.font = wezterm.font_with_fallback {
 config.enable_scroll_bar = false
 config.enable_tab_bar = false
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
+  left = "0.5cell",
+  right = "0.5cell",
+  top = "0.5cell",
   bottom = 0,
 }
 
