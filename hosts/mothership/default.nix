@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./builders.nix
     ./hardware-configuration.nix
@@ -45,7 +49,7 @@
     programs.starship.enable = true;
     programs.steam.enable = true;
     programs.taskwarrior.enable = true;
-    programs.wezterm.enable = true;
+    # programs.wezterm.enable = true;
     programs.xplr.enable = true;
     programs.zk.enable = true;
 
@@ -55,6 +59,19 @@
     services.kbfs.enable = true;
     services.pcscd.enable = true;
     services.pipewire.enable = true;
+    services.postgresql = {
+      enable = false;
+      package = pkgs.postgresql;
+      # The following creates a database and role of the same name as our system user.
+      ensureDatabases = [config.user.name];
+      ensureUsers = [
+        {
+          inherit (config.user) name;
+          ensureClauses.superuser = true;
+          # ensureDBOwnership = true;
+        }
+      ];
+    };
     services.ssh.enable = true;
     services.tailscale.enable = true;
     services.udev.packages = [pkgs.yubikey-personalization];

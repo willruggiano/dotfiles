@@ -15,16 +15,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [cfg.package];
 
-    programs.flavours.items.kitty = {
-      template = "${pkgs.base16-templates}/templates/kitty/templates/default.mustache";
-    };
-
     home.configFile = {
-      kitty = {
-        source = ../../.config/kitty;
-        recursive = true;
-      };
-
       "kitty/kitty.conf".text = let
         hint = "kitten hints --alphabet asdfghjkl";
         qutebrowser =
@@ -38,7 +29,7 @@ in {
 
             font_family JetBrains Mono
             font_size 12
-            include theme.conf
+            include current-theme.conf
 
             disable_ligatures always
             enable_audio_bell no
@@ -78,7 +69,42 @@ in {
           ''
         ];
 
-      "kitty/theme.conf".source = config.programs.flavours.build.kitty;
+      "kitty/open-actions.conf".source = ./open-actions.conf;
+    };
+
+    systemd.user.services.reload-kitty-theme = {
+      description = "Reload kitty theme";
+      wantedBy = ["default.target"];
+      serviceConfig.ExecStart = let
+        script = pkgs.writeShellApplication {
+          name = "reload-kitty-theme";
+          runtimeInputs = with pkgs; [cfg.package coreutils procps];
+          text = ''
+            scheme() {
+              local h
+              h=$(date +%k)
+              (( h <= 8 || h >= 17 )) && echo "tomorrow-night-eighties" || echo "tomorrow"
+            }
+
+            link() {
+              ln -sf "${./.}/base16-$(scheme).conf" "$HOME/.config/kitty/current-theme.conf"
+            }
+
+            reload() {
+              kill -SIGUSR1 $(pgrep kitty)
+            }
+
+            link && reload
+          '';
+        };
+      in "${script}/bin/reload-kitty-theme";
+    };
+
+    systemd.user.timers.reload-kitty-theme = {
+      description = "Reload kitty theme every day at 8am and 5pm";
+      wantedBy = ["timers.target"];
+      partOf = ["reload-kitty-theme.service"];
+      timerConfig.OnCalendar = ["*-*-* 08:00:00" "*-*-* 17:00:00"];
     };
   };
 }

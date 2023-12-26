@@ -9,6 +9,7 @@ with lib; let
 in {
   options.programs.flavours = with types; {
     enable = mkEnableOption "Enable flavours";
+    # TODO: Dark and light themes
     colorscheme = mkOption {
       type = str;
       default = "tomorrow-night-eighties";

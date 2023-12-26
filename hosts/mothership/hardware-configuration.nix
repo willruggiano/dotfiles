@@ -53,6 +53,7 @@ in {
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
+  hardware.opentabletdriver.enable = true;
 
   services.xserver.videoDrivers = ["modesetting"];
 }
