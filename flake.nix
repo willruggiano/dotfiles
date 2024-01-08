@@ -28,6 +28,7 @@
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
     pre-commit.url = "github:cachix/pre-commit-hooks.nix";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -102,6 +103,7 @@
         modules = [
           ./hosts/mothership
           inputs.home-manager.nixosModule
+          inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
           inherit (self) lib;

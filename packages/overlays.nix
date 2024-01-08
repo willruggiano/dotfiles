@@ -1,6 +1,5 @@
 final: prev: {
   autorandr-rs = prev.callPackage ./autorandr-rs {};
-  base16-schemes = prev.callPackage ./base16-schemes {};
   base16-templates = prev.callPackage ./base16-templates {};
   circle = prev.callPackage ./circle {};
   dropbox-cli = prev.dropbox-cli.overrideAttrs (_: let

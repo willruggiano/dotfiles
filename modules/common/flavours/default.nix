@@ -43,7 +43,7 @@ in {
         mapAttrs (
           name: attrs:
             pkgs.runCommandLocal "${name}-flavours" {buildInputs = [pkgs.flavours];} ''
-              flavours build "${pkgs.base16-schemes}/${cfg.colorscheme}.yaml" "${attrs.template}" > $out
+              flavours build "${pkgs.base16-schemes}/share/themes/${cfg.colorscheme}.yaml" "${attrs.template}" > $out
             ''
         )
         cfg.items;

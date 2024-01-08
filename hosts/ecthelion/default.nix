@@ -22,7 +22,7 @@
   programs.direnv.enable = true;
   programs.discord.enable = true;
   programs.docsets.enable = true;
-  programs.flavours.enable = true;
+  # programs.flavours.enable = true;
   programs.fish.enable = true;
   programs.fzf.enable = true;
   programs.git = {
