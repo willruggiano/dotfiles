@@ -15,7 +15,7 @@ in {
           "$directory"
           "$git_branch"
           "$nix_shell"
-          "$python"
+          "$custom"
           "$line_break"
           "$character"
         ];
@@ -29,6 +29,14 @@ in {
           success_symbol = "[❯](bold green)";
           error_symbol = "[❯](bold red)";
           vicmd_symbol = "[❮](bold green)";
+        };
+
+        custom = {
+          tailscale = {
+            command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
+            when = "tailscale status";
+            format = "\\($output\\)";
+          };
         };
 
         directory = {
