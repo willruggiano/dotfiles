@@ -72,8 +72,8 @@ with lib; {
       XDG_DATA_HOME = "$HOME/.local/share";
     };
 
-    users.defaultUserShell = pkgs.fish;
-
     programs.command-not-found.enable = false;
+
+    users.defaultUserShell = pkgs.fish;
   };
 }

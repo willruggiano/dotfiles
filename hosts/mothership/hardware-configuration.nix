@@ -16,8 +16,6 @@ in {
   ];
 
   boot = {
-    extraModulePackages = with kernelPackages; [acpi_call];
-
     initrd = {
       availableKernelModules = [
         "nvme"
@@ -27,8 +25,9 @@ in {
         "xhci_pci"
       ];
     };
-    kernelModules = ["acpi_call" "kvm-intel"];
+    kernelModules = ["kvm-intel"];
     inherit kernelPackages;
+    kernelParams = ["acpi_backlight=native"];
 
     loader = {
       systemd-boot.enable = true;
@@ -54,6 +53,4 @@ in {
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opentabletdriver.enable = true;
-
-  services.xserver.videoDrivers = ["modesetting"];
 }
