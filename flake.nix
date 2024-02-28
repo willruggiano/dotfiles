@@ -91,6 +91,7 @@
         modules = [
           ./hosts/ecthelion
           inputs.home-manager.nixosModule
+          inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
           inherit (self) lib;
