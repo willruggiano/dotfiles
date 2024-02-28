@@ -33,6 +33,13 @@
   programs.hyprland = {
     enable = true;
     enableNvidiaPatches = true;
+    extensions = {
+      hypridle.enable = true;
+      hyprlock = {
+        enable = true;
+        monitor = "DP-2";
+      };
+    };
   };
   programs.kitty.enable = true;
   programs.pass.enable = true;

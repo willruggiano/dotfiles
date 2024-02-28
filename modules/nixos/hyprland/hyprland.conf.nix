@@ -3,72 +3,83 @@
   hypr-keybinds,
   lib,
   pkgs,
-  screenlock-cmd,
   ...
 }:
-with lib; let
+with lib;
+with config.lib.stylix.colors; let
+  inherit (import ./lib.nix) rgb rgba;
   cfg = config.programs.hyprland;
 in ''
   monitor=,preferred,auto,1
 
-  # TODO: Getting red screen when using this sometimes
-  # exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 10 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' resume 'hyprctl dispatch dpms on'
-  # exec-once = ${pkgs.swayidle}/bin/swayidle -w timeout 300 '${screenlock-cmd}' timeout 330 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
 
-  source = ${toString config.programs.flavours.build.hyprland}
   source = ${toString hypr-keybinds}
 
-  input {
-      kb_layout = us
-      kb_variant =
-      kb_model =
-      kb_options =
-      kb_rules =
-
-      follow_mouse = 1
-
-      touchpad {
-          natural_scroll = 0
-          tap-to-click = 0
-      }
-
-      sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-  }
-
-  general {
-      border_size = 1
-      gaps_in = 0
-      gaps_out = 0
-      layout = master
+  animations {
+    enabled = no
   }
 
   decoration {
-      drop_shadow = false
-      rounding = 0
-      shadow_range = 4
-      shadow_render_power = 3
-      blur {
-          enabled = no
-      }
-  }
+    drop_shadow = false
+    rounding = 0
+    shadow_range = 4
+    shadow_render_power = 3
 
-  animations {
+    blur {
       enabled = no
+    }
+
+    col.shadow = ${rgba base00 "99"}
   }
 
   dwindle {
-      pseudotile = false
-      preserve_split = true
+    pseudotile = false
+    preserve_split = true
   }
 
-  master {
-      new_is_master = false
+  general {
+    border_size = 1
+    gaps_in = 0
+    gaps_out = 0
+    layout = master
+
+    col.active_border = ${rgb base0A}
+    col.inactive_border = ${rgb base03}
   }
 
   gestures {
-      workspace_swipe = false
+    workspace_swipe = false
+  }
+
+  group {
+    # col.border_active = ${rgb base06}
+    # col.border_inactive = ${rgb base0D}
+    # col.border_locked_active = ${rgb base06}
+  }
+
+  input {
+    kb_layout = us
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+    follow_mouse = 1
+
+    touchpad {
+      natural_scroll = 0
+      tap-to-click = 0
+    }
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+  }
+
+  master {
+    new_is_master = false
+  }
+
+  misc {
+    background_color = ${rgb base00}
   }
 
   windowrulev2 = float,title:^(.*Huddle.*)$

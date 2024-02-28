@@ -14,7 +14,9 @@
     devenv.url = "github:cachix/devenv";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
+    hypridle.url = "github:hyprwm/hypridle/v0.1.1";
     hyprland.url = "github:hyprwm/hyprland/v0.29.1";
+    hyprlock.url = "github:hyprwm/hyprlock/v0.1.0";
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
@@ -71,6 +73,10 @@
         (final: prev: {
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") brave;
+        })
+        (final: prev: {
+          inherit (inputs.hypridle.packages."${prev.system}") hypridle;
+          inherit (inputs.hyprlock.packages."${prev.system}") hyprlock;
         })
       ];
 
