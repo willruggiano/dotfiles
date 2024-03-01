@@ -12,6 +12,7 @@
     base16-templates-source.flake = false;
     base16-templates-source.url = "github:chriskempson/base16-templates-source";
     devenv.url = "github:cachix/devenv";
+    git-branchless.url = "github:arxanas/git-branchless";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     hypridle.url = "github:hyprwm/hypridle/v0.1.1";
@@ -73,8 +74,7 @@
         (final: prev: {
           inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") cmake-language-server;
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") brave;
-        })
-        (final: prev: {
+          inherit (inputs.git-branchless.packages."${prev.system}") git-branchless;
           inherit (inputs.hypridle.packages."${prev.system}") hypridle;
           inherit (inputs.hyprlock.packages."${prev.system}") hyprlock;
         })
