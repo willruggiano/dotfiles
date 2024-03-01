@@ -20,61 +20,66 @@
       shell = pkgs.fish;
     };
 
-    programs.bat.enable = true;
-    programs.brave.enable = true;
-    programs.brave.default = true;
-    programs.direnv.enable = true;
-    programs.discord.enable = true;
-    programs.docsets.enable = true;
-    # programs.flavours.enable = true;
-    programs.fish.enable = true;
-    programs.fzf.enable = true;
-    programs.git = {
-      enable = true;
-      signingKey = "0x8C442553F8881E7A";
+    programs = {
+      bat.enable = true;
+      brave.enable = true;
+      brave.default = true;
+      direnv.enable = true;
+      discord.enable = true;
+      docsets.enable = true;
+      fish.enable = true;
+      fzf.enable = true;
+      git = {
+        enable = true;
+        signingKey = "0x8C442553F8881E7A";
+      };
+      htop.enable = true;
+      hyprland = {
+        enable = true;
+        extensions = {
+          hypridle.enable = true;
+          hyprlock = {
+            enable = true;
+            monitor = "eDP-1";
+          };
+        };
+      };
+      kitty.enable = true;
+      pass.enable = true;
+      qutebrowser.enable = true;
+      slack.enable = true;
+      sourcegraph.enable = true;
+      spotify.enable = true;
+      starship.enable = true;
+      steam.enable = true;
+      taskwarrior.enable = true;
+      xplr.enable = true;
+      zk.enable = true;
     };
-    programs.htop.enable = true;
-    programs.hyprland = {
-      enable = true;
-      # wallpapers = {
-      #   "eDP-1".source = ../../wallpapers/gandalf.jpg;
-      # };
-    };
-    programs.kitty.enable = true;
-    programs.pass.enable = true;
-    programs.qutebrowser.enable = true;
-    programs.slack.enable = true;
-    programs.sourcegraph.enable = true;
-    programs.spotify.enable = true;
-    programs.starship.enable = true;
-    programs.steam.enable = true;
-    programs.taskwarrior.enable = true;
-    # programs.wezterm.enable = true;
-    programs.xplr.enable = true;
-    programs.zk.enable = true;
 
-    services.agenix.enable = true;
-    # services.dropbox.enable = true;
-    services.dunst.enable = true;
-    services.kbfs.enable = true;
-    services.pcscd.enable = true;
-    services.pipewire.enable = true;
-    services.postgresql = {
-      enable = false;
-      package = pkgs.postgresql;
-      # The following creates a database and role of the same name as our system user.
-      ensureDatabases = [config.user.name];
-      ensureUsers = [
-        {
-          inherit (config.user) name;
-          ensureClauses.superuser = true;
-          # ensureDBOwnership = true;
-        }
-      ];
+    services = {
+      agenix.enable = true;
+      dunst.enable = true;
+      kbfs.enable = true;
+      pcscd.enable = true;
+      pipewire.enable = true;
+      postgresql = {
+        enable = false;
+        package = pkgs.postgresql;
+        # The following creates a database and role of the same name as our system user.
+        ensureDatabases = [config.user.name];
+        ensureUsers = [
+          {
+            inherit (config.user) name;
+            ensureClauses.superuser = true;
+            # ensureDBOwnership = true;
+          }
+        ];
+      };
+      ssh.enable = true;
+      tailscale.enable = true;
+      udev.packages = [pkgs.yubikey-personalization];
     };
-    services.ssh.enable = true;
-    services.tailscale.enable = true;
-    services.udev.packages = [pkgs.yubikey-personalization];
 
     tendrel.enable = true;
 
