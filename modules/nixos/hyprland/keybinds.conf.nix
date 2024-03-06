@@ -28,7 +28,7 @@ in ''
   bind = $mod, S, togglespecialworkspace
   bind = $mod SHIFT, S, movetoworkspace, special
   bind = $mod, W, exec, ${window-switcher}/bin/switch-window
-  bind = , Pause, exec, ${pkgs.systemd}/bin/loginctl lock-session
+  bind = , F12, exec, ${pkgs.systemd}/bin/loginctl lock-session
   bind = , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
 
   # Move/resize windows with mouse

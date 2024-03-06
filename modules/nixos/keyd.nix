@@ -13,7 +13,7 @@ in {
           capslock = "overload(control, esc)";
           esc = "capslock";
 
-          rightalt = "layer(rightalt)";
+          rightalt = "layer(meta)";
           leftalt = "layer(leftalt)";
 
           "1" = "!";
@@ -28,12 +28,7 @@ in {
           "0" = ")";
         };
 
-        rightalt = {
-          h = "left";
-          j = "down";
-          k = "up";
-          l = "right";
-        };
+        "meta:G" = {};
 
         "leftalt:A" = {
           shift = "layer(leftalt_shift)";

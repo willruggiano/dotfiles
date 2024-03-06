@@ -24,7 +24,7 @@ in {
           # ublock-origin
           "cjpalhdlnbpafiamejdnhcphjbkeiagm"
           # vimmatic
-          "pghmfgnakhjiphmlcnhfpgopkcjhiedc"
+          # "pghmfgnakhjiphmlcnhfpgopkcjhiedc"
         ];
 
         extraOpts = {
