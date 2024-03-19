@@ -39,11 +39,6 @@ in {
         lfs.enable = true;
         config = {
           alias = {
-            dag = "log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order";
-            ll = "log -n1";
-            llo = "log -n1 --oneline";
-            lo = "log --oneline";
-            loq = "log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative";
             pristine = "clean -dffx";
             ss = "sync 'stack()'";
             stack = "!spr";
