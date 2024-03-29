@@ -76,7 +76,7 @@
           inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") brave;
           inherit (inputs.git-branchless.packages."${prev.system}") git-branchless;
           inherit (inputs.hypridle.packages."${prev.system}") hypridle;
-          inherit (inputs.hyprlock.packages."${prev.system}") hyprlock;
+          hyprlock = inputs.hyprlock.packages."${prev.system}".default.override {inherit (final) mesa;};
         })
       ];
 
