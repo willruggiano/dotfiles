@@ -134,15 +134,8 @@
       overlay = import ./packages/overlays.nix;
       overlays = utils.lib.exportOverlays {inherit (self) pkgs inputs;};
 
-      outputsBuilder = channels: let
-        pkgs = channels.nixpkgs;
-      in {
+      outputsBuilder = channels: {
         packages = utils.lib.exportPackages self.overlays channels;
-        devShell = pkgs.stdenvNoCC.mkDerivation {
-          name = "dotfiles";
-          buildInputs = with pkgs; [fup-repl git niv nodejs];
-          shellHook = "";
-        };
       };
     };
   in
@@ -163,6 +156,7 @@
           packages = with pkgs; [just niv nix-output-monitor];
           pre-commit.hooks = {
             alejandra.enable = true;
+            stylua.enable = true;
           };
           scripts = {
             update-docsets.exec = let
