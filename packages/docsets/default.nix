@@ -1,11 +1,12 @@
 {
-  lib,
-  stdenv,
-  fetchurl,
-  writeShellApplication,
-  jq,
-  nix,
   buildEnv,
+  callPackage,
+  fetchurl,
+  jq,
+  lib,
+  nix,
+  stdenv,
+  writeShellApplication,
 }: let
   docsets = ["C" "C++" "CMake" "JavaScript" "Lua 5.1" "Lua 5.4" "Python 3" "Rust" "TypeScript"];
 
@@ -53,6 +54,10 @@
 in
   buildEnv {
     name = "docsets";
-    paths = docsetDrvs;
+    paths =
+      docsetDrvs
+      ++ [
+        (callPackage ./postgresql.docset.nix {})
+      ];
     passthru = {inherit update-docsets;};
   }

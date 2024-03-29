@@ -8,9 +8,10 @@ with colors; let
   font_family = "JetBrains Mono";
 in ''
   background {
+    monitor =
     path = screenshot
-    blur_size = 5
-    blur_passes = 4
+    blur_size = 7
+    blur_passes = 3
   }
 
   input-field {
