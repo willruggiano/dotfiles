@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./builders.nix
     ./hardware-configuration.nix
@@ -13,6 +9,9 @@
   ];
 
   config = {
+    networking.hostName = "mothership";
+    nixpkgs.hostPlatform = "x86_64-linux";
+
     user = rec {
       name = "bombadil";
       initialPassword = name;
@@ -52,8 +51,6 @@
       spotify.enable = true;
       starship.enable = true;
       steam.enable = true;
-      taskwarrior.enable = true;
-      xplr.enable = true;
       zk.enable = true;
     };
 
@@ -63,19 +60,6 @@
       kbfs.enable = true;
       pcscd.enable = true;
       pipewire.enable = true;
-      postgresql = {
-        enable = false;
-        package = pkgs.postgresql;
-        # The following creates a database and role of the same name as our system user.
-        ensureDatabases = [config.user.name];
-        ensureUsers = [
-          {
-            inherit (config.user) name;
-            ensureClauses.superuser = true;
-            # ensureDBOwnership = true;
-          }
-        ];
-      };
       ssh.enable = true;
       tailscale.enable = true;
       udev.packages = [pkgs.yubikey-personalization];

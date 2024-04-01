@@ -65,6 +65,4 @@ in ''
 
   # security
   c.content.tls.certificate_errors = 'ask-block-thirdparty'
-
-  config.source('${config.programs.flavours.build.qutebrowser}')
 ''

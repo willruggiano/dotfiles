@@ -67,9 +67,9 @@ in {
         template = "${pkgs.base16-templates}/templates/fzf/templates/fish.mustache";
       };
 
-      home.configFile = {
-        "fish/conf.d/base16-fzf.fish".source = config.programs.flavours.build.fzf;
-      };
+      # home.configFile = {
+      #   "fish/conf.d/base16-fzf.fish".source = config.programs.flavours.build.fzf;
+      # };
     })
   ];
 }

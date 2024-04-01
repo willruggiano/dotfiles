@@ -3,31 +3,30 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.services.dunst;
 in {
   options = {
     services.dunst = {
-      enable = mkEnableOption "Enable dunst notification daemon";
-      package = mkOpt types.package pkgs.dunst;
+      enable = lib.mkEnableOption "Enable dunst notification daemon";
+      package = lib.mkPackageOption pkgs "dunst" {};
     };
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [dunst libnotify];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [cfg.package pkgs.libnotify];
 
     home.dataFile = {
-      "dbus-1/services/org.knopwob.dunst.service".source = "${pkgs.dunst}/share/dbus-1/services/org.knopwob.dunst.service";
+      "dbus-1/services/org.knopwob.dunst.service".source = "${cfg.package}/share/dbus-1/services/org.knopwob.dunst.service";
     };
 
     programs.flavours.items.dunst = {
       template = "${pkgs.base16-templates}/templates/dunst/templates/default.mustache";
     };
 
-    home.configFile = {
-      "dunst/dunstrc".source = config.programs.flavours.build.dunst;
-    };
+    # home.configFile = {
+    #   "dunst/dunstrc".source = config.programs.flavours.build.dunst;
+    # };
 
     systemd.user.services.dunst = {
       description = "dunst, a notification daemon";

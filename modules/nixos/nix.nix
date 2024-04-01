@@ -1,41 +1,41 @@
 {
-  inputs,
-  config,
   lib,
   pkgs,
+  self,
   ...
-}:
-with lib; {
-  config = {
-    nix = {
-      settings = let
-        users = ["root" config.user.name];
-      in {
-        allowed-users = users;
-        auto-optimise-store = mkDefault true;
-        cores = mkDefault 0;
-        substituters = [
-          "https://nix-community.cachix.org"
-          "https://willruggiano.cachix.org"
-          "https://nixpkgs-wayland.cachix.org"
-        ];
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "willruggiano.cachix.org-1:rz00ME8/uQfWe+tN3njwK5vc7P8GLWu9qbAjjJbLoSw="
-          "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-        ];
-        trusted-users = users;
-      };
-      gc.dates = mkDefault "weekly";
-    };
-
-    user = {
-      extraGroups = ["wheel"];
-      isNormalUser = true;
-      group = "users";
-    };
-
-    system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
-    system.stateVersion = mkDefault "21.05";
+}: {
+  user = {
+    extraGroups = ["wheel"];
+    isNormalUser = true;
+    group = "users";
   };
+
+  environment = {
+    shells = with pkgs; [bash fish zsh];
+    systemPackages = with pkgs; [
+      acpitool
+      cowsay
+      go-task
+      man-pages
+      man-pages-posix
+      nix-output-monitor
+      nurl
+    ];
+  };
+
+  documentation.dev.enable = true;
+
+  environment.variables = {
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+  };
+
+  programs.command-not-found.enable = false;
+
+  users.defaultUserShell = pkgs.fish;
+
+  system.configurationRevision = lib.mkIf (self ? rev) self.rev;
+  system.stateVersion = lib.mkDefault "21.05";
 }

@@ -1,40 +1,42 @@
 {
-  options,
   config,
   lib,
+  options,
   ...
-}:
-with lib; {
-  options = with types; {
-    user = mkOpt attrs {};
+}: let
+  t = lib.types;
+  mkOpt = type: default: lib.mkOption {inherit type default;};
+in {
+  options = {
+    user = mkOpt t.attrs {};
 
     dotfiles = {
-      dir = mkOpt path "/etc/nixos";
-      bin = mkOpt path "${config.dotfiles.dir}/bin";
-      configDir = mkOpt path "${config.dotfiles.dir}/.config";
-      modules = mkOpt path "${config.dotfiles.dir}/modules";
-      themes = mkOpt path "${config.dotfiles.modulesDir}/themes";
+      dir = mkOpt t.path "/etc/nixos";
+      bin = mkOpt t.path "${config.dotfiles.dir}/bin";
+      configDir = mkOpt t.path "${config.dotfiles.dir}/.config";
+      modules = mkOpt t.path "${config.dotfiles.dir}/modules";
+      themes = mkOpt t.path "${config.dotfiles.modulesDir}/themes";
     };
 
     home = {
-      file = mkOpt' attrs {} "Files to place directly in $HOME";
-      configFile = mkOpt' attrs {} "Files to place in $XDG_CONFIG_HOME";
-      dataFile = mkOpt' attrs {} "Files to place in $XDG_DATA_HOME";
+      file = mkOpt t.attrs {};
+      configFile = mkOpt t.attrs {};
+      dataFile = mkOpt t.attrs {};
     };
 
-    env = mkOption {
-      type = attrsOf (oneOf [str path (listOf (either str path))]);
+    env = lib.mkOption {
+      type = t.attrsOf (t.oneOf [t.str t.path (t.listOf (t.either t.str t.path))]);
       apply =
-        mapAttrs
+        lib.mapAttrs
         (n: v:
-          if isList v
-          then concatMapStringsSep ":" toString v
-          else (toString v));
+          if builtins.isList v
+          then lib.concatMapStringsSep ":" builtins.toString v
+          else (builtins.toString v));
       default = {};
       description = "";
     };
 
-    term = mkOpt str "kitty";
+    term = mkOpt t.str "kitty";
   };
 
   config = {
@@ -48,23 +50,23 @@ with lib; {
 
       users."${config.user.name}" = {
         home = {
-          file = mkAliasDefinitions options.home.file;
+          file = lib.mkAliasDefinitions options.home.file;
           stateVersion = "21.05";
         };
         xdg = {
           enable = true;
-          configFile = mkAliasDefinitions options.home.configFile;
-          dataFile = mkAliasDefinitions options.home.dataFile;
+          configFile = lib.mkAliasDefinitions options.home.configFile;
+          dataFile = lib.mkAliasDefinitions options.home.dataFile;
         };
       };
     };
 
-    users.users."${config.user.name}" = mkAliasDefinitions options.user;
+    users.users."${config.user.name}" = lib.mkAliasDefinitions options.user;
 
     env.PATH = ["${config.dotfiles.bin}" "$XDG_BIN_HOME" "$PATH"];
 
     environment.extraInit =
-      concatStringsSep "\n"
-      (mapAttrsToList (n: v: "export ${n}=\"${v}\"") config.env);
+      lib.concatStringsSep "\n"
+      (lib.mapAttrsToList (n: v: "export ${n}=\"${v}\"") config.env);
   };
 }

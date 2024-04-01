@@ -26,7 +26,7 @@ in {
         --theme='${colorscheme}'
       '';
 
-      "bat/themes/${colorscheme}.tmTheme".source = config.programs.flavours.build.bat;
+      # "bat/themes/${colorscheme}.tmTheme".source = config.programs.flavours.build.bat;
     };
   };
 }

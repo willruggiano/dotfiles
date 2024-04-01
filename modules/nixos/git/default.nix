@@ -124,7 +124,7 @@ in {
             };
           };
         };
-        "lazygit/theme.yml".source = config.programs.flavours.build.lazygit;
+        # "lazygit/theme.yml".source = config.programs.flavours.build.lazygit;
       };
     }
   ]);
