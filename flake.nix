@@ -156,6 +156,7 @@
           packages = with pkgs; [just niv nix-output-monitor];
           pre-commit.hooks = {
             alejandra.enable = true;
+            ruff.enable = true;
             stylua.enable = true;
           };
           scripts = {
