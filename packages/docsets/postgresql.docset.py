@@ -1,7 +1,8 @@
 # https://github.com/drbraden/pgdash
 import os
-import sqlite3
 import re
+import sqlite3
+
 from bs4 import BeautifulSoup
 
 conn = sqlite3.connect("postgresql.docset/Contents/Resources/docSet.dsidx")
