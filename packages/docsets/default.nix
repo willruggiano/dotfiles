@@ -30,34 +30,35 @@
     '';
   };
 
-  docsetDrvs = map (lang: let
-    lang' = builtins.replaceStrings [" "] ["_"] lang;
-  in
-    stdenv.mkDerivation {
-      name = "${lang}-docset";
-      src = let
-        src' = lib.importJSON "${toString ./.}/docsets/${lang'}.json";
-      in
-        fetchurl {inherit (src') url sha256;};
+  docsetDrvs =
+    [(callPackage ./postgresql.docset.nix {})]
+    ++ map (lang: let
+      lang' = builtins.replaceStrings [" "] ["_"] lang;
+    in
+      stdenv.mkDerivation {
+        name = "${lang}-docset";
+        src = let
+          src' = lib.importJSON "${toString ./.}/docsets/${lang'}.json";
+        in
+          fetchurl {inherit (src') url sha256;};
 
-      installPhase = ''
-        mkdir -p $out/share/docsets
-        cp -r . $out/share/docsets/${lang'}.docset
-      '';
+        installPhase = ''
+          mkdir -p $out/share/docsets
+          cp -r . $out/share/docsets/${lang'}.docset
+        '';
 
-      dontPatch = true;
-      dontConfigure = true;
-      dontBuild = true;
-      dontFixup = true;
-    })
-  docsets;
+        dontPatch = true;
+        dontConfigure = true;
+        dontBuild = true;
+        dontFixup = true;
+      })
+    docsets;
 in
   buildEnv {
     name = "docsets";
-    paths =
-      docsetDrvs
-      ++ [
-        (callPackage ./postgresql.docset.nix {})
-      ];
-    passthru = {inherit update-docsets;};
+    paths = docsetDrvs;
+    passthru = {
+      inherit update-docsets;
+      docsets = builtins.listToAttrs (builtins.map (drv: lib.nameValuePair drv.name drv) docsetDrvs);
+    };
   }

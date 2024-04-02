@@ -13,8 +13,8 @@ in {
       template = "shell";
     };
 
-    home.configFile = {
-      "zsh/extra/19-zsh-colors.zsh".source = config.programs.flavours.build.zsh;
-    };
+    # home.configFile = {
+    #   "zsh/extra/19-zsh-colors.zsh".source = config.programs.flavours.build.zsh;
+    # };
   };
 }

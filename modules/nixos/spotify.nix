@@ -30,19 +30,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.spotify-tui];
+    # environment.systemPackages = [pkgs.spotify-tui];
 
-    systemd.user.services.spotifyd = {
-      description = "spotifyd, a Spotify playing daemon";
-      after = ["network-online.target" "sound.target"];
-      wants = ["network-online.target" "sound.target"];
-      wantedBy = ["default.target"];
-      environment.SHELL = "/bin/sh";
-      serviceConfig = {
-        ExecStart = "${spotifyd}/bin/spotifyd --no-daemon --cache-path ${config.user.home}/.cache/spotifyd --config-path ${spotifydConf}";
-        Restart = "always";
-        RestartSec = 12;
-      };
-    };
+    # systemd.user.services.spotifyd = {
+    #   description = "spotifyd, a Spotify playing daemon";
+    #   after = ["network-online.target" "sound.target"];
+    #   wants = ["network-online.target" "sound.target"];
+    #   wantedBy = ["default.target"];
+    #   environment.SHELL = "/bin/sh";
+    #   serviceConfig = {
+    #     ExecStart = "${spotifyd}/bin/spotifyd --no-daemon --cache-path ${config.user.home}/.cache/spotifyd --config-path ${spotifydConf}";
+    #     Restart = "always";
+    #     RestartSec = 12;
+    #   };
+    # };
   };
 }

@@ -62,7 +62,7 @@ in {
                 key_expand=Control_L-l
                 layer=overlay
               '';
-              "wofi/style.css".source = config.programs.flavours.build.wofi;
+              # "wofi/style.css".source = config.programs.flavours.build.wofi;
             }
             (mkIf (cfg.wallpapers != {}) {
               home.configFile = {
@@ -86,7 +86,6 @@ in {
           systemPackages = with pkgs; [
             grim
             hyprpaper
-            hyprpicker
             slurp
             wl-clipboard
             wofi

@@ -13,9 +13,7 @@ in {
 
   config = mkMerge [
     (mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [
-        firefox-extended
-      ];
+      environment.systemPackages = [pkgs.firefox];
     })
     (mkIf cfg.default {
       environment.variables.BROWSER = "firefox";
