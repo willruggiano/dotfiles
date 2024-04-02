@@ -86,7 +86,6 @@ in {
           systemPackages = with pkgs; [
             grim
             hyprpaper
-            hyprpicker
             slurp
             wl-clipboard
             wofi

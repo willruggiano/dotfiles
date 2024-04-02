@@ -3,30 +3,30 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
   cfg = config.hardware.nvidia;
 in {
-  options.hardware.nvidia.enable = mkEnableOption "nvidia";
+  options.hardware.nvidia.enable = lib.mkEnableOption "nvidia";
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [nvtop];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [nvtopPackages.full];
 
-    hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+    hardware = {
+      nvidia = {
+        modesetting.enable = true;
+        nvidiaSettings = true;
+        open = true;
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
+      };
+      opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+      };
     };
 
     services.xserver.videoDrivers = ["nvidia"];
-
-    hardware.nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
   };
 }

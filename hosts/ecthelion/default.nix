@@ -7,6 +7,9 @@
     ./security.nix
   ];
 
+  networking.hostName = "ecthelion";
+  nixpkgs.hostPlatform = "x86_64-linux";
+
   user = rec {
     name = "bombadil";
     initialPassword = name;
@@ -14,61 +17,57 @@
     shell = pkgs.fish;
   };
 
-  programs.bat.enable = true;
-  programs.brave.enable = true;
-  programs.brave.default = true;
-  programs.browserpass.enable = true;
-  programs.blender.enable = true;
-  programs.direnv.enable = true;
-  programs.discord.enable = true;
-  programs.docsets.enable = true;
-  # programs.flavours.enable = true;
-  programs.fish.enable = true;
-  programs.fzf.enable = true;
-  programs.git = {
-    enable = true;
-    signingKey = "0xB3FE328FB2A3ECD6";
-  };
-  programs.htop.enable = true;
-  programs.hyprland = {
-    enable = true;
-    enableNvidiaPatches = true;
-    extensions = {
-      hypridle.enable = true;
-      hyprlock = {
-        enable = true;
-        monitor = "DP-2";
+  programs = {
+    bat.enable = true;
+    brave.enable = true;
+    brave.default = true;
+    browserpass.enable = true;
+    direnv.enable = true;
+    discord.enable = true;
+    docsets.enable = true;
+    fish.enable = true;
+    fzf.enable = true;
+    git = {
+      enable = true;
+      signingKey = "0xB3FE328FB2A3ECD6";
+    };
+    htop.enable = true;
+    hyprland = {
+      enable = true;
+      extensions = {
+        hypridle.enable = true;
+        hyprlock = {
+          enable = true;
+          monitor = "DP-2";
+        };
       };
     };
+    kitty.enable = true;
+    pass.enable = true;
+    qutebrowser.enable = true;
+    slack.enable = true;
+    sourcegraph.enable = true;
+    spotify.enable = true;
+    starship.enable = true;
+    steam.enable = true;
+    zk.enable = true;
   };
-  programs.kitty.enable = true;
-  programs.pass.enable = true;
-  programs.qutebrowser.enable = true;
-  programs.slack.enable = true;
-  programs.sourcegraph.enable = true;
-  programs.spotify.enable = true;
-  programs.starship.enable = true;
-  programs.steam.enable = true;
-  programs.taskwarrior.enable = true;
-  # programs.wezterm.enable = true;
-  programs.xplr.enable = true;
-  programs.zk.enable = true;
 
-  services.agenix.enable = true;
-  services.autorandrd = {
-    enable = true;
-    config = ./monitor-layout.kdl;
+  services = {
+    agenix.enable = true;
+    autorandrd = {
+      enable = true;
+      config = ./monitor-layout.kdl;
+    };
+    dunst.enable = true;
+    kbfs.enable = true;
+    pcscd.enable = true;
+    pipewire.enable = true;
+    ssh.enable = true;
+    tailscale.enable = true;
+    udev.packages = [pkgs.yubikey-personalization];
   };
-  # services.dropbox.enable = true;
-  services.dunst.enable = true;
-  services.kbfs.enable = true;
-  services.pcscd.enable = true;
-  services.pipewire.enable = true;
-  services.ssh.enable = true;
-  services.tailscale.enable = true;
-  services.udev.packages = [pkgs.yubikey-personalization];
 
   tendrel.enable = true;
-
   virtualisation.docker.enable = true;
 }

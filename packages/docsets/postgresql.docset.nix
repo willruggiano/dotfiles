@@ -4,7 +4,7 @@
   python3,
 }:
 stdenv.mkDerivation {
-  name = "postgresql-docset";
+  name = "Postgresql.docset";
   src = ./.;
 
   dontFetch = true;

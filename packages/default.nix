@@ -3,11 +3,16 @@
   self,
   ...
 }: {
-  perSystem = {system, ...}: {
-    _module.args.pkgs = import inputs.nixpkgs {
+  perSystem = {system, ...}: let
+    pkgs = import inputs.nixpkgs {
       inherit system;
       overlays = [self.overlays.default];
     };
+  in {
+    _module.args.pkgs = pkgs;
+
+    # for python lsp auto-complete
+    devenv.shells.default.packages = pkgs.docsets.docsets."Postgresql.docset".buildInputs;
   };
 
   flake = {

@@ -6,28 +6,61 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-flake.url = "github:srid/nixos-flake";
 
     agenix.url = "github:ryantm/agenix";
-    base16-templates-source.flake = false;
-    base16-templates-source.url = "github:chriskempson/base16-templates-source";
+    base16-templates-source = {
+      url = "github:chriskempson/base16-templates-source";
+      flake = false;
+    };
     devenv.url = "github:cachix/devenv";
     git-branchless.url = "github:arxanas/git-branchless";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hypridle.url = "github:hyprwm/hypridle/v0.1.1";
-    hyprland.url = "github:hyprwm/hyprland/v0.37.1";
-    hyprlock.url = "github:hyprwm/hyprlock/v0.2.0";
-    hyprpaper.url = "github:hyprwm/hyprpaper";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    nix-flake-templates.flake = false;
-    nix-flake-templates.url = "github:willruggiano/nix-flake-templates";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/hyprland/v0.38.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hyprlang.follows = "hyprland/hyprlang";
+        systems.follows = "hyprland/systems";
+      };
+    };
+    nix-flake-templates = {
+      url = "github:willruggiano/nix-flake-templates";
+      flake = false;
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nom.url = "github:maralorn/nix-output-monitor";
     nur.url = "github:nix-community/nur";
     nurl.url = "github:nix-community/nurl";
-    pre-commit.url = "github:cachix/pre-commit-hooks.nix";
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs = {
@@ -39,7 +72,6 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devenv.flakeModule
-        inputs.pre-commit.flakeModule
         ./packages
         ./modules
         ./hosts

@@ -89,20 +89,20 @@
         };
         overlays = [
           self.overlays.default
+          inputs.git-branchless.overlays.default
           inputs.hyprland.overlays.default
+          inputs.hypridle.overlays.default
+          inputs.hyprlock.overlays.default
           inputs.hyprpaper.overlays.default
-          inputs.hyprpicker.overlays.default
           inputs.nur.overlay
+          inputs.nurl.overlays.default
           (final: prev: {
             inherit (inputs) base16-templates-source;
+            git-branchless = prev.git-branchless.overrideAttrs (_: {
+              # patches in the nixpkgs definition have been merged
+              patches = [];
+            });
             nix-output-monitor = inputs.nom.packages."${prev.system}".default;
-            nurl = inputs.nurl.packages."${prev.system}".default;
-          })
-          (final: prev: {
-            inherit (inputs.nixpkgs-master.legacyPackages."${prev.system}") brave;
-            inherit (inputs.git-branchless.packages."${prev.system}") git-branchless;
-            inherit (inputs.hypridle.packages."${prev.system}") hypridle;
-            hyprlock = inputs.hyprlock.packages."${prev.system}".default.override {inherit (final) mesa;};
           })
         ];
       };
