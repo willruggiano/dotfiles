@@ -104,16 +104,7 @@ in {
       })
       (mkIf cfg.extensions.hypridle.enable {
         home.configFile = {
-          "hypr/hypridle.conf".text = import ./hypridle.conf.nix {inherit lib pkgs;};
-        };
-        systemd.user.services.hypridle = {
-          after = ["graphical-session.target"];
-          wantedBy = ["default.target"];
-          serviceConfig = {
-            ExecStart = lib.getExe pkgs.hypridle;
-            Restart = "always";
-            RestartSec = 10;
-          };
+          "hypr/hypridle.conf".source = ./hypridle.conf;
         };
       })
     ]

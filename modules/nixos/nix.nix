@@ -1,11 +1,15 @@
 {
+  config,
   lib,
   pkgs,
   self,
   ...
 }: {
   user = {
-    extraGroups = ["wheel"];
+    extraGroups = [
+      "wheel"
+      (lib.optionalString config.hardware.i2c.enable config.hardware.i2c.group)
+    ];
     isNormalUser = true;
     group = "users";
   };

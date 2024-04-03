@@ -12,7 +12,9 @@ in {
 
   config = {
     boot = {
+      inherit kernelPackages;
       extraModulePackages = with kernelPackages; [acpi_call];
+      kernelModules = ["acpi_call" "kvm-intel"];
 
       initrd = {
         availableKernelModules = [
@@ -32,8 +34,6 @@ in {
         "fs.inotify.max_user_watches" = 1048576; # default: 8192
         "fs.inotify.max_queued_events" = 65536; # default: 16384
       };
-      kernelModules = ["acpi_call" "kvm-intel"];
-      inherit kernelPackages;
 
       loader = {
         systemd-boot.enable = true;
@@ -61,6 +61,7 @@ in {
       bluetooth.enable = true;
       cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
       enableRedistributableFirmware = true;
+      i2c.enable = true;
       nvidia.enable = true;
     };
   };

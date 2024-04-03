@@ -12,7 +12,8 @@ with config.lib.stylix.colors; let
 in ''
   monitor=,preferred,auto,1
 
-  ${optionalString (cfg.wallpapers != {}) "exec-once = ${pkgs.hyprpaper}/bin/hyprpaper"}
+  ${optionalString cfg.extensions.hypridle.enable "exec-once = ${lib.getExe pkgs.hypridle}"}
+  ${optionalString (cfg.wallpapers != {}) "exec-once = ${lib.getExe pkgs.hyprpaper}"}
 
   source = ${toString hypr-keybinds}
 
@@ -53,9 +54,9 @@ in ''
   }
 
   group {
-    # col.border_active = ${rgb base06}
-    # col.border_inactive = ${rgb base0D}
-    # col.border_locked_active = ${rgb base06}
+    col.border_active = ${rgb base06}
+    col.border_inactive = ${rgb base0D}
+    col.border_locked_active = ${rgb base06}
   }
 
   input {
