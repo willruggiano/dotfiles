@@ -59,7 +59,6 @@
         ./nixos/nvidia.nix
         ./nixos/obs.nix
         ./nixos/pulseaudio.nix
-        ./nixos/qutebrowser.nix
         ./nixos/shell.nix
         ./nixos/spotify.nix
         ./nixos/ssh.nix

@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: let
@@ -15,8 +16,8 @@
 in ''
   $mod = ALT
 
-  bind = $mod, RETURN, exec, ${config.programs.${term}.package}/bin/${term}
-  bind = $mod SHIFT, RETURN, exec, ${config.programs.brave.package}/bin/brave
+  bind = $mod, RETURN, exec, ${lib.getExe config.programs.${term}.package}
+  bind = $mod SHIFT, RETURN, exec, ${lib.getExe config.programs.qutebrowser.package}
   bind = $mod SHIFT, C, killactive
   bind = $mod, SPACE, togglefloating
   bind = $mod, C, centerwindow

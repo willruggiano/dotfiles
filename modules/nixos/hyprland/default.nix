@@ -49,7 +49,7 @@ in {
         home.configFile = let
           hypr-keybinds = pkgs.writeTextFile {
             name = "hypr-keybinds.conf";
-            text = import ./keybinds.conf.nix {inherit config pkgs;};
+            text = import ./keybinds.conf.nix {inherit config lib pkgs;};
           };
         in
           mkMerge [
