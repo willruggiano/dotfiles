@@ -22,15 +22,15 @@ in ''
   config.bind('<Tab>', 'command-history-next', mode='command')
   config.bind('<Shift-Tab>', 'command-history-prev', mode='command')
 
-  config.bind(';q', 'hint links run :set-cmd-text -s :quickmark-add {hint-url}')
+  config.bind(';q', 'hint links run :cmd-set-text -s :quickmark-add {hint-url}')
   config.unbind('q')  # as it will be the root of our quickmark hierarchy
-  config.bind('ql', 'set-cmd-text -s :quickmark-load')
-  config.bind('qL', 'set-cmd-text -s :quickmark-load -t')
+  config.bind('ql', 'cmd-set-text -s :quickmark-load')
+  config.bind('qL', 'cmd-set-text -s :quickmark-load -t')
   config.bind('qa', 'quickmark-save')
   config.bind('qd', 'quickmark-del')
   config.unbind('b')  # as it will be the root of our bookmark hierarchy
-  config.bind('bl', 'set-cmd-text -s :bookmark-load')
-  config.bind('bL', 'set-cmd-text -s :bookmark-load -t')
+  config.bind('bl', 'cmd-set-text -s :bookmark-load')
+  config.bind('bL', 'cmd-set-text -s :bookmark-load -t')
   config.bind('ba', 'bookmark-add')
   config.bind('bd', 'bookmark-del')
   config.bind('m', 'mode-enter set_mark')
