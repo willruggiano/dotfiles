@@ -65,6 +65,7 @@
         ./nixos/starship.nix
         ./nixos/stylix.nix
         ./nixos/syncthing.nix
+        ./nixos/trezor.nix
         ./nixos/utils.nix
         ./nixos/virtualisation.nix
         ./nixos/yubico.nix

@@ -49,19 +49,7 @@ in ''
   # default start page/search engine
   c.url.default_page = 'https://github.com'
   c.url.start_pages = ['https://github.com']
-  c.url.searchengines.update({
-      'brave': 'https://search.brave.com/search?q={}',
-      'cpp': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
-      'ddg': 'https://duckduckgo.com/?q={}',
-      'github': 'https://github.com/search?q={}',
-      'google': 'https://google.com/search?q={}',
-      'luarocks': 'https://luarocks.org/search?q={}',
-      'nixpkgs': 'https://search.nixos.org/packages?channel=unstable&sort=relevance&type=packages&query={}',
-      'pypi': 'https://pypi.org/project/{}',
-      'sg': 'https://sourcegraph.com/search?q=context:global+{}&patternType=literal',
-      'twitch': 'https://www.twitch.tv/{}',
-  })
-  c.url.searchengines['DEFAULT'] = c.url.searchengines['brave']
+  c.url.searchengines['DEFAULT'] = 'https://search.brave.com/search?q={}'
 
   # security
   c.content.tls.certificate_errors = 'ask-block-thirdparty'

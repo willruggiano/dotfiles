@@ -9,29 +9,17 @@ with lib; let
 in {
   options.services.dropbox = {
     enable = mkEnableOption "Dropbox";
-    package = mkPackageOption pkgs "dropbox" {};
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [dropbox-cli];
+    environment.systemPackages = with pkgs; [maestral];
 
-    systemd.user.services.dropbox = {
-      description = "dropbox";
+    systemd.user.services.maestral = {
+      description = "Maestral daemon";
       wantedBy = ["default.target"];
-      # environment = {
-      #   QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
-      #   QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
-      # };
       serviceConfig = {
-        Type = "forking";
+        ExecStart = "${lib.getExe pkgs.maestral} start --foreground";
         Restart = "on-failure";
-        KillMode = "control-group";
-        ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
-        ExecStart = "${cfg.package}/bin/dropbox start";
-        # Hardening
-        PrivateTmp = true;
-        ProtectSystem = "full";
-        Nice = 10;
       };
     };
   };

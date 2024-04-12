@@ -60,12 +60,14 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
+    dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
     ssh.enable = true;
     tailscale.enable = true;
+    trezord.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
 
