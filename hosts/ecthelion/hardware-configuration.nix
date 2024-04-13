@@ -62,6 +62,7 @@ in {
       cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
       enableRedistributableFirmware = true;
       i2c.enable = true;
+      logitech.wireless.enable = true;
       nvidia.enable = true;
     };
   };
