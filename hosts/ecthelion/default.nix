@@ -65,6 +65,7 @@
     kbfs.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
+    remarkable.enable = true;
     ssh.enable = true;
     tailscale.enable = true;
     trezord.enable = true;
