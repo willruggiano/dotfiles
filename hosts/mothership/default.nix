@@ -43,6 +43,7 @@
       };
     };
     kitty.enable = true;
+    obs-studio.enable = true;
     pass.enable = true;
     qutebrowser.enable = true;
     slack.enable = true;
@@ -55,6 +56,7 @@
 
   services = {
     agenix.enable = true;
+    dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
     pcscd.enable = true;
