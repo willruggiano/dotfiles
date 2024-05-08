@@ -111,7 +111,7 @@
       nix = {
         nixPath = [
           "nixpkgs=${inputs.nixpkgs}"
-          "nixpkgs-latest=${inputs.nixpkgs-master}"
+          "nixpkgs-latest=${inputs.nixpkgs-latest}"
           "nixos-stable=${inputs.nixpkgs-stable}"
         ];
         registry.nixpkgs.flake = inputs.nixpkgs;

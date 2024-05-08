@@ -19,6 +19,7 @@
     overlays.default = final: prev: {
       autorandr-rs = prev.callPackage ./autorandr-rs {};
       base16-templates = prev.callPackage ./base16-templates {};
+      brave-browser = inputs.nixpkgs-latest.legacyPackages.${prev.system}.brave;
       docsets = prev.callPackage ./docsets {};
       magic-enter-fish = prev.callPackage ./magic-enter.fish {};
       nonicons = prev.callPackage ./nonicons {};

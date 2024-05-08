@@ -9,7 +9,7 @@ with lib; let
 in {
   options.programs.brave = {
     enable = mkEnableOption "brave browser";
-    package = mkPackageOption pkgs "brave" {};
+    package = mkPackageOption pkgs "brave-browser" {};
     default = mkOption {
       type = types.bool;
       default = false;

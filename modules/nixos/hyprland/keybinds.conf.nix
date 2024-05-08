@@ -17,7 +17,7 @@ in ''
   $mod = ALT
 
   bind = $mod, RETURN, exec, ${lib.getExe config.programs.${term}.package}
-  bind = $mod SHIFT, RETURN, exec, ${lib.getExe config.programs.qutebrowser.package}
+  bind = $mod SHIFT, RETURN, exec, ${lib.getExe config.programs.brave.package}
   bind = $mod SHIFT, C, killactive
   bind = $mod, SPACE, togglefloating
   bind = $mod, C, centerwindow
