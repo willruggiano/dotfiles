@@ -11,12 +11,14 @@ in {
     {
       programs.chromium = {
         extensions = mkBefore [
+          # apollo client devtools
+          "jdkknkkbebbapilgoeccciglkfbmbnfm"
           # cloaked
           "oppdbdefikkkihgbliidckokhgcmmiga"
           # duck duck go privacy essentials
           "bkdgflcldnnnapblkhphbgpggdiikppg"
           # firenvim
-          "egpjdkipkomnmjhjmdamaniclmdlobbo"
+          # "egpjdkipkomnmjhjmdamaniclmdlobbo"
           # metamask
           "nkbihfbeogaeaoehlefnkodbefgpgknn"
           # sourcegraph
