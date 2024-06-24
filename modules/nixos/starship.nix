@@ -15,6 +15,7 @@ in {
           "$directory"
           "$git_branch"
           "$nix_shell"
+          "$python"
           "$custom"
           "$line_break"
           "$character"
