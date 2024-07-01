@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ./i18n.nix
     ./keyboard-layout.nix
     ./networking.nix
     ./security.nix

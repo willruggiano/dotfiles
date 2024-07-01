@@ -83,59 +83,64 @@
         }
       ];
 
-      nixpkgs = {
-        config = {
-          allowBroken = true;
-          allowUnfree = true;
+      config = {
+        nixpkgs = {
+          config = {
+            allowBroken = true;
+            allowUnfree = true;
+          };
+          overlays = [
+            self.overlays.default
+            inputs.git-branchless.overlays.default
+            inputs.hyprland.overlays.default
+            inputs.hypridle.overlays.default
+            inputs.hyprlock.overlays.default
+            inputs.hyprpaper.overlays.default
+            inputs.nur.overlay
+            inputs.nurl.overlays.default
+            (final: prev: {
+              inherit (inputs) base16-templates-source;
+              git-branchless = prev.git-branchless.overrideAttrs (_: {
+                # patches in the nixpkgs definition have been merged
+                patches = [];
+              });
+              nix-output-monitor = inputs.nom.packages."${prev.system}".default;
+            })
+          ];
         };
-        overlays = [
-          self.overlays.default
-          inputs.git-branchless.overlays.default
-          inputs.hyprland.overlays.default
-          inputs.hypridle.overlays.default
-          inputs.hyprlock.overlays.default
-          inputs.hyprpaper.overlays.default
-          inputs.nur.overlay
-          inputs.nurl.overlays.default
-          (final: prev: {
-            inherit (inputs) base16-templates-source;
-            git-branchless = prev.git-branchless.overrideAttrs (_: {
-              # patches in the nixpkgs definition have been merged
-              patches = [];
-            });
-            nix-output-monitor = inputs.nom.packages."${prev.system}".default;
-          })
-        ];
-      };
 
-      nix = {
-        nixPath = [
-          "nixpkgs=${inputs.nixpkgs}"
-          "nixpkgs-latest=${inputs.nixpkgs-latest}"
-          "nixos-stable=${inputs.nixpkgs-stable}"
-        ];
-        registry.nixpkgs.flake = inputs.nixpkgs;
-        settings = {
-          auto-optimise-store = true;
-          experimental-features = "nix-command flakes repl-flake";
-          extra-sandbox-paths = ["/nix/var/cache/ccache"];
-          max-jobs = "auto";
-          substituters = [
-            "https://nix-community.cachix.org"
-            "https://willruggiano.cachix.org"
-            "https://nixpkgs-wayland.cachix.org"
+        nix = {
+          nixPath = [
+            "nixpkgs=${inputs.nixpkgs}"
+            "nixpkgs-latest=${inputs.nixpkgs-latest}"
+            "nixos-stable=${inputs.nixpkgs-stable}"
           ];
-          trusted-public-keys = [
-            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-            "willruggiano.cachix.org-1:rz00ME8/uQfWe+tN3njwK5vc7P8GLWu9qbAjjJbLoSw="
-            "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-          ];
-          trusted-users = ["root" "@wheel"];
+          registry.nixpkgs.flake = inputs.nixpkgs;
+          settings = {
+            auto-optimise-store = true;
+            experimental-features = "nix-command flakes repl-flake";
+            extra-sandbox-paths = ["/nix/var/cache/ccache"];
+            max-jobs = "auto";
+            substituters = [
+              "https://nix-community.cachix.org"
+              "https://willruggiano.cachix.org"
+              "https://nixpkgs-wayland.cachix.org"
+            ];
+            trusted-public-keys = [
+              "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              "willruggiano.cachix.org-1:rz00ME8/uQfWe+tN3njwK5vc7P8GLWu9qbAjjJbLoSw="
+              "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+            ];
+            trusted-users = ["root" "@wheel"];
+          };
+          gc = {
+            automatic = true;
+            dates = "weekly";
+          };
         };
-        gc = {
-          automatic = true;
-          dates = "weekly";
-        };
+
+        i18n.defaultLocale = "en_US.UTF-8";
+        time.timeZone = "America/Los_Angeles";
       };
     };
   };
