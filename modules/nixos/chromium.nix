@@ -21,6 +21,8 @@ in {
           # "egpjdkipkomnmjhjmdamaniclmdlobbo"
           # metamask
           "nkbihfbeogaeaoehlefnkodbefgpgknn"
+          # react dev tools
+          "fmkadmapgofadopljbjfkapdkoienihi"
           # sourcegraph
           "dgjhfomjieaadpoljlnidmbgkdffpack"
           # ublock-origin
