@@ -38,7 +38,6 @@
         ./nixos/audio.nix
         ./nixos/autorandr-rs.nix
         ./nixos/backlight.nix
-        ./nixos/bat.nix
         ./nixos/blender.nix
         ./nixos/bluetooth.nix
         ./nixos/cachix.nix

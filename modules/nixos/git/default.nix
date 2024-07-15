@@ -31,14 +31,11 @@ in {
         watchman
       ];
 
-      programs.flavours.items.lazygit = {
-        template = ./lazygit.mustache;
-      };
-
       programs.git = {
         lfs.enable = true;
         config = {
           alias = {
+            co = "checkout";
             pristine = "clean -dffx";
             ss = "sync 'stack()'";
             stack = "!spr";
@@ -101,11 +98,7 @@ in {
           name = "git";
           text = ''
             if [[ $# -eq 0 ]]; then
-                if [[ -f $HOME/.config/lazygit/theme.yml ]]; then
-                    lazygit --use-config-file="$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/theme.yml"
-                else
-                    lazygit
-                fi
+                lazygit
             else
                 ${cfg.package}/bin/git "$@"
             fi
@@ -117,6 +110,23 @@ in {
           git = {
             autoFetch = false;
           };
+          gui = {
+            nerdFontsVersion = 3;
+            theme = with config.lib.stylix.colors.withHashtag; {
+              activeBorderColor = [base0B "bold"];
+              # inactiveBorderColor = ["default"];
+              # searchingActiveBorderColor = ["cyan" "bold"];
+              optionsTextColor = [base04];
+              selectedLineBgColor = [base04];
+              # inactiveViewSelectedLineBgColor = ["bold"];
+              # cherryPickedCommitFgColor = ["blue"];
+              # cherryPickedCommitBgColor = ["cyan"];
+              # markedBaseCommitFgColor = ["blue"];
+              # markedBaseCommitBgColor = ["yellow"];
+              unstagedChangesColor = [base08];
+              defaultFgColor = ["default"];
+            };
+          };
           keybinding = {
             universal = {
               quit = "<C-c>";
@@ -124,7 +134,6 @@ in {
             };
           };
         };
-        # "lazygit/theme.yml".source = config.programs.flavours.build.lazygit;
       };
     }
   ]);

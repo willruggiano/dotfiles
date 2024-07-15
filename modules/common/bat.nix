@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  modulesPath,
   pkgs,
   ...
 }:
@@ -15,18 +16,15 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = [cfg.package];
-
-    programs.flavours.items.bat = {
-      template = "${pkgs.base16-templates}/templates/textmate/templates/default.mustache";
-    };
-
-    home.configFile = {
-      "bat/config".text = ''
-        --map-syntax='*.tpp:C++'
-        --theme='${colorscheme}'
-      '';
-
-      # "bat/themes/${colorscheme}.tmTheme".source = config.programs.flavours.build.bat;
-    };
+    # home.configFile = {
+    #   "bat/config".text = ''
+    #     --map-syntax='*.tpp:C++'
+    #     --theme='${colorscheme}'
+    #   '';
+    #
+    #   "bat/themes/${colorscheme}.tmTheme".source = config.lib.stylix.colors {
+    #     template
+    #   };
+    # };
   };
 }
