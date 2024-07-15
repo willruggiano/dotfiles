@@ -11,6 +11,7 @@
       ...
     }: {
       imports = [
+        ./common/bat
         ./common/docsets
         ./common/flavours
         ./common/kitty
@@ -18,7 +19,6 @@
         ./common/qutebrowser
         ./common/xplr
         ./common/aws.nix
-        ./common/bat.nix
         ./common/fonts.nix
         ./common/htop.nix
         ./common/nix.nix

@@ -7,6 +7,8 @@ with colors; let
   inherit (import ./lib.nix) rgb;
   font_family = "JetBrains Mono";
 in ''
+  # vim: ft=hyprlang
+
   background {
     monitor =
     path = screenshot

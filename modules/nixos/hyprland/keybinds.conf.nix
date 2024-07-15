@@ -38,6 +38,8 @@
     '';
   };
 in ''
+  # vim: ft=hyprlang
+
   $mod = ALT
 
   bind = $mod, RETURN, exec, ${lib.getExe config.programs.${term}.package}

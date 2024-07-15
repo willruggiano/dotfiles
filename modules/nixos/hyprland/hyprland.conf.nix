@@ -10,7 +10,9 @@ with config.lib.stylix.colors; let
   inherit (import ./lib.nix) rgb rgba;
   cfg = config.programs.hyprland;
 in ''
-  monitor=,preferred,auto,1
+  # vim: ft=hyprlang
+
+  monitor = ,preferred,auto,1
 
   ${optionalString cfg.extensions.hypridle.enable "exec-once = ${lib.getExe pkgs.hypridle}"}
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${lib.getExe pkgs.hyprpaper}"}

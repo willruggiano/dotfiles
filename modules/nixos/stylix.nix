@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   pkgs,
   ...
@@ -10,7 +9,7 @@
 
   stylix = {
     autoEnable = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${config.programs.flavours.colorscheme}.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
     image = ../../wallpapers/gandalf.jpg;
   };
 }

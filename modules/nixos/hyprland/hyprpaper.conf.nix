@@ -14,4 +14,4 @@ with lib; let
     )
     wallpapers;
 in
-  concatStringsSep "\n" configs
+  concatStringsSep "\n" (["# vim: ft=hyprlang"] ++ configs)
