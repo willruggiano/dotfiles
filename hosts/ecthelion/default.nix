@@ -43,7 +43,6 @@
     };
     kitty.enable = true;
     pass.enable = true;
-    qutebrowser.enable = true;
     # qutebrowser.default = true;
     slack.enable = true;
     sourcegraph.enable = true;

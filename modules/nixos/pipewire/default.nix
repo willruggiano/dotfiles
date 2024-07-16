@@ -8,7 +8,7 @@ with lib; let
   cfg = config.services.pipewire;
 in {
   config = mkIf cfg.enable {
-    sound.enable = false;
+    # sound.enable = false;
 
     security.rtkit.enable = true;
 

@@ -15,8 +15,7 @@
     name = "update-docsets";
     runtimeInputs = [jq nix];
     text = ''
-      # NOTE: $1 is the path to this directory
-      out="$1/docsets"
+      out="./packages/docsets/docsets"
       mkdir -p "$out"
       ${
         foreachSh docsets (lang: let

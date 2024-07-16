@@ -39,6 +39,7 @@ in {
         lfs.enable = true;
         config = {
           alias = {
+            co = "checkout";
             pristine = "clean -dffx";
             ss = "sync 'stack()'";
             stack = "!spr";

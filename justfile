@@ -3,7 +3,7 @@ install:
     notify-send --transient 'nixos be ready'
 
 boot:
-    nixos-rebuild boot --use-remote-sudo |& nom
+    nixos-rebuild boot --use-remote-sudo
 
 build:
     nixos-rebuild build |& nom

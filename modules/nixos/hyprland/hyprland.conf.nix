@@ -76,7 +76,7 @@ in ''
   }
 
   master {
-    new_is_master = false
+    new_status = master
   }
 
   misc {

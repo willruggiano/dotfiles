@@ -6,27 +6,56 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-latest.url = "github:nixos/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default-linux";
 
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        darwin.follows = "";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
     base16-templates-source = {
       url = "github:chriskempson/base16-templates-source";
       flake = false;
     };
-    devenv.url = "github:cachix/devenv";
-    git-branchless.url = "github:arxanas/git-branchless";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs = {
+        cachix.follows = "";
+        flake-compat.follows = "";
+        nix.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks.follows = "git-hooks";
+      };
+    };
+    git-branchless = {
+      url = "github:arxanas/git-branchless";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/hyprland/v0.38.0";
+      type = "git";
+      url = "https://github.com/hyprwm/hyprland?ref=v0.41.2";
+      submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
     };
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
         hyprlang.follows = "hyprland/hyprlang";
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
     };
@@ -34,14 +63,15 @@
       url = "github:hyprwm/hyprlock";
       inputs = {
         hyprlang.follows = "hyprland/hyprlang";
-        nixpkgs.follows = "nixpkgs";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
     };
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "hyprland/nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
         systems.follows = "hyprland/systems";
       };
@@ -51,12 +81,11 @@
       flake = false;
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nom.url = "github:maralorn/nix-output-monitor";
     nur.url = "github:nix-community/nur";
-    nurl.url = "github:nix-community/nurl";
     stylix = {
       url = "github:danth/stylix";
       inputs = {
+        flake-compat.follows = "";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
@@ -70,6 +99,22 @@
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        autoUpdateInputs = [
+          "agenix"
+          "base16-templates-source"
+          "devenv"
+          "git-branchless"
+          "git-hooks"
+          "home-manager"
+          "nix-flake-templates"
+          "nixos-hardware"
+          "nixpkgs-latest"
+          "nur"
+          "stylix"
+        ];
+      };
+
       imports = [
         inputs.devenv.flakeModule
         ./packages
@@ -92,18 +137,6 @@
             alejandra.enable = true;
             ruff.enable = true;
             stylua.enable = true;
-          };
-          scripts = {
-            update-docsets.exec = let
-              inherit (pkgs.docsets) update-docsets;
-            in ''
-              ${lib.getExe update-docsets} ./packages/docsets
-              git commit -am 'chore: update docsets'
-            '';
-            update-neovim.exec = ''
-              nix flake lock --update-input neovim
-              git commit -am 'chore: update neovim'
-            '';
           };
         };
       };
