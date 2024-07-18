@@ -16,13 +16,6 @@
     shell = pkgs.fish;
   };
 
-  nix = {
-    sshServe = {
-      enable = true;
-      protocol = "ssh-ng";
-    };
-  };
-
   programs = {
     bat.enable = true;
     brave.enable = true;
