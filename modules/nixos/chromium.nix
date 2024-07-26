@@ -23,6 +23,8 @@ in {
           "nkbihfbeogaeaoehlefnkodbefgpgknn"
           # react dev tools
           "fmkadmapgofadopljbjfkapdkoienihi"
+          # relay dev tools
+          "ncedobpgnmkhcmnnkcimnobpfepidadl"
           # sourcegraph
           "dgjhfomjieaadpoljlnidmbgkdffpack"
           # ublock-origin
