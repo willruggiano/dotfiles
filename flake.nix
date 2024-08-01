@@ -46,7 +46,8 @@
     };
     hyprland = {
       type = "git";
-      url = "https://github.com/hyprwm/hyprland?ref=v0.41.2";
+      # url = "https://github.com/hyprwm/hyprland?ref=v0.41.2";
+      url = "https://github.com/hyprwm/hyprland";
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
@@ -73,6 +74,14 @@
       inputs = {
         nixpkgs.follows = "hyprland/nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
+        systems.follows = "hyprland/systems";
+      };
+    };
+    mcmojave-cursor = {
+      url = "github:libadoxon/mcmojave-hyprcursor";
+      inputs = {
+        hyprcursor.follows = "hyprland/hyprcursor";
+        nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
     };

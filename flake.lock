@@ -446,19 +446,19 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1722452414,
-        "narHash": "sha256-YMyEgkTa/VKz/HI7oJDCdZNTBLe4YYbhDN8epJtGLYg=",
+        "lastModified": 1722455246,
+        "narHash": "sha256-dMcWN+M+VsSsf86ldj7zfOpd9QqM88BXAYYh2mxFWc0=",
         "ref": "refs/heads/main",
-        "rev": "548968279926a73d7ff19a9a185c977c50d56756",
-        "revCount": 5032,
+        "rev": "37e1411e8d94fe8f3fb678588a7df9b8f931910f",
+        "revCount": 5033,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/hyprwm/hyprland?ref=v0.41.2"
+        "url": "https://github.com/hyprwm/hyprland"
       },
       "original": {
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/hyprwm/hyprland?ref=v0.41.2"
+        "url": "https://github.com/hyprwm/hyprland"
       }
     },
     "hyprland-protocols": {
@@ -706,6 +706,35 @@
         "type": "github"
       }
     },
+    "mcmojave-cursor": {
+      "inputs": {
+        "hyprcursor": [
+          "hyprland",
+          "hyprcursor"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1722327304,
+        "narHash": "sha256-QtPwfymFTln2dX1mAghH+filt+/AIRp2HorqW4FK4j8=",
+        "owner": "libadoxon",
+        "repo": "mcmojave-hyprcursor",
+        "rev": "d06bafda03d64e1152dece56ab6ee6565213fcd9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "libadoxon",
+        "repo": "mcmojave-hyprcursor",
+        "type": "github"
+      }
+    },
     "nix-flake-templates": {
       "flake": false,
       "locked": {
@@ -824,6 +853,7 @@
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
+        "mcmojave-cursor": "mcmojave-cursor",
         "nix-flake-templates": "nix-flake-templates",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

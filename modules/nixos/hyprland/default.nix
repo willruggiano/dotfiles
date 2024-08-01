@@ -80,6 +80,8 @@ in {
             [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
           '';
           sessionVariables = {
+            HYPRCURSOR_THEME = lib.mkDefault "McMojave";
+            HYPRCURSOR_SIZE = lib.mkDefault 32;
             NIXOS_OZONE_WL = "1";
             WLR_NO_HARDWARE_CURSORS = "1";
           };
@@ -89,6 +91,7 @@ in {
             slurp
             wl-clipboard
             wofi
+            inputs.mcmojave-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
         };
       }

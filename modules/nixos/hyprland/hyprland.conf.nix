@@ -21,6 +21,10 @@ in ''
     enabled = no
   }
 
+  cursor {
+    no_hardware_cursors = true
+  }
+
   decoration {
     drop_shadow = false
     rounding = 0
