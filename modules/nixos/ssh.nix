@@ -27,6 +27,7 @@ in {
     user.openssh.authorizedKeys = {
       keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIADhTkgTJq0zQcHRhHLJL4u/FzaiHPle2Ly8mlQfVqQv willruggiano@moria"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXEBxFhZ88up2XVDN3SOMjuFNczXJz4ZWx1NJuq42Uc root@mothership"
       ];
       keyFiles = [
         ../../hosts/ecthelion/id_ed25519.pub
