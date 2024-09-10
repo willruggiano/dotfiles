@@ -12,6 +12,12 @@ with config.lib.stylix.colors; let
 in ''
   # vim: ft=hyprlang
 
+  env = XDG_SESSION_TYPE,wayland
+
+  ${optionalString config.hardware.nvidia.enable "env = LIBVA_DRIVER_NAME,nvidia"}
+  ${optionalString config.hardware.nvidia.enable "env = GBM_BACKEND,nvidia-drm"}
+  ${optionalString config.hardware.nvidia.enable "env = __GLX_VENDOR_LIBRARY_NAME,nvidia"}
+
   monitor = ,preferred,auto,1
 
   ${optionalString cfg.extensions.hypridle.enable "exec-once = ${lib.getExe pkgs.hypridle}"}
@@ -21,6 +27,12 @@ in ''
 
   animations {
     enabled = no
+  }
+
+  env = HYPRCURSOR_THEME,${cfg.cursor.theme}
+  env = HYPRCURSOR_SIZE,${cfg.cursor.size}
+  cursor {
+    no_hardware_cursors = true
   }
 
   decoration {
@@ -78,7 +90,7 @@ in ''
   }
 
   master {
-    new_is_master = false
+    new_status = master
   }
 
   misc {

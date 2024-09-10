@@ -14,6 +14,16 @@ in {
 
   options.programs = {
     hyprland = with types; {
+      cursor = {
+        size = mkOption {
+          type = int;
+          default = 32;
+        };
+        theme = mkOption {
+          type = str;
+          default = "McMojave";
+        };
+      };
       extensions = {
         hypridle.enable = mkEnableOption "hypridle";
         hyprlock = {
@@ -81,7 +91,6 @@ in {
           '';
           sessionVariables = {
             NIXOS_OZONE_WL = "1";
-            WLR_NO_HARDWARE_CURSORS = "1";
           };
           systemPackages = with pkgs; [
             grim
@@ -89,6 +98,7 @@ in {
             slurp
             wl-clipboard
             wofi
+            inputs.mcmojave-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
         };
       }

@@ -13,13 +13,13 @@
       flake = false;
     };
     devenv.url = "github:cachix/devenv";
-    git-branchless.url = "github:arxanas/git-branchless";
+    git-branchless.url = "github:arxanas/git-branchless/v0.9.0";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/hyprland/v0.38.0";
+      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.43.0&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
@@ -46,6 +46,14 @@
         systems.follows = "hyprland/systems";
       };
     };
+    mcmojave-cursor = {
+      url = "github:libadoxon/mcmojave-hyprcursor";
+      inputs = {
+        hyprcursor.follows = "hyprland/hyprcursor";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
     nix-flake-templates = {
       url = "github:willruggiano/nix-flake-templates";
       flake = false;
@@ -53,7 +61,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nom.url = "github:maralorn/nix-output-monitor";
     nur.url = "github:nix-community/nur";
-    nurl.url = "github:nix-community/nurl";
+    # nurl.url = "github:nix-community/nurl";
     stylix = {
       url = "github:danth/stylix";
       inputs = {

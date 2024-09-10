@@ -16,7 +16,7 @@
       man-pages
       man-pages-posix
       nix-output-monitor
-      nurl
+      # nurl
       xdg-utils
     ];
     variables = {

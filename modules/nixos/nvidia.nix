@@ -12,6 +12,10 @@ in {
     environment.systemPackages = with pkgs; [nvtopPackages.full];
 
     hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
       nvidia = {
         modesetting.enable = true;
         nvidiaSettings = true;
@@ -19,11 +23,6 @@ in {
         package = config.boot.kernelPackages.nvidiaPackages.latest;
         powerManagement.enable = false;
         powerManagement.finegrained = false;
-      };
-      opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
       };
     };
 

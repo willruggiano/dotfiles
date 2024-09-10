@@ -96,7 +96,7 @@
             inputs.hyprlock.overlays.default
             inputs.hyprpaper.overlays.default
             inputs.nur.overlay
-            inputs.nurl.overlays.default
+            # inputs.nurl.overlays.default
             (final: prev: {
               inherit (inputs) base16-templates-source;
               git-branchless = prev.git-branchless.overrideAttrs (_: {
