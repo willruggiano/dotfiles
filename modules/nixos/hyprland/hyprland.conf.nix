@@ -30,7 +30,7 @@ in ''
   }
 
   env = HYPRCURSOR_THEME,${cfg.cursor.theme}
-  env = HYPRCURSOR_SIZE,${cfg.cursor.size}
+  env = HYPRCURSOR_SIZE,${toString cfg.cursor.size}
   cursor {
     no_hardware_cursors = true
   }
