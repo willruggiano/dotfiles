@@ -54,7 +54,5 @@ in {
   hardware = {
     bluetooth.enable = true;
     opengl.enable = true;
-    opengl.driSupport = true;
-    opentabletdriver.enable = true;
   };
 }
