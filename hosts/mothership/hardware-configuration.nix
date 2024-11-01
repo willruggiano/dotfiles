@@ -53,6 +53,6 @@ in {
 
   hardware = {
     bluetooth.enable = true;
-    opengl.enable = true;
+    graphics.enable = true;
   };
 }
