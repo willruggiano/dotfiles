@@ -114,7 +114,11 @@
             "nixpkgs-latest=${inputs.nixpkgs-latest}"
             "nixos-stable=${inputs.nixpkgs-stable}"
           ];
-          registry.nixpkgs.flake = inputs.nixpkgs;
+          registry = {
+            nixpkgs.flake = inputs.nixpkgs;
+            nixpkgs-latest.flake = inputs.nixpkgs-latest;
+            nixpkgs-stable.flake = inputs.nixpkgs-stable;
+          };
           settings = {
             auto-optimise-store = true;
             experimental-features = "nix-command flakes repl-flake";

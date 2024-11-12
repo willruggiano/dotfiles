@@ -1,8 +1,8 @@
-monitor "DP-0" product="ASUS PG349Q"  serial="#ASN527yW1A7d"
 monitor "DP-2" product="Dell AW2721D" serial="#GrMYMxgwAAgb"
+monitor "DP-3" product="ASUS PG349Q"  serial="#ASN527yW1A7d"
 
 layout "default" {
-    matches "DP-0" "DP-2"
-    monitor "DP-0" w=3440 h=1440 x=0    y=0 primary=true
-    monitor "DP-2" w=2560 h=1440 x=3440 y=0
+    matches "DP-2" "DP-3"
+    monitor "DP-2" w=2560 h=1440 x=0    y=0 primary=true
+    monitor "DP-3" w=3440 h=1440 x=2560 y=0
 }
