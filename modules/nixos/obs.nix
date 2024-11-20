@@ -7,10 +7,6 @@
 with lib; let
   cfg = config.programs.obs-studio;
 in {
-  options.programs.obs-studio = {
-    enable = mkEnableOption "Enable obs-studio";
-  };
-
   config = mkIf cfg.enable {
     environment.systemPackages = let
       obs = pkgs.wrapOBS {

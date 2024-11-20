@@ -7,7 +7,7 @@
 }:
 with lib;
 with config.lib.stylix.colors; let
-  inherit (import ./lib.nix) rgb rgba;
+  inherit (import ./lib.nix) rgb;
   cfg = config.programs.hyprland;
 in ''
   # vim: ft=hyprlang
@@ -36,16 +36,14 @@ in ''
   }
 
   decoration {
-    drop_shadow = false
+    shadow {
+      enabled = false
+    }
     rounding = 0
-    shadow_range = 4
-    shadow_render_power = 3
 
     blur {
-      enabled = no
+      enabled = false
     }
-
-    col.shadow = ${rgba base00 "99"}
   }
 
   dwindle {

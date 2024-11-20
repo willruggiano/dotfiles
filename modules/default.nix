@@ -121,7 +121,7 @@
           };
           settings = {
             auto-optimise-store = true;
-            experimental-features = "nix-command flakes repl-flake";
+            experimental-features = "nix-command flakes";
             extra-sandbox-paths = ["/nix/var/cache/ccache"];
             max-jobs = "auto";
             substituters = [

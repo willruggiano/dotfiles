@@ -13,13 +13,13 @@
       flake = false;
     };
     devenv.url = "github:cachix/devenv";
-    git-branchless.url = "github:arxanas/git-branchless/v0.9.0";
+    git-branchless.url = "github:arxanas/git-branchless";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.43.0&submodules=1";
+      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.45.2&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
@@ -34,6 +34,7 @@
       url = "github:hyprwm/hyprlock";
       inputs = {
         hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
@@ -41,8 +42,9 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
         hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
     };
