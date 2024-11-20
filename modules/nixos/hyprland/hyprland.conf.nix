@@ -100,4 +100,6 @@ in ''
   windowrulev2 = float,initialTitle:^(about:blank)
   windowrulev2 = idleinhibit,initialTitle:^(about:blank)
   windowrulev2 = float,class:^(brave)$
+
+  windowrulev2 = float,title:^MainPicker$
 ''
