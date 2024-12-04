@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -14,122 +15,158 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge [
-    {
-      environment.systemPackages = with pkgs; [
-        awscli
-        git-absorb
-        git-branchless
-        git-crypt
-        git-lfs
-        git-quickfix
-        git-trim
-        gitflow
-        rs-git-fsmonitor
-        spr
-        sublime-merge
-        watchman
-      ];
+  config = mkIf cfg.enable {
+    environment.interactiveShellInit = ''
+      export GH_TOKEN="$(cat ${config.age.secrets."willruggiano@github".path})"
+    '';
 
-      programs.git = {
-        lfs.enable = true;
-        config = {
-          alias = {
-            can = "commit -a --amend --no-edit";
-            co = "checkout";
-            pristine = "clean -dffx";
-            ss = "sync 'stack()'";
-            stack = "!spr";
-          };
-          color.ui = "auto";
-          commit.gpgsign = true;
-          include.path = "/home/bombadil/.gitconfig";
-          init.defaultBranch = "main";
-          merge = {
-            conflictStyle = "zdiff3";
-            tool = "diffview";
-          };
-          mergetool = {
-            keepBackup = false;
-            diffview.cmd = "nvim +DiffviewOpen";
-            fugitive.cmd = ''nvim -f -c "Gdiffsplit!" $MERGED'';
-            nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
-            smerge.cmd = "smerge $MERGED";
-            push.followTags = true;
-          };
-          spr = {
-            requireTestPlan = false;
-          };
-          user = {
-            email = "wmruggiano@gmail.com";
-            name = "Will Ruggiano";
-            signingkey = cfg.signingKey;
-          };
+    environment.systemPackages = with pkgs; [
+      delta
+      difftastic
+      gh
+      git-absorb
+      git-branchless
+      git-crypt
+      git-lfs
+      git-quickfix
+      git-trim
+      gitflow
+      lazygit
+      rs-git-fsmonitor
+      spr
+      sublime-merge
+      watchman
+      inputs.mergiraf.packages.${pkgs.system}.default
+      (pkgs.writeShellApplication {
+        name = "git";
+        text = ''
+          if [[ $# -eq 0 ]]; then
+              lazygit
+          else
+              ${cfg.package}/bin/git "$@"
+          fi
+        '';
+      })
+    ];
+
+    programs.git = {
+      config = {
+        advice.detachedHead = false;
+        alias = {
+          can = "commit -a --amend --no-edit";
+          co = "checkout";
+          pristine = "clean -dffx";
+          ss = "sync 'stack()'";
+          stack = "!spr";
         };
-      };
-    }
-    {
-      environment.systemPackages = [pkgs.delta];
-      programs.git.config = {
-        core.pager = "delta";
-        delta = {
-          features = "side-by-side line-numbers decorations";
-          whitespace-error-style = "22 reverse";
+        color.ui = "auto";
+        commit.gpgsign = true;
+        core = {
+          attributesfile = "/etc/gitattributes";
+          pager = "delta";
         };
-        interactive.diffFilter = "delta --color-only";
-      };
-    }
-    {
-      environment.systemPackages = [pkgs.gh];
-      environment.interactiveShellInit = ''
-        export GH_TOKEN="$(cat ${config.age.secrets."willruggiano@github".path})"
-      '';
-      programs.git.config = {
         credential = {
           "https://github.com" = {
             helper = "!gh auth git-credential";
           };
         };
-      };
-    }
-    {
-      environment.systemPackages = [
-        pkgs.lazygit
-        (pkgs.writeShellApplication {
-          name = "git";
-          text = ''
-            if [[ $# -eq 0 ]]; then
-                lazygit
-            else
-                ${cfg.package}/bin/git "$@"
-            fi
-          '';
-        })
-      ];
-      home.configFile = {
-        "lazygit/config.yml".source = yaml.generate "lazygit-config" {
-          git = {
-            autoFetch = false;
+        delta = {
+          navigate = true; # use n and N to move between diff sections
+          side-by-side = true;
+          whitespace-error-style = "22 reverse";
+        };
+        diff.external = "difft";
+        init.defaultBranch = "main";
+        interactive.diffFilter = "delta --color-only";
+        lfs.enable = true;
+        merge = {
+          conflictStyle = "zdiff3";
+          keepBackup = false;
+          tool = "nvim";
+          # driverz
+          mergiraf = {
+            name = "mergiraf";
+            driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
           };
-          gui = {
-            nerdFontsVersion = 3;
-            theme = with config.lib.stylix.colors.withHashtag; {
-              activeBorderColor = [base0B "bold"];
-              # inactiveBorderColor = ["default"];
-              # searchingActiveBorderColor = ["cyan" "bold"];
-              optionsTextColor = [base04];
-              selectedLineBgColor = [base04];
-              # inactiveViewSelectedLineBgColor = ["bold"];
-              # cherryPickedCommitFgColor = ["blue"];
-              # cherryPickedCommitBgColor = ["cyan"];
-              # markedBaseCommitFgColor = ["blue"];
-              # markedBaseCommitBgColor = ["yellow"];
-              unstagedChangesColor = [base08];
-              defaultFgColor = ["default"];
-            };
+        };
+        mergetool = {
+          keepBackup = false;
+          prompt = false; # run the mergetool immediately
+          push.followTags = true;
+          # toolz
+          diffview.cmd = "nvim +DiffviewOpen";
+          fugitive.cmd = ''nvim -f -c "Gdiffsplit!" $MERGED'';
+          nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
+          smerge.cmd = "smerge $MERGED";
+        };
+        push.autoSetupRemote = true;
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+          stat = true;
+        };
+        spr = {
+          requireTestPlan = false;
+        };
+        user = {
+          email = "wmruggiano@gmail.com";
+          name = "Will Ruggiano";
+          signingkey = cfg.signingKey;
+        };
+      };
+    };
+
+    environment.etc = {
+      "gitattributes".text = ''
+        *.c merge=mergiraf
+        *.cc merge=mergiraf
+        *.cpp merge=mergiraf
+        *.cs merge=mergiraf
+        *.dart merge=mergiraf
+        *.go merge=mergiraf
+        *.h merge=mergiraf
+        *.hpp merge=mergiraf
+        *.htm merge=mergiraf
+        *.html merge=mergiraf
+        *.java merge=mergiraf
+        *.js merge=mergiraf
+        *.json merge=mergiraf
+        *.jsx merge=mergiraf
+        *.py merge=mergiraf
+        *.rs merge=mergiraf
+        *.sbt merge=mergiraf
+        *.scala merge=mergiraf
+        *.ts merge=mergiraf
+        *.xhtml merge=mergiraf
+        *.xml merge=mergiraf
+        *.yaml merge=mergiraf
+        *.yml merge=mergiraf
+      '';
+    };
+
+    home.configFile = {
+      "lazygit/config.yml".source = yaml.generate "lazygit-config" {
+        git = {
+          autoFetch = false;
+        };
+        gui = {
+          nerdFontsVersion = 3;
+          theme = with config.lib.stylix.colors.withHashtag; {
+            activeBorderColor = [base0B "bold"];
+            # inactiveBorderColor = ["default"];
+            # searchingActiveBorderColor = ["cyan" "bold"];
+            optionsTextColor = [base04];
+            selectedLineBgColor = [base04];
+            # inactiveViewSelectedLineBgColor = ["bold"];
+            # cherryPickedCommitFgColor = ["blue"];
+            # cherryPickedCommitBgColor = ["cyan"];
+            # markedBaseCommitFgColor = ["blue"];
+            # markedBaseCommitBgColor = ["yellow"];
+            unstagedChangesColor = [base08];
+            defaultFgColor = ["default"];
           };
         };
       };
-    }
-  ]);
+    };
+  };
 }

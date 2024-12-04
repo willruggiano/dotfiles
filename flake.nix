@@ -56,6 +56,10 @@
         systems.follows = "hyprland/systems";
       };
     };
+    mergiraf = {
+      url = "git+https://codeberg.org/mergiraf/mergiraf.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flake-templates = {
       url = "github:willruggiano/nix-flake-templates";
       flake = false;
