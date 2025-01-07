@@ -60,7 +60,13 @@ in {
     (mkIf (cfg.enable && config.programs.fish.enable) {
       environment.systemPackages = with pkgs.fishPlugins; [fzf-fish];
       programs.fish.interactiveShellInit = mkBefore ''
-        fzf_configure_bindings --history=\e\cr --variables=\e\cv
+        fzf_configure_bindings \
+            --directory=\cf    \
+            --git_log=         \
+            --git_status=      \
+            --history=\cr      \
+            --processes=\cp    \
+            --variables=
       '';
 
       programs.flavours.items.fzf = {

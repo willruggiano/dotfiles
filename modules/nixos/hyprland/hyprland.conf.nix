@@ -95,9 +95,9 @@ in ''
     background_color = ${rgb base00}
   }
 
-  windowrulev2 = float,initialTitle:^(about:blank)
-  windowrulev2 = idleinhibit,initialTitle:^(about:blank)
   windowrulev2 = float,class:^(brave)$
+  windowrulev2 = float,class:^(xdg-desktop-portal-gtk)$
 
+  windowrulev2 = float,initialTitle:^(about:blank)
   windowrulev2 = float,title:^MainPicker$
 ''

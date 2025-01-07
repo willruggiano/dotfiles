@@ -7,7 +7,7 @@
 with lib; let
   cfg = config.programs.fish;
 
-  eza-wrapped = pkgs.writeShellApplication {
+  zo-fzf-previewer = pkgs.writeShellApplication {
     name = "eza";
     runtimeInputs = with pkgs; [eza];
     text = ''
@@ -19,7 +19,6 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      atuin
       eza
       magic-enter-fish
       zoxide
@@ -30,14 +29,11 @@ in {
 
       interactiveShellInit = mkMerge [
         (mkBefore ''
-          set -gx ATUIN_NOBIND true
           set -gx ENHANCD_FILTER fzf
           set -gx ENHANCD_DISABLE_DOT true
           set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
-          set -a _ZO_FZF_OPTS "--preview='${eza-wrapped}/bin/eza {2..}'"
+          set -a _ZO_FZF_OPTS "--preview='${zo-fzf-previewer}/bin/eza {2..}'"
           set -gx fish_greeting
-
-          atuin init fish | source
           zoxide init fish | source
         '')
         (mkAfter ''
@@ -49,38 +45,19 @@ in {
           set fish_cursor_replace_one underscore
           set fish_cursor_visual block
           set fish_escape_delay_ms 300
-
           bind -M insert \r magic-enter
-          bind -M insert \cr _atuin_search
           bind -M insert \cy accept-autosuggestion
           bind -M insert -k nul complete
         '')
       ];
 
       shellAliases = {
-        bat = "bat --paging=never";
-        batp = "bat --paging=auto";
-        cat = "bat";
-        grep = "rg --color=auto";
-        ls = "eza -F";
-        la = "eza -a";
-        ll = "eza -l";
-        lla = "eza -al";
-        lt = "eza --tree";
-        tree = "eza --tree";
+        bat = "bat -pp";
+        ls = "eza -F -l";
       };
     };
 
-    home.configFile = let
-      toml = pkgs.formats.toml {};
-    in {
-      "atuin/config.toml".source = toml.generate "atuin-config" {
-        update_check = false;
-        search_mode = "fuzzy";
-        filter_mode = "directory";
-        workspaces = true;
-      };
-
+    home.configFile = {
       "fish/functions" = {
         source = ./functions;
         recursive = true;

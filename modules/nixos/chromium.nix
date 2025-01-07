@@ -19,6 +19,8 @@ in {
           "bkdgflcldnnnapblkhphbgpggdiikppg"
           # firenvim
           # "egpjdkipkomnmjhjmdamaniclmdlobbo"
+          # lesspass
+          "lcmbpoclaodbgkbjafnkbbinogcbnjih"
           # metamask
           "nkbihfbeogaeaoehlefnkodbefgpgknn"
           # react dev tools
