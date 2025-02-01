@@ -16,6 +16,11 @@
     shell = pkgs.fish;
   };
 
+  location = {
+    latitude = 37.4;
+    longitude = -122.2;
+  };
+
   programs = {
     bat.enable = true;
     brave.enable = true;

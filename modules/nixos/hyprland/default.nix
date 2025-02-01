@@ -97,6 +97,7 @@ in {
             hyprpaper
             slurp
             wl-clipboard
+            wlsunset
             wofi
             inputs.mcmojave-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
