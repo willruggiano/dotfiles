@@ -55,6 +55,7 @@
 
   services = {
     agenix.enable = true;
+    darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;

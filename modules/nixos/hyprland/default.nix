@@ -101,6 +101,18 @@ in {
             inputs.mcmojave-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
         };
+
+        # xdg.portal = {
+        #   enable = true;
+        #   config = {
+        #     common = {
+        #       default = [
+        #         "hyprland"
+        #         "gtk"
+        #       ];
+        #     };
+        #   };
+        # };
       }
       (mkIf cfg.extensions.hyprlock.enable {
         environment.systemPackages = [pkgs.hyprlock];

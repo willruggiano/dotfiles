@@ -42,6 +42,7 @@
         ./nixos/bluetooth.nix
         ./nixos/cachix.nix
         ./nixos/chromium.nix
+        ./nixos/darkman.nix
         ./nixos/direnv.nix
         ./nixos/discord.nix
         ./nixos/dropbox.nix
