@@ -6,29 +6,6 @@
 }: let
   inherit (config) term;
 
-  # I wonder if there's a way we can write a "kitten" for this?
-  reload-kitty-theme = pkgs.writeShellApplication {
-    name = "reload-kitty-theme";
-    runtimeInputs = with pkgs; [config.programs.${term}.package coreutils procps];
-    text = ''
-      scheme() {
-        local h
-        h=$(date +%k)
-        (( h <= 8 || h >= 17 )) && echo "tomorrow-night-eighties" || echo "tomorrow"
-      }
-
-      link() {
-        ln -sf "${../../common/kitty}/base16-$(scheme).conf" "$HOME/.config/kitty/current-theme.conf"
-      }
-
-      reload() {
-        kill -SIGUSR1 $(pgrep kitty)
-      }
-
-      link && reload
-    '';
-  };
-
   window-switcher = pkgs.writeShellApplication {
     name = "switch-window";
     runtimeInputs = with pkgs; [wofi];
@@ -51,13 +28,13 @@ in ''
   bind = $mod, M, fullscreen, 1 # maximize
   bind = $mod, O, focuscurrentorlast
   bind = $mod, Q, exit
-  bind = $mod, R, exec, ${pkgs.wofi}/bin/wofi --show drun
+  bind = $mod, R, exec, ${lib.getExe pkgs.wofi} --show drun
   bind = $mod, S, togglespecialworkspace
   bind = $mod SHIFT, S, movetoworkspace, special
   bind = $mod, W, exec, ${window-switcher}/bin/switch-window
-  bind = , F12, exec, ${reload-kitty-theme}/bin/reload-kitty-theme
+  bind = , F12, exec, ${lib.getExe pkgs.darkman} toggle
   bind = , End, exec, ${pkgs.systemd}/bin/loginctl lock-session
-  bind = , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
+  bind = , Print, exec, ${lib.getExe pkgs.grim} -g "$(${lib.getExe pkgs.slurp})" "$HOME/Downloads/screenshot-$(date -Is).png"
 
   # Move/resize windows with mouse
   bindm = $mod, mouse:272, movewindow

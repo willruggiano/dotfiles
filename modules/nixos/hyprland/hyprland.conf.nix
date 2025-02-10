@@ -23,7 +23,7 @@ in ''
   ${optionalString cfg.extensions.hypridle.enable "exec-once = ${lib.getExe pkgs.hypridle}"}
   ${optionalString (cfg.wallpapers != {}) "exec-once = ${lib.getExe pkgs.hyprpaper}"}
 
-  exec-once = ${lib.getExe pkgs.wlsunset} -l ${config.location.latitude} -L ${config.location.longitude}
+  exec-once = ${lib.getExe pkgs.wlsunset} -l ${toString config.location.latitude} -L ${toString config.location.longitude}
 
   source = ${toString hypr-keybinds}
 

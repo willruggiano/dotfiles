@@ -150,6 +150,11 @@ in {
         .devenv/
         .direnv/
       '';
+      "watchman.json".text = ''
+        {
+          "root_files": [".watchmanconfig"]
+        }
+      '';
     };
 
     home.configFile = {
