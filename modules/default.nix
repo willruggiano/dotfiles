@@ -97,14 +97,12 @@
             inputs.hyprlock.overlays.default
             inputs.hyprpaper.overlays.default
             inputs.nur.overlay
-            # inputs.nurl.overlays.default
             (final: prev: {
               inherit (inputs) base16-templates-source;
               git-branchless = prev.git-branchless.overrideAttrs (_: {
                 # patches in the nixpkgs definition have been merged
                 patches = [];
               });
-              nix-output-monitor = inputs.nom.packages."${prev.system}".default;
             })
           ];
         };

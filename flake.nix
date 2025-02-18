@@ -65,9 +65,7 @@
       flake = false;
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nom.url = "github:maralorn/nix-output-monitor";
     nur.url = "github:nix-community/nur";
-    # nurl.url = "github:nix-community/nurl";
     stylix = {
       url = "github:danth/stylix";
       inputs = {
