@@ -64,6 +64,7 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
+    darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
