@@ -80,10 +80,10 @@ in {
 
       dataFile = {
         "dark-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ln -sf ${./base16-tomorrow-night-eighties.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow-night-eighties.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
         '';
         "light-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ln -sf ${./base16-tomorrow.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
         '';
       };
     };
