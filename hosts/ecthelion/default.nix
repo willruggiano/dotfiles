@@ -17,8 +17,8 @@
   };
 
   location = {
-    latitude = 37.4;
-    longitude = -122.2;
+    latitude = 37.7;
+    longitude = -122.4;
   };
 
   programs = {

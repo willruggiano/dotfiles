@@ -11,15 +11,13 @@ in {
     {
       programs.chromium = {
         extensions = mkBefore [
-          # apollo client devtools
-          "jdkknkkbebbapilgoeccciglkfbmbnfm"
           # cloaked
           "oppdbdefikkkihgbliidckokhgcmmiga"
+          # darkreader
+          "eimadpbcbfnmbkopoojfekhnkhdbieeh"
           # duck duck go privacy essentials
           "bkdgflcldnnnapblkhphbgpggdiikppg"
-          # firenvim
-          # "egpjdkipkomnmjhjmdamaniclmdlobbo"
-          # lesspass
+          # lesspass - pretty cool idea but not especially practical :/
           "lcmbpoclaodbgkbjafnkbbinogcbnjih"
           # metamask
           "nkbihfbeogaeaoehlefnkodbefgpgknn"
@@ -27,12 +25,8 @@ in {
           "fmkadmapgofadopljbjfkapdkoienihi"
           # relay dev tools
           "ncedobpgnmkhcmnnkcimnobpfepidadl"
-          # sourcegraph
-          "dgjhfomjieaadpoljlnidmbgkdffpack"
           # ublock-origin
           "cjpalhdlnbpafiamejdnhcphjbkeiagm"
-          # vimmatic
-          # "pghmfgnakhjiphmlcnhfpgopkcjhiedc"
         ];
 
         extraOpts = {
