@@ -47,11 +47,11 @@
       };
     };
     kitty.enable = true;
-    obs-studio.enable = true;
+    # obs-studio.enable = true;
     pass.enable = true;
-    qutebrowser.enable = true;
+    # qutebrowser.enable = true;
     slack.enable = true;
-    sourcegraph.enable = true;
+    # sourcegraph.enable = true;
     spotify.enable = true;
     starship.enable = true;
     steam.enable = true;
