@@ -54,8 +54,6 @@ in {
         advice.detachedHead = false;
         alias = {
           can = "commit -a --amend --no-edit";
-          co = "checkout";
-          pristine = "clean -dffx";
           ss = "sync 'stack()'";
           stack = "!spr";
         };
@@ -161,6 +159,9 @@ in {
       "lazygit/config.yml".source = yaml.generate "lazygit-config" {
         git = {
           autoFetch = false;
+          paging = {
+            externalDiffCommand = "difft --color=always";
+          };
         };
         gui = {
           nerdFontsVersion = 3;
