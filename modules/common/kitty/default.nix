@@ -79,11 +79,13 @@ in {
       };
 
       dataFile = {
-        "dark-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow-night-eighties.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+        "dark-mode.d/kitty".source = pkgs.writeShellScript "meow" ''
+          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow-night-eighties.conf} "$HOME/.config/kitty/current-theme.conf" \
+            && ${pkgs.procps}/bin/pkill -SIGUSR1 kitty
         '';
-        "light-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+        "light-mode.d/kitty".source = pkgs.writeShellScript "purr" ''
+          ${pkgs.coreutils}/bin/ln -sf ${./base16-tomorrow.conf} "$HOME/.config/kitty/current-theme.conf" \
+            && ${pkgs.procps}/bin/pkill -SIGUSR1 kitty
         '';
       };
     };
