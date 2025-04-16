@@ -13,6 +13,10 @@
       flake = false;
     };
     devenv.url = "github:cachix/devenv";
+    doom-one = {
+      url = "github:NTBBloodbath/doom-one.nvim";
+      flake = false;
+    };
     git-branchless.url = "github:arxanas/git-branchless";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -72,6 +76,10 @@
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+    zenbones = {
+      url = "github:mcchrish/zenbones.nvim";
+      flake = false;
     };
   };
 

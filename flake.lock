@@ -239,6 +239,22 @@
         "type": "github"
       }
     },
+    "doom-one": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740086641,
+        "narHash": "sha256-K4P7OHxSb6qulgHjgX3kWsEPXuo4o2nSu8d3rIR4SSI=",
+        "owner": "NTBBloodbath",
+        "repo": "doom-one.nvim",
+        "rev": "2d910b0c10efb2417871157b42875832a4c626f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NTBBloodbath",
+        "repo": "doom-one.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -1169,6 +1185,7 @@
         "agenix": "agenix",
         "base16-templates-source": "base16-templates-source",
         "devenv": "devenv",
+        "doom-one": "doom-one",
         "flake-parts": "flake-parts_2",
         "git-branchless": "git-branchless",
         "home-manager": "home-manager_2",
@@ -1184,7 +1201,8 @@
         "nixpkgs-latest": "nixpkgs-latest",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nur": "nur",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "zenbones": "zenbones"
       }
     },
     "rust-overlay": {
@@ -1390,6 +1408,22 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zenbones": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744712205,
+        "narHash": "sha256-VIXU2JOz5+oQdXUn1S2MJj4HbKZQE721bMA6eK5XuOI=",
+        "owner": "mcchrish",
+        "repo": "zenbones.nvim",
+        "rev": "41735b6cf5e93593dfecb38a9b6e2ff14792b1fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mcchrish",
+        "repo": "zenbones.nvim",
         "type": "github"
       }
     }

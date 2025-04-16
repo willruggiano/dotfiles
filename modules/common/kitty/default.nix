@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -73,10 +74,10 @@ in {
 
       dataFile = {
         "dark-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./zenbones_dark.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+          ${pkgs.coreutils}/bin/ln -sf ${inputs.doom-one}/extras/kitty-dark.conf "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
         '';
         "light-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./zenbones_light.conf} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+          ${pkgs.coreutils}/bin/ln -sf ${inputs.doom-one}/extras/kitty-light.conf "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
         '';
       };
     };
