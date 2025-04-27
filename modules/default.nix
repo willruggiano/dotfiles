@@ -12,7 +12,6 @@
     }: {
       imports = [
         ./common/bat
-        ./common/docsets
         ./common/flavours
         ./common/kitty
         ./common/neovim
@@ -72,7 +71,7 @@
         ./nixos/yubico.nix
         ./nixos/zsh.nix
         {
-          imports = [inputs.home-manager.nixosModule];
+          imports = [inputs.home-manager.nixosModules.home-manager];
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
@@ -96,7 +95,7 @@
             inputs.hypridle.overlays.default
             inputs.hyprlock.overlays.default
             inputs.hyprpaper.overlays.default
-            inputs.nur.overlay
+            inputs.nur.overlays.default
             (final: prev: {
               inherit (inputs) base16-templates-source;
               git-branchless = prev.git-branchless.overrideAttrs (_: {
@@ -110,14 +109,10 @@
         nix = {
           nixPath = [
             "nixpkgs=${inputs.nixpkgs}"
-            "nixpkgs-latest=${inputs.nixpkgs-latest}"
-            "nixos-stable=${inputs.nixpkgs-stable}"
           ];
-          registry = {
-            nixpkgs.flake = inputs.nixpkgs;
-            nixpkgs-latest.flake = inputs.nixpkgs-latest;
-            nixpkgs-stable.flake = inputs.nixpkgs-stable;
-          };
+
+          registry.nixpkgs.flake = inputs.nixpkgs;
+
           settings = {
             auto-optimise-store = true;
             experimental-features = "nix-command flakes";

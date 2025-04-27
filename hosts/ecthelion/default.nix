@@ -29,7 +29,6 @@
     browserpass.enable = true;
     direnv.enable = true;
     discord.enable = true;
-    docsets.enable = true;
     fish.enable = true;
     fzf.enable = true;
     git.enable = true;

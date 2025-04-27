@@ -3,8 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-latest.url = "github:nixos/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     agenix.url = "github:ryantm/agenix";
@@ -12,24 +10,30 @@
       url = "github:chriskempson/base16-templates-source";
       flake = false;
     };
-    devenv.url = "github:cachix/devenv";
     doom-one = {
       url = "github:NTBBloodbath/doom-one.nvim";
       flake = false;
     };
     git-branchless.url = "github:arxanas/git-branchless";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.45.2&submodules=1";
+      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.48.0&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
+        hyprland-protocols.follows = "hyprland/hyprland-protocols";
         hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
@@ -37,8 +41,10 @@
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
@@ -46,8 +52,10 @@
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
         hyprlang.follows = "hyprland/hyprlang";
         hyprutils.follows = "hyprland/hyprutils";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
       };
@@ -59,10 +67,6 @@
         nixpkgs.follows = "hyprland/nixpkgs";
         systems.follows = "hyprland/systems";
       };
-    };
-    mergiraf = {
-      url = "git+https://codeberg.org/mergiraf/mergiraf.git";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flake-templates = {
       url = "github:willruggiano/nix-flake-templates";
@@ -91,7 +95,7 @@
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        inputs.devenv.flakeModule
+        inputs.git-hooks.flakeModule
         ./packages
         ./modules
         ./hosts
@@ -99,32 +103,21 @@
 
       systems = ["x86_64-linux"];
       perSystem = {
+        config,
         lib,
         pkgs,
         self',
         ...
       }: {
-        devenv.shells.default = {
+        devShells.default = pkgs.mkShell {
           name = "dotfiles";
-          containers = lib.mkForce {};
-          packages = with pkgs; [just niv nix-output-monitor];
-          pre-commit.hooks = {
-            alejandra.enable = true;
-            ruff.enable = true;
-            stylua.enable = true;
-          };
-          scripts = {
-            update-docsets.exec = let
-              inherit (pkgs.docsets) update-docsets;
-            in ''
-              ${lib.getExe update-docsets} ./packages/docsets
-              git commit -am 'chore: update docsets'
-            '';
-            update-neovim.exec = ''
-              nix flake lock --update-input neovim
-              git commit -am 'chore: update neovim'
-            '';
-          };
+          buildInputs = with pkgs; [just nix-output-monitor];
+          inputsFrom = [config.pre-commit.devShell];
+        };
+        pre-commit.settings.hooks = {
+          alejandra.enable = true;
+          ruff.enable = true;
+          stylua.enable = true;
         };
       };
     };

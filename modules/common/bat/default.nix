@@ -1,17 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
   cfg = config.programs.bat;
 in {
-  options.programs.bat = {
-    enable = mkEnableOption "bat";
-    package = mkPackageOption pkgs "bat" {};
-  };
-
   config = mkIf cfg.enable {
     environment.systemPackages = [cfg.package];
     home.configFile = {

@@ -8,7 +8,6 @@
       hyperfine
       jq
       mkcert
-      nodePackages.insect
       # qrcp
       ripgrep
       sad

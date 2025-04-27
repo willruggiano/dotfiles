@@ -94,11 +94,11 @@ in {
         git-trim
         gitflow
         lazygit
+        mergiraf
         rs-git-fsmonitor
         spr
         sublime-merge
         watchman
-        inputs.mergiraf.packages.${pkgs.system}.default
         (pkgs.writeShellApplication {
           name = "git";
           text = ''
