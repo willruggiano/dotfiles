@@ -1,4 +1,8 @@
 {
-  environment.variables.EDITOR = "nvim";
-  environment.variables.MANPAGER = "nvim +Man!";
+  environment.variables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+  };
+
+  services.ollama.enable = true;
 }
