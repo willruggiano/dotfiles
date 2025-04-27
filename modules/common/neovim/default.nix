@@ -1,8 +1,13 @@
-{
+{pkgs, ...}: {
   environment.variables = {
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
   };
-
-  services.ollama.enable = true;
+  environment.systemPackages = [pkgs.ollama-cuda];
+  # services = {
+  #   ollama = {
+  #     enable = true;
+  #     package = pkgs.ollama-cuda;
+  #   };
+  # };
 }

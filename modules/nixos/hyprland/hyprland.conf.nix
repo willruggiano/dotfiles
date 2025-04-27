@@ -97,6 +97,7 @@ in ''
     background_color = ${rgb base00}
   }
 
+  windowrulev2 = float,class:^()$
   windowrulev2 = float,class:^(brave)$
   windowrulev2 = float,class:^(xdg-desktop-portal-gtk)$
 
