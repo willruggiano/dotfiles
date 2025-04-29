@@ -9,12 +9,6 @@ with lib; let
   cfg = config.programs.git;
   yaml = pkgs.formats.yaml {};
 in {
-  options.programs.git = {
-    signingKey = mkOption {
-      type = types.str;
-    };
-  };
-
   config = mkIf cfg.enable {
     programs.git = {
       config = {
@@ -42,6 +36,7 @@ in {
           whitespace-error-style = "22 reverse";
         };
         diff.external = "difft";
+        gpg.format = "ssh";
         init.defaultBranch = "main";
         interactive.diffFilter = "delta --color-only";
         lfs.enable = true;
@@ -75,9 +70,9 @@ in {
           requireTestPlan = false;
         };
         user = {
-          email = "wmruggiano@gmail.com";
+          email = "mix.spend.dough@usecloaked.com";
           name = "Will Ruggiano";
-          signingkey = cfg.signingKey;
+          signingkey = "~/.ssh/id_ed25519.pub";
         };
       };
     };

@@ -31,10 +31,7 @@
     # docsets.enable = true;
     fish.enable = true;
     fzf.enable = true;
-    git = {
-      enable = true;
-      signingKey = "0x8C442553F8881E7A";
-    };
+    git.enable = true;
     htop.enable = true;
     hyprland = {
       enable = true;
