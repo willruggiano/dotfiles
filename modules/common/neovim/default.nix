@@ -1,9 +1,15 @@
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.variables = {
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
   };
-  environment.systemPackages = [pkgs.ollama-cuda];
+  environment.systemPackages = lib.mkIf config.hardware.nvidia.enable [pkgs.ollama-cuda];
+  # FIXME: doesn't find my GPU :/
   # services = {
   #   ollama = {
   #     enable = true;
