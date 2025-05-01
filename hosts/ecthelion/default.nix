@@ -61,10 +61,15 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
+    chromadb.enable = true;
     darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+    };
     pcscd.enable = true;
     pipewire.enable = true;
     remarkable.enable = true;
