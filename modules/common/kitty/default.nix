@@ -72,13 +72,18 @@ in {
           ];
       };
 
-      dataFile = {
-        "dark-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${inputs.doom-one}/extras/kitty-dark.conf "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
-        '';
-        "light-mode.d/kitty".source = pkgs.writeShellScript "dark-kitty" ''
-          ${pkgs.coreutils}/bin/ln -sf ${inputs.doom-one}/extras/kitty-light.conf "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
-        '';
+      dataFile = let
+        mkScript = name: file:
+          pkgs.writeShellApplication {
+            inherit name;
+            runtimeInputs = with pkgs; [coreutils procps];
+            text = ''
+              ln -sf ${file} "$HOME/.config/kitty/current-theme.conf" && pkill -SIGUSR1 kitty
+            '';
+          };
+      in {
+        "dark-mode.d/kitty".source = lib.getExe (mkScript "kitty-dark" "${inputs.doom-one}/extras/kitty-dark.conf");
+        "light-mode.d/kitty".source = lib.getExe (mkScript "kitty-light" "${inputs.doom-one}/extras/kitty-light.conf");
       };
     };
   };

@@ -15,6 +15,7 @@ in {
       };
       user.extraGroups = ["docker"];
       environment.systemPackages = [pkgs.lazydocker];
+      networking.firewall.trustedInterfaces = ["docker0"];
     })
     (mkIf cfg.libvirtd.enable {
       user.extraGroups = ["libvirtd"];

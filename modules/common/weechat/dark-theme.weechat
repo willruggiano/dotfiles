@@ -1,0 +1,35 @@
+/color alias 1   #ff6c6b     # red
+/color alias 2   #98be65     # green
+/color alias 3   #ecbe7b     # yellow
+/color alias 4   #51afef     # blue
+/color alias 5   #a9a1e1     # magenta
+/color alias 6   #46d9ff     # cyan
+/color alias 7   #bbc2cf     # foreground (light gray)
+/color alias 8   #3f444a     # gray
+/color alias 0   #282c34     # background (black)
+/set weechat.color.chat_bg default
+/set weechat.color.chat      7
+/set weechat.color.chat_time 8
+/set weechat.color.chat_prefix_suffix 4
+/set weechat.color.chat_prefix_buffer 4
+/set weechat.color.chat_nick 5
+/set weechat.color.chat_nick_self 2
+/set weechat.color.chat_host 8
+/set weechat.color.chat_highlight 6
+/set weechat.color.chat_highlight_bg 1
+/set weechat.color.status_name 7
+/set weechat.color.status_time 8
+/set weechat.color.chat_channel 4
+/set weechat.color.separator 8
+/set weechat.color.bar_more 6
+/set weechat.bar.status.color_fg 7
+/set weechat.bar.status.color_bg 0
+/set weechat.bar.input.color_fg 7
+/set weechat.bar.input.color_bg 0
+/set weechat.bar.title.color_fg 7
+/set weechat.bar.title.color_bg 8
+/set weechat.color.chat_nick_offline 8
+/set weechat.color.chat_nick_other 5
+/set weechat.color.chat_value 3
+/set weechat.color.status_data_msg 1
+/set weechat.color.chat_read_marker 1

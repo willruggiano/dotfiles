@@ -52,6 +52,7 @@
     spotify.enable = true;
     starship.enable = true;
     steam.enable = true;
+    weechat.enable = true;
     zk.enable = true;
   };
 
