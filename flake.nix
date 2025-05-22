@@ -74,6 +74,10 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
+    himalaya = {
+      url = "github:pimalaya/himalaya";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs = {

@@ -4,5 +4,6 @@ let
 in {
   "anthropic.age".publicKeys = [root user];
   "bombadil@ecthelion.age".publicKeys = [root user];
+  "ruggiano@tendrel.io-oauth2-client-secret.age".publicKeys = [root user];
   "willruggiano@github.age".publicKeys = [root user];
 }
