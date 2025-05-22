@@ -62,7 +62,7 @@ in {
       programs.fish.interactiveShellInit = mkBefore ''
         fzf_configure_bindings \
             --directory=\cf    \
-            --git_log=         \
+            --git_log=\cg      \
             --git_status=      \
             --history=\cr      \
             --processes=\cp    \
