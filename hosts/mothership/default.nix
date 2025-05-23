@@ -23,7 +23,6 @@
   };
 
   programs = {
-    bat.enable = true;
     brave.enable = true;
     brave.default = true;
     direnv.enable = true;
