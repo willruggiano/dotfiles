@@ -36,6 +36,7 @@ in {
         };
         diff.external = "difft";
         gpg.format = "ssh";
+        gpg.ssh.allowedSignersFile = config.environment.etc.gitsigners.source;
         init.defaultBranch = "main";
         interactive.diffFilter = "delta --color-only";
         lfs.enable = true;
@@ -143,6 +144,10 @@ in {
           .devenv/
           .direnv/
         '';
+        "gitsigners".text = ''
+          bombadil@ecthelion ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEWXJHDkOTwqq+3W5JgBxGWyDNlhxVcQB/2lwBRwg8/f
+          bombadil@mothership ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS
+        '';
         "watchman.json".text = ''
           {
             "root_files": [".watchmanconfig"]
@@ -158,6 +163,7 @@ in {
         "lazygit/config.yml".source = yaml.generate "lazygit-config" {
           git = {
             autoFetch = false;
+            overrideGpg = true;
             paging.externalDiffCommand = "difft --color=always";
           };
         };

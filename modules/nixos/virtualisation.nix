@@ -14,7 +14,7 @@ in {
         autoPrune.enable = true;
       };
       user.extraGroups = ["docker"];
-      environment.systemPackages = [pkgs.lazydocker];
+      environment.systemPackages = [pkgs.docker-buildx pkgs.lazydocker];
       networking.firewall.trustedInterfaces = ["docker0"];
     })
     (mkIf cfg.libvirtd.enable {

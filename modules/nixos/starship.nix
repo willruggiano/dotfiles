@@ -10,8 +10,10 @@ in {
     programs.starship = {
       settings = {
         format = concatStrings [
+          "$username"
+          "@"
           "$hostname"
-          "$line_break"
+          ":"
           "$directory"
           "$git_branch"
           "$nix_shell"
@@ -20,73 +22,38 @@ in {
           "$line_break"
           "$character"
         ];
-        scan_timeout = 30;
-        command_timeout = 500;
         add_newline = true;
 
         character = {
-          disabled = false;
-          format = "$symbol ";
-          success_symbol = "[❯](bold green)";
-          error_symbol = "[❯](bold red)";
-          vicmd_symbol = "[❮](bold green)";
+          success_symbol = "[\\$](bold green)";
+          error_symbol = "[\\$](bold red)";
+          vicmd_symbol = "[>](bold green)";
         };
 
-        custom = {
-          tailscale = {
-            command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
-            when = "tailscale status";
-            format = "\\($output\\)";
-          };
+        custom.tailscale = {
+          command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
+          when = "tailscale status";
+          format = "\\($output\\)";
         };
 
         directory = {
-          disabled = false;
-          truncation_length = 3;
-          truncate_to_repo = true;
-          fish_style_pwd_dir_length = 0;
-          use_logical_path = true;
-          format = "[$path]($style)[$read_only]($read_only_style) ";
-          style = "cyan bold";
-          read_only = "🔒";
-          read_only_style = "red";
-          truncation_symbol = "";
-          home_symbol = "~";
+          truncation_length = 2;
+          truncate_to_repo = false;
+          fish_style_pwd_dir_length = 1;
         };
 
-        git_branch = {
-          disabled = false;
-          format = "on [$symbol$branch]($style)(:[$remote]($style)) ";
-          style = "bold purple";
-          symbol = "";
-          truncation_length = 9223372036854775807;
-          truncation_symbol = "...";
-          only_attached = false;
-          always_show_remote = false;
-        };
+        git_branch.format = "on [$branch(:$remote_branch)]($style) ";
 
         hostname = {
-          ssh_only = true;
-          format = concatStrings [
-            "[$hostname](bold red)"
-          ];
+          ssh_only = false;
+          format = "[$hostname](bold dimmed)";
         };
 
-        nix_shell = {
-          format = "using [nix-shell/$name](bold blue) ";
-        };
-
-        python = {
-          format = "using [python/$version (\($virtualenv\))](bold yellow) ";
-        };
-
-        time = {
-          disabled = true;
-          format = "[$time]($style)";
-        };
-
-        line_break = {
-          disabled = false;
+        nix_shell.format = "using [nix-shell/$name](bold blue) ";
+        python.format = "using [python/$version (\($virtualenv\))](bold yellow) ";
+        username = {
+          format = "[$user]($style)";
+          style_user = "bold dimmed";
         };
       };
     };

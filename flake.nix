@@ -115,7 +115,7 @@
       }: {
         devShells.default = pkgs.mkShell {
           name = "dotfiles";
-          buildInputs = with pkgs; [just nix-output-monitor];
+          buildInputs = with pkgs; [just nix-output-monitor yubikey-manager];
           inputsFrom = [config.pre-commit.devShell];
         };
         pre-commit.settings.hooks = {
