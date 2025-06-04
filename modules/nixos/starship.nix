@@ -11,13 +11,13 @@ in {
       settings = {
         format = concatStrings [
           "$username"
-          "@"
+          "[@](bold dimmed)"
           "$hostname"
-          ":"
+          "[:](dimmed)"
           "$directory"
-          "$git_branch"
-          "$nix_shell"
-          "$python"
+          # "$git_branch"
+          # "$nix_shell"
+          # "$python"
           "$custom"
           "$line_break"
           "$character"
@@ -53,6 +53,7 @@ in {
         python.format = "using [python/$version (\($virtualenv\))](bold yellow) ";
         username = {
           format = "[$user]($style)";
+          show_always = true;
           style_user = "bold dimmed";
         };
       };
