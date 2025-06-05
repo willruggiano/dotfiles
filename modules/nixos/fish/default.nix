@@ -18,11 +18,7 @@ with lib; let
   };
 in {
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      eza
-      magic-enter-fish
-      zoxide
-    ];
+    environment.systemPackages = with pkgs; [eza zoxide];
 
     programs.fish = {
       useBabelfish = true;
@@ -45,7 +41,6 @@ in {
           set fish_cursor_replace_one underscore
           set fish_cursor_visual block
           set fish_escape_delay_ms 300
-          bind -M insert \r magic-enter
           bind -M insert \cy accept-autosuggestion
           bind -M insert -k nul complete
         '')
