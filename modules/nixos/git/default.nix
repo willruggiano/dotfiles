@@ -93,6 +93,7 @@ in {
         git-quickfix
         git-trim
         gitflow
+        jjui
         lazygit
         mergiraf
         rs-git-fsmonitor
