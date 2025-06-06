@@ -25,8 +25,6 @@ in {
 
       interactiveShellInit = mkMerge [
         (mkBefore ''
-          set -gx ENHANCD_FILTER fzf
-          set -gx ENHANCD_DISABLE_DOT true
           set -gx _ZO_FZF_OPTS $FZF_DEFAULT_OPTS
           set -a _ZO_FZF_OPTS "--preview='${zo-fzf-previewer}/bin/eza {2..}'"
           set -gx fish_greeting
@@ -41,6 +39,8 @@ in {
           set fish_cursor_replace_one underscore
           set fish_cursor_visual block
           set fish_escape_delay_ms 300
+          bind \r magic-enter
+          bind -M insert \r magic-enter
           bind -M insert \cy accept-autosuggestion
           bind -M insert -k nul complete
         '')
