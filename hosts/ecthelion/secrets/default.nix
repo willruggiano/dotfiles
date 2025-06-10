@@ -4,5 +4,6 @@ let
 in {
   "anthropic.age".publicKeys = [user];
   "bombadil@ecthelion.age".publicKeys = [user];
+  "openai.age".publicKeys = [user];
   "willruggiano@github.age".publicKeys = [user];
 }
