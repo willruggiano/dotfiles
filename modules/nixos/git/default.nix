@@ -6,7 +6,13 @@
 }:
 with lib; let
   cfg = config.programs.git;
+  json = pkgs.formats.json {};
+  toml = pkgs.formats.toml {};
   yaml = pkgs.formats.yaml {};
+
+  email = "mix.spend.dough@usecloaked.com";
+  name = "Will Ruggiano";
+  signingkey = "~/.ssh/id_ed25519.pub";
 in {
   config = mkIf cfg.enable {
     programs.git = {
@@ -70,9 +76,7 @@ in {
           requireTestPlan = false;
         };
         user = {
-          email = "mix.spend.dough@usecloaked.com";
-          name = "Will Ruggiano";
-          signingkey = "~/.ssh/id_ed25519.pub";
+          inherit email name signingkey;
         };
       };
     };
@@ -144,16 +148,16 @@ in {
           .envrc
           .devenv/
           .direnv/
+          # https://github.com/block/goose
+          .goose/
         '';
         "gitsigners".text = ''
           bombadil@ecthelion ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEWXJHDkOTwqq+3W5JgBxGWyDNlhxVcQB/2lwBRwg8/f
           bombadil@mothership ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIERAQpJ3mjcz+b2Y+Wf598wURIrGU710Sr91HCcwSiXS
         '';
-        "watchman.json".text = ''
-          {
-            "root_files": [".watchmanconfig"]
-          }
-        '';
+        "watchman.json".source = json.generate "watchman.json" {
+          root_files = [".watchmanconfig"];
+        };
       };
 
       variables.LG_CONFIG_FILE = "$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/theme.yml";
@@ -161,6 +165,23 @@ in {
 
     home = {
       configFile = {
+        "jj/config.toml".source = toml.generate "config.toml" {
+          aliases.advance = ["bookmark" "move" "main" "--to" "@-"];
+          signing = {
+            behavior = "own";
+            backend = "ssh";
+            key = signingkey;
+          };
+          signing.backends.ssh.allowed-signers = config.environment.etc.gitsigners.source;
+          ui = {
+            paginate = "never";
+            default-command = "status";
+            diff-editor = ["nvim" "-c" "DiffEditor $left $right $output"];
+          };
+          user = {
+            inherit email name;
+          };
+        };
         "lazygit/config.yml".source = yaml.generate "lazygit-config" {
           git = {
             autoFetch = false;
