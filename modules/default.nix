@@ -23,7 +23,6 @@
         ./common/htop.nix
         ./common/nix.nix
         ./common/pass.nix
-        ./common/slack.nix
         ./common/sourcegraph.nix
         ./common/tendrel.nix
         ./common/wezterm.nix
@@ -44,7 +43,6 @@
         ./nixos/chromium.nix
         ./nixos/darkman.nix
         ./nixos/direnv.nix
-        ./nixos/discord.nix
         ./nixos/dropbox.nix
         ./nixos/dunst.nix
         ./nixos/email.nix

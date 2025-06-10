@@ -29,7 +29,6 @@
     brave.default = true;
     browserpass.enable = true;
     direnv.enable = true;
-    discord.enable = true;
     fish.enable = true;
     fzf.enable = true;
     git.enable = true;
@@ -48,14 +47,9 @@
     obs-studio.enable = true;
     pass.enable = true;
     # qutebrowser.enable = true;
-    # qutebrowser.default = true;
-    slack.enable = true;
-    # sourcegraph.enable = true;
-    spotify.enable = true;
     starship.enable = true;
     steam.enable = true;
     weechat.enable = true;
-    zk.enable = true;
   };
 
   services = {
