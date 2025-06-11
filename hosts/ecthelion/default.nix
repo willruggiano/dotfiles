@@ -22,6 +22,8 @@
     longitude = -122.4;
   };
 
+  nix.settings.max-jobs = 24;
+
   programs = {
     brave.enable = true;
     brave.default = true;

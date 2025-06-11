@@ -110,14 +110,11 @@
           nixPath = [
             "nixpkgs=${inputs.nixpkgs}"
           ];
-
           registry.nixpkgs.flake = inputs.nixpkgs;
-
           settings = {
             auto-optimise-store = true;
             experimental-features = "nix-command flakes";
             extra-sandbox-paths = ["/nix/var/cache/ccache"];
-            max-jobs = "auto";
             substituters = [
               "https://nix-community.cachix.org"
               "https://willruggiano.cachix.org"
@@ -134,6 +131,12 @@
             automatic = true;
             dates = "weekly";
           };
+        };
+
+        systemd.services.nix-daemon.serviceConfig = {
+          MemoryAccounting = true;
+          MemoryMax = "90%";
+          OOMScoreAdjust = 500;
         };
 
         i18n.defaultLocale = "en_US.UTF-8";
