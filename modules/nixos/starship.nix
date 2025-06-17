@@ -10,52 +10,31 @@ in {
     programs.starship = {
       settings = {
         format = concatStrings [
-          "$username"
-          "[@](bold dimmed)"
           "$hostname"
-          "[:](dimmed)"
           "$directory"
-          # "$git_branch"
-          # "$nix_shell"
-          # "$python"
           "$custom"
           "$line_break"
+          "$username"
           "$character"
         ];
-        add_newline = true;
-
         character = {
-          success_symbol = "[\\$](bold green)";
-          error_symbol = "[\\$](bold red)";
-          vicmd_symbol = "[>](bold green)";
+          success_symbol = "[>](bold green)";
+          error_symbol = "[>](bold red)";
+          vicmd_symbol = "[<](bold green)";
         };
-
         custom.tailscale = {
           command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
           when = "tailscale status";
-          format = "\\($output\\)";
+          format = " \\($output\\)";
         };
-
         directory = {
-          truncation_length = 2;
-          truncate_to_repo = false;
           fish_style_pwd_dir_length = 1;
+          style = "bold dimmed";
+          truncate_to_repo = false;
+          truncation_length = 2;
         };
-
-        git_branch.format = "on [$branch(:$remote_branch)]($style) ";
-
-        hostname = {
-          ssh_only = false;
-          format = "[$hostname](bold dimmed)";
-        };
-
-        nix_shell.format = "using [nix-shell/$name](bold blue) ";
-        python.format = "using [python/$version (\($virtualenv\))](bold yellow) ";
-        username = {
-          format = "[$user]($style)";
-          show_always = true;
-          style_user = "bold dimmed";
-        };
+        hostname.format = "[$hostname:](dimmed)";
+        username.format = "$user";
       };
     };
   };
