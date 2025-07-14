@@ -58,7 +58,7 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
-    chromadb.enable = true;
+    # chromadb.enable = true;
     darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;

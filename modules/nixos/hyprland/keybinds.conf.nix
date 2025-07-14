@@ -17,7 +17,7 @@
 in ''
   # vim: ft=hyprlang
 
-  $mod = ALT
+  $mod = SUPER
 
   bind = $mod, RETURN, exec, ${lib.getExe config.programs.${term}.package}
   bind = $mod SHIFT, RETURN, exec, ${lib.getExe config.programs.brave.package}
