@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.49.0&submodules=1";
+      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.50.1&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
@@ -114,7 +114,6 @@
         ...
       }: {
         devShells.default = pkgs.mkShell {
-          name = "dotfiles";
           buildInputs = with pkgs; [just nix-output-monitor yubikey-manager];
           inputsFrom = [config.pre-commit.devShell];
         };
