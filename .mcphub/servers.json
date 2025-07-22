@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "nixos": {
+      "command": "nix",
+      "args": ["run", "github:utensils/mcp-nixos", "--"]
+    }
+  },
+  "nativeMCPServers": {
+    "neovim": {
+      "disabled": false
+    }
+  }
+}
