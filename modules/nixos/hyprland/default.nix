@@ -74,11 +74,6 @@ in {
               '';
               # "wofi/style.css".source = config.programs.flavours.build.wofi;
             }
-            (mkIf (cfg.wallpapers != {}) {
-              home.configFile = {
-                "hypr/hyprpaper.conf".text = import ./hyprpaper.conf.nix {inherit config lib;};
-              };
-            })
           ];
 
         programs.flavours.items = {
@@ -94,7 +89,6 @@ in {
           };
           systemPackages = with pkgs; [
             grim
-            hyprpaper
             slurp
             wl-clipboard
             wlsunset
@@ -102,18 +96,6 @@ in {
             inputs.mcmojave-cursor.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
         };
-
-        # xdg.portal = {
-        #   enable = true;
-        #   config = {
-        #     common = {
-        #       default = [
-        #         "hyprland"
-        #         "gtk"
-        #       ];
-        #     };
-        #   };
-        # };
       }
       (mkIf cfg.extensions.hyprlock.enable {
         environment.systemPackages = [pkgs.hyprlock];

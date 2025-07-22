@@ -6,15 +6,10 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     agenix.url = "github:ryantm/agenix";
-    base16-templates-source = {
-      url = "github:chriskempson/base16-templates-source";
-      flake = false;
-    };
     doom-one = {
       url = "github:NTBBloodbath/doom-one.nvim";
       flake = false;
     };
-    git-branchless.url = "github:arxanas/git-branchless";
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,17 +44,6 @@
         systems.follows = "hyprland/systems";
       };
     };
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs = {
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
-    };
     mcmojave-cursor = {
       url = "github:libadoxon/mcmojave-hyprcursor";
       inputs = {
@@ -74,20 +58,14 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     himalaya = {
       url = "github:pimalaya/himalaya";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
       url = "github:danth/stylix";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-    zenbones = {
-      url = "github:mcchrish/zenbones.nvim";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
