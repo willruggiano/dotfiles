@@ -97,7 +97,7 @@ in {
         git-quickfix
         git-trim
         gitflow
-        jjui
+        jujutsu
         lazygit
         mergiraf
         rs-git-fsmonitor
