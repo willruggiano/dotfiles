@@ -1,9 +1,9 @@
 install:
-    nixos-rebuild switch --use-remote-sudo
+    nixos-rebuild switch --sudo
     notify-send --transient 'nixos be ready'
 
 boot:
-    nixos-rebuild boot --use-remote-sudo
+    nixos-rebuild boot --sudo
 
 build:
     nixos-rebuild build |& nom
