@@ -15,6 +15,7 @@ in {
       inherit kernelPackages;
       extraModulePackages = with kernelPackages; [acpi_call];
       kernelModules = ["acpi_call" "kvm-intel"];
+      kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
 
       initrd = {
         availableKernelModules = [
