@@ -62,7 +62,7 @@
     darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
-    email.enable = true;
+    # email.enable = true;
     kbfs.enable = true;
     ollama = {
       enable = true;

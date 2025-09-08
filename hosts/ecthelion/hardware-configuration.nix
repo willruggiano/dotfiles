@@ -3,31 +3,32 @@
   pkgs,
   modulesPath,
   ...
-}: let
-  kernelPackages = pkgs.linuxPackages_latest;
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   config = {
     boot = {
-      inherit kernelPackages;
-      extraModulePackages = with kernelPackages; [acpi_call];
-      kernelModules = ["acpi_call" "kvm-intel"];
-      kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
+      kernelModules = ["kvm-intel"];
+      kernelPackages = pkgs.linuxPackages;
+      # FIXME: don't have enough space in my boot partition :/
+      # kernelPackages = pkgs.linuxPackages_latest;
+
+      # FIXME: honestly not sure if these do anything useful
+      # kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
 
       initrd = {
         availableKernelModules = [
-          "ahci"
-          "nvme"
-          "sd_mod"
-          "sr_mod"
-          "thunderbolt"
-          "usb_storage"
-          "usbhid"
           "vmd"
           "xhci_pci"
+          "ahci"
+          "nvme"
+          "thunderbolt"
+          "usbhid"
+          "usb_storage"
+          "sd_mod"
+          "sr_mod"
         ];
       };
 
@@ -43,17 +44,18 @@ in {
     };
 
     fileSystems."/" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/disk/by-uuid/ef563958-90f5-43ca-836c-49a70927012e";
       fsType = "ext4";
     };
 
     fileSystems."/boot" = {
       device = "/dev/disk/by-uuid/D49C-A0DE";
       fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
     };
 
     swapDevices = [
-      {device = "/dev/disk/by-label/swap";}
+      {device = "/dev/disk/by-uuid/d03258a4-fff4-4ac2-a861-7e9d1cd787a5";}
     ];
 
     powerManagement.cpuFreqGovernor = "powersave";
