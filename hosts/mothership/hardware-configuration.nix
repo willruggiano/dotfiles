@@ -4,9 +4,7 @@
   pkgs,
   modulesPath,
   ...
-}: let
-  kernelPackages = pkgs.linuxPackages_latest;
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.nixos-hardware.nixosModules.system76
@@ -15,11 +13,12 @@ in {
   boot = {
     initrd = {
       availableKernelModules = [
-        "nvme"
-        "rtsx_pci_sdmmc"
-        "sd_mod"
-        "uas"
         "xhci_pci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+        "rtsx_pci_sdmmc"
+        "uas"
       ];
     };
 
@@ -28,7 +27,7 @@ in {
       "fs.inotify.max_queued_events" = 65536; # default: 16384
     };
     kernelModules = ["kvm-intel"];
-    inherit kernelPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = ["acpi_backlight=native"];
 
     loader = {
@@ -38,16 +37,17 @@ in {
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-uuid/0286fdee-d493-47ef-93b3-8c16cb3bfc13";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
+    device = "/dev/disk/by-uuid/CF44-4C64";
     fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
   };
 
-  swapDevices = [{device = "/dev/disk/by-label/swap";}];
+  swapDevices = [{device = "/dev/disk/by-uuid/32c7c0d9-72b7-409c-af0e-aac996048097";}];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
