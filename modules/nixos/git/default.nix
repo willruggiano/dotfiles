@@ -166,7 +166,7 @@ in {
     home = {
       configFile = {
         "jj/config.toml".source = toml.generate "config.toml" {
-          aliases.advance = ["bookmark" "move" "main" "--to" "@-"];
+          aliases.tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
           signing = {
             behavior = "own";
             backend = "ssh";
