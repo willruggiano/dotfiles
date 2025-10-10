@@ -8,7 +8,15 @@
         maxJobs = 8;
         sshKey = "/etc/ssh/ssh_host_ed25519_key";
         sshUser = "bombadil";
-        supportedFeatures = ["big-parallel"];
+        supportedFeatures = ["benchmark" "big-parallel"];
+      }
+      {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        hostName = "eu.nixbuild.net";
+        protocol = "ssh-ng";
+        maxJobs = 100;
+        sshKey = "/etc/ssh/ssh_host_ed25519_key";
+        supportedFeatures = ["benchmark" "big-parallel"];
       }
     ];
     distributedBuilds = true;
