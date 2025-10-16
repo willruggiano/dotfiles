@@ -37,27 +37,10 @@ in {
       };
     };
 
-    # this seems to be the key?
-    xdg.portal.extraPortals = [pkgs.darkman];
-
-    # Uh... idk how the unit file is getting in there?
-    # systemd.user.services.darkman = {
-    #   description = "Framework for dark-mode and light-mode transitions.";
-    #   documentation = ["man:darkman(1)"];
-    #   partOf = ["graphical-session.target"];
-    #   bindsTo = ["graphical-session.target"];
-    #   # restartTriggers =
-    #   #   lib.mkIf (cfg.settings != {})
-    #   #   ["${config.home.configFile."darkman/config.yaml".source}"];
-    #   serviceConfig = {
-    #     Type = "dbus";
-    #     BusName = "nl.whynothugo.darkman";
-    #     ExecStart = "${lib.getExe cfg.package} run";
-    #     Restart = "on-failure";
-    #     TimeoutStopSec = 15;
-    #     Slice = "background.slice";
-    #   };
-    #   wantedBy = lib.mkDefault ["graphical-session.target"];
-    # };
+    xdg.portal = {
+      config.common = {
+        "org.freedesktop.impl.portal.Settings" = ["darkman"];
+      };
+    };
   };
 }
