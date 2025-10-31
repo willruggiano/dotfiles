@@ -90,6 +90,20 @@ in {
           systemPackages = with pkgs; [
             grim
             slurp
+            (pkgs.makeDesktopItem {
+              name = "Screenshot";
+              desktopName = "Screenshot";
+              exec = let
+                app = pkgs.writeShellApplication {
+                  name = "screenshot";
+                  runtimeInputs = [grim slurp];
+                  text = ''
+                    grim -g "$(slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
+                  '';
+                };
+              in
+                lib.getExe app;
+            })
             wl-clipboard
             wlsunset
             wofi
