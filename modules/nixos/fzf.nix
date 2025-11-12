@@ -50,6 +50,7 @@ in {
             wrapProgram $out/bin/fzf --add-flags "${cfg.preview}"
           '';
         })
+        bat
       ];
 
       environment.variables = {

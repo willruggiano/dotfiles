@@ -6,6 +6,7 @@
       fd
       file
       hyperfine
+      inetutils
       jq
       mkcert
       # qrcp

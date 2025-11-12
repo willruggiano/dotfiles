@@ -18,7 +18,7 @@ with lib; let
   };
 in {
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [eza zoxide];
+    environment.systemPackages = with pkgs; [bat eza zoxide];
 
     programs.fish = {
       useBabelfish = true;
