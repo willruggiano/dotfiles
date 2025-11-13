@@ -98,7 +98,9 @@ in ''
 
   windowrule = float,class:^()$
   windowrule = float,class:^(brave)$
+  windowrule = float,class:^(soffice)$ # libreoffice
   windowrule = float,class:^(xdg-desktop-portal-gtk)$
   windowrule = float,initialTitle:^(about:blank)
   windowrule = float,title:^MainPicker$
+  windowrule = float,title:^(Sign in - Google Accounts - Brave)$ # google sso
 ''
