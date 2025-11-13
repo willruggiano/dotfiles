@@ -872,6 +872,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-latest": {
+      "locked": {
+        "lastModified": 1763407340,
+        "narHash": "sha256-3EuTxUIi+sBOiKkZZ9EOoF3XkscGmsDgkSAy32Q43Fc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ba862980b2060f42f1dce7a93d92108e5f338790",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1754788789,
@@ -987,6 +1002,7 @@
         "nix-flake-templates": "nix-flake-templates",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-latest": "nixpkgs-latest",
         "nur": "nur",
         "stylix": "stylix"
       }

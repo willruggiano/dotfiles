@@ -24,8 +24,11 @@ in {
         powerManagement.enable = false;
         powerManagement.finegrained = false;
       };
+      nvidia-container-toolkit.enable = true;
     };
 
     services.xserver.videoDrivers = ["nvidia"];
+
+    virtualisation.docker.enableNvidia = true;
   };
 }
