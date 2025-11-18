@@ -48,8 +48,7 @@ in {
 
       shellAliases = {
         bat = "bat -pp";
-        ls = "eza -F -l";
-        vim = "nvim";
+        ls = "eza -Bl -Falways";
       };
     };
 
