@@ -1,20 +1,9 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{self, ...}: {
   perSystem = {
     system,
     inputs',
     ...
-  }: let
-    pkgs = import inputs.nixpkgs {
-      inherit system;
-      overlays = [self.overlays.default];
-    };
-  in {
-    _module.args.pkgs = pkgs;
-
+  }: {
     packages.himalaya = inputs'.himalaya.packages.default.override {
       buildFeatures = ["keyring" "notmuch" "oauth2"];
     };

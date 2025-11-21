@@ -10,11 +10,12 @@ in {
   config = mkMerge [
     (mkIf cfg.docker.enable {
       virtualisation.docker = {
-        enableOnBoot = true;
         autoPrune.enable = true;
+        enableOnBoot = true;
+        extraPackages = [pkgs.docker-buildx];
       };
       user.extraGroups = ["docker"];
-      environment.systemPackages = [pkgs.docker-buildx pkgs.lazydocker];
+      environment.systemPackages = [pkgs.lazydocker];
       networking.firewall.trustedInterfaces = ["docker0"];
     })
     (mkIf cfg.libvirtd.enable {

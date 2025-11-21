@@ -7,10 +7,17 @@
     nixosModules.default = {
       config,
       pkgs,
-      system,
       ...
     }: {
       imports = [
+        {
+          _module.args = {
+            pkgs-latest = import inputs.nixpkgs-latest {
+              inherit (config.nixpkgs) config;
+              inherit (pkgs) system;
+            };
+          };
+        }
         ./common/flavours
         ./common/kitty
         ./common/neovim
@@ -99,7 +106,10 @@
             "nixpkgs=${inputs.nixpkgs}"
             "nixpkgs-latest=${inputs.nixpkgs-latest}"
           ];
-          registry.nixpkgs.flake = inputs.nixpkgs;
+          registry = {
+            nixpkgs.flake = inputs.nixpkgs;
+            nixpkgs-latest.flake = inputs.nixpkgs-latest;
+          };
           settings = {
             auto-optimise-store = true;
             experimental-features = "nix-command flakes";
