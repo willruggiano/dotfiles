@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   modulesPath,
@@ -7,7 +6,6 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    inputs.nixos-hardware.nixosModules.system76
   ];
 
   boot = {
@@ -47,11 +45,13 @@
     options = ["fmask=0022" "dmask=0022"];
   };
 
+  services.xserver.videoDrivers = ["modesetting"];
   swapDevices = [{device = "/dev/disk/by-uuid/32c7c0d9-72b7-409c-af0e-aac996048097";}];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   hardware = {
+    system76.enableAll = true;
     bluetooth.enable = true;
     graphics.enable = true;
   };
