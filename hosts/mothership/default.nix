@@ -41,6 +41,7 @@
       };
     };
     kitty.enable = true;
+    libreoffice.enable = true;
     pass.enable = true;
     # qutebrowser.enable = true;
     starship.enable = true;
