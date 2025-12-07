@@ -14,7 +14,7 @@
         inherit (pkgs.stdenv.hostPlatform) system;
         hostName = "eu.nixbuild.net";
         protocol = "ssh-ng";
-        maxJobs = 100;
+        maxJobs = 16;
         sshKey = "/etc/ssh/ssh_host_ed25519_key";
         supportedFeatures = ["benchmark" "big-parallel"];
       }

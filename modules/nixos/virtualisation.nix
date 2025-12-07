@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs',
   ...
 }:
 with lib; let
@@ -15,7 +16,7 @@ in {
         extraPackages = [pkgs.docker-buildx];
       };
       user.extraGroups = ["docker"];
-      environment.systemPackages = [pkgs.lazydocker];
+      environment.systemPackages = with pkgs'; [dtop lazydocker];
       networking.firewall.trustedInterfaces = ["docker0"];
     })
     (mkIf cfg.libvirtd.enable {

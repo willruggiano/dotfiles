@@ -1,7 +1,6 @@
 {
   config,
-  pkgs,
-  pkgs-latest,
+  pkgs',
   ...
 }: {
   environment = {
@@ -15,32 +14,38 @@
       export GOOGLE_API_KEY="$GEMINI_API_KEY"
     '';
     systemPackages = let
-      llm = with pkgs-latest; [
+      llm = with pkgs'; [
         (python3.withPackages (ps:
           with ps; [
             datasette
             llm
             llm-anthropic
             llm-docs
+            llm-fragments-github
             llm-gemini
             llm-gguf
             llm-ollama
           ]))
       ];
-      tools = with pkgs; [
+      tools = with pkgs'; [
         cached-nix-shell
         curl
         fd
         file
+        glow
         hyperfine
         inetutils
         jq
         mkcert
+        pandoc
         # qrcp
+        rclone
         ripgrep
         sad
+        sd
         speedtest-cli
         sysz
+        timg
         trash-cli
         unzip
         wget

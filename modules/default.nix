@@ -12,7 +12,7 @@
       imports = [
         {
           _module.args = {
-            pkgs-latest = import inputs.nixpkgs-latest {
+            pkgs' = import inputs.nixpkgs-latest {
               inherit (config.nixpkgs) config;
               inherit (pkgs) system;
             };
@@ -62,6 +62,7 @@
         ./nixos/nix.nix
         ./nixos/nvidia.nix
         ./nixos/obs.nix
+        ./nixos/postgres.nix
         ./nixos/remarkable.nix
         ./nixos/shell.nix
         ./nixos/spotify.nix

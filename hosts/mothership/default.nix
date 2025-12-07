@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs',
+  ...
+}: {
   imports = [
     ./builders.nix
     ./hardware-configuration.nix
@@ -56,6 +60,7 @@
     passSecretService.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
+    postgresql.enable = true;
     ssh.enable = true;
     tailscale.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
