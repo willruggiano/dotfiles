@@ -32,13 +32,13 @@
         curl
         fd
         file
+        gdu
         glow
         hyperfine
         inetutils
         jq
         mkcert
         pandoc
-        # qrcp
         rclone
         ripgrep
         sad
