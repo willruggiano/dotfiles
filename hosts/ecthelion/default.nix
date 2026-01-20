@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs',
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./keyboard-layout.nix
@@ -44,6 +48,7 @@
       };
     };
     kitty.enable = true;
+    libreoffice.enable = true;
     obs-studio.enable = true;
     pass.enable = true;
     # qutebrowser.enable = true;
@@ -67,6 +72,7 @@
     ollama = {
       enable = true;
       acceleration = "cuda";
+      package = pkgs'.ollama-cuda;
     };
     passSecretService.enable = true;
     pcscd.enable = true;
