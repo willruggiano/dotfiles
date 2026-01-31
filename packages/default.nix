@@ -18,6 +18,7 @@
       nonicons = prev.callPackage ./nonicons {};
       pass-extension-clip = prev.callPackage ./pass-clip {};
       pass-extension-meta = prev.callPackage ./pass-meta {};
+      tunnel9 = prev.callPackage ./tunnel9 {};
     };
   };
 }
