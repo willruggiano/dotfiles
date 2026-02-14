@@ -33,6 +33,7 @@
       };
 
       kernel.sysctl = {
+        "dev.tty.legacy_tiocsti" = 0;
         "fs.inotify.max_user_watches" = 1048576; # default: 8192
         "fs.inotify.max_queued_events" = 65536; # default: 16384
       };
