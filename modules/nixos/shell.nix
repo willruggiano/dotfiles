@@ -43,6 +43,7 @@
         speedtest-cli
         sysz
         timg
+        tmux
         trash-cli
         unzip
         wget

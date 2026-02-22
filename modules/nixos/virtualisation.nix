@@ -10,14 +10,25 @@ with lib; let
 in {
   config = mkMerge [
     (mkIf cfg.docker.enable {
+      environment.systemPackages = with pkgs'; [dtop lazydocker];
+      networking.firewall.trustedInterfaces = ["docker0"];
+      user.extraGroups = ["docker"];
       virtualisation.docker = {
         autoPrune.enable = true;
         enableOnBoot = true;
         extraPackages = [pkgs.docker-buildx];
       };
-      user.extraGroups = ["docker"];
-      environment.systemPackages = with pkgs'; [dtop lazydocker];
-      networking.firewall.trustedInterfaces = ["docker0"];
+    })
+    (mkIf cfg.podman.enable {
+      environment.systemPackages = [pkgs.podman-compose];
+      user.extraGroups = ["podman"];
+      virtualisation = {
+        containers.enable = true;
+        podman = {
+          dockerCompat = true;
+          defaultNetwork.settings.dns_enabled = true;
+        };
+      };
     })
     (mkIf cfg.libvirtd.enable {
       user.extraGroups = ["libvirtd"];

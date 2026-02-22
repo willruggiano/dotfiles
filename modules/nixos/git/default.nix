@@ -26,8 +26,8 @@ in {
         color.ui = "auto";
         commit.gpgsign = true;
         core = {
-          attributesfile = config.environment.etc.gitattributes.source;
-          excludesfile = config.environment.etc.gitignore.source;
+          attributesfile = "/etc/gitattributes";
+          excludesfile = "/etc/gitignore";
           pager = "delta";
         };
         credential = {
@@ -42,7 +42,7 @@ in {
         };
         diff.external = "difft";
         gpg.format = "ssh";
-        gpg.ssh.allowedSignersFile = config.environment.etc.gitsigners.source;
+        gpg.ssh.allowedSignersFile = "/etc/gitsigners";
         init.defaultBranch = "main";
         interactive.diffFilter = "delta --color-only";
         lfs.enable = true;
@@ -167,6 +167,22 @@ in {
       configFile = {
         "jj/config.toml".source = toml.generate "config.toml" {
           aliases.tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+          merge-tools = {
+            diffconflicts = {
+              program = "nvim";
+              merge-args = [
+                "-c"
+                "let g:jj_diffconflicts_marker_length=$marker_length"
+                "-c"
+                "JJDiffConflicts!"
+                "$output"
+                "$base"
+                "$left"
+                "$right"
+              ];
+              merge-tool-edits-conflict-markers = true;
+            };
+          };
           signing = {
             behavior = "own";
             backend = "ssh";
