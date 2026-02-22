@@ -30,7 +30,6 @@
         ./common/nix.nix
         ./common/pass.nix
         ./common/sourcegraph.nix
-        ./common/tendrel.nix
         ./common/wezterm.nix
         ./common/zk.nix
         ./nixos/brave
