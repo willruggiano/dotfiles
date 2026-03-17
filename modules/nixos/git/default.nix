@@ -167,6 +167,7 @@ in {
       configFile = {
         "jj/config.toml".source = toml.generate "config.toml" {
           aliases.tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+          git.abandon-unreachable-commits = false;
           merge-tools = {
             diffconflicts = {
               program = "nvim";
