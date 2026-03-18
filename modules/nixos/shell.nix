@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs',
   ...
 }: {
@@ -9,48 +10,41 @@
       export GOOGLE_API_KEY="$(cat ${config.age.secrets.gemini.path})"
       export OPENAI_API_KEY="$(cat ${config.age.secrets.openai.path})"
     '';
-    systemPackages = let
-      llm = with pkgs'; [
-        # (python3.withPackages (ps:
-        #   with ps; [
-        #     datasette
-        #     llm
-        #     llm-anthropic
-        #     llm-docs
-        #     llm-fragments-github
-        #     llm-gemini
-        #     llm-gguf
-        #     llm-ollama
-        #   ]))
-        # vllm
-      ];
-      tools = with pkgs'; [
-        cached-nix-shell
-        curl
-        fd
-        file
-        gdu
-        glow
-        hyperfine
-        inetutils
-        jq
-        mkcert
-        pandoc
-        rclone
-        ripgrep
-        sad
-        sd
-        speedtest-cli
-        sysz
-        timg
-        tmux
-        trash-cli
-        unzip
-        wget
-        yq
-        zip
-      ];
-    in
-      llm ++ tools;
+    systemPackages = with pkgs'; [
+      cached-nix-shell
+      curl
+      fd
+      file
+      gdu
+      glow
+      hyperfine
+      inetutils
+      jq
+      mkcert
+      pandoc
+      rclone
+      ripgrep
+      sad
+      sd
+      speedtest-cli
+      sysz
+      timg
+      trash-cli
+      unzip
+      wget
+      yq
+      zip
+    ];
+  };
+
+  programs.tmux = {
+    extraConfig = ''
+      set -g mouse on
+      set -g visual-activity on
+      setw -g monitor-activity on
+    '';
+    shortcut = lib.mkDefault "a";
+    secureSocket = lib.mkDefault true;
+    terminal = lib.mkDefault "screen256-color";
   };
 }
