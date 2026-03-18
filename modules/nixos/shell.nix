@@ -43,7 +43,7 @@
       set -g visual-activity on
       setw -g monitor-activity on
     '';
-    shortcut = lib.mkDefault "a";
+    keyMode = "vi";
     secureSocket = lib.mkDefault true;
     terminal = lib.mkDefault "screen256-color";
   };

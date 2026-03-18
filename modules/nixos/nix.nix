@@ -19,7 +19,6 @@
       man-pages
       man-pages-posix
       nix-output-monitor
-      nixos-cli
       # nurl
       xdg-utils
     ];
@@ -32,6 +31,7 @@
   };
 
   programs.command-not-found.enable = false;
+  programs.nixos-cli.enable = true;
 
   system.configurationRevision = lib.mkIf (self ? rev) self.rev;
   system.stateVersion = lib.mkDefault "21.05";

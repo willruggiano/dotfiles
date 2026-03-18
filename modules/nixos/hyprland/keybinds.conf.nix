@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: let
-  inherit (config) term;
-
   window-switcher = pkgs.writeShellApplication {
     name = "switch-window";
     runtimeInputs = with pkgs; [wofi];
@@ -19,8 +17,8 @@ in ''
 
   $mod = SUPER
 
-  bind = $mod, RETURN, exec, ${lib.getExe config.programs.${term}.package}
-  bind = $mod SHIFT, RETURN, exec, ${lib.getExe config.programs.brave.package}
+  bind = $mod, RETURN, exec, kitty
+  bind = $mod SHIFT, RETURN, exec,''${BROWSER}
   bind = $mod SHIFT, C, killactive
   bind = $mod, SPACE, togglefloating
   bind = $mod, C, centerwindow

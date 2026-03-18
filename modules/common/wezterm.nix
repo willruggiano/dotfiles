@@ -21,7 +21,5 @@ in {
         recursive = true;
       };
     };
-
-    term = "wezterm";
   };
 }
