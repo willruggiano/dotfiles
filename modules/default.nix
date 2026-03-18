@@ -18,6 +18,7 @@
             };
           };
         }
+        inputs.nixos-cli.nixosModules.nixos-cli
         ./common/flavours
         ./common/kitty
         ./common/neovim

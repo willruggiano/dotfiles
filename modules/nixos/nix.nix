@@ -19,6 +19,7 @@
       man-pages
       man-pages-posix
       nix-output-monitor
+      nixos-cli
       # nurl
       xdg-utils
     ];

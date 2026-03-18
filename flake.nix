@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:nixos/nixpkgs";
+    nixos-cli.url = "github:nix-community/nixos-cli";
     flake-parts.url = "github:hercules-ci/flake-parts";
     agenix = {
       url = "github:ryantm/agenix";
