@@ -26,12 +26,5 @@ in {
         };
       };
     };
-
-    home.file = {
-      "dev/.stignore".text = ''
-        !/tendrel/envrc
-        *
-      '';
-    };
   };
 }
