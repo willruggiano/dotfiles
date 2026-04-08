@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs',
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./builders.nix
     ./hardware-configuration.nix
@@ -49,6 +45,7 @@
     pass.enable = true;
     # qutebrowser.enable = true;
     starship.enable = true;
+    tmux.enable = true;
   };
 
   services = {
