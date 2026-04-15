@@ -80,7 +80,7 @@
     pipewire.enable = true;
     remarkable.enable = true;
     ssh.enable = true;
-    tailscale.enable = true;
+    # tailscale.enable = true;
     trezord.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
