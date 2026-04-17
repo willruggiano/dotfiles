@@ -6,6 +6,7 @@
   flake = {
     nixosModules.default = {
       config,
+      lib,
       pkgs,
       ...
     }: {
@@ -91,7 +92,38 @@
         nixpkgs = {
           config = {
             allowBroken = true;
-            allowUnfree = true;
+            # allowUnfree = true;
+            allowUnfreePredicate = pkg:
+              builtins.elem (lib.getName pkg) [
+                "steam"
+                "steam-unwrapped"
+                "sublime-merge"
+                # nvidia
+                "cuda-merged"
+                "cuda_cccl"
+                "cuda_cudart"
+                "cuda_cuobjdump"
+                "cuda_cupti"
+                "cuda_cuxxfilt"
+                "cuda_nvml_dev"
+                "cuda_nvrtc"
+                "cuda_nvtx"
+                "cuda_gdb"
+                "cuda_nvcc"
+                "cuda_nvdisasm"
+                "cuda_nvprune"
+                "cuda_profiler_api"
+                "cuda_sanitizer_api"
+                "libcufft"
+                "libcublas"
+                "libcurand"
+                "libcusolver"
+                "libcusparse"
+                "libnvjitlink"
+                "libnpp"
+                "nvidia-settings"
+                "nvidia-x11"
+              ];
           };
           overlays = [
             self.overlays.default
