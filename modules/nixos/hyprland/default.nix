@@ -72,13 +72,8 @@ in {
                 key_expand=Control_L-l
                 layer=overlay
               '';
-              # "wofi/style.css".source = config.programs.flavours.build.wofi;
             }
           ];
-
-        programs.flavours.items = {
-          wofi.template = ./wofi.mustache;
-        };
 
         environment = {
           loginShellInit = ''

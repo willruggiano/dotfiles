@@ -20,14 +20,6 @@ in {
       "dbus-1/services/org.knopwob.dunst.service".source = "${cfg.package}/share/dbus-1/services/org.knopwob.dunst.service";
     };
 
-    programs.flavours.items.dunst = {
-      template = "${pkgs.base16-templates}/templates/dunst/templates/default.mustache";
-    };
-
-    # home.configFile = {
-    #   "dunst/dunstrc".source = config.programs.flavours.build.dunst;
-    # };
-
     systemd.user.services.dunst = {
       description = "dunst, a notification daemon";
       after = ["graphical-session-pre.target"];

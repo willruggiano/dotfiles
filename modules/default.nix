@@ -19,8 +19,8 @@
             };
           };
         }
+        inputs.campfire.nixosModules.claude
         inputs.nixos-cli.nixosModules.nixos-cli
-        ./common/flavours
         ./common/kitty
         ./common/neovim
         ./common/qutebrowser
@@ -75,7 +75,6 @@
         ./nixos/utils.nix
         ./nixos/virtualisation.nix
         ./nixos/yubico.nix
-        ./nixos/zsh.nix
         {
           imports = [inputs.home-manager.nixosModules.home-manager];
           home-manager = {
