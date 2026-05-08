@@ -64,6 +64,10 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
+    campfire.claude = {
+      enable = true;
+      count = 1;
+    };
     # chromadb.enable = true;
     darkman.enable = true;
     dropbox.enable = true;
