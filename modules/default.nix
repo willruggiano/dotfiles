@@ -19,8 +19,7 @@
             };
           };
         }
-        inputs.campfire.nixosModules.claude
-        inputs.nixos-cli.nixosModules.nixos-cli
+        # inputs.campfire.nixosModules.claude
         ./common/kitty
         ./common/neovim
         ./common/qutebrowser

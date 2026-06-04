@@ -56,31 +56,37 @@ in {
           trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
         };
 
-        home.configFile = let
-          hypr-keybinds = pkgs.writeTextFile {
-            name = "hypr-keybinds.conf";
-            text = import ./keybinds.conf.nix {inherit config lib pkgs;};
-          };
-        in
-          mkMerge [
-            {
-              "hypr/hyprland.conf".text = import ./hyprland.conf.nix {inherit config hypr-keybinds lib pkgs;};
-
-              "wofi/config".text = ''
-                key_down=Control_L-j
-                key_up=Control_L-k
-                key_expand=Control_L-l
-                layer=overlay
-              '';
-            }
-          ];
+        home.configFile = mkMerge [
+          {
+            "hypr/hyprland.lua".source = ./hyprland.lua;
+            "wofi/config".text = ''
+              key_down=Control_L-j
+              key_up=Control_L-k
+              key_expand=Control_L-l
+              layer=overlay
+            '';
+          }
+        ];
 
         environment = {
           loginShellInit = ''
             [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
           '';
-          sessionVariables = {
-            NIXOS_OZONE_WL = "1";
+          sessionVariables = let
+            inherit (config.lib.stylix.colors) base00 base03 base06 base0A base0D;
+            inherit (import ./lib.nix) rgb;
+          in {
+            BASE_00 = rgb base00;
+            BASE_03 = rgb base03;
+            BASE_06 = rgb base06;
+            BASE_0A = rgb base0A;
+            BASE_0D = rgb base0D;
+            HYPRCURSOR_SIZE = cfg.cursor.size;
+            HYPRCURSOR_THEME = cfg.cursor.theme;
+            LATITUDE = builtins.toString config.location.latitude;
+            LONGITUDE = builtins.toString config.location.longitude;
+            NIXOS_OZONE_WL = 1;
+            XDG_SESSION_TYPE = "wayland";
           };
           systemPackages = with pkgs; [
             grim
@@ -91,7 +97,7 @@ in {
               exec = let
                 app = pkgs.writeShellApplication {
                   name = "screenshot";
-                  runtimeInputs = [grim slurp];
+                  runtimeInputs = [coreutils grim slurp];
                   text = ''
                     grim -g "$(slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
                   '';
@@ -110,6 +116,13 @@ in {
           config.common.default = ["hyprland" "gtk"];
         };
       }
+      (mkIf config.hardware.nvidia.enable {
+        environment.sessionVariables = {
+          LIBVA_DRIVER_NAME = "nvidia";
+          GBM_BACKEND = "nvidia-drm";
+          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        };
+      })
       (mkIf cfg.extensions.hyprlock.enable {
         environment.systemPackages = [pkgs.hyprlock];
         home.configFile = {

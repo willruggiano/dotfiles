@@ -24,7 +24,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.50.1&submodules=1";
+      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.55.2&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
@@ -101,6 +101,14 @@
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [just nix-output-monitor yubikey-manager];
           inputsFrom = [config.pre-commit.devShell];
+          shellHook = let
+            pkg = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            luarc = pkgs.writeText "luarc.json" (builtins.toJSON {
+              workspace.library = ["${pkg}/share/hypr/stubs"];
+            });
+          in ''
+            ln -sf ${luarc} .luarc.json
+          '';
         };
         pre-commit.settings.hooks = {
           alejandra.enable = true;

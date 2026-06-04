@@ -203,7 +203,7 @@ in {
           git = {
             autoFetch = false;
             overrideGpg = true;
-            paging.externalDiffCommand = "difft --color=always";
+            # paging.externalDiffCommand = "difft --color=always";
           };
         };
       };

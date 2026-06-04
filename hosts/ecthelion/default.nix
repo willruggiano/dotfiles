@@ -51,7 +51,6 @@
     libreoffice.enable = true;
     obs-studio.enable = true;
     pass.enable = true;
-    # qutebrowser.enable = true;
     starship.enable = true;
     steam.enable = true;
     tmux.enable = true;
@@ -64,26 +63,22 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
-    campfire.claude = {
-      enable = false;
-      count = 1;
-    };
-    # chromadb.enable = true;
+    # campfire.claude = {
+    #   enable = true;
+    #   count = 1;
+    # };
     darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
-    # email.enable = true;
     kbfs.enable = true;
     passSecretService.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
     remarkable.enable = true;
     ssh.enable = true;
-    # tailscale.enable = true;
     trezord.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
 
-  # virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
 }
