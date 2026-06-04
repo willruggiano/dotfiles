@@ -32,17 +32,17 @@ in {
         '')
         (mkAfter ''
           fish_vi_key_bindings insert
-          bind -M insert \ca beginning-of-line
-          bind -M insert \ce end-of-line
+          bind -M insert ctrl-a beginning-of-line
+          bind -M insert ctrl-e end-of-line
           set fish_cursor_default block blink
           set fish_cursor_insert line blink
           set fish_cursor_replace_one underscore
           set fish_cursor_visual block
           set fish_escape_delay_ms 300
-          bind \r magic-enter
-          bind -M insert \r magic-enter
-          bind -M insert \cy accept-autosuggestion
-          bind -M insert -k nul complete
+          bind enter magic-enter
+          bind -M insert enter magic-enter
+          bind -M insert ctrl-y accept-autosuggestion
+          bind -M insert ctrl-space complete
         '')
       ];
 

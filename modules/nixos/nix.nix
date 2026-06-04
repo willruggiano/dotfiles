@@ -12,7 +12,7 @@
 
   config = {
     # Keep the last two generations in the boot menu.
-    boot.loader.systemd-boot.configurationLimit = 1;
+    boot.loader.systemd-boot.configurationLimit = 2;
 
     documentation.dev.enable = true;
 
