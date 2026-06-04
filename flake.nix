@@ -62,8 +62,10 @@
       flake = false;
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nur.url = "github:nix-community/nur";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     himalaya = {
       url = "github:pimalaya/himalaya";
       inputs.nixpkgs.follows = "nixpkgs";
