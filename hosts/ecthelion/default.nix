@@ -65,7 +65,7 @@
       config = ./monitor-layout.kdl;
     };
     campfire.claude = {
-      enable = true;
+      enable = false;
       count = 1;
     };
     # chromadb.enable = true;
