@@ -6,13 +6,6 @@
 }: let
   cfg = config.services.dunst;
 in {
-  options = {
-    services.dunst = {
-      enable = lib.mkEnableOption "Enable dunst notification daemon";
-      package = lib.mkPackageOption pkgs "dunst" {};
-    };
-  };
-
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [cfg.package pkgs.libnotify];
 

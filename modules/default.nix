@@ -15,7 +15,7 @@
           _module.args = {
             pkgs' = import inputs.nixpkgs-latest {
               inherit (config.nixpkgs) config;
-              inherit (pkgs) system;
+              inherit (pkgs.stdenv.hostPlatform) system;
             };
           };
         }
@@ -91,7 +91,6 @@
         nixpkgs = {
           config = {
             allowBroken = true;
-            # allowUnfree = true;
             allowUnfreePredicate = pkg:
               builtins.elem (lib.getName pkg) [
                 "steam"

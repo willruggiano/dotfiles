@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{
   nix = {
     buildMachines = [
       # {
-      #   inherit (pkgs.stdenv.hostPlatform) system;
+      #   system = "x86_64-linux";
       #   hostName = "192.168.4.106"; # ecthelion
       #   protocol = "ssh-ng";
       #   maxJobs = 8;
@@ -11,7 +11,7 @@
       #   supportedFeatures = ["benchmark" "big-parallel"];
       # }
       {
-        inherit (pkgs.stdenv.hostPlatform) system;
+        system = "x86_64-linux";
         hostName = "eu.nixbuild.net";
         protocol = "ssh-ng";
         maxJobs = 16;

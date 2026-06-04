@@ -1,6 +1,6 @@
 _: {
   config = {
-    programs.light.enable = true;
+    hardware.acpilight.enable = true;
     user.extraGroups = ["video"];
   };
 }

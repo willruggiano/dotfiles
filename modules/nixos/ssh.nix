@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -14,8 +13,6 @@ in {
   config = mkIf cfg.enable {
     age.secrets."${config.user.name}@${config.networking.hostName}".path = "${config.user.home}/.ssh/id_ed25519";
     home.file.".ssh/id_ed25519.pub".source = ../../hosts/${config.networking.hostName}/id_ed25519.pub;
-
-    environment.systemPackages = with pkgs; [tunnel9];
 
     programs.mosh.enable = true;
     services.openssh = {

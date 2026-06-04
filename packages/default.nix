@@ -11,7 +11,7 @@
 
   flake = {
     overlays.default = final: prev: {
-      inherit (self.packages.${prev.system}) himalaya;
+      inherit (self.packages.${prev.stdenv.hostPlatform.system}) himalaya;
       autorandr-rs = prev.callPackage ./autorandr-rs {};
       base16-templates = prev.callPackage ./base16-templates {};
       magic-enter-fish = prev.callPackage ./magic-enter.fish {};
