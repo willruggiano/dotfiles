@@ -74,11 +74,6 @@
     dunst.enable = true;
     # email.enable = true;
     kbfs.enable = true;
-    ollama = {
-      enable = true;
-      acceleration = "cuda";
-      package = pkgs'.ollama-cuda;
-    };
     passSecretService.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
