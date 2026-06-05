@@ -172,10 +172,10 @@ hl.bind(mod .. " + C", hl.dsp.window.center())
 hl.bind(mod .. " + SHIFT + C", hl.dsp.window.close())
 hl.bind(mod .. " + SPACE", hl.dsp.window.float { action = "toggle" })
 
-hl.bind(mod .. " + H", hl.dsp.layout "focus l")
-hl.bind(mod .. " + L", hl.dsp.layout "focus r")
-hl.bind(mod .. " + SHIFT + H", hl.dsp.layout "swapcol l")
-hl.bind(mod .. " + SHIFT + L", hl.dsp.layout "swapcol r")
+hl.bind(mod .. " + J", hl.dsp.layout "focus r")
+hl.bind(mod .. " + K", hl.dsp.layout "focus l")
+hl.bind(mod .. " + SHIFT + J", hl.dsp.layout "swapcol r")
+hl.bind(mod .. " + SHIFT + K", hl.dsp.layout "swapcol l")
 hl.bind(mod .. " + O", hl.dsp.focus { last = true })
 
 for i = 1, 10 do
