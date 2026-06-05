@@ -27,9 +27,11 @@ end)
 -----------------------
 
 local base00 = os.getenv "BASE_00"
-local base03 = os.getenv "BASE_03"
-local base06 = os.getenv "BASE_06"
-local base0A = os.getenv "BASE_0A"
+local base01 = os.getenv "BASE_01"
+local base02 = os.getenv "BASE_02"
+local base05 = os.getenv "BASE_05"
+local base09 = os.getenv "BASE_09"
+local base0B = os.getenv "BASE_0B"
 local base0D = os.getenv "BASE_0D"
 
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
@@ -51,6 +53,7 @@ hl.config {
   },
 
   dwindle = {
+    force_split = 1,
     preserve_split = true,
   },
 
@@ -58,21 +61,30 @@ hl.config {
     border_size = 1,
 
     col = {
-      active_border = base0A,
-      inactive_border = base03,
+      active_border = base0D,
+      inactive_border = base01,
     },
 
     gaps_in = 0,
     gaps_out = 0,
 
-    layout = "dwindle",
+    layout = "scrolling",
   },
 
   group = {
     col = {
-      border_active = base06,
-      border_inactive = base0D,
-      border_locked_active = base06,
+      border_active = base0B,
+      border_inactive = base01,
+      border_locked_active = base09,
+      border_locked_inactive = base01,
+    },
+
+    groupbar = {
+      col = {
+        active = base02,
+        inactive = base01,
+      },
+      text_color = base05,
     },
   },
 
@@ -140,7 +152,7 @@ hl.bind(mod .. " + F12", hl.dsp.exec_cmd(toggle_dark_mode))
 local printscreen = 'grim -g "$(slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"'
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd(printscreen))
 
-local launcher = "wofi --show drun"
+local launcher = "hyprlauncher"
 hl.bind(mod .. " + R", hl.dsp.exec_cmd(launcher))
 
 local terminal = "kitty"
@@ -160,11 +172,11 @@ hl.bind(mod .. " + C", hl.dsp.window.center())
 hl.bind(mod .. " + SHIFT + C", hl.dsp.window.close())
 hl.bind(mod .. " + SPACE", hl.dsp.window.float { action = "toggle" })
 
-hl.bind(mod .. " + H", hl.dsp.focus { direction = "left" })
-hl.bind(mod .. " + L", hl.dsp.focus { direction = "right" })
-hl.bind(mod .. " + J", hl.dsp.focus { direction = "up" })
-hl.bind(mod .. " + K", hl.dsp.focus { direction = "down" })
--- hl.bind(mod .. " + O", hl.dispatch { type = "focuscurrentorlast" })
+hl.bind(mod .. " + H", hl.dsp.layout "focus l")
+hl.bind(mod .. " + L", hl.dsp.layout "focus r")
+hl.bind(mod .. " + SHIFT + H", hl.dsp.layout "swapcol l")
+hl.bind(mod .. " + SHIFT + L", hl.dsp.layout "swapcol r")
+hl.bind(mod .. " + O", hl.dsp.focus { last = true })
 
 for i = 1, 10 do
   local key = i % 10 -- 10 -> 0

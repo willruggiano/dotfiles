@@ -30,23 +30,48 @@
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {
-        hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprland-protocols.follows = "hyprland/hyprland-protocols";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+      };
+    };
+    hyprlauncher = {
+      url = "github:hyprwm/hyprlauncher";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        aquamarine.follows = "hyprland/aquamarine";
+        hyprwire.follows = "hyprland/hyprwire";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprtoolkit.follows = "hyprtoolkit";
       };
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs = {
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "hyprland/systems";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
+      };
+    };
+    hyprtoolkit = {
+      url = "github:hyprwm/hyprtoolkit";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+        aquamarine.follows = "hyprland/aquamarine";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
       };
     };
     mcmojave-cursor = {
