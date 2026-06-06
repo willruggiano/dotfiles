@@ -139,6 +139,7 @@ in {
           };
         }
         (mkIf cfg.extensions.hypridle.enable {
+          environment.systemPackages = [pkgs.hypridle];
           home.configFile = {
             "hypr/hypridle.conf".source = ./hypridle.conf;
           };
