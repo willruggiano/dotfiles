@@ -63,6 +63,17 @@
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
       };
     };
+    hyprshutdown = {
+      url = "github:hyprwm/hyprshutdown";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "hyprland/systems";
+        aquamarine.follows = "hyprland/aquamarine";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprtoolkit.follows = "hyprtoolkit";
+        hyprutils.follows = "hyprland/hyprutils";
+      };
+    };
     hyprtoolkit = {
       url = "github:hyprwm/hyprtoolkit";
       inputs = {
@@ -95,6 +106,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -106,6 +121,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.git-hooks.flakeModule
+        inputs.treefmt.flakeModule
         ./packages
         ./modules
         ./hosts
@@ -131,10 +147,25 @@
             ln -sf ${luarc} .luarc.json
           '';
         };
-        pre-commit.settings.hooks = {
-          alejandra.enable = true;
-          ruff.enable = true;
-          stylua.enable = true;
+        pre-commit.settings = {
+          hooks.treefmt = {
+            enable = true;
+            package = config.treefmt.build.wrapper;
+          };
+        };
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs = {
+            alejandra.enable = true;
+            fish_indent.enable = true;
+            prettier.enable = true;
+            ruff.enable = true;
+            shfmt.enable = true;
+            stylua.enable = true;
+            taplo.enable = true;
+            yamlfmt.enable = true;
+          };
+          settings.global.excludes = ["packages/base16-templates/nix/sources.json"];
         };
       };
     };

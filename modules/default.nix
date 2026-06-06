@@ -124,9 +124,11 @@
           };
           overlays = [
             self.overlays.default
-            inputs.hyprland.overlays.default
             inputs.hypridle.overlays.default
+            inputs.hyprland.overlays.default
             inputs.hyprlock.overlays.default
+            inputs.hyprshutdown.overlays.default
+            inputs.hyprtoolkit.overlays.default
             inputs.nur.overlays.default
           ];
         };
