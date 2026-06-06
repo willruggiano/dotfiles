@@ -108,7 +108,6 @@ in {
 
             systemPackages = with pkgs; let
               inherit (pkgs.stdenv.hostPlatform) system;
-              hyprlauncher = inputs.hyprlauncher.packages.${system}.default;
               mcmojave-cursor = inputs.mcmojave-cursor.packages.${system}.default;
               screenshot = pkgs.makeDesktopItem {
                 name = "Screenshot";
@@ -127,6 +126,7 @@ in {
             in [
               grim
               hyprlauncher
+              hyprshutdown
               mcmojave-cursor
               screenshot
               slurp

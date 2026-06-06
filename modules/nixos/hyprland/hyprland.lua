@@ -54,7 +54,6 @@ hl.config {
 
   dwindle = {
     force_split = 1,
-    preserve_split = true,
   },
 
   general = {
@@ -136,6 +135,32 @@ hl.window_rule {
   float = true,
 }
 
+hl.window_rule {
+  name = "float-brave-popups",
+  match = {
+    initial_title = "Untitled - Brave",
+  },
+
+  float = true,
+}
+
+hl.window_rule {
+  name = "float-modals",
+  match = { modal = true },
+
+  border_size = 0,
+  float = true,
+  no_shadow = true,
+}
+
+local special = "special:magic"
+hl.workspace_rule {
+  workspace = special,
+  gaps_in = 5,
+  gaps_out = 20,
+  layout = "dwindle",
+}
+
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -166,16 +191,47 @@ local window_switcher =
 hl.bind(mod .. " + W", hl.dsp.exec_cmd(window_switcher))
 
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special "magic")
-hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move { workspace = "special:magic" })
+hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move { workspace = special })
 
 hl.bind(mod .. " + C", hl.dsp.window.center())
 hl.bind(mod .. " + SHIFT + C", hl.dsp.window.close())
 hl.bind(mod .. " + SPACE", hl.dsp.window.float { action = "toggle" })
 
-hl.bind(mod .. " + J", hl.dsp.layout "focus r")
-hl.bind(mod .. " + K", hl.dsp.layout "focus l")
-hl.bind(mod .. " + SHIFT + J", hl.dsp.layout "swapcol r")
-hl.bind(mod .. " + SHIFT + K", hl.dsp.layout "swapcol l")
+local function layout_bind(bind_table)
+  return function()
+    local workspace = hl.get_active_special_workspace() or hl.get_active_workspace()
+
+    if not workspace then
+      return
+    end
+
+    local layout = workspace.tiled_layout
+
+    if bind_table[layout] then
+      hl.dispatch(bind_table[layout])
+    end
+  end
+end
+
+hl.bind(
+  mod .. " + K",
+  layout_bind {
+    scrolling = hl.dsp.layout "focus l",
+    dwindle = hl.dsp.window.cycle_next { next = false },
+    monocle = hl.dsp.layout "cycleprev",
+    master = hl.dsp.layout "cycleprev",
+  }
+)
+
+hl.bind(
+  mod .. " + J",
+  layout_bind {
+    scrolling = hl.dsp.layout "focus r",
+    dwindle = hl.dsp.window.cycle_next { next = true },
+    monocle = hl.dsp.layout "cyclenext",
+    master = hl.dsp.layout "cyclenext",
+  }
+)
 hl.bind(mod .. " + O", hl.dsp.focus { last = true })
 
 for i = 1, 10 do
