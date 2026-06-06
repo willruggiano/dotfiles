@@ -50,7 +50,6 @@ in {
 
   config = let
     inherit (config.lib.stylix) colors;
-    inherit (import ./lib.nix) rgb;
   in
     mkIf cfg.enable (
       mkMerge [
@@ -60,25 +59,27 @@ in {
             trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
           };
 
-          home.configFile = {
+          home.configFile = let
+            fonts = config.fonts.fontconfig.defaultFonts;
+          in {
             "hypr/hyprland.lua".source = ./hyprland.lua;
             "hypr/hyprtoolkit.conf".text = ''
               # Generate by Nix
-              background = ${rgb colors.base01}
-              base = ${rgb colors.base00}
-              text = ${rgb colors.base05}
-              alternate_base = ${rgb colors.base02}
-              bright_text = ${rgb colors.base06}
-              accent = ${rgb colors.base0C}
-              accent_secondary = ${rgb colors.base0D}
+              background = ${colors.withHashtag.base01}
+              base = ${colors.withHashtag.base00}
+              text = ${colors.withHashtag.base05}
+              alternate_base = ${colors.withHashtag.base02}
+              bright_text = ${colors.withHashtag.base06}
+              accent = ${colors.withHashtag.base0C}
+              accent_secondary = ${colors.withHashtag.base0D}
               h1_size = 20
-              h2_size = 16
-              h3_size = 14
-              font_size = 12
-              small_font_size = 10
+              h2_size = 18
+              h3_size = 16
+              font_size = 14
+              small_font_size = 12
               # icon_theme = ?
-              font_family = JetBrains Mono
-              font_family_monospace = JetBrains Mono
+              font_family = ${builtins.head fonts.sansSerif}
+              font_family_monospace = ${builtins.head fonts.monospace}
               rounding_large = 0
               rounding_small = 0
             '';
@@ -90,13 +91,13 @@ in {
             '';
 
             sessionVariables = {
-              BASE_00 = rgb colors.base00;
-              BASE_01 = rgb colors.base01;
-              BASE_02 = rgb colors.base02;
-              BASE_05 = rgb colors.base05;
-              BASE_09 = rgb colors.base09;
-              BASE_0B = rgb colors.base0B;
-              BASE_0D = rgb colors.base0D;
+              BASE_00 = colors.withHashtag.base00;
+              BASE_01 = colors.withHashtag.base01;
+              BASE_02 = colors.withHashtag.base02;
+              BASE_05 = colors.withHashtag.base05;
+              BASE_09 = colors.withHashtag.base09;
+              BASE_0B = colors.withHashtag.base0B;
+              BASE_0D = colors.withHashtag.base0D;
               HYPRCURSOR_SIZE = cfg.cursor.size;
               HYPRCURSOR_THEME = cfg.cursor.theme;
               LATITUDE = builtins.toString config.location.latitude;
@@ -148,8 +149,8 @@ in {
           environment.systemPackages = [pkgs.hyprlock];
           home.configFile = {
             "hypr/hyprlock.conf".text = import ./hyprlock.conf.nix {
-              inherit (config.lib.stylix) colors;
               inherit (cfg.extensions.hyprlock) monitor;
+              inherit config;
             };
           };
           security.pam.services.hyprlock.text = "auth include login";
