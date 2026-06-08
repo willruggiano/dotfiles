@@ -22,7 +22,7 @@
     longitude = -122.4;
   };
 
-  fonts.fontSize = 12;
+  fonts.fontSize = 10;
 
   programs = {
     brave.enable = true;
