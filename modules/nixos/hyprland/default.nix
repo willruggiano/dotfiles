@@ -61,6 +61,7 @@ in {
 
           home.configFile = let
             fonts = config.fonts.fontconfig.defaultFonts;
+            fontSize = config.fonts.fontSize;
           in {
             "hypr/hyprland.lua".source = ./hyprland.lua;
             "hypr/hyprtoolkit.conf".text = ''
@@ -72,11 +73,11 @@ in {
               bright_text = ${colors.withHashtag.base06}
               accent = ${colors.withHashtag.base0C}
               accent_secondary = ${colors.withHashtag.base0D}
-              h1_size = 20
-              h2_size = 18
-              h3_size = 16
-              font_size = 14
-              small_font_size = 12
+              h1_size = ${builtins.toString (fontSize + 6)}
+              h2_size = ${builtins.toString (fontSize + 4)}
+              h3_size = ${builtins.toString (fontSize + 2)}
+              font_size = ${builtins.toString fontSize}
+              small_font_size = ${builtins.toString (fontSize - 2)}
               # icon_theme = ?
               font_family = ${builtins.head fonts.sansSerif}
               font_family_monospace = ${builtins.head fonts.monospace}

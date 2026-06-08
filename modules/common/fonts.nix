@@ -3,6 +3,11 @@
   pkgs,
   ...
 }: {
+  options.fonts.fontSize = lib.mkOption {
+    type = lib.types.int;
+    default = 14;
+  };
+
   config = {
     fonts = {
       enableDefaultPackages = true;

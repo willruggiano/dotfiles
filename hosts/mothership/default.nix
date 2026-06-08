@@ -22,6 +22,8 @@
     longitude = -122.4;
   };
 
+  fonts.fontSize = 12;
+
   programs = {
     brave.enable = true;
     brave.default = true;
@@ -43,7 +45,6 @@
     kitty.enable = true;
     libreoffice.enable = true;
     pass.enable = true;
-    # qutebrowser.enable = true;
     starship.enable = true;
     tmux.enable = true;
   };
