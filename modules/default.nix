@@ -130,6 +130,7 @@
             inputs.hyprlock.overlays.default
             inputs.hyprshutdown.overlays.default
             inputs.hyprtoolkit.overlays.default
+            inputs.jj-gh.overlays.default
             inputs.nur.overlays.default
           ];
         };

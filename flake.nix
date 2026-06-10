@@ -85,6 +85,10 @@
         hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
       };
     };
+    jj-gh = {
+      url = "github:mrjones2014/jj-gh/jj-gh-v0.2.4";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mcmojave-cursor = {
       url = "github:libadoxon/mcmojave-hyprcursor";
       inputs = {

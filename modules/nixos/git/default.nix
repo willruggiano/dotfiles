@@ -98,6 +98,7 @@ in {
         git-trim
         gitflow
         jujutsu
+        jj-gh
         lazygit
         mergiraf
         rs-git-fsmonitor
@@ -167,6 +168,7 @@ in {
       configFile = {
         "jj/config.toml".source = toml.generate "config.toml" {
           aliases = {
+            pr = ["util" "exec" "--" "jj-gh" "pr"];
             restack = ["rebase" "--onto" "trunk()" "--source" "roots(trunk()..) & mutable()" "--simplify-parents"];
             stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
             stage = ["stack" "closest_merge(@)+:: ~ empty()"];
