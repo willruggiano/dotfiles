@@ -166,7 +166,12 @@ in {
     home = {
       configFile = {
         "jj/config.toml".source = toml.generate "config.toml" {
-          aliases.tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+          aliases = {
+            restack = ["rebase" "--onto" "trunk()" "--source" "roots(trunk()..) & mutable()" "--simplify-parents"];
+            stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
+            stage = ["stack" "closest_merge(@)+:: ~ empty()"];
+            tug = ["bookmark" "advance" "--to" "@-"];
+          };
           git.abandon-unreachable-commits = false;
           merge-tools = {
             diffconflicts = {
@@ -183,6 +188,9 @@ in {
               ];
               merge-tool-edits-conflict-markers = true;
             };
+          };
+          revset-aliases = {
+            "closest_merge(to)" = "heads(::to & merges())";
           };
           signing = {
             behavior = "own";
