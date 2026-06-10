@@ -169,10 +169,14 @@ in {
         "jj/config.toml".source = toml.generate "config.toml" {
           aliases = {
             pr = ["util" "exec" "--" "jj-gh" "pr"];
-            restack = ["rebase" "--onto" "trunk()" "--source" "roots(trunk()..) & mutable()" "--simplify-parents"];
-            stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
-            stage = ["stack" "closest_merge(@)+:: ~ empty()"];
             tug = ["bookmark" "advance" "--to" "@-"];
+            # Credit: https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit
+            # `jj stack <revset>` to include specific revs
+            stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
+            # `jj stage` to include the whole stack after the megamerge
+            stage = ["stack" "closest_merge(@)+:: ~ empty()"];
+            # `jj restack` to rebase your changes onto `trunk()`
+            restack = ["rebase" "--onto" "trunk()" "--source" "roots(trunk()..) & mutable()" "--simplify-parents"];
           };
           git.abandon-unreachable-commits = false;
           merge-tools = {
