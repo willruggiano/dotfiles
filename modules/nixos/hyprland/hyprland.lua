@@ -89,7 +89,7 @@ hl.config {
 
   input = {
     touchpad = {
-      tap_to_click = true,
+      -- tap_to_click = false,
     },
   },
 
