@@ -125,6 +125,7 @@ in {
                   lib.getExe app;
               };
             in [
+              brightnessctl
               grim
               hyprlauncher
               hyprshutdown
