@@ -2,6 +2,7 @@
   description = "NixOS configurations";
 
   inputs = {
+    self.submodules = true; # enable submodule fetching
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:nixos/nixpkgs";
     nixos-cli.url = "github:nix-community/nixos-cli";
@@ -24,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "git+https://github.com/hyprwm/hyprland?ref=refs/tags/v0.55.2&submodules=1";
+      url = "github:hyprwm/hyprland/v0.55.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypridle = {
