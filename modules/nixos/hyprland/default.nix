@@ -130,9 +130,23 @@ in {
                 exec = let
                   app = pkgs.writeShellApplication {
                     name = "screenshot";
-                    runtimeInputs = [coreutils grim slurp];
+                    runtimeInputs = [coreutils grim satty slurp wl-clipboard];
                     text = ''
-                      grim -g "$(slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"
+                      grim -g "$(slurp)" -t ppm - | satty -f - --copy-command wl-copy --fullscreen --floating-hack -o "$HOME/Downloads/screenshot-$(date -Is).png"
+                    '';
+                  };
+                in
+                  lib.getExe app;
+              };
+              screenshot-display = pkgs.makeDesktopItem {
+                name = "Screenshot (display output)";
+                desktopName = "Screenshot (display output)";
+                exec = let
+                  app = pkgs.writeShellApplication {
+                    name = "screenshot-display";
+                    runtimeInputs = [coreutils grim satty slurp wl-clipboard];
+                    text = ''
+                      grim -g "$(slurp -o)" -t ppm - | satty -f - --copy-command wl-copy --fullscreen --floating-hack -o "$HOME/Downloads/screenshot-$(date -Is).png"
                     '';
                   };
                 in
@@ -146,6 +160,7 @@ in {
               mcmojave-cursor
               screenrec
               screenshot
+              screenshot-display
               slurp
               wl-clipboard
               wl-screenrec

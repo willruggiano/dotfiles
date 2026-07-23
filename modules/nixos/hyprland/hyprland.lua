@@ -174,7 +174,8 @@ hl.bind(mod .. " + End", hl.dsp.exec_cmd(lock_session))
 local toggle_dark_mode = "darkman toggle"
 hl.bind(mod .. " + F12", hl.dsp.exec_cmd(toggle_dark_mode))
 
-local printscreen = 'grim -g "$(slurp)" "$HOME/Downloads/screenshot-$(date -Is).png"'
+local printscreen =
+  'grim -t ppm - | satty -f - --copy-command wl-copy --fullscreen --floating-hack -o "$HOME/Downloads/screenshot-$(date -Is).png"'
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd(printscreen))
 
 local launcher = "hyprlauncher"
