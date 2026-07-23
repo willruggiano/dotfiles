@@ -1,26 +1,22 @@
 {
-  config,
   lib,
   pkgs',
   ...
 }: {
   environment = {
-    interactiveShellInit = ''
-      export ANTHROPIC_API_KEY="$(cat ${config.age.secrets.anthropic.path})"
-      export GOOGLE_API_KEY="$(cat ${config.age.secrets.gemini.path})"
-      export OPENAI_API_KEY="$(cat ${config.age.secrets.openai.path})"
-    '';
     systemPackages = with pkgs'; [
       cached-nix-shell
       curl
+      diskus
       fd
       file
-      gdu
       glow
       hyperfine
       inetutils
       jq
+      lsof
       mkcert
+      ncdu
       pandoc
       rclone
       ripgrep
