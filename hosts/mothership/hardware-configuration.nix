@@ -55,7 +55,14 @@
     hardware = {
       system76.enableAll = true;
       bluetooth.enable = true;
-      graphics.enable = true;
+      graphics = {
+        enable = true;
+        extraPackages = [pkgs.intel-media-driver];
+      };
+    };
+
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "iHD";
     };
   };
 }

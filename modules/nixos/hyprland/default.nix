@@ -110,6 +110,20 @@ in {
             systemPackages = with pkgs; let
               inherit (pkgs.stdenv.hostPlatform) system;
               mcmojave-cursor = inputs.mcmojave-cursor.packages.${system}.default;
+              screenrec = pkgs.makeDesktopItem {
+                name = "Screenrec";
+                desktopName = "Screenrec";
+                exec = let
+                  app = pkgs.writeShellApplication {
+                    name = "screenrec";
+                    runtimeInputs = [coreutils slurp wl-screenrec];
+                    text = ''
+                      wl-screenrec -g "$(slurp)" -f "$HOME/Downloads/screenrec-$(date -Is).mp4"
+                    '';
+                  };
+                in
+                  lib.getExe app;
+              };
               screenshot = pkgs.makeDesktopItem {
                 name = "Screenshot";
                 desktopName = "Screenshot";
@@ -130,9 +144,11 @@ in {
               hyprlauncher
               hyprshutdown
               mcmojave-cursor
+              screenrec
               screenshot
               slurp
               wl-clipboard
+              wl-screenrec
               wlsunset
             ];
           };
