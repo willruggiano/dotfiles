@@ -11,7 +11,8 @@
   config = {
     boot = {
       kernelModules = ["kvm-intel"];
-      kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages;
+      # kernelPackages = pkgs.linuxPackages_latest;
 
       # FIXME: honestly not sure if these do anything useful
       # kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
