@@ -89,7 +89,7 @@ in {
 
           environment = {
             loginShellInit = ''
-              [[ "$(tty)" == /dev/tty1 ]] && exec Hyprland
+              [[ "$(tty)" == /dev/tty1 ]] && start-hyprland
             '';
 
             sessionVariables = {
