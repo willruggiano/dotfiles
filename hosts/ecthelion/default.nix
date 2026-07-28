@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs',
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./keyboard-layout.nix
@@ -76,7 +72,7 @@
     pipewire.enable = true;
     remarkable.enable = true;
     ssh.enable = true;
-    trezord.enable = true;
+    # trezord.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
 

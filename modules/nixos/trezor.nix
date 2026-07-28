@@ -8,6 +8,7 @@ with lib; let
   cfg = config.services.trezord;
 in {
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [trezorctl];
+    # Not compatible with python 3.14!
+    # environment.systemPackages = with pkgs; [trezorctl];
   };
 }
