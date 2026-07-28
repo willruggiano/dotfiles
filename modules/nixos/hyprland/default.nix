@@ -1,17 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 with lib; let
   cfg = config.programs.hyprland;
 in {
-  imports = [
-    inputs.hyprland.nixosModules.default
-  ];
-
   options.programs = {
     hyprland = with types; {
       cursor = {
@@ -54,6 +50,11 @@ in {
     mkIf cfg.enable (
       mkMerge [
         {
+          # programs.hyprland = {
+          #   package = inputs.hypr.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+          #   portalPackage = inputs.hypr.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+          # };
+
           nix.settings = {
             substituters = ["https://hyprland.cachix.org"];
             trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];

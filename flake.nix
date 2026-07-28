@@ -24,67 +24,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/hyprland/v0.56.1";
+    hypr = {
+      url = "github:willruggiano/hyprnix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hypridle = {
-      url = "github:hyprwm/hypridle/v0.1.8";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprland-protocols.follows = "hyprland/hyprland-protocols";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-      };
-    };
-    hyprlauncher = {
-      url = "github:hyprwm/hyprlauncher/v0.1.6";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        aquamarine.follows = "hyprland/aquamarine";
-        hyprwire.follows = "hyprland/hyprwire";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprtoolkit.follows = "hyprtoolkit";
-      };
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock/v0.9.6";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprutils.follows = "hyprland/hyprutils";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-      };
-    };
-    hyprshutdown = {
-      url = "github:hyprwm/hyprshutdown/v0.1.1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-        aquamarine.follows = "hyprland/aquamarine";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprtoolkit.follows = "hyprtoolkit";
-        hyprutils.follows = "hyprland/hyprutils";
-      };
-    };
-    hyprtoolkit = {
-      url = "github:hyprwm/hyprtoolkit/v0.5.4";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "hyprland/systems";
-        aquamarine.follows = "hyprland/aquamarine";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprwayland-scanner.follows = "hyprland/hyprwayland-scanner";
-      };
     };
     jj = {
       url = "github:jj-vcs/jj/v0.43.0";
@@ -97,9 +39,9 @@
     mcmojave-cursor = {
       url = "github:libadoxon/mcmojave-hyprcursor";
       inputs = {
-        hyprcursor.follows = "hyprland/hyprcursor";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
+        hyprcursor.follows = "hypr/hyprcursor";
+        nixpkgs.follows = "hypr/nixpkgs";
+        systems.follows = "hypr/systems";
       };
     };
     nix-flake-templates = {
@@ -148,7 +90,7 @@
           buildInputs = with pkgs; [just nix-output-monitor yubikey-manager];
           inputsFrom = [config.pre-commit.devShell];
           shellHook = let
-            pkg = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            pkg = inputs.hypr.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             luarc = pkgs.writeText "luarc.json" (builtins.toJSON {
               workspace.library = ["${pkg}/share/hypr/stubs"];
             });
