@@ -11,9 +11,7 @@
   config = {
     boot = {
       kernelModules = ["kvm-intel"];
-      kernelPackages = pkgs.linuxPackages;
-      # FIXME: don't have enough space in my boot partition :/
-      # kernelPackages = pkgs.linuxPackages_latest;
+      kernelPackages = pkgs.linuxPackages_latest;
 
       # FIXME: honestly not sure if these do anything useful
       # kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
