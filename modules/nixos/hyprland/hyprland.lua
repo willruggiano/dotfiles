@@ -188,7 +188,7 @@ local browser = os.getenv "BROWSER"
 hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(browser))
 
 local window_switcher =
-  [[hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + (select(.title != "") | .title)' | wofi --show dmenu | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }]]
+  [[hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + (select(.title != "") | .title)' | hyprlauncher -m | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }]]
 hl.bind(mod .. " + W", hl.dsp.exec_cmd(window_switcher))
 
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special "magic")
