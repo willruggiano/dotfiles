@@ -67,7 +67,7 @@
     dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
-    passSecretService.enable = true;
+    # passSecretService.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
     remarkable.enable = true;

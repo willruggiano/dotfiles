@@ -25,7 +25,6 @@ with lib; let
 in {
   options.programs.pass = {
     enable = mkEnableOption "password-store";
-    secret-service.enable = mkEnableOption "pass-secret-service";
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -63,8 +62,5 @@ in {
 
       environment.variables.PASSWORD_STORE_DIR = "${config.user.home}/.password-store";
     }
-    (mkIf cfg.secret-service.enable {
-      services.passSecretService.enable = true;
-    })
   ]);
 }
