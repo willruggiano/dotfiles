@@ -233,6 +233,27 @@ hl.bind(
     master = hl.dsp.layout "cyclenext",
   }
 )
+
+hl.bind(
+  mod .. " + H",
+  layout_bind {
+    scrolling = hl.dsp.layout "swapcol l",
+    -- dwindle = hl.dsp.window.cycle_next { next = true },
+    -- monocle = hl.dsp.layout "cyclenext",
+    -- master = hl.dsp.layout "cyclenext",
+  }
+)
+
+hl.bind(
+  mod .. " + L",
+  layout_bind {
+    scrolling = hl.dsp.layout "swapcol r",
+    -- dwindle = hl.dsp.window.cycle_next { next = true },
+    -- monocle = hl.dsp.layout "cyclenext",
+    -- master = hl.dsp.layout "cyclenext",
+  }
+)
+
 hl.bind(mod .. " + O", hl.dsp.focus { last = true })
 
 for i = 1, 10 do
