@@ -60,7 +60,7 @@
     pipewire.enable = true;
     postgresql.enable = true;
     ssh.enable = true;
-    tailscale.enable = true;
+    # tailscale.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
 
