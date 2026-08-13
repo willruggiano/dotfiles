@@ -23,7 +23,6 @@
         ./common/kitty
         ./common/neovim
         ./common/qutebrowser
-        ./common/weechat
         ./common/xplr
         ./common/aws.nix
         ./common/fonts.nix

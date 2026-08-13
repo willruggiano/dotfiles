@@ -50,7 +50,6 @@
     starship.enable = true;
     steam.enable = true;
     tmux.enable = true;
-    weechat.enable = true;
   };
 
   services = {
