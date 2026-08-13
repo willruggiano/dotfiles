@@ -724,15 +724,15 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1786649233,
+        "lastModified": 1786957507,
         "narHash": "sha256-3oNKZhhhjOJUI327/ZcDZ6arn02MsgY5PlH1X4eCZdM=",
-        "owner": "willruggiano",
+        "owner": "hyprwm",
         "repo": "hyprnix",
-        "rev": "b6be2d608d2e1bc7e9434d7a5181d4b262dc3e65",
+        "rev": "a03e1d08876c3917b5485276e1751a0a5433f6e8",
         "type": "github"
       },
       "original": {
-        "owner": "willruggiano",
+        "owner": "hyprwm",
         "repo": "hyprnix",
         "type": "github"
       }
