@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj = {
-      url = "github:jj-vcs/jj/v0.43.0";
+      url = "github:jj-vcs/jj/v0.44.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj-gh = {
