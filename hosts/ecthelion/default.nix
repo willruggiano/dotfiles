@@ -47,6 +47,7 @@
     libreoffice.enable = true;
     obs-studio.enable = true;
     pass.enable = true;
+    shpool.enable = true;
     starship.enable = true;
     steam.enable = true;
     tmux.enable = true;

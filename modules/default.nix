@@ -38,6 +38,7 @@
         ./nixos/goxlr
         ./nixos/hyprland
         ./nixos/pipewire
+        ./nixos/shpool
         ./nixos/agenix.nix
         ./nixos/audio.nix
         ./nixos/autorandr-rs.nix

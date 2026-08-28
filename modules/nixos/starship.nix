@@ -13,6 +13,7 @@ in {
           "$hostname"
           "$directory"
           "$custom"
+          "$env_var"
           "$line_break"
           "$username"
           "$character"
@@ -34,6 +35,11 @@ in {
           style = "bold dimmed";
           truncate_to_repo = false;
           truncation_length = 2;
+        };
+        env_var = {
+          SHPOOL_SESSION_NAME = {
+            format = "\\(shpool:$env_value\\)";
+          };
         };
         hostname.format = "[$hostname:](dimmed)";
         username.format = "$user";
