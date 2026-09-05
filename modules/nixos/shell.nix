@@ -10,7 +10,9 @@
       diskus
       fd
       file
+      forgejo-cli
       glow
+      hut
       hyperfine
       inetutils
       jq
