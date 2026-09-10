@@ -29,11 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj = {
-      url = "github:jj-vcs/jj/v0.44.0";
+      url = "github:jj-vcs/jj/v0.45.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj-gh = {
-      url = "github:mrjones2014/jj-gh/jj-gh-v0.2.10";
+      url = "github:mrjones2014/jj-gh/jj-gh-v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcmojave-cursor = {
