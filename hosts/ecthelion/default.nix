@@ -47,10 +47,11 @@
     libreoffice.enable = true;
     obs-studio.enable = true;
     pass.enable = true;
-    shpool.enable = true;
     starship.enable = true;
     steam.enable = true;
-    tmux.enable = true;
+    # various terminal multiplexers lol
+    # shpool.enable = true;
+    # tmux.enable = true;
   };
 
   services = {
@@ -59,20 +60,14 @@
       enable = true;
       config = ./monitor-layout.kdl;
     };
-    # campfire.claude = {
-    #   enable = true;
-    #   count = 1;
-    # };
     darkman.enable = true;
     dropbox.enable = true;
     dunst.enable = true;
     kbfs.enable = true;
-    # passSecretService.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
     remarkable.enable = true;
     ssh.enable = true;
-    # trezord.enable = true;
     udev.packages = [pkgs.yubikey-personalization];
   };
 

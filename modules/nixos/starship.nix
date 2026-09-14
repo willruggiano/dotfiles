@@ -2,14 +2,13 @@
   config,
   lib,
   ...
-}:
-with lib; let
+}: let
   cfg = config.programs.starship;
 in {
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.starship = {
       settings = {
-        format = concatStrings [
+        format = lib.concatStrings [
           "$hostname"
           "$directory"
           "$custom"
@@ -36,11 +35,7 @@ in {
           truncate_to_repo = false;
           truncation_length = 2;
         };
-        env_var = {
-          SHPOOL_SESSION_NAME = {
-            format = "\\(shpool:$env_value\\)";
-          };
-        };
+        env_var = {};
         hostname.format = "[$hostname:](dimmed)";
         username.format = "$user";
       };

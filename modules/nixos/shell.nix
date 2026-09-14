@@ -32,13 +32,21 @@
       wget
       yq
       zip
+      zmx
     ];
+  };
+
+  programs.starship.settings.env_var = {
+    SHPOOL_SESSION_NAME.format = "\\(shpool:$env_value\\)";
+    ZMX_SESSION.format = "\\(zmx:$env_value\\)";
   };
 
   programs.tmux = {
     extraConfig = ''
+      bind-key C-n next-window
+      bind-key C-p previous-window
       set -g mouse on
-      set -g visual-activity on
+      set -g visual-activity off
       setw -g monitor-activity on
     '';
     keyMode = "vi";

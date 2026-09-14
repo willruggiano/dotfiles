@@ -46,7 +46,6 @@
     libreoffice.enable = true;
     pass.enable = true;
     starship.enable = true;
-    tmux.enable = true;
   };
 
   services = {
