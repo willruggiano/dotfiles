@@ -5,24 +5,21 @@
   ...
 }: let
   t = lib.types;
-  mkOpt = type: default: lib.mkOption {inherit type default;};
+  attrsOpt = lib.mkOption {
+    type = t.attrs;
+    default = {};
+  };
 in {
   options = {
-    user = mkOpt t.attrs {};
-
+    user = attrsOpt;
     home = {
-      file = mkOpt t.attrs {};
-      configFile = mkOpt t.attrs {};
-      dataFile = mkOpt t.attrs {};
+      file = attrsOpt;
+      configFile = attrsOpt;
+      dataFile = attrsOpt;
     };
   };
 
   config = {
-    user = {
-      description = "The primary user account";
-      uid = 1000;
-    };
-
     home-manager = {
       useUserPackages = true;
 
@@ -39,6 +36,7 @@ in {
       };
     };
 
+    # FIXME: This needs to be fixed soon!
     users.users."${config.user.name}" = lib.mkAliasDefinitions options.user;
   };
 }

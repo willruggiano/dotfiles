@@ -49,6 +49,7 @@
       ];
       isNormalUser = true;
       group = "users";
+      uid = 1000;
     };
 
     users.defaultUserShell = pkgs.fish;

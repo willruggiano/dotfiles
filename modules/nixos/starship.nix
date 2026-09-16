@@ -22,12 +22,10 @@ in {
           error_symbol = "[>](bold red)";
           vicmd_symbol = "[<](bold green)";
         };
-        custom = mkIf (config.services.tailscale.enable) {
-          tailscale = {
-            command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
-            when = "tailscale status";
-            format = " \\($output\\)";
-          };
+        custom.tailscale = lib.mkIf (config.services.tailscale.enable) {
+          command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
+          when = "tailscale status";
+          format = " \\($output\\)";
         };
         directory = {
           fish_style_pwd_dir_length = 1;

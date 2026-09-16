@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs',
   ...
@@ -8,6 +9,7 @@
       cached-nix-shell
       curl
       diskus
+      fast-cli-zig
       fd
       file
       forgejo-cli
@@ -19,12 +21,12 @@
       lsof
       mkcert
       ncdu
+      nq # battling with zmx
       pandoc
       rclone
       ripgrep
       sad
       sd
-      speedtest-cli
       sysz
       timg
       trash-cli
@@ -32,11 +34,16 @@
       wget
       yq
       zip
-      zmx
+      zmx # battling with nq
     ];
+
+    variables = {
+      NQDIR = "${config.user.home}/.local/state/nq";
+    };
   };
 
   programs.starship.settings.env_var = {
+    NQDIR.format = "\\(nq:$env_value\\)";
     SHPOOL_SESSION_NAME.format = "\\(shpool:$env_value\\)";
     ZMX_SESSION.format = "\\(zmx:$env_value\\)";
   };
