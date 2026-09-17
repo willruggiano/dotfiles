@@ -25,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hypr = {
-      url = "github:hyprwm/hyprnix";
+      url = "github:willruggiano/hyprnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj = {
