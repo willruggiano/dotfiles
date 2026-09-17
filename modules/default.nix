@@ -141,7 +141,7 @@
           };
           settings = {
             auto-optimise-store = true;
-            experimental-features = "nix-command flakes";
+            experimental-features = ["nix-command" "flakes"];
             extra-sandbox-paths = ["/nix/var/cache/ccache"];
             substituters = [
               "https://nix-community.cachix.org"
