@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs',
   ...
@@ -36,16 +35,11 @@
       zip
       zmx # battling with nq
     ];
-
-    variables = {
-      NQDIR = "${config.user.home}/.local/state/nq";
-    };
   };
 
   programs.starship.settings.env_var = {
-    NQDIR.format = "\\(nq:$env_value\\)";
-    SHPOOL_SESSION_NAME.format = "\\(shpool:$env_value\\)";
-    ZMX_SESSION.format = "\\(zmx:$env_value\\)";
+    NQDIR.format = "[\\(nq:$env_value\\)](dimmed)";
+    ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed)";
   };
 
   programs.tmux = {
