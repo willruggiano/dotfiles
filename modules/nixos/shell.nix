@@ -21,6 +21,9 @@
       mkcert
       ncdu
       nq # battling with zmx
+      (writeShellScriptBin "q" ''
+        nq -c sh -c '"$@"; notify-send "$*: done (exit: $?)"' _ "$@"
+      '')
       pandoc
       rclone
       ripgrep
