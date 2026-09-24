@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jj-gh = {
-      url = "github:mrjones2014/jj-gh/jj-gh-v0.3.0";
+      url = "github:mrjones2014/jj-gh/jj-gh-v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mcmojave-cursor = {
