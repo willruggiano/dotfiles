@@ -47,7 +47,7 @@ in {
         interactive.diffFilter = "delta --color-only";
         lfs.enable = true;
         merge = {
-          conflictStyle = "zdiff3";
+          conflictStyle = "diff3";
           keepBackup = false;
           tool = "nvim";
           # driverz
