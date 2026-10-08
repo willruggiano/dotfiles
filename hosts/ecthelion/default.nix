@@ -25,50 +25,16 @@
   nix.settings.max-jobs = 24;
 
   programs = {
-    brave.enable = true;
-    brave.default = true;
-    browserpass.enable = true;
-    direnv.enable = true;
-    fish.enable = true;
-    fzf.enable = true;
-    git.enable = true;
-    htop.enable = true;
-    hyprland = {
-      enable = true;
-      extensions = {
-        hypridle.enable = true;
-        hyprlock = {
-          enable = true;
-          monitor = "DP-2";
-        };
-      };
-    };
-    kitty.enable = true;
-    libreoffice.enable = true;
+    hyprland.extensions.hyprlock.monitor = "DP-2";
     obs-studio.enable = true;
-    pass.enable = true;
-    starship.enable = true;
     steam.enable = true;
-    # various terminal multiplexers lol
-    # shpool.enable = true;
-    # tmux.enable = true;
   };
 
   services = {
-    agenix.enable = true;
     autorandrd = {
       enable = true;
       config = ./monitor-layout.kdl;
     };
-    darkman.enable = true;
-    dropbox.enable = true;
-    dunst.enable = true;
-    pcscd.enable = true;
-    pipewire.enable = true;
     remarkable.enable = true;
-    ssh.enable = true;
-    udev.packages = [pkgs.yubikey-personalization];
   };
-
-  virtualisation.podman.enable = true;
 }

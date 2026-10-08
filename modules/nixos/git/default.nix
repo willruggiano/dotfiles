@@ -18,11 +18,7 @@ in {
     programs.git = {
       config = {
         advice.detachedHead = false;
-        alias = {
-          can = "commit -a --amend --no-edit";
-          ss = "sync 'stack()'";
-          stack = "!spr";
-        };
+        alias.can = "commit -a --amend --no-edit";
         color.ui = "auto";
         commit.gpgsign = true;
         core = {
@@ -49,31 +45,23 @@ in {
         merge = {
           conflictStyle = "diff3";
           keepBackup = false;
-          tool = "nvim";
-          # driverz
           mergiraf = {
             name = "mergiraf";
             driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
           };
+          tool = "nvim";
         };
         mergetool = {
           keepBackup = false;
+          nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
           prompt = false; # run the mergetool immediately
           push.followTags = true;
-          # toolz
-          diffview.cmd = "nvim +DiffviewOpen";
-          fugitive.cmd = ''nvim -f -c "Gdiffsplit!" $MERGED'';
-          nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
-          smerge.cmd = "smerge $MERGED";
         };
         push.autoSetupRemote = true;
         rebase = {
           autoSquash = true;
           autoStash = true;
           stat = true;
-        };
-        spr = {
-          requireTestPlan = false;
         };
         user = {
           inherit email name signingkey;
@@ -90,20 +78,11 @@ in {
         delta
         difftastic
         gh
-        git-absorb
-        git-branchless
-        git-crypt
         git-lfs
-        git-quickfix
-        git-trim
-        gitflow
         jujutsu
         jj-gh
         lazygit
         mergiraf
-        rs-git-fsmonitor
-        spr
-        sublime-merge
         watchman
         (pkgs.writeShellApplication {
           name = "git";
@@ -205,9 +184,10 @@ in {
           };
           signing.backends.ssh.allowed-signers = config.environment.etc.gitsigners.source;
           ui = {
-            paginate = "never";
             default-command = "status";
             diff-editor = ["nvim" "-c" "DiffEditor $left $right $output"];
+            diff-formatter = ["difft" "--width=$width" "--color=always" "$left" "$right"];
+            paginate = "never";
           };
           user = {
             inherit email name;
@@ -217,7 +197,6 @@ in {
           git = {
             autoFetch = false;
             overrideGpg = true;
-            # paging.externalDiffCommand = "difft --color=always";
           };
         };
       };

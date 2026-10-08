@@ -19,61 +19,6 @@
             };
           };
         }
-        # inputs.campfire.nixosModules.claude
-        ./common/kitty
-        ./common/neovim
-        ./common/qutebrowser
-        ./common/xplr
-        ./common/aws.nix
-        ./common/fonts.nix
-        ./common/htop.nix
-        ./common/nix.nix
-        ./common/pass.nix
-        ./common/sourcegraph.nix
-        ./common/wezterm.nix
-        ./common/zk.nix
-        ./nixos/brave
-        ./nixos/fish
-        ./nixos/git
-        ./nixos/goxlr
-        ./nixos/hyprland
-        ./nixos/pipewire
-        ./nixos/shpool
-        ./nixos/agenix.nix
-        ./nixos/audio.nix
-        ./nixos/autorandr-rs.nix
-        ./nixos/backlight.nix
-        ./nixos/blender.nix
-        ./nixos/bluetooth.nix
-        ./nixos/cachix.nix
-        ./nixos/chromium.nix
-        ./nixos/darkman.nix
-        ./nixos/direnv.nix
-        ./nixos/dropbox.nix
-        ./nixos/dunst.nix
-        ./nixos/email.nix
-        ./nixos/expressvpn.nix
-        ./nixos/firefox.nix
-        ./nixos/fzf.nix
-        ./nixos/keybase.nix
-        ./nixos/keyd.nix
-        ./nixos/libreoffice.nix
-        ./nixos/mopidy.nix
-        ./nixos/nix.nix
-        ./nixos/nvidia.nix
-        ./nixos/obs.nix
-        ./nixos/postgres.nix
-        ./nixos/remarkable.nix
-        ./nixos/shell.nix
-        ./nixos/spotify.nix
-        ./nixos/ssh.nix
-        ./nixos/starship.nix
-        ./nixos/stylix.nix
-        ./nixos/syncthing.nix
-        ./nixos/trezor.nix
-        ./nixos/utils.nix
-        ./nixos/virtualisation.nix
-        ./nixos/yubico.nix
         {
           imports = [inputs.home-manager.nixosModules.home-manager];
           home-manager = {
@@ -84,6 +29,10 @@
             ];
           };
         }
+        # TODO: these are leftover from the aws darwin days, and we ain't never
+        # goin back there lmao
+        ./common
+        ./nixos
       ];
 
       config = {

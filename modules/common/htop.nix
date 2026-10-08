@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; let
@@ -65,23 +66,25 @@ with lib; let
 in {
   config = mkIf cfg.enable {
     environment.systemPackages = [cfg.package];
-
-    programs.htop.settings = {
-      fields = with fields; [
-        pid
-        user
-        priority
-        nice
-        m_size
-        m_resident
-        m_share
-        state
-        percent_cpu
-        percent_mem
-        time
-        comm
-      ];
-      show_program_path = true;
+    programs.htop = {
+      package = pkgs.htop-vim;
+      settings = {
+        fields = with fields; [
+          pid
+          user
+          priority
+          nice
+          m_size
+          m_resident
+          m_share
+          state
+          percent_cpu
+          percent_mem
+          time
+          comm
+        ];
+        show_program_path = true;
+      };
     };
   };
 }

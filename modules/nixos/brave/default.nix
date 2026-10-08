@@ -23,8 +23,8 @@ in {
     }
     (mkIf cfg.default {
       environment.sessionVariables = {
-        BROWSER = "${cfg.package}/bin/brave";
-        DEFAULT_BROWSER = "${cfg.package}/bin/brave";
+        BROWSER = getExe cfg.package;
+        DEFAULT_BROWSER = getExe cfg.package;
       };
     })
   ]);

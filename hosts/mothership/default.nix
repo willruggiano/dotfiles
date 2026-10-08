@@ -25,44 +25,6 @@
   fonts.fontSize = 10;
 
   programs = {
-    brave.enable = true;
-    brave.default = true;
-    direnv.enable = true;
-    fish.enable = true;
-    fzf.enable = true;
-    git.enable = true;
-    htop.enable = true;
-    hyprland = {
-      enable = true;
-      extensions = {
-        hypridle.enable = true;
-        hyprlock = {
-          enable = true;
-          monitor = "eDP-1";
-        };
-      };
-    };
-    kitty.enable = true;
-    libreoffice.enable = true;
-    pass.enable = true;
-    starship.enable = true;
+    hyprland.extensions.hyprlock.monitor = "eDP-1";
   };
-
-  services = {
-    agenix.enable = true;
-    darkman.enable = true;
-    dropbox.enable = true;
-    dunst.enable = true;
-    kbfs.enable = true;
-    # passSecretService.enable = true;
-    pcscd.enable = true;
-    pipewire.enable = true;
-    postgresql.enable = true;
-    ssh.enable = true;
-    # tailscale.enable = true;
-    udev.packages = [pkgs.yubikey-personalization];
-  };
-
-  # virtualisation.docker.enable = true;
-  virtualisation.podman.enable = true;
 }

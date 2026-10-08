@@ -20,8 +20,8 @@
       lsof
       mkcert
       ncdu
-      nq # battling with zmx
-      (writeShellScriptBin "q" ''
+      nq
+      (writeShellScriptBin "qq" ''
         nq -c sh -c '"$@"; notify-send "$*: done (exit: $?)"' _ "$@"
       '')
       pandoc
@@ -40,21 +40,32 @@
     ];
   };
 
-  programs.starship.settings.env_var = {
-    NQDIR.format = "[\\(nq:$env_value\\)](dimmed)";
-    ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed)";
-  };
+  programs = {
+    direnv.enable = lib.mkDefault true;
+    fish.enable = lib.mkDefault true;
+    fzf.enable = lib.mkDefault true;
+    git.enable = lib.mkDefault true;
+    htop.enable = lib.mkDefault true;
 
-  programs.tmux = {
-    extraConfig = ''
-      bind-key C-n next-window
-      bind-key C-p previous-window
-      set -g mouse on
-      set -g visual-activity off
-      setw -g monitor-activity on
-    '';
-    keyMode = "vi";
-    secureSocket = lib.mkDefault true;
-    terminal = lib.mkDefault "screen256-color";
+    starship = {
+      enable = lib.mkDefault true;
+      settings.env_var = {
+        NQDIR.format = "[\\(nq:$env_value\\)](dimmed)";
+        ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed)";
+      };
+    };
+
+    tmux = {
+      extraConfig = ''
+        bind-key C-n next-window
+        bind-key C-p previous-window
+        set -g mouse on
+        set -g visual-activity off
+        setw -g monitor-activity on
+      '';
+      keyMode = "vi";
+      secureSocket = lib.mkDefault true;
+      terminal = lib.mkDefault "screen256-color";
+    };
   };
 }

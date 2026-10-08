@@ -63,12 +63,7 @@
     };
   };
 
-  outputs = {
-    self,
-    flake-parts,
-    nixpkgs,
-    ...
-  } @ inputs:
+  outputs = {flake-parts, ...} @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.git-hooks.flakeModule
@@ -81,27 +76,30 @@
       systems = ["x86_64-linux"];
       perSystem = {
         config,
-        lib,
         pkgs,
-        self',
         ...
       }: {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [just nix-output-monitor yubikey-manager];
           inputsFrom = [config.pre-commit.devShell];
           shellHook = let
-            pkg = inputs.hypr.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+            hypr = inputs.hypr.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
             luarc = pkgs.writeText "luarc.json" (builtins.toJSON {
-              workspace.library = ["${pkg}/share/hypr/stubs"];
+              workspace.library = ["${hypr}/share/hypr/stubs"];
             });
           in ''
             ln -sf ${luarc} .luarc.json
           '';
         };
         pre-commit.settings = {
-          hooks.treefmt = {
-            enable = true;
-            package = config.treefmt.build.wrapper;
+          hooks = {
+            deadnix.enable = true;
+            # statix.enable = true;
+            treefmt = {
+              enable = true;
+              package = config.treefmt.build.wrapper;
+            };
+            zizmor.enable = true;
           };
         };
         treefmt.config = {
@@ -116,7 +114,6 @@
             taplo.enable = true;
             yamlfmt.enable = true;
           };
-          settings.global.excludes = ["packages/base16-templates/nix/sources.json"];
         };
       };
     };
