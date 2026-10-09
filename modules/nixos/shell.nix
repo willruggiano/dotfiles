@@ -50,8 +50,7 @@
     starship = {
       enable = lib.mkDefault true;
       settings.env_var = {
-        NQDIR.format = "[\\(nq:$env_value\\)](dimmed)";
-        ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed)";
+        ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed) ";
       };
     };
 
