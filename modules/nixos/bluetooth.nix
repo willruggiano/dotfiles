@@ -15,7 +15,7 @@ in {
     #
     # systemd.user.services.mpris-proxy = {
     #   description = "mpris proxy";
-    #   wantedBy = ["default.target"];
+    #   wantedBy = ["multi-user.target"];
     #   after = ["network.target" "sound.target"];
     #   serviceConfig = {
     #     ExecStart = "${pkgs.bluez}/bin/mpris-proxy";

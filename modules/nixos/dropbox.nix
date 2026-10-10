@@ -16,7 +16,7 @@ in {
 
     systemd.user.services.maestral = {
       description = "Maestral daemon";
-      wantedBy = ["default.target"];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         ExecStart = "${lib.getExe pkgs.maestral} start --foreground";
         Restart = "on-failure";
