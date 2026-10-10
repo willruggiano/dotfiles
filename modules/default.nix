@@ -81,10 +81,6 @@
         };
 
         nix = {
-          nixPath = [
-            "nixpkgs=${inputs.nixpkgs}"
-            "nixpkgs-latest=${inputs.nixpkgs-latest}"
-          ];
           registry = {
             nixpkgs.flake = inputs.nixpkgs;
             nixpkgs-latest.flake = inputs.nixpkgs-latest;
@@ -93,6 +89,10 @@
             auto-optimise-store = true;
             experimental-features = ["nix-command" "flakes"];
             extra-sandbox-paths = ["/nix/var/cache/ccache"];
+            nix-path = [
+              "nixpkgs=${inputs.nixpkgs}"
+              "nixpkgs-latest=${inputs.nixpkgs-latest}"
+            ];
             substituters = [
               "https://nix-community.cachix.org"
               "https://nixpkgs-wayland.cachix.org"
