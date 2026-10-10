@@ -37,6 +37,8 @@ in {
       };
     };
 
+    systemd.user.services.darkman.wantedBy = ["default.target"];
+
     xdg.portal = {
       config.common = {
         "org.freedesktop.impl.portal.Settings" = ["darkman"];
