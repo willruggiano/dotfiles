@@ -62,5 +62,12 @@ in {
 
       environment.variables.PASSWORD_STORE_DIR = "${config.user.home}/.password-store";
     }
+
+    (mkIf config.programs.chromium.enable {
+      programs.chromium.extensions = ["naepdomgkenhinolocfifgehidddafch"];
+      environment.etc = {
+        "brave/native-messaging-hosts/com.github.browserpass.native.json".source = "${pkgs.browserpass}/lib/browserpass/policies/chromium/com.github.browserpass.native.json";
+      };
+    })
   ]);
 }
