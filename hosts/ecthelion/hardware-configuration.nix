@@ -1,20 +1,15 @@
 {
   config,
   pkgs,
-  modulesPath,
   ...
 }: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   config = {
     boot = {
       kernelModules = ["kvm-intel"];
       kernelPackages = pkgs.linuxPackages_latest;
       # FIXME: Uncomment when upgrading Linux kernel versions since my /boot
       # partitition doesn't have enough space to hold both (for now).
-      # loader.systemd-boot.configurationLimit = 1;
+      # loader.systemd-boot.configurationLimit = lib.mkForce 1;
 
       # FIXME: honestly not sure if these do anything useful
       # kernelParams = ["apm=power_off" "acpi=force" "reboot=acpi"];
