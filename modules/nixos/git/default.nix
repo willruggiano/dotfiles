@@ -81,7 +81,6 @@ in {
         gh
         git-lfs
         jj-gh
-        jjj
         jujutsu
         lazygit
         mergiraf
