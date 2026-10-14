@@ -18,8 +18,13 @@ hl.monitor {
 local latitude = os.getenv "LATITUDE"
 local longitude = os.getenv "LONGITUDE"
 hl.on("hyprland.start", function()
+  hl.exec_cmd "systemctl --user start hyprland-session.target"
   hl.exec_cmd "hypridle"
   hl.exec_cmd("wlsunset -l " .. latitude .. " -L " .. longitude)
+end)
+
+hl.on("hyprland.shutdown", function()
+  os.execute "systemctl --user stop hyprland-session.target"
 end)
 
 -----------------------
