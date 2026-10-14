@@ -15,85 +15,77 @@ with lib; let
   signingkey = "~/.ssh/id_ed25519.pub";
 in {
   config = mkIf cfg.enable {
-    programs.git = {
-      config = {
-        advice.detachedHead = false;
-        alias.can = "commit -a --amend --no-edit";
-        color.ui = "auto";
-        commit.gpgsign = true;
-        core = {
-          attributesfile = "/etc/gitattributes";
-          excludesfile = "/etc/gitignore";
-          pager = "delta";
-        };
-        credential = {
-          "https://github.com" = {
-            helper = "!gh auth git-credential";
+    programs = {
+      fish.shellAliases = {
+        lg = "lazygit";
+      };
+      git = {
+        config = {
+          advice.detachedHead = false;
+          alias.can = "commit -a --amend --no-edit";
+          color.ui = "auto";
+          commit.gpgsign = true;
+          core = {
+            attributesfile = "/etc/gitattributes";
+            excludesfile = "/etc/gitignore";
+            pager = "delta";
           };
-        };
-        delta = {
-          navigate = true; # use n and N to move between diff sections
-          side-by-side = true;
-          whitespace-error-style = "22 reverse";
-        };
-        diff.external = "difft";
-        gpg.format = "ssh";
-        gpg.ssh.allowedSignersFile = "/etc/gitsigners";
-        init.defaultBranch = "main";
-        interactive.diffFilter = "delta --color-only";
-        lfs.enable = true;
-        merge = {
-          conflictStyle = "diff3";
-          keepBackup = false;
-          mergiraf = {
-            name = "mergiraf";
-            driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
+          credential = {
+            "https://github.com" = {
+              helper = "!gh auth git-credential";
+            };
           };
-          tool = "nvim";
-        };
-        mergetool = {
-          keepBackup = false;
-          nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
-          prompt = false; # run the mergetool immediately
-          push.followTags = true;
-        };
-        push.autoSetupRemote = true;
-        rebase = {
-          autoSquash = true;
-          autoStash = true;
-          stat = true;
-        };
-        user = {
-          inherit email name signingkey;
+          delta = {
+            navigate = true; # use n and N to move between diff sections
+            side-by-side = true;
+            whitespace-error-style = "22 reverse";
+          };
+          diff.external = "difft";
+          gpg.format = "ssh";
+          gpg.ssh.allowedSignersFile = "/etc/gitsigners";
+          init.defaultBranch = "main";
+          interactive.diffFilter = "delta --color-only";
+          lfs.enable = true;
+          merge = {
+            conflictStyle = "diff3";
+            keepBackup = false;
+            mergiraf = {
+              name = "mergiraf";
+              driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
+            };
+            tool = "nvim";
+          };
+          mergetool = {
+            keepBackup = false;
+            nvim.cmd = "nvim -d $LOCAL $MERGED $REMOTE";
+            prompt = false; # run the mergetool immediately
+            push.followTags = true;
+          };
+          push.autoSetupRemote = true;
+          rebase = {
+            autoSquash = true;
+            autoStash = true;
+            stat = true;
+          };
+          user = {
+            inherit email name signingkey;
+          };
         };
       };
     };
 
     environment = {
-      interactiveShellInit = ''
-        export GH_TOKEN="$(cat ${config.age.secrets."willruggiano@github".path})"
-      '';
-
       systemPackages = with pkgs; [
         delta
         difftastic
         gh
         git-lfs
-        jujutsu
         jj-gh
+        jjj
+        jujutsu
         lazygit
         mergiraf
         watchman
-        (pkgs.writeShellApplication {
-          name = "git";
-          text = ''
-            if [[ $# -eq 0 ]]; then
-                lazygit
-            else
-                ${cfg.package}/bin/git "$@"
-            fi
-          '';
-        })
       ];
 
       etc = {
