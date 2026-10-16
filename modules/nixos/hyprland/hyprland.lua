@@ -192,9 +192,8 @@ hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local browser = os.getenv "BROWSER"
 hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(browser))
 
-local window_switcher =
-  [[hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + (select(.title != "") | .title)' | hyprlauncher -m | { read -r pid title; hyprctl dispatch focuswindow "pid:$pid"; }]]
-hl.bind(mod .. " + W", hl.dsp.exec_cmd(window_switcher))
+-- n.b. replaced by `substitute` in ./default.nix
+hl.bind(mod .. " + W", hl.dsp.exec_cmd "@switchWindow@")
 
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special "magic")
 hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move { workspace = special })

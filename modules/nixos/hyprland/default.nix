@@ -69,8 +69,22 @@ in {
           home.configFile = let
             fonts = config.fonts.fontconfig.defaultFonts;
             fontSize = config.fonts.fontSize;
+            switchWindow = pkgs.writeShellApplication {
+              name = "switch_window.sh";
+              runtimeInputs = with pkgs; [hyprland jq hyprlauncher];
+              text = ''
+                hyprctl clients -j | jq -r '.[] | (select(.pid != -1) | .pid | tostring) + " " + (select(.title != "") | .title)' | hyprlauncher -m | {
+                  # shellcheck disable=SC2034
+                  read -r pid title;
+                  hyprctl dispatch "hl.dsp.focus({ window = 'pid:$pid' })"
+                }
+              '';
+            };
           in {
-            "hypr/hyprland.lua".source = ./hyprland.lua;
+            "hypr/hyprland.lua".source = pkgs.substitute {
+              src = ./hyprland.lua;
+              substitutions = ["--replace-fail" "@switchWindow@" (lib.getExe switchWindow)];
+            };
             "hypr/hyprtoolkit.conf".text = ''
               # Generate by Nix
               background = ${colors.withHashtag.base01}
