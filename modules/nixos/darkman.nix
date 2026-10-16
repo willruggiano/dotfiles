@@ -37,7 +37,7 @@ in {
       };
     };
 
-    # systemd.user.services.darkman.wantedBy = ["multi-user.target"];
+    systemd.packages = [cfg.package];
 
     xdg.portal = {
       config.common = {

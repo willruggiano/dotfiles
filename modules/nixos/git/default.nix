@@ -191,14 +191,16 @@ in {
           };
         };
       };
-      dataFile = {
-        "dark-mode.d/lazygit".source = pkgs.writeShellScript "dark-lazygit" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./lazygit-doom-one-dark.yml} "$HOME/.config/lazygit/theme.yml"
-        '';
-        "light-mode.d/lazygit".source = pkgs.writeShellScript "light-lazygit" ''
-          ${pkgs.coreutils}/bin/ln -sf ${./lazygit-doom-one-light.yml} "$HOME/.config/lazygit/theme.yml"
-        '';
-      };
+
+      dataFile."darkman/lazygit".source = pkgs.writeShellScript "lazygit-theme" ''
+        case "$1" in
+          dark) target=${./lazygit-doom-one-dark.yml} ;;
+          light) target=${./lazygit-doom-one-light.yml} ;;
+          *) echo "invalid theme: $1" >&2; exit 1 ;;
+        esac
+        link_name="$HOME/.config/lazygit/theme.yml"
+        ${lib.getExe' pkgs.coreutils "ln"} -sf "$target" "$link_name"
+      '';
     };
   };
 }
