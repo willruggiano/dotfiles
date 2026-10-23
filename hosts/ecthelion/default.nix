@@ -36,5 +36,6 @@
       config = ./monitor-layout.kdl;
     };
     remarkable.enable = true;
+    tailscale.enable = true;
   };
 }
