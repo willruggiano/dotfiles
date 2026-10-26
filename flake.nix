@@ -11,7 +11,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    campfire.url = "sourcehut:~bombadil/campfire";
     doom-one = {
       url = "github:NTBBloodbath/doom-one.nvim";
       flake = false;
