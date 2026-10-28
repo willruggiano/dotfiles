@@ -49,9 +49,18 @@
 
     starship = {
       enable = lib.mkDefault true;
-      settings.env_var = {
-        ZMX_SESSION.format = "[\\(zmx:$env_value\\)](dimmed) ";
-      };
+      settings.env_var = builtins.listToAttrs (
+        lib.mapAttrsToList (label: var: {
+          name = var;
+          value = {
+            format = "[+${label}:$env_value]($style) ";
+            style = "dimmed";
+          };
+        }) {
+          nq = "NQDIR";
+          zmx = "ZMX_SESSION";
+        }
+      );
     };
 
     tmux = {

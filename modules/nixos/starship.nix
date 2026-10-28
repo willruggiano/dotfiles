@@ -9,12 +9,12 @@ in {
     programs.starship = {
       settings = {
         format = lib.concatStrings [
+          "$username"
           "$hostname"
           "$directory"
           "$custom"
           "$env_var"
           "$line_break"
-          "$username"
           "$character"
         ];
         character = {
@@ -25,7 +25,8 @@ in {
         custom.tailscale = lib.mkIf (config.services.tailscale.enable) {
           command = "tailscale status --json | jq -r '.CurrentTailnet.Name'";
           when = "tailscale status";
-          format = " \\($output\\)";
+          format = "[+tailnet:$output]($style) ";
+          style = "dimmed";
         };
         directory = {
           fish_style_pwd_dir_length = 1;
@@ -34,8 +35,11 @@ in {
           truncation_length = 2;
         };
         env_var = {};
-        hostname.format = "[$hostname:](dimmed)";
-        username.format = "$user";
+        hostname.format = "[@$hostname:](bold dimmed)";
+        username = {
+          format = "$user";
+          style_user = "bold dimmed";
+        };
       };
     };
   };
