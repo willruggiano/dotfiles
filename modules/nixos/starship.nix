@@ -36,10 +36,7 @@ in {
         };
         env_var = {};
         hostname.format = "[@$hostname:](bold dimmed)";
-        username = {
-          format = "$user";
-          style_user = "bold dimmed";
-        };
+        username.format = "[$user](bold dimmed)";
       };
     };
   };
